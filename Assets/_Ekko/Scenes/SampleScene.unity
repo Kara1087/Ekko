@@ -544,22 +544,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 354689775183971246, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
-      propertyPath: lowLightThreshold
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 441468540923850232, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
-      propertyPath: maxRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 441468540923850232, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
-      propertyPath: minRadius
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 441468540923850232, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
-      propertyPath: pulseSpeedNormal
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1986533620530436781, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -603,22 +587,6 @@ PrefabInstance:
     - target: {fileID: 4446427717985520308, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6396221260206475808, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
-      propertyPath: m_ShadowsEnabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6396221260206475808, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
-      propertyPath: m_BlendStyleIndex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6396221260206475808, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
-      propertyPath: m_OverlapOperation
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6396221260206475808, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

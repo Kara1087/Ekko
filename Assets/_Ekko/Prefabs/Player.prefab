@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 2
   m_LightType: 3
-  m_BlendStyleIndex: 1
+  m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.748
   m_Color: {r: 0.5990566, g: 0.789528, b: 1, a: 1}
   m_Intensity: 0.5
@@ -221,7 +221,7 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0.58
+  m_PointLightInnerRadius: 0.5
   m_PointLightOuterRadius: 2.5
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
@@ -245,13 +245,14 @@ GameObject:
   - component: {fileID: 1777681495303897517}
   - component: {fileID: 6122392963487424759}
   - component: {fileID: 2365620392455548968}
-  - component: {fileID: 8178291466766873922}
   - component: {fileID: 3463463673784859910}
+  - component: {fileID: 8178291466766873922}
+  - component: {fileID: 2439814238794856113}
   - component: {fileID: 8690604747897951693}
+  - component: {fileID: 165381274287226765}
   - component: {fileID: 354689775183971246}
   - component: {fileID: 441468540923850232}
   - component: {fileID: 7903095467866882524}
-  - component: {fileID: 2439814238794856113}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -476,11 +477,55 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3463463673784859910}
+        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+        m_MethodName: OnSlam
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8d739f54-aa54-42cc-9083-2801478959f9
+    m_ActionName: 'Player/Slam[/Keyboard/downArrow,/Keyboard/s]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3463463673784859910}
+        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+        m_MethodName: OnControlFall
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c8423b34-3af2-49ae-a9b6-97dbff043792
+    m_ActionName: 'Player/ControlFall[/Keyboard/shift,/Keyboard/c]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3463463673784859910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446427717985520308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b27d8b743694a94b14e7e91b905ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8178291466766873922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,9 +543,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  rb: {fileID: 1777681495303897517}
-  input: {fileID: 3463463673784859910}
---- !u!114 &3463463673784859910
+  groundCheckRadius: 0.1
+--- !u!114 &2439814238794856113
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -509,7 +553,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4446427717985520308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78b27d8b743694a94b14e7e91b905ada, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e7e97867d264461795bc3d19b74418e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8690604747897951693
@@ -527,6 +571,25 @@ MonoBehaviour:
   jumpForce: 14
   coyoteTime: 0.1
   jumpBufferTime: 0.15
+  controlledFallWindow: 0.2
+  slamFallAcceleration: 2
+  cushionFallDamping: 0.3
+  slamWaveMultiplier: 1.5
+  cushionWaveMultiplier: 0.1
+--- !u!114 &165381274287226765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446427717985520308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca5e82a5235e49e8b62b720660734f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLandingType: 0
+  lastImpactVelocity: 0
 --- !u!114 &354689775183971246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,7 +604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLight: 100
   currentLight: 100
-  lowLightThreshold: 20
+  lowLightThreshold: 30
   onLightChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -565,12 +628,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light2D: {fileID: 6396221260206475808}
   playerHealth: {fileID: 354689775183971246}
-  minRadius: 1
-  maxRadius: 5
+  minRadius: 1.5
+  maxRadius: 4
   minIntensity: 0.5
   maxIntensity: 1.5
-  lerpSpeed: 5
   transitionDuration: 0.3
+  enablePulse: 1
+  pulseAmplitude: 0.1
+  pulseSpeedNormal: 0.5
+  pulseSpeedCritical: 3
 --- !u!114 &7903095467866882524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,17 +647,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7edaa31502e8f46f98a49a8022fdda37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2439814238794856113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4446427717985520308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e7e97867d264461795bc3d19b74418e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
