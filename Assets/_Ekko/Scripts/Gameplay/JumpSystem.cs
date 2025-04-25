@@ -115,7 +115,7 @@ public class JumpSystem : MonoBehaviour
 
     public void OnLand(float impactVelocity)
     {
-        float impactForce = Mathf.Abs(impactVelocity); // rb.velocity.y
+        float impactForce = Mathf.Abs(impactVelocity); // vitesse à laquelle le joueur a touché le sol, sans tenir compte du sens
         bool isCushioned = (Time.time - lastControlledFallInputTime) <= controlledFallWindow;
 
         // Classification
@@ -144,8 +144,9 @@ public class JumpSystem : MonoBehaviour
         ");
 
         landingClassifier.RegisterLanding(impactVelocity, landingType);
-        //waveEmitter.EmitWave(finalForce);
-
+        waveEmitter.EmitWave(finalForce); // appelé pour émettre une onde
+        
+        // Réinitialisation
         isForcingSlam = false;
         lastControlledFallInputTime = -10f;
     }

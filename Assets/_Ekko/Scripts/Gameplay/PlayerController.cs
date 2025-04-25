@@ -55,10 +55,6 @@ public class PlayerController : MonoBehaviour
         if (!wasGroundedLastFrame && IsGrounded)
         {
             jumpSystem.OnLand(previousVerticalVelocity); // 👈 Vélocité pré-impact
-            // Appel à JumpSystem avec la vélocité verticale au moment du contact
-            // float verticalVelocity = rb.linearVelocity.y;
-            // jumpSystem.OnLand(verticalVelocity);
-
         }
         wasGroundedLastFrame = IsGrounded;
     }

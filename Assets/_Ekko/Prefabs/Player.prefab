@@ -544,6 +544,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   groundCheckRadius: 0.1
+  rb: {fileID: 1777681495303897517}
+  input: {fileID: 3463463673784859910}
 --- !u!114 &2439814238794856113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,6 +558,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7e97867d264461795bc3d19b74418e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wavePrefab: {fileID: 8262087878520942701, guid: 7d55035cbbd7c43b386c2089db1bdbdc, type: 3}
+  minRange: 0.5
+  maxRange: 4
+  rangePowerCurve: 1
+  minForce: 5
+  maxForce: 20
+  lifetime: 2
+  debugColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!114 &8690604747897951693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,7 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b651e04625c4b3ca21a21524c37776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 14
+  jumpForce: 12
   coyoteTime: 0.1
   jumpBufferTime: 0.15
   controlledFallWindow: 0.2
