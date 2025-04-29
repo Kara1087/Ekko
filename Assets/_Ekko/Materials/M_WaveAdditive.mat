@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wave_Additive_Mat_2
+  m_Name: M_WaveAdditive
   m_Shader: {fileID: -6465566751694194690, guid: aae79e11967f14b6a8f92710a5cd1131, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -28,11 +28,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Base_Map:
-        m_Texture: {fileID: 2800000, guid: b3d5cc45d73c2411d8b0a6bd25aa6e5e, type: 3}
+        m_Texture: {fileID: 2800000, guid: b710c6e03790747cc850904bbd3f47df, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8826753ad2050464094ca72ca077eb61, type: 3}
+        m_Texture: {fileID: 2800000, guid: ede34c16ec50a4d27a8de3e848bb4211, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:

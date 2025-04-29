@@ -109,15 +109,6 @@ public class Wave : MonoBehaviour
             }
         }
     }
-    /*private void OnTriggerEnter2D(Collider2D other)
-    {
-        // Si l'objet touché implémente IRevealable ➔ déclenche la révélation
-        IRevealable revealable = other.GetComponent<IRevealable>();
-        if (revealable != null)
-        {
-            revealable.Reveal(1f); // 1f valeur générique, pourra être modulée plus tard par intensité réelle
-        }
-    }*/
 
     private void OnDrawGizmos()
     {

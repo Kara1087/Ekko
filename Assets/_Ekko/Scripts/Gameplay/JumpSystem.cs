@@ -126,6 +126,8 @@ public class JumpSystem : MonoBehaviour
         {
             landingType = LandingType.Slam;
             finalForce *= slamWaveMultiplier;
+
+            AudioManager.Instance.Play("SlamJump");
         }
         else if (isCushioned)
         {

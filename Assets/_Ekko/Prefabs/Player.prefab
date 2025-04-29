@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 7903095467866882524}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -563,9 +563,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   groundCheck: {fileID: 1630481970446865352}
-  groundLayer:
+  groundLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   groundCheckRadius: 0.1
   rb: {fileID: 1777681495303897517}
   input: {fileID: 3463463673784859910}
@@ -583,7 +583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wavePrefab: {fileID: 8262087878520942701, guid: 7d55035cbbd7c43b386c2089db1bdbdc, type: 3}
   minRange: 0.5
-  maxRange: 16
+  maxRange: 30
   rangePowerCurve: 1
   minForce: 5
   maxForce: 20
