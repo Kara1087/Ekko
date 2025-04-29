@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask groundLayers;
     [SerializeField] private float groundCheckRadius = 0.1f;
 
     public bool IsGrounded { get; private set; }
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckGrounded()
     {
-        IsGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        IsGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayers);
     }
 
     

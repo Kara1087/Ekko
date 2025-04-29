@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b710c6e03790747cc850904bbd3f47df
+guid: 766d9da7e533544318c666be419a8271
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6857765494780095847
-    second: WaveVisual-7 1_0
+      213: -3006854958639775380
+    second: Idle-01_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WaveVisual-7 1_0
+      name: Idle-01_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 886
-        height: 886
+        x: 70
+        y: 27
+        width: 580
+        height: 668
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 99293b2dd9254d0a0800000000000000
-      internalID: -6857765494780095847
+      spriteID: c61872b98518546d0800000000000000
+      internalID: -3006854958639775380
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WaveVisual-7 1_0: -6857765494780095847
+      Idle-01_0: -3006854958639775380
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

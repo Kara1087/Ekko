@@ -13,7 +13,7 @@ public class LandingClassifier : MonoBehaviour
         lastImpactVelocity = Mathf.Abs(impactVelocity);
         currentLandingType = type;
 
-         Debug.Log($"[LandingClassifier] Nouveau type d’atterrissage : {type} | Impact : {lastImpactVelocity:F2}");
+        // Debug.Log($"[LandingClassifier] Nouveau type d’atterrissage : {type} | Impact : {lastImpactVelocity:F2}");
     }
 
     public LandingType GetCurrentLandingType() => currentLandingType;

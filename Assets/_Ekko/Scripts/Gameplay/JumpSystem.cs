@@ -133,16 +133,6 @@ public class JumpSystem : MonoBehaviour
             finalForce *= cushionWaveMultiplier;
         }
 
-        Debug.Log($@"
-        🛬 Landing Info
-        ──────────────
-        • Type : {landingType}
-        • Velocity.y au contact : {impactVelocity:F2}
-        • Force brute : {impactForce:F2}
-        • Multiplier appliqué : {(finalForce / impactForce):F2}
-        • Force finale : {finalForce:F2}
-        ");
-
         landingClassifier.RegisterLanding(impactVelocity, landingType);
         waveEmitter.EmitWave(finalForce); // appelé pour émettre une onde
         
