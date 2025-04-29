@@ -4,7 +4,6 @@ using UnityEngine;
 public class Wave : MonoBehaviour
 {
     [Header("Wave Settings")]
-    [SerializeField] private float minExpansionSpeed = 1f;
     [SerializeField] private float maxExpansionSpeed = 6f;    
     [SerializeField] private float baseFadeSpeed = 1.5f;
     [SerializeField] private float fadeSpeedMultiplier = 0.05f;
@@ -103,11 +102,9 @@ public class Wave : MonoBehaviour
 
         foreach (Collider2D hit in hits)
         {
-            Debug.Log($"[Wave] {hit.name} touché par l'onde !");
             IRevealable revealable = hit.GetComponent<IRevealable>();
             if (revealable != null)
             {
-                Debug.Log($"[Wave] {hit.name} est revealable, appel de Reveal()");
                 revealable.Reveal(1f);
             }
         }
