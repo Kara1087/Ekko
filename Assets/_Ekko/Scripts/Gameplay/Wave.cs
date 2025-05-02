@@ -17,6 +17,7 @@ public class Wave : MonoBehaviour
     private float fadeSpeed;
     private float alpha = 1f;
     private float targetRadius;
+    private float revealDuration;
 
     private CircleCollider2D col;
     private SpriteRenderer sr;
@@ -41,13 +42,14 @@ public class Wave : MonoBehaviour
 
     public void Initialize(float impactForce, float assignedTargetRadius, float minForce = 1f, float maxForce = 20f)
     {
-        this.targetRadius = assignedTargetRadius;
+        targetRadius = assignedTargetRadius;
 
         // Fade dépendant de la force
         float t = Mathf.InverseLerp(minForce, maxForce, Mathf.Clamp(impactForce, minForce, maxForce));
         fadeSpeed = baseFadeSpeed / (1f + (impactForce * fadeSpeedMultiplier));
 
         float fadeDuration = 1f / fadeSpeed;
+        revealDuration = Mathf.Lerp(0.5f, 3f, t);
 
         // Taille initiale du collider
         if (col != null)
@@ -110,7 +112,7 @@ public class Wave : MonoBehaviour
             IRevealable revealable = hit.GetComponent<IRevealable>();
             if (revealable != null)
             {
-                revealable.Reveal(1f);
+                revealable.Reveal(revealDuration);
             }
         }
     }
