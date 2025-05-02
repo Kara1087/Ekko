@@ -7,7 +7,11 @@ public class Wave : MonoBehaviour
     [SerializeField] private float maxExpansionSpeed = 6f;    
     [SerializeField] private float baseFadeSpeed = 1.5f;
     [SerializeField] private float fadeSpeedMultiplier = 0.05f;
-    [SerializeField] private LayerMask revealableLayers; // <- Nouveau : Filtrer seulement les revealables
+    
+    
+    [Header("Layer Masks")]
+    [SerializeField] private LayerMask revealableLayers;   // Pour les plateformes
+    [SerializeField] private LayerMask alertableLayers;     // Pour les ennemis
     
     private float expansionSpeed;
     private float fadeSpeed;
@@ -86,7 +90,8 @@ public class Wave : MonoBehaviour
         }
 
         // Balayage pour révéler les objets
-        ScanForRevealables();   
+        ScanForRevealables();
+        ScanForAlertables();
 
         // Destruction une fois invisible
         if (alpha <= 0f)
@@ -107,6 +112,18 @@ public class Wave : MonoBehaviour
             {
                 revealable.Reveal(1f);
             }
+        }
+    }
+
+    private void ScanForAlertables()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, col.radius, alertableLayers);
+
+        foreach (Collider2D hit in hits)
+        {
+            IAlertable alertable = hit.GetComponent<IAlertable>();
+            if (alertable != null)
+                alertable.Alert(transform.position);
         }
     }
 

@@ -88,6 +88,9 @@ MonoBehaviour:
   revealableLayers:
     serializedVersion: 2
     m_Bits: 640
+  alertableLayers:
+    serializedVersion: 2
+    m_Bits: 1024
   debugMode: 0
 --- !u!1 &8996354723850301667
 GameObject:
