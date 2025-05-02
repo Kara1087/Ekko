@@ -49,6 +49,13 @@ public class EnemyAI : MonoBehaviour, IAlertable
         stateTimer -= Time.deltaTime;
         MoveTowards(lastAlertPosition, alertSpeed);
 
+        // Si le joueur entre dans la zone de chase pendant Alert
+        if (player != null && Vector2.Distance(transform.position, player.position) <= chaseRange)
+        {
+            ChangeState(EnemyState.Chase);
+            return;
+        }
+
         if (stateTimer <= 0f)
         {
             ChangeState(EnemyState.Dormant);
@@ -65,6 +72,17 @@ public class EnemyAI : MonoBehaviour, IAlertable
 
         stateTimer -= Time.deltaTime;
         MoveTowards(player.position, chaseSpeed);
+
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= chaseRange)
+        {
+            // 🔁 Tant que le joueur est dans la zone, on continue à le traquer
+            stateTimer = chaseDuration;
+        }
+
+        MoveTowards(player.position, chaseSpeed);
+        stateTimer -= Time.deltaTime;
 
         if (stateTimer <= 0f)
         {
@@ -113,5 +131,26 @@ public class EnemyAI : MonoBehaviour, IAlertable
         {
             ChangeState(EnemyState.Alert);
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, chaseRange);
+
+#if UNITY_EDITOR
+        if (currentState == EnemyState.Alert)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(transform.position, lastAlertPosition);
+            Gizmos.DrawWireSphere(lastAlertPosition, 0.3f);
+        }
+
+        if (currentState == EnemyState.Chase && player != null)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawLine(transform.position, player.position);
+        }
+#endif
     }
 }
