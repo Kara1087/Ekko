@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f5ce08028686e4954a1a621b089d524d
+guid: accff0f84c82041a7861ef46ed71c44b
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -107,9 +107,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 255
-        width: 512
-        height: 257
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,10 +128,10 @@ TextureImporter:
       name: PassThroughPlatform_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 35
-        width: 258
-        height: 218
+        x: 256
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,11 +146,55 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f31ffdb78cccc4e8e83f8c6c774a3bbe
+      internalID: 2067795594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform_3
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a3c979c0103147f09f24eef6e5f8b69
+      internalID: 1759905650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 39b56313c6fa34464883e95d5ecd6abf
     internalID: 0
     vertices: []
     indices: 
@@ -162,6 +206,8 @@ TextureImporter:
     nameFileIdTable:
       PassThroughPlatform_0: -8747577240507040900
       PassThroughPlatform_1: 5999761506452457943
+      PassThroughPlatform_2: 2067795594
+      PassThroughPlatform_3: 1759905650
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

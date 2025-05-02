@@ -1,0 +1,1469 @@
+fileFormatVersion: 2
+guid: 5ec4363240691438a8a5c47b8b26376a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1457678298256978712
+    second: PassThroughPlatform2_0
+  - first:
+      213: 6386040174094959194
+    second: PassThroughPlatform2_1
+  - first:
+      213: -3524695826366675949
+    second: PassThroughPlatform2_2
+  - first:
+      213: -5597433532859518460
+    second: PassThroughPlatform2_3
+  - first:
+      213: -8437890965422960848
+    second: PassThroughPlatform2_4
+  - first:
+      213: 1605298398362454470
+    second: PassThroughPlatform2_5
+  - first:
+      213: 6520459955192776099
+    second: PassThroughPlatform2_6
+  - first:
+      213: 7229082778673445397
+    second: PassThroughPlatform2_7
+  - first:
+      213: 1447421102524730072
+    second: PassThroughPlatform2_8
+  - first:
+      213: 3633656774884688508
+    second: PassThroughPlatform2_9
+  - first:
+      213: 368614618219768823
+    second: PassThroughPlatform2_10
+  - first:
+      213: 3856258291699675478
+    second: PassThroughPlatform2_11
+  - first:
+      213: 3399934753084367170
+    second: PassThroughPlatform2_12
+  - first:
+      213: -8176534804226296562
+    second: PassThroughPlatform2_13
+  - first:
+      213: 3100324976852092462
+    second: PassThroughPlatform2_14
+  - first:
+      213: 1111632751164918442
+    second: PassThroughPlatform2_15
+  - first:
+      213: -2656074946008936167
+    second: PassThroughPlatform2_16
+  - first:
+      213: 8596285845606237193
+    second: PassThroughPlatform2_17
+  - first:
+      213: -3629986058684241604
+    second: PassThroughPlatform2_18
+  - first:
+      213: -6104321861398929470
+    second: PassThroughPlatform2_19
+  - first:
+      213: 2832761565722099828
+    second: PassThroughPlatform2_20
+  - first:
+      213: 2305034543449491452
+    second: PassThroughPlatform2_21
+  - first:
+      213: -8588398190643293939
+    second: PassThroughPlatform2_22
+  - first:
+      213: 8766853051796161463
+    second: PassThroughPlatform2_23
+  - first:
+      213: 2205044273131126220
+    second: PassThroughPlatform2_24
+  - first:
+      213: -5880303297574234200
+    second: PassThroughPlatform2_25
+  - first:
+      213: -2480844850507058389
+    second: PassThroughPlatform2_26
+  - first:
+      213: 443354816817499248
+    second: PassThroughPlatform2_27
+  - first:
+      213: -3856099331875885658
+    second: PassThroughPlatform2_28
+  - first:
+      213: -3856183199837543422
+    second: PassThroughPlatform2_29
+  - first:
+      213: 8686083879410959437
+    second: PassThroughPlatform2_30
+  - first:
+      213: -8481886391471907222
+    second: PassThroughPlatform2_31
+  - first:
+      213: 6276513278435042439
+    second: PassThroughPlatform2_32
+  - first:
+      213: -2759254710608027207
+    second: PassThroughPlatform2_33
+  - first:
+      213: -59497362562694013
+    second: PassThroughPlatform2_34
+  - first:
+      213: 7981277570208862583
+    second: PassThroughPlatform2_35
+  - first:
+      213: -7218283598951767484
+    second: PassThroughPlatform2_36
+  - first:
+      213: -3108930282375942138
+    second: PassThroughPlatform2_37
+  - first:
+      213: -7514764126685249962
+    second: PassThroughPlatform2_38
+  - first:
+      213: -122558630053851012
+    second: PassThroughPlatform2_39
+  - first:
+      213: -8254997183947089625
+    second: PassThroughPlatform2_40
+  - first:
+      213: 3090568279317829233
+    second: PassThroughPlatform2_41
+  - first:
+      213: -2153497860424813775
+    second: PassThroughPlatform2_42
+  - first:
+      213: -3078123381703361242
+    second: PassThroughPlatform2_43
+  - first:
+      213: -6718859638616865340
+    second: PassThroughPlatform2_44
+  - first:
+      213: -1051800663620990284
+    second: PassThroughPlatform2_45
+  - first:
+      213: 5113933890103618368
+    second: PassThroughPlatform2_46
+  - first:
+      213: -1202778405726777868
+    second: PassThroughPlatform2_47
+  - first:
+      213: 4051805982407899421
+    second: PassThroughPlatform2_48
+  - first:
+      213: 3876397620230606553
+    second: PassThroughPlatform2_49
+  - first:
+      213: -803704242204773773
+    second: PassThroughPlatform2_50
+  - first:
+      213: 6369030089583669862
+    second: PassThroughPlatform2_51
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 256
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PassThroughPlatform2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 276
+        width: 512
+        height: 236
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ecc8939f4945cbe0800000000000000
+      internalID: -1457678298256978712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 328
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a52cd4224b5cf9850800000000000000
+      internalID: 6386040174094959194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 319
+        width: 5
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 314cc1012d3c51fc0800000000000000
+      internalID: -3524695826366675949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_3
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 349
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4027c0cbbdbe152b0800000000000000
+      internalID: -5597433532859518460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_4
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 309
+        width: 25
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03f8c707fd696ea80800000000000000
+      internalID: -8437890965422960848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_5
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 329
+        width: 23
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c9c5e8536a274610800000000000000
+      internalID: 1605298398362454470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_6
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 346
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a5cc6948c35d7a50800000000000000
+      internalID: 6520459955192776099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_7
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 312
+        width: 29
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51a79b26c7cd25460800000000000000
+      internalID: 7229082778673445397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_8
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 381
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8da0460f2d5461410800000000000000
+      internalID: 1447421102524730072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_9
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 287
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7281b6b5975d6230800000000000000
+      internalID: 3633656774884688508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_10
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 258
+        width: 18
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fb6102da059d1500800000000000000
+      internalID: 368614618219768823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_11
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 325
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 651f9e62c7e248530800000000000000
+      internalID: 3856258291699675478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_12
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 345
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2416911f4aefe2f20800000000000000
+      internalID: 3399934753084367170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_13
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 298
+        width: 34
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e05397caaec178e80800000000000000
+      internalID: -8176534804226296562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_14
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 338
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e264a85e321960b20800000000000000
+      internalID: 3100324976852092462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_15
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 369
+        width: 31
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaa00e5f8105d6f00800000000000000
+      internalID: 1111632751164918442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_16
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 391
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 911925ab8e9b32bd0800000000000000
+      internalID: -2656074946008936167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_17
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 338
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90404177e642c4770800000000000000
+      internalID: 8596285845606237193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_18
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 351
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c39618089e2bf9dc0800000000000000
+      internalID: -3629986058684241604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_19
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 336
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cf5aa0fb97194ba0800000000000000
+      internalID: -6104321861398929470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_20
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 308
+        width: 6
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 470ce3aa2adff4720800000000000000
+      internalID: 2832761565722099828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_21
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 304
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf7cf4564b02dff10800000000000000
+      internalID: 2305034543449491452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_22
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 329
+        width: 25
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0159115951efc880800000000000000
+      internalID: -8588398190643293939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_23
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 338
+        width: 45
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b30c5ed66e1aa970800000000000000
+      internalID: 8766853051796161463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_24
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 326
+        width: 19
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccd7df56514e99e10800000000000000
+      internalID: 2205044273131126220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_25
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 316
+        width: 25
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a797885e47f46ea0800000000000000
+      internalID: -5880303297574234200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_26
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 341
+        width: 53
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b237ba6a0c4429dd0800000000000000
+      internalID: -2480844850507058389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_27
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 330
+        width: 15
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07c8ddd5bdc172600800000000000000
+      internalID: 443354816817499248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_28
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 374
+        width: 15
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6adaae096126c7ac0800000000000000
+      internalID: -3856099331875885658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_29
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 339
+        width: 46
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 204aad88fc51c7ac0800000000000000
+      internalID: -3856183199837543422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_30
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 373
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d448989744b2b8870800000000000000
+      internalID: 8686083879410959437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_31
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 329
+        width: 19
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6ed81314494a4a80800000000000000
+      internalID: -8481886391471907222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_32
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 341
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 784a4258297aa1750800000000000000
+      internalID: 6276513278435042439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_33
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 341
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b1a269b57825b9d0800000000000000
+      internalID: -2759254710608027207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_34
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 341
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 384c067c67f9c2ff0800000000000000
+      internalID: -59497362562694013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_35
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 341
+        width: 22
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 771971ad9a133ce60800000000000000
+      internalID: 7981277570208862583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_36
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 321
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 442a3749f4183db90800000000000000
+      internalID: -7218283598951767484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_37
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 331
+        width: 21
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 600f687416cdad4d0800000000000000
+      internalID: -3108930282375942138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_38
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 387
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65eb31a77d136b790800000000000000
+      internalID: -7514764126685249962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_39
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 366
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c705b7743959c4ef0800000000000000
+      internalID: -122558630053851012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_40
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 368
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 729dbfc4ccb507d80800000000000000
+      internalID: -8254997183947089625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_41
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 324
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17654dab977e3ea20800000000000000
+      internalID: 3090568279317829233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_42
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 339
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 133b0dc0b1d3d12e0800000000000000
+      internalID: -2153497860424813775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_43
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 306
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62d3fbac71f4845d0800000000000000
+      internalID: -3078123381703361242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_44
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 292
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c54888b1c0d1c2a0800000000000000
+      internalID: -6718859638616865340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_45
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 356
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bac95e7ed04761f0800000000000000
+      internalID: -1051800663620990284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_46
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 314
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04b257c37c758f640800000000000000
+      internalID: 5113933890103618368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_47
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 355
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fd052f996fde4fe0800000000000000
+      internalID: -1202778405726777868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_48
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 321
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d19b938d218ea3830800000000000000
+      internalID: 4051805982407899421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_49
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 36
+        width: 258
+        height: 222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dec30af81bbbc530800000000000000
+      internalID: 3876397620230606553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_50
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 35
+        width: 25
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 372f8eaff3ba8d4f0800000000000000
+      internalID: -803704242204773773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PassThroughPlatform2_51
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 37
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 662b8653f17536850800000000000000
+      internalID: 6369030089583669862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      PassThroughPlatform2_0: -1457678298256978712
+      PassThroughPlatform2_1: 6386040174094959194
+      PassThroughPlatform2_10: 368614618219768823
+      PassThroughPlatform2_11: 3856258291699675478
+      PassThroughPlatform2_12: 3399934753084367170
+      PassThroughPlatform2_13: -8176534804226296562
+      PassThroughPlatform2_14: 3100324976852092462
+      PassThroughPlatform2_15: 1111632751164918442
+      PassThroughPlatform2_16: -2656074946008936167
+      PassThroughPlatform2_17: 8596285845606237193
+      PassThroughPlatform2_18: -3629986058684241604
+      PassThroughPlatform2_19: -6104321861398929470
+      PassThroughPlatform2_2: -3524695826366675949
+      PassThroughPlatform2_20: 2832761565722099828
+      PassThroughPlatform2_21: 2305034543449491452
+      PassThroughPlatform2_22: -8588398190643293939
+      PassThroughPlatform2_23: 8766853051796161463
+      PassThroughPlatform2_24: 2205044273131126220
+      PassThroughPlatform2_25: -5880303297574234200
+      PassThroughPlatform2_26: -2480844850507058389
+      PassThroughPlatform2_27: 443354816817499248
+      PassThroughPlatform2_28: -3856099331875885658
+      PassThroughPlatform2_29: -3856183199837543422
+      PassThroughPlatform2_3: -5597433532859518460
+      PassThroughPlatform2_30: 8686083879410959437
+      PassThroughPlatform2_31: -8481886391471907222
+      PassThroughPlatform2_32: 6276513278435042439
+      PassThroughPlatform2_33: -2759254710608027207
+      PassThroughPlatform2_34: -59497362562694013
+      PassThroughPlatform2_35: 7981277570208862583
+      PassThroughPlatform2_36: -7218283598951767484
+      PassThroughPlatform2_37: -3108930282375942138
+      PassThroughPlatform2_38: -7514764126685249962
+      PassThroughPlatform2_39: -122558630053851012
+      PassThroughPlatform2_4: -8437890965422960848
+      PassThroughPlatform2_40: -8254997183947089625
+      PassThroughPlatform2_41: 3090568279317829233
+      PassThroughPlatform2_42: -2153497860424813775
+      PassThroughPlatform2_43: -3078123381703361242
+      PassThroughPlatform2_44: -6718859638616865340
+      PassThroughPlatform2_45: -1051800663620990284
+      PassThroughPlatform2_46: 5113933890103618368
+      PassThroughPlatform2_47: -1202778405726777868
+      PassThroughPlatform2_48: 4051805982407899421
+      PassThroughPlatform2_49: 3876397620230606553
+      PassThroughPlatform2_5: 1605298398362454470
+      PassThroughPlatform2_50: -803704242204773773
+      PassThroughPlatform2_51: 6369030089583669862
+      PassThroughPlatform2_6: 6520459955192776099
+      PassThroughPlatform2_7: 7229082778673445397
+      PassThroughPlatform2_8: 1447421102524730072
+      PassThroughPlatform2_9: 3633656774884688508
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

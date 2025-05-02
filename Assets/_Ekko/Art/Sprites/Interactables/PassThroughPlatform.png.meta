@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: accff0f84c82041a7861ef46ed71c44b
+guid: 0ee1cff2a1a1f480788712693764ecd8
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -111,7 +111,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -133,7 +133,7 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -155,37 +155,15 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f31ffdb78cccc4e8e83f8c6c774a3bbe
-      internalID: 2067795594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PassThroughPlatform_3
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4a3c979c0103147f09f24eef6e5f8b69
-      internalID: 1759905650
+      spriteID: c39af73be156443c4ba9282509390f2a
+      internalID: -1413108138
       vertices: []
       indices: 
       edges: []
@@ -194,7 +172,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 39b56313c6fa34464883e95d5ecd6abf
+    spriteID: 3d4ccdc6cdad14f41bc1396def072757
     internalID: 0
     vertices: []
     indices: 
@@ -206,8 +184,8 @@ TextureImporter:
     nameFileIdTable:
       PassThroughPlatform_0: -8747577240507040900
       PassThroughPlatform_1: 5999761506452457943
-      PassThroughPlatform_2: 2067795594
-      PassThroughPlatform_3: 1759905650
+      PassThroughPlatform_2: -1413108138
+      PassThroughPlatform_3: -1232779458
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
