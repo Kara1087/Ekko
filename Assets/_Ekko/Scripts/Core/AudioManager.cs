@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
 
     private Dictionary<string, Sound> soundMap;
     private AudioSource sfxSource;
+    private AudioSource musicThemeSource;
 
     void Awake()
     {
@@ -30,13 +31,22 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        // AudioSources
         sfxSource = gameObject.AddComponent<AudioSource>();
-        soundMap = new Dictionary<string, Sound>();
+        musicThemeSource = gameObject.AddComponent<AudioSource>();
+        musicThemeSource.loop = true;
+        musicThemeSource.playOnAwake = false;
 
+        // Mapping sons
+        soundMap = new Dictionary<string, Sound>();
         foreach (var sound in sounds)
         {
             soundMap[sound.name] = sound;
         }
+    }
+    void Start()
+    {
+        PlayMusicTheme("BackgroundTheme");
     }
 
     public void Play(string soundName)
@@ -50,5 +60,25 @@ public class AudioManager : MonoBehaviour
         Sound s = soundMap[soundName];
         sfxSource.pitch = s.pitch;
         sfxSource.PlayOneShot(s.clip, s.volume);
+    }
+
+    public void PlayMusicTheme(string soundName)
+    {
+        if (!soundMap.ContainsKey(soundName))
+        {
+            Debug.LogWarning($"Music theme '{soundName}' not found!");
+            return;
+        }
+
+        Sound s = soundMap[soundName];
+        musicThemeSource.clip = s.clip;
+        musicThemeSource.volume = s.volume;
+        musicThemeSource.pitch = s.pitch;
+        musicThemeSource.Play();
+    }
+
+    public void StopMusicTheme()
+    {
+        musicThemeSource.Stop();
     }
 }
