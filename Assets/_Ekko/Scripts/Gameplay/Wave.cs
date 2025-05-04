@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(CircleCollider2D))]
 public class Wave : MonoBehaviour
@@ -23,6 +24,7 @@ public class Wave : MonoBehaviour
     private SpriteRenderer sr;
     private Transform visualTransform;
     private Transform centerMaskTransform;
+    private Light2D light2D;
 
     private bool isFadingOut = false;
     private float destroyDelay = 0.2f;
@@ -34,6 +36,7 @@ public class Wave : MonoBehaviour
     {
         col = GetComponent<CircleCollider2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
+        light2D = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
         visualTransform = sr != null ? sr.transform : null;
 
         if (col != null)
@@ -50,6 +53,7 @@ public class Wave : MonoBehaviour
         float forceT = Mathf.InverseLerp(minForce, maxForce, Mathf.Clamp(impactForce, minForce, maxForce));
         fadeSpeed = baseFadeSpeed / (1f + (impactForce * fadeSpeedMultiplier));
         float fadeDuration = 1f / fadeSpeed;
+        bool shouldEnableLight = impactForce >= 10f; // désactive la lumière pour les faibles ondes
         revealDuration = Mathf.Lerp(0.5f, 3f, forceT);
 
         // 🔧 Expansion de départ selon un rayon fixe (30% de la cible)
@@ -63,6 +67,17 @@ public class Wave : MonoBehaviour
         // 🔧 Reset visuel
         if (visualTransform != null)
             visualTransform.localScale = Vector3.zero;
+
+        if (light2D != null)
+        {
+            light2D.enabled = shouldEnableLight;
+
+            if (shouldEnableLight && col != null)
+            {
+                light2D.pointLightOuterRadius = col.radius;
+                light2D.intensity = 0.01f; // lumière très douce au départ
+            }
+        }
 
         if (centerMaskTransform != null)
         {
@@ -113,6 +128,13 @@ public class Wave : MonoBehaviour
 
             Color c = sr.color;
             sr.color = new Color(c.r, c.g, c.b, alpha);
+        }
+
+        // 💡 Synchronisation douce de la lumière avec le rayon de l'onde
+        if (light2D != null && light2D.enabled && col != null)
+        {
+            light2D.pointLightOuterRadius = col.radius;
+            light2D.intensity = Mathf.Lerp(0.01f, 0.03f, alpha); // fade out léger
         }
 
         // 📡 Détection des éléments affectés
