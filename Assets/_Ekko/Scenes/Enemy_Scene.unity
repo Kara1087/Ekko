@@ -1184,6 +1184,7 @@ GameObject:
   - component: {fileID: 487019393}
   - component: {fileID: 487019392}
   - component: {fileID: 487019391}
+  - component: {fileID: 487019394}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -1305,6 +1306,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487019389}
   m_CullTransparentMesh: 1
+--- !u!114 &487019394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487019389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077c44328ea804044a9d19ce63fad738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 0.4
+  maxIntensity: 1
+  flickerIntervalMin: 0.05
+  flickerIntervalMax: 0.2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,6 +1874,7 @@ GameObject:
   - component: {fileID: 658399832}
   - component: {fileID: 658399834}
   - component: {fileID: 658399833}
+  - component: {fileID: 658399835}
   m_Layer: 5
   m_Name: TitleImage
   m_TagString: Untagged
@@ -1921,6 +1939,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658399831}
   m_CullTransparentMesh: 1
+--- !u!114 &658399835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658399831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077c44328ea804044a9d19ce63fad738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 0.4
+  maxIntensity: 1
+  flickerIntervalMin: 0.05
+  flickerIntervalMax: 0.2
 --- !u!4 &659815492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7034531157227582197, guid: 0c0e479d859404bc488944fd04a194d9, type: 3}
@@ -2103,6 +2137,7 @@ GameObject:
   - component: {fileID: 734122843}
   - component: {fileID: 734122842}
   - component: {fileID: 734122841}
+  - component: {fileID: 734122844}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -2224,6 +2259,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734122839}
   m_CullTransparentMesh: 1
+--- !u!114 &734122844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734122839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077c44328ea804044a9d19ce63fad738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 0.4
+  maxIntensity: 1
+  flickerIntervalMin: 0.05
+  flickerIntervalMax: 0.2
 --- !u!1 &796901207
 GameObject:
   m_ObjectHideFlags: 0
@@ -2584,6 +2635,7 @@ GameObject:
   - component: {fileID: 840542221}
   - component: {fileID: 840542223}
   - component: {fileID: 840542222}
+  - component: {fileID: 840542224}
   m_Layer: 5
   m_Name: TitleImage
   m_TagString: Untagged
@@ -2648,6 +2700,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840542220}
   m_CullTransparentMesh: 1
+--- !u!114 &840542224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840542220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077c44328ea804044a9d19ce63fad738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 0.4
+  maxIntensity: 1
+  flickerIntervalMin: 0.05
+  flickerIntervalMax: 0.2
 --- !u!1 &906558722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2659,6 +2727,7 @@ GameObject:
   - component: {fileID: 906558723}
   - component: {fileID: 906558725}
   - component: {fileID: 906558724}
+  - component: {fileID: 906558726}
   m_Layer: 5
   m_Name: TitleImage
   m_TagString: Untagged
@@ -2723,6 +2792,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906558722}
   m_CullTransparentMesh: 1
+--- !u!114 &906558726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906558722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077c44328ea804044a9d19ce63fad738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 0.4
+  maxIntensity: 1
+  flickerIntervalMin: 0.05
+  flickerIntervalMax: 0.2
 --- !u!1 &917966754
 GameObject:
   m_ObjectHideFlags: 0
@@ -3200,6 +3285,7 @@ GameObject:
   - component: {fileID: 1061210600}
   - component: {fileID: 1061210599}
   - component: {fileID: 1061210598}
+  - component: {fileID: 1061210601}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -3321,6 +3407,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061210596}
   m_CullTransparentMesh: 1
+--- !u!114 &1061210601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061210596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077c44328ea804044a9d19ce63fad738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 0.4
+  maxIntensity: 1
+  flickerIntervalMin: 0.05
+  flickerIntervalMax: 0.2
 --- !u!1 &1081152867
 GameObject:
   m_ObjectHideFlags: 0
@@ -3547,6 +3649,7 @@ GameObject:
   - component: {fileID: 1215009889}
   - component: {fileID: 1215009888}
   - component: {fileID: 1215009887}
+  - component: {fileID: 1215009890}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -3668,6 +3771,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215009885}
   m_CullTransparentMesh: 1
+--- !u!114 &1215009890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215009885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077c44328ea804044a9d19ce63fad738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 0.4
+  maxIntensity: 1
+  flickerIntervalMin: 0.05
+  flickerIntervalMax: 0.2
 --- !u!1001 &1231459031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3737,6 +3856,7 @@ GameObject:
   - component: {fileID: 1234288956}
   - component: {fileID: 1234288955}
   - component: {fileID: 1234288954}
+  - component: {fileID: 1234288957}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -3858,6 +3978,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234288952}
   m_CullTransparentMesh: 1
+--- !u!114 &1234288957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234288952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077c44328ea804044a9d19ce63fad738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 0.4
+  maxIntensity: 1
+  flickerIntervalMin: 0.05
+  flickerIntervalMax: 0.2
 --- !u!1 &1267385382
 GameObject:
   m_ObjectHideFlags: 0
@@ -4246,6 +4382,7 @@ GameObject:
   - component: {fileID: 1680583013}
   - component: {fileID: 1680583012}
   - component: {fileID: 1680583011}
+  - component: {fileID: 1680583014}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -4367,6 +4504,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680583009}
   m_CullTransparentMesh: 1
+--- !u!114 &1680583014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680583009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077c44328ea804044a9d19ce63fad738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minIntensity: 0.4
+  maxIntensity: 1
+  flickerIntervalMin: 0.05
+  flickerIntervalMax: 0.2
 --- !u!1 &1787865976
 GameObject:
   m_ObjectHideFlags: 0

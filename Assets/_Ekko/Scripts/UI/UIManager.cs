@@ -11,8 +11,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject gameOverScreen;
 
-    private UIScreen currentScreen = UIScreen.None;
-
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,56 +21,34 @@ public class UIManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        ShowScreen(UIScreen.Start); // écran de lancement
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            TogglePause();
-        }
+        ShowScreen(UIScreen.Start); // Écran de démarrage
     }
 
     public void ShowScreen(UIScreen screen)
     {
-        currentScreen = screen;
-
-        startScreen.SetActive(screen == UIScreen.Start);
-        pauseScreen.SetActive(screen == UIScreen.Pause);
-        gameOverScreen.SetActive(screen == UIScreen.GameOver);
-
-        if (screen == UIScreen.Pause)
-            Time.timeScale = 0f;
-        else
-            Time.timeScale = 1f;
+        startScreen?.SetActive(screen == UIScreen.Start);
+        pauseScreen?.SetActive(screen == UIScreen.Pause);
+        gameOverScreen?.SetActive(screen == UIScreen.GameOver);
     }
 
     public void HideAllScreens()
     {
-        startScreen.SetActive(false);
-        pauseScreen.SetActive(false);
-        gameOverScreen.SetActive(false);
-        currentScreen = UIScreen.None;
-        Time.timeScale = 1f;
+        startScreen?.SetActive(false);
+        pauseScreen?.SetActive(false);
+        gameOverScreen?.SetActive(false);
     }
 
-    private void TogglePause()
+    public void SetPauseScreen(bool show)
     {
-        if (currentScreen == UIScreen.Pause)
-        {
-            ShowScreen(UIScreen.None);
-        }
-        else if (currentScreen == UIScreen.None)
-        {
-            ShowScreen(UIScreen.Pause);
-        }
+        pauseScreen?.SetActive(show);
     }
 
-    // 🎮 Boutons UI
+    // ---------- Boutons UI ----------
+
     public void OnStartButton()
     {
         HideAllScreens();
+        Time.timeScale = 1f;
         // LevelController.Instance.FadeAndLoadScene("Level_1");
     }
 
@@ -86,17 +62,24 @@ public class UIManager : MonoBehaviour
 
     public void OnResumeButton()
     {
-        ShowScreen(UIScreen.None);
+        GameManager.Instance?.ResumeGame();
     }
 
     public void OnRetryButton()
     {
         HideAllScreens();
+        Time.timeScale = 1f;
         // LevelController.Instance.RestartLevel();
     }
 
     public void OnMainMenuButton()
     {
         ShowScreen(UIScreen.Start);
+        Time.timeScale = 0f;
+    }
+
+    public void OnPauseButton()
+    {
+        GameManager.Instance?.TogglePause();
     }
 }

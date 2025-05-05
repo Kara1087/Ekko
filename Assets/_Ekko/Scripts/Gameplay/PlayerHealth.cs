@@ -39,6 +39,18 @@ public class PlayerHealth : MonoBehaviour
         currentLight = maxLight;
     }
 
+    private void HandleDeath()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.HandlePlayerDeath();
+        }
+        else
+        {
+            Debug.LogWarning("[PlayerHealth] GameManager.Instance est null !");
+        }
+    }
+    
     public void TakeDamage(float amount)
     {
         currentLight -= amount;
