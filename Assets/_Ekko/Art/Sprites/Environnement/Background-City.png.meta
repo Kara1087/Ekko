@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 66ab20a98223e48a2806ddbce468015e
+guid: f9c9516032e8a4a1493cc486f7f58c3e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2782463093025066816
-    second: Background-2_0
-  - first:
-      213: 6568964208373808151
-    second: Background-2_1
-  - first:
-      213: 2084035563380385749
-    second: Background-2_2
-  - first:
-      213: 534662369879507835
-    second: Background-2_3
+      213: -4739544580296588261
+    second: Background-City_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,13 +40,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -109,12 +100,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Background-2_0
+      name: Background-City_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
+        width: 1536
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -124,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c03b9b1f84b269d0800000000000000
-      internalID: -2782463093025066816
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Background-2_1
-      rect:
-        serializedVersion: 2
-        x: 407
-        y: 983
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 71c3066c426a92b50800000000000000
-      internalID: 6568964208373808151
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Background-2_2
-      rect:
-        serializedVersion: 2
-        x: 722
-        y: 975
-        width: 15
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5d7a19e9d4bfbec10800000000000000
-      internalID: 2084035563380385749
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Background-2_3
-      rect:
-        serializedVersion: 2
-        x: 583
-        y: 951
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b73cf67b7908b6700800000000000000
-      internalID: 534662369879507835
+      spriteID: b144b4eb051c93eb0800000000000000
+      internalID: -4739544580296588261
       vertices: []
       indices: 
       edges: []
@@ -200,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -209,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Background-City_0: -4739544580296588261
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

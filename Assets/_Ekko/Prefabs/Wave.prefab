@@ -173,6 +173,8 @@ MonoBehaviour:
   maxExpansionSpeed: 6
   baseFadeSpeed: 10
   fadeSpeedMultiplier: 1.5
+  lightIntensityFactor: 1
+  lightIntensityMinRatio: 0.05
   revealableLayers:
     serializedVersion: 2
     m_Bits: 640
@@ -229,7 +231,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.8
   m_Color: {r: 0.6, g: 0.96862745, b: 1, a: 1}
-  m_Intensity: 0.02
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000

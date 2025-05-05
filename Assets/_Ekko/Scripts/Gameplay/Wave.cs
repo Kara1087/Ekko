@@ -10,9 +10,16 @@ public class Wave : MonoBehaviour
     [SerializeField] private float baseFadeSpeed = 0.5f;
     [SerializeField] private float fadeSpeedMultiplier = 0.05f;
 
+    [Header("Light Settings")]
+    [SerializeField] private float lightIntensityFactor = 0.2f;
+    [SerializeField] private float intensityMinRatio = 0.2f;
+
     [Header("Layer Masks")]
     [SerializeField] private LayerMask revealableLayers;
     [SerializeField] private LayerMask alertableLayers;
+
+    [Header("Debug Settings")]
+    [SerializeField] private bool debugMode = false;
 
     private float expansionSpeed;
     private float fadeSpeed;
@@ -29,14 +36,11 @@ public class Wave : MonoBehaviour
     private bool isFadingOut = false;
     private float destroyDelay = 0.2f;
 
-    [Header("Debug Settings")]
-    [SerializeField] private bool debugMode = false;
-
     private void Awake()
     {
         col = GetComponent<CircleCollider2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
-        light2D = GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
+        light2D = GetComponentInChildren<Light2D>();
         visualTransform = sr != null ? sr.transform : null;
 
         if (col != null)
@@ -49,14 +53,12 @@ public class Wave : MonoBehaviour
     {
         targetRadius = assignedTargetRadius;
 
-        // 🔧 Fade dynamique selon la force de l'impact
         float forceT = Mathf.InverseLerp(minForce, maxForce, Mathf.Clamp(impactForce, minForce, maxForce));
         fadeSpeed = baseFadeSpeed / (1f + (impactForce * fadeSpeedMultiplier));
         float fadeDuration = 1f / fadeSpeed;
-        bool shouldEnableLight = impactForce >= 10f; // désactive la lumière pour les faibles ondes
+        bool shouldEnableLight = impactForce >= 10f;
         revealDuration = Mathf.Lerp(0.5f, 3f, forceT);
 
-        // 🔧 Expansion de départ selon un rayon fixe (30% de la cible)
         if (col != null)
         {
             float startingRadius = assignedTargetRadius * 0.3f;
@@ -64,7 +66,6 @@ public class Wave : MonoBehaviour
             expansionSpeed = (assignedTargetRadius / 2f - startingRadius) / fadeDuration;
         }
 
-        // 🔧 Reset visuel
         if (visualTransform != null)
             visualTransform.localScale = Vector3.zero;
 
@@ -75,7 +76,9 @@ public class Wave : MonoBehaviour
             if (shouldEnableLight && col != null)
             {
                 light2D.pointLightOuterRadius = col.radius;
-                light2D.intensity = 0.01f; // lumière très douce au départ
+
+                float minIntensity = lightIntensityFactor * intensityMinRatio;
+                light2D.intensity = minIntensity;
             }
         }
 
@@ -87,7 +90,7 @@ public class Wave : MonoBehaviour
 
         if (debugMode)
         {
-            Debug.Log($"\uD83C\uDF00 [Wave] Initialize | Force: {impactForce:F2}, TargetRadius: {targetRadius:F2}, FadeSpeed: {fadeSpeed:F2}, ExpansionSpeed: {expansionSpeed:F2}");
+            Debug.Log($"🌐 [Wave] Initialize | Force: {impactForce:F2}, TargetRadius: {targetRadius:F2}, FadeSpeed: {fadeSpeed:F2}, ExpansionSpeed: {expansionSpeed:F2}");
         }
     }
 
@@ -98,19 +101,17 @@ public class Wave : MonoBehaviour
         if (col != null)
             col.radius += growth;
 
-        // 🔄 Expansion visuelle (diamètre = 2x rayon collider)
         if (visualTransform != null && col != null)
         {
             float diameter = col.radius * 2f;
             visualTransform.localScale = new Vector3(diameter, diameter, 1f);
         }
 
-        // 🔄 Expansion du masque central avec effet inverse selon la force
         if (centerMaskTransform != null && col != null)
         {
-            float forceFactor = Mathf.InverseLerp(1f, 20f, targetRadius); // 1 (petite onde) → 1, 20 (slam) → 0
+            float forceFactor = Mathf.InverseLerp(1f, 20f, targetRadius);
             float startRatio = Mathf.Lerp(0.1f, 0.05f, forceFactor);
-            float endRatio   = Mathf.Lerp(0.95f, 0.6f, forceFactor);
+            float endRatio = Mathf.Lerp(0.95f, 0.6f, forceFactor);
 
             float maxRadius = targetRadius / 2f;
             float t = Mathf.Clamp01(col.radius / maxRadius);
@@ -120,7 +121,6 @@ public class Wave : MonoBehaviour
             centerMaskTransform.localScale = new Vector3(innerDiameter, innerDiameter, 1f);
         }
 
-        // 🔄 Fondu progressif
         if (sr != null)
         {
             alpha -= fadeSpeed * Time.deltaTime;
@@ -130,14 +130,15 @@ public class Wave : MonoBehaviour
             sr.color = new Color(c.r, c.g, c.b, alpha);
         }
 
-        // 💡 Synchronisation douce de la lumière avec le rayon de l'onde
         if (light2D != null && light2D.enabled && col != null)
         {
             light2D.pointLightOuterRadius = col.radius;
-            light2D.intensity = Mathf.Lerp(0.01f, 0.03f, alpha); // fade out léger
+
+            float minIntensity = lightIntensityFactor * intensityMinRatio;
+            float maxIntensity = lightIntensityFactor;
+            light2D.intensity = Mathf.Lerp(minIntensity, maxIntensity, alpha);
         }
 
-        // 📡 Détection des éléments affectés
         ScanForRevealables();
         ScanForAlertables();
 
@@ -157,24 +158,19 @@ public class Wave : MonoBehaviour
     private void ScanForRevealables()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, col.radius, revealableLayers);
-
         foreach (Collider2D hit in hits)
         {
             IRevealable revealable = hit.GetComponent<IRevealable>();
             if (revealable != null)
-            {
                 revealable.Reveal(revealDuration);
-            }
         }
     }
 
     private void ScanForAlertables()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, col.radius, alertableLayers);
-
         foreach (Collider2D hit in hits)
         {
-            
             IAlertable alertable = hit.GetComponent<IAlertable>();
             if (alertable != null)
                 alertable.Alert(transform.position);
@@ -188,7 +184,6 @@ public class Wave : MonoBehaviour
 
         if (col != null)
         {
-            // 🔴 Collider actuel
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, col.radius);
 
@@ -197,9 +192,19 @@ public class Wave : MonoBehaviour
                 $"Collider radius: {col.radius:F2}");
 #endif
 
-            // 🔵 Rayon cible (expansion max)
             Gizmos.color = new Color(0f, 0.5f, 1f, 0.5f);
             Gizmos.DrawWireSphere(transform.position, targetRadius / 2f);
         }
+
+#if UNITY_EDITOR
+        if (light2D != null && light2D.enabled)
+        {
+            Gizmos.color = new Color(1f, 1f, 0f, 0.3f);
+            Gizmos.DrawWireSphere(light2D.transform.position, light2D.pointLightOuterRadius);
+
+            UnityEditor.Handles.Label(light2D.transform.position + Vector3.up * 0.2f,
+                $"Light radius: {light2D.pointLightOuterRadius:F2} | Intensity: {light2D.intensity:F2}");
+        }
+#endif
     }
 }
