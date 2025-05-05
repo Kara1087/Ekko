@@ -174,6 +174,7 @@ public class Wave : MonoBehaviour
 
         foreach (Collider2D hit in hits)
         {
+            
             IAlertable alertable = hit.GetComponent<IAlertable>();
             if (alertable != null)
                 alertable.Alert(transform.position);
