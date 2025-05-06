@@ -244,8 +244,8 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0.5
-  m_PointLightOuterRadius: 2.5
+  m_PointLightInnerRadius: 1.1
+  m_PointLightOuterRadius: 8
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -275,7 +275,6 @@ GameObject:
   - component: {fileID: 165381274287226765}
   - component: {fileID: 354689775183971246}
   - component: {fileID: 441468540923850232}
-  - component: {fileID: 7903095467866882524}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -669,15 +668,8 @@ MonoBehaviour:
   pulseAmplitude: 0.1
   pulseSpeedNormal: 0.5
   pulseSpeedCritical: 3
---- !u!114 &7903095467866882524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4446427717985520308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7edaa31502e8f46f98a49a8022fdda37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  suckRadius: 3
+  absorbIntensityMultiplier: 0.5
+  absorbRadiusMultiplier: 0.7
+  absorbLerpSpeed: 2

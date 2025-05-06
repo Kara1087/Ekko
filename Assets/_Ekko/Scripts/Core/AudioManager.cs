@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     private Dictionary<string, Sound> soundMap;
     private AudioSource sfxSource;
     private AudioSource musicThemeSource;
+    private AudioSource musicOverlaySource;
     private string currentMusicName = "";
 
     void Awake()
@@ -34,9 +35,14 @@ public class AudioManager : MonoBehaviour
 
         // AudioSources
         sfxSource = gameObject.AddComponent<AudioSource>();
+        
         musicThemeSource = gameObject.AddComponent<AudioSource>();
         musicThemeSource.loop = true;
         musicThemeSource.playOnAwake = false;
+
+        musicOverlaySource = gameObject.AddComponent<AudioSource>();
+        musicOverlaySource.loop = false;
+        musicOverlaySource.playOnAwake = false;
 
         // Mapping sons
         soundMap = new Dictionary<string, Sound>();
@@ -67,10 +73,9 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        if (currentMusicName == soundName && musicThemeSource.isPlaying)
+        if (musicThemeSource.isPlaying && currentMusicName != soundName)
         {
-            Debug.Log($"[AudioManager] Music '{soundName}' is already playing.");
-            return;
+            musicThemeSource.Stop(); // On arrête l’ancienne musique si elle est différente
         }
 
         Sound s = soundMap[soundName];
@@ -102,4 +107,28 @@ public class AudioManager : MonoBehaviour
                 break;
         }
     }
+
+    public void PlayOverlayMusic(string soundName)
+    {
+        if (!soundMap.ContainsKey(soundName))
+        {
+            Debug.LogWarning($"[AudioManager] Overlay music '{soundName}' not found!");
+            return;
+        }
+
+        Sound s = soundMap[soundName];
+        musicOverlaySource.clip = s.clip;
+        musicOverlaySource.volume = s.volume;
+        musicOverlaySource.pitch = s.pitch;
+        musicOverlaySource.Play();
+
+        Debug.Log($"[AudioManager] Overlay playing: '{soundName}'");
+    }
+
+    public void SetVolume(string soundName, float newVolume)
+    {
+        if (soundName == currentMusicName && musicThemeSource != null)
+            musicThemeSource.volume = newVolume;
+    }
+
 }
