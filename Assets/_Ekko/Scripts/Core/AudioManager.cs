@@ -22,7 +22,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource musicOverlaySource;
     private string currentMusicName = "";
 
-    void Awake()
+    private void Awake()
     {
         if (Instance != null)
         {
@@ -33,9 +33,9 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // AudioSources
+        // Sources
         sfxSource = gameObject.AddComponent<AudioSource>();
-        
+
         musicThemeSource = gameObject.AddComponent<AudioSource>();
         musicThemeSource.loop = true;
         musicThemeSource.playOnAwake = false;
@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
         musicOverlaySource.loop = false;
         musicOverlaySource.playOnAwake = false;
 
-        // Mapping sons
+        // Sound map
         soundMap = new Dictionary<string, Sound>();
         foreach (var sound in sounds)
         {
@@ -52,11 +52,12 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // 🔊 SFX
     public void Play(string soundName)
     {
         if (!soundMap.ContainsKey(soundName))
         {
-            Debug.LogWarning($"Sound '{soundName}' not found!");
+            Debug.LogWarning($"[AudioManager] Sound '{soundName}' not found.");
             return;
         }
 
@@ -65,18 +66,13 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(s.clip, s.volume);
     }
 
+    // 🎵 Music Theme
     public void PlayMusicTheme(string soundName)
     {
-        if (!soundMap.ContainsKey(soundName))
-        {
-            Debug.LogWarning($"[AudioManager] Music theme '{soundName}' not found!");
-            return;
-        }
+        if (!soundMap.ContainsKey(soundName)) return;
 
         if (musicThemeSource.isPlaying && currentMusicName != soundName)
-        {
-            musicThemeSource.Stop(); // On arrête l’ancienne musique si elle est différente
-        }
+            musicThemeSource.Stop();
 
         Sound s = soundMap[soundName];
         musicThemeSource.clip = s.clip;
@@ -85,7 +81,6 @@ public class AudioManager : MonoBehaviour
         musicThemeSource.Play();
 
         currentMusicName = soundName;
-        Debug.Log($"[AudioManager] Now playing: '{currentMusicName}'");
     }
 
     public void StopMusicTheme()
@@ -93,6 +88,16 @@ public class AudioManager : MonoBehaviour
         musicThemeSource.Stop();
     }
 
+    // 🎚️ Volume
+    public void SetVolume(string soundName, float newVolume)
+    {
+        if (soundName == currentMusicName && musicThemeSource != null)
+        {
+            musicThemeSource.volume = newVolume;
+        }
+    }
+
+    // 🎭 UI-specific themes
     public void SetMusicForScreen(UIScreen screen)
     {
         switch (screen)
@@ -108,27 +113,23 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // 🎶 Overlay
     public void PlayOverlayMusic(string soundName)
     {
-        if (!soundMap.ContainsKey(soundName))
-        {
-            Debug.LogWarning($"[AudioManager] Overlay music '{soundName}' not found!");
-            return;
-        }
+        if (!soundMap.ContainsKey(soundName)) return;
 
         Sound s = soundMap[soundName];
         musicOverlaySource.clip = s.clip;
         musicOverlaySource.volume = s.volume;
         musicOverlaySource.pitch = s.pitch;
         musicOverlaySource.Play();
-
-        Debug.Log($"[AudioManager] Overlay playing: '{soundName}'");
     }
 
-    public void SetVolume(string soundName, float newVolume)
+    public void StopOverlayMusic()
     {
-        if (soundName == currentMusicName && musicThemeSource != null)
-            musicThemeSource.volume = newVolume;
+        if (musicOverlaySource.isPlaying)
+        {
+            musicOverlaySource.Stop();
+        }
     }
-
 }

@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 7705123056748720175}
   - component: {fileID: 7917311158335370081}
   - component: {fileID: 7799598688091967094}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TreeOfLight
   m_TagString: TreeOfLight
   m_Icon: {fileID: 0}
@@ -333,9 +333,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a412f3339834f449f964417ba9c45f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  revealDuration: 5
+  revealDuration: 10
   triggerZone: {fileID: 1408049815081350442}
-  debug: 0
+  lightRevealManager: {fileID: 0}
+  OnTreeActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  debug: 1
 --- !u!58 &7799598688091967094
 CircleCollider2D:
   m_ObjectHideFlags: 0

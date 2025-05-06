@@ -32,7 +32,6 @@ public class UIManager : MonoBehaviour
 
     public void ShowScreen(UIScreen screen)
     {
-        Debug.Log($"[UIManager] 📺 Affichage de l’écran : {screen}");
 
         startScreen?.SetActive(screen == UIScreen.Start);
         pauseScreen?.SetActive(screen == UIScreen.Pause);

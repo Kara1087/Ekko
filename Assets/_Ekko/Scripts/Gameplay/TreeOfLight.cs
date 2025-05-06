@@ -1,101 +1,104 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-/// <summary>
-/// Gère le coeur logique du Tree of Light : détection du joueur, activation progressive, état global.
-/// </summary>
+[RequireComponent(typeof(Collider2D))]
 public class TreeOfLight : MonoBehaviour
 {
     public enum TreeState { Idle, Activating, Lit, Failed }
 
-    [Header("Config")]
-    [SerializeField] private float revealDuration = 5f; // Durée d'activation du Tree of Light
-    [SerializeField] private Collider2D triggerZone;
+    [Header("Reveal Config")]
+    [SerializeField] private float revealDuration = 5f;
 
     [Header("Events")]
     public UnityEvent OnTreeActivated;
-    
+
     [Header("Debug")]
     [SerializeField] private bool debug = false;
 
     private TreeState currentState = TreeState.Idle;
-    private float currentTimer = 0f;
+    private float timer = 0f;
     private bool playerInZone = false;
+
+    private Collider2D triggerZone;
+    [SerializeField] private LightRevealManager revealManager;
 
     private void Awake()
     {
-        // Si la zone de trigger n’est pas assignée, on essaie de la récupérer
-        if (triggerZone == null)
-            triggerZone = GetComponent<Collider2D>();
+         triggerZone = GetComponent<Collider2D>();
+        triggerZone.isTrigger = true;
 
-        // Assurer que le collider est bien en mode trigger
-        if (triggerZone != null)
-            triggerZone.isTrigger = true;
+        if (revealManager == null)
+            Debug.LogError("❌ LightRevealManager n’est pas assigné dans l’inspecteur !");
     }
 
     private void Update()
     {
-        if (currentState == TreeState.Activating && playerInZone)
+        if (currentState == TreeState.Activating)
         {
-            currentTimer += Time.deltaTime;
-            // Si on a passé le temps requis → Tree activé
-            if (currentTimer >= revealDuration)
+            if (playerInZone)
             {
-                CompleteReveal();
+                timer += Time.deltaTime;
+                if (timer >= revealDuration)
+                    CompleteReveal();
+            }
+            else
+            {
+                CancelReveal();
             }
         }
-        // Si le joueur est parti pendant l’activation → on annule
-        else if (currentState == TreeState.Activating && !playerInZone)
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
+
+        if (currentState == TreeState.Lit) return; // Ne rien faire si déjà activé
+
+        if (currentState == TreeState.Failed)
         {
-            FailReveal();
+            if (debug) Debug.Log("🔄 Nouvelle tentative après un échec.");
+            currentState = TreeState.Idle;
         }
+
+        if (currentState != TreeState.Idle) return;
+
+        if (debug) Debug.Log("✅ Player entered TreeOfLight zone.");
+
+        playerInZone = true;
+        timer = 0f;
+        currentState = TreeState.Activating;
+
+        revealManager.StartReveal();
+        AudioManager.Instance.SetVolume("BackgroundTheme", 0.1f);
+        AudioManager.Instance.PlayOverlayMusic("TreeReveal");
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player")) return;
+
+        if (debug) Debug.Log("🚪 Player exited TreeOfLight zone.");
+
+        playerInZone = false;
+        revealManager.ResetReveal();
     }
 
     private void CompleteReveal()
     {
         currentState = TreeState.Lit;
-        if (debug) Debug.Log("🌳 Tree fully activated.");
-        
-        OnTreeActivated?.Invoke(); // 👈👈👈 Événement centralisé ici
+        if (debug) Debug.Log("🌳 Tree fully activated!");
+        OnTreeActivated?.Invoke();
     }
 
-    private void FailReveal()
+    private void CancelReveal()
     {
         currentState = TreeState.Failed;
-        currentTimer = 0f;
-        
-        if (debug) Debug.Log("🚫 Tree activation failed.");
-        
-        // TODO : reset visuel, arrêter reveal
-        
-        // 🛑 Stopper la musique d’activation
-        AudioManager.Instance.StopMusicTheme();
-    }
+        timer = 0f;
+        if (debug) Debug.Log("❌ Tree activation cancelled.");
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log(">> Trigger entered by: " + other.name);
-        if (other.CompareTag("Player") && currentState == TreeState.Idle)
-        {
-            playerInZone = true;
-            currentState = TreeState.Activating;
-            currentTimer = 0f;
-            if (debug) Debug.Log("▶️ Tree activation started.");
-            // TODO : démarrer le LightRevealManager, audio, etc.
-            // 🔊 Lancer la musique directement ici
-            AudioManager.Instance.SetVolume("BackgroundTheme", 0.1f); // Optionnel : baisse l’ambiance
-            AudioManager.Instance.PlayOverlayMusic("TreeReveal");
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInZone = false;
-        }
+        AudioManager.Instance.StopOverlayMusic();
+        revealManager.ResetReveal();
     }
 
     public TreeState GetCurrentState() => currentState;
-
 }
