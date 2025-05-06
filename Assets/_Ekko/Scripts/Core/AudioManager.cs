@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     private Dictionary<string, Sound> soundMap;
     private AudioSource sfxSource;
     private AudioSource musicThemeSource;
+    private string currentMusicName = "";
 
     void Awake()
     {
@@ -44,10 +45,6 @@ public class AudioManager : MonoBehaviour
             soundMap[sound.name] = sound;
         }
     }
-    void Start()
-    {
-        PlayMusicTheme("BackgroundTheme");
-    }
 
     public void Play(string soundName)
     {
@@ -66,7 +63,13 @@ public class AudioManager : MonoBehaviour
     {
         if (!soundMap.ContainsKey(soundName))
         {
-            Debug.LogWarning($"Music theme '{soundName}' not found!");
+            Debug.LogWarning($"[AudioManager] Music theme '{soundName}' not found!");
+            return;
+        }
+
+        if (currentMusicName == soundName && musicThemeSource.isPlaying)
+        {
+            Debug.Log($"[AudioManager] Music '{soundName}' is already playing.");
             return;
         }
 
@@ -75,10 +78,28 @@ public class AudioManager : MonoBehaviour
         musicThemeSource.volume = s.volume;
         musicThemeSource.pitch = s.pitch;
         musicThemeSource.Play();
+
+        currentMusicName = soundName;
+        Debug.Log($"[AudioManager] Now playing: '{currentMusicName}'");
     }
 
     public void StopMusicTheme()
     {
         musicThemeSource.Stop();
+    }
+
+    public void SetMusicForScreen(UIScreen screen)
+    {
+        switch (screen)
+        {
+            case UIScreen.Start:
+                PlayMusicTheme("StartScreenTheme");
+                break;
+            case UIScreen.GameOver:
+            case UIScreen.Pause:
+            case UIScreen.None:
+                StopMusicTheme();
+                break;
+        }
     }
 }

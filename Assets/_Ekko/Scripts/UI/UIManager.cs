@@ -29,6 +29,9 @@ public class UIManager : MonoBehaviour
         startScreen?.SetActive(screen == UIScreen.Start);
         pauseScreen?.SetActive(screen == UIScreen.Pause);
         gameOverScreen?.SetActive(screen == UIScreen.GameOver);
+
+        AudioManager.Instance.SetMusicForScreen(screen); // 🔁 Appel centralisé
+        
     }
 
     public void HideAllScreens()
@@ -50,6 +53,7 @@ public class UIManager : MonoBehaviour
         HideAllScreens();
         Time.timeScale = 1f;
         // LevelController.Instance.FadeAndLoadScene("Level_1");
+        AudioManager.Instance.PlayMusicTheme("BackgroundTheme");
     }
 
     public void OnExitButton()

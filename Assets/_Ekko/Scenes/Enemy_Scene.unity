@@ -740,6 +740,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
+      propertyPath: sounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 75b30124ec75642589992ff9f83ce9d3, type: 3}
+    - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: StartScreenTheme
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
+      propertyPath: sounds.Array.data[2].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
+      propertyPath: sounds.Array.data[2].volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2920737751603874881, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
