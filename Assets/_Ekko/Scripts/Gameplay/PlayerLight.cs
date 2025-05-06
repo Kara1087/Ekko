@@ -63,6 +63,8 @@ public class PlayerLight : MonoBehaviour
 
         if (lerpRoutine != null) StopCoroutine(lerpRoutine);
         lerpRoutine = StartCoroutine(LerpToTarget(baseRadius, baseIntensity));
+
+        Debug.Log($"[PlayerLight] 💡 UpdateLight -> Intensity: {targetIntensity:F2}, Radius: {targetRadius:F2}");
     }
 
     private IEnumerator LerpToTarget(float targetRadius, float targetIntensity)
@@ -113,6 +115,8 @@ public class PlayerLight : MonoBehaviour
 
                     modIntensity = Mathf.Lerp(modIntensity, baseIntensity * absorbIntensityMultiplier, Time.deltaTime * absorbLerpSpeed);
                     modRadius = Mathf.Lerp(modRadius, baseRadius * absorbRadiusMultiplier, Time.deltaTime * absorbLerpSpeed);
+
+                    Debug.Log($"[PlayerLight] 🧲 Absorption active | dist: {dist:F2}, intensity: {modIntensity:F2}");
                 }
                 else
                 {
@@ -128,9 +132,9 @@ public class PlayerLight : MonoBehaviour
         }
     }
 
-        private void OnDrawGizmosSelected()
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
     {
-    #if UNITY_EDITOR
         if (enemy != null)
         {
             // Cercle de portée
@@ -145,6 +149,6 @@ public class PlayerLight : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawSphere(enemy.position, 0.1f);
         }
-    #endif
     }
+#endif
 }

@@ -20,6 +20,12 @@ public class PlayerHealth : MonoBehaviour
     public bool IsDead => currentLight <= 0f;
     public bool IsLow => currentLight <= lowLightThreshold;
 
+    private void Awake()
+    {
+        currentLight = maxLight;
+        Debug.Log("[PlayerHealth] 🔋 Initialisation : pleine lumière");
+    }
+
     [ContextMenu("Test: Take Damage (-30)")]
     private void TestTakeDamage()
     {
@@ -34,9 +40,46 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("[PlayerHealth] TestRestoreLight: +30");
     }
 
-    private void Awake()
+    public void TakeDamage(float amount)
     {
-        currentLight = maxLight;
+        currentLight -= amount;
+        currentLight = Mathf.Clamp(currentLight, 0f, maxLight);
+        Debug.Log($"[PlayerHealth] 💥 Dégâts reçus : -{amount} | Lumière restante : {currentLight}");
+
+        onLightChanged?.Invoke();
+
+        if (IsLow)
+        {
+            Debug.Log("[PlayerHealth] ⚠️ Lumière critique !");
+            onLowLight?.Invoke();
+        }
+
+        if (IsDead)
+        {
+            Debug.Log("[PlayerHealth] ☠️ Le joueur est mort.");
+            onDeath?.Invoke();
+            HandleDeath();
+        }
+    }
+
+    public void RestoreLight(float amount)
+    {
+        currentLight += amount;
+        currentLight = Mathf.Clamp(currentLight, 0f, maxLight);
+        Debug.Log($"[PlayerHealth] ✨ Lumière restaurée : +{amount} | Lumière actuelle : {currentLight}");
+        onLightChanged?.Invoke();
+    }
+
+    public void SetLight(float value) // Cas d'usage : Réinitialisation, Effets de script/Debug, Chargement de sauvegarde, Pouvoir spécial/Scène narrative
+    {
+        currentLight = Mathf.Clamp(value, 0f, maxLight);
+        Debug.Log($"[PlayerHealth] 🔧 Lumière définie manuellement : {currentLight}");
+        onLightChanged?.Invoke();
+    }
+
+    public float GetLightRatio()
+    {
+        return currentLight / maxLight;
     }
 
     private void HandleDeath()
@@ -49,33 +92,5 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.LogWarning("[PlayerHealth] GameManager.Instance est null !");
         }
-    }
-    
-    public void TakeDamage(float amount)
-    {
-        currentLight -= amount;
-        currentLight = Mathf.Clamp(currentLight, 0f, maxLight);
-        onLightChanged?.Invoke();
-
-        if (IsLow) onLowLight?.Invoke();
-        if (IsDead) onDeath?.Invoke();
-    }
-
-    public void RestoreLight(float amount)
-    {
-        currentLight += amount;
-        currentLight = Mathf.Clamp(currentLight, 0f, maxLight);
-        onLightChanged?.Invoke();
-    }
-
-    public void SetLight(float value)
-    {
-        currentLight = Mathf.Clamp(value, 0f, maxLight);
-        onLightChanged?.Invoke();
-    }
-
-    public float GetLightRatio()
-    {
-        return currentLight / maxLight;
     }
 }
