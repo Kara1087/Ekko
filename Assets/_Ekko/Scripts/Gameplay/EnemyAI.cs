@@ -159,8 +159,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
 
     public void Alert(Vector2 sourcePosition)
     {
-        Debug.Log("[EnemyAI] ⚡ Alert() reçu depuis la Wave");
-
         lastAlertPosition = sourcePosition;
 
         if (revealRoutine != null)
@@ -181,8 +179,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
 
     private IEnumerator RevealEffect()
     {
-        Debug.Log("[EnemyAI] 💡 RevealEffect activé");
-
         revealLight.enabled = true;
         revealLight.intensity = 1f;
 
