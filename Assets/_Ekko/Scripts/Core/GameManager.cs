@@ -44,7 +44,18 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("[GameManager] 💀 Player is dead.");
         IsGameOver = true;
-        Time.timeScale = 0f;
-        UIManager.Instance?.ShowScreen(UIScreen.GameOver);
+        Time.timeScale = 0f;        // Important pour figer le jeu
+        
+        // Lance le blackout qui s’occupe de la suite (GameOver screen)
+        BlackoutEffect blackout = FindFirstObjectByType<BlackoutEffect>();
+        if (blackout != null)
+        {
+            blackout.StartBlackout();
+        }
+        else
+        {
+            Debug.LogWarning("[GameManager] Aucun BlackoutEffect trouvé.");
+            UIManager.Instance?.ShowScreen(UIScreen.GameOver); // fallback
+        }
     }
 }

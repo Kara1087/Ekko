@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject startScreen;
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private BlackoutEffect blackoutEffect;
 
     private void Awake()
     {
@@ -21,11 +22,18 @@ public class UIManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        ShowScreen(UIScreen.Start); // Écran de démarrage
+        
+        // Lancement du fade-in, puis affichage de l’écran de démarrage
+        blackoutEffect?.StartFadeIn(() =>
+        {
+            ShowScreen(UIScreen.Start);
+        });
     }
 
     public void ShowScreen(UIScreen screen)
     {
+        Debug.Log($"[UIManager] 📺 Affichage de l’écran : {screen}");
+
         startScreen?.SetActive(screen == UIScreen.Start);
         pauseScreen?.SetActive(screen == UIScreen.Pause);
         gameOverScreen?.SetActive(screen == UIScreen.GameOver);
@@ -44,6 +52,11 @@ public class UIManager : MonoBehaviour
     public void SetPauseScreen(bool show)
     {
         pauseScreen?.SetActive(show);
+    }
+
+    public void StartBlackoutEffect()
+    {
+        blackoutEffect?.StartBlackout();
     }
 
     // ---------- Boutons UI ----------
