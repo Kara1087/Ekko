@@ -16,6 +16,7 @@ public class LightFlasher : MonoBehaviour
     private Light2D light2D;
     private Coroutine flashRoutine;
     private bool isFlashing = false;
+    private bool isLockedOn = false;
 
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class LightFlasher : MonoBehaviour
 
     private void OnEnable()
     {
-        if (useBeatSync && MusicConductor.Instance != null)
+        if (!isLockedOn && useBeatSync && MusicConductor.Instance != null)
             MusicConductor.Instance.OnBeat.AddListener(PulseOnce);
     }
 
@@ -80,6 +81,8 @@ public class LightFlasher : MonoBehaviour
 
     private void PulseOnce()
     {
+        if (isLockedOn) return;
+
         if (!gameObject.activeInHierarchy || light2D == null || !isFlashing) return;
 
         light2D.enabled = true;
@@ -101,12 +104,32 @@ public class LightFlasher : MonoBehaviour
             yield return null;
         }
     }
+    
+    public void FlashThenLock(float duration)
+    {
+        StartCoroutine(FlashThenLockRoutine(duration));
+    }
+
+    private IEnumerator FlashThenLockRoutine(float duration)
+    {
+        StartFlashing();                    // ⚡ démarre le flash
+        yield return new WaitForSeconds(duration);
+        LockOn();                           // 🔒 verrouille ensuite la lumière
+    }
 
     public void LockOn()
     {
+        isLockedOn = true;
+        isFlashing = false;
+        
         StopFlashing();
+
+        if (useBeatSync && MusicConductor.Instance != null)
+        MusicConductor.Instance.OnBeat.RemoveListener(PulseOnce);
+
+        StopAllCoroutines(); // stop tout fade ou flash
         light2D.enabled = true;
-        light2D.intensity = flashIntensity;
+        light2D.intensity = flashIntensity; // ou lockedIntensity si tu en utilises un séparé
     }
 
     public void Unlock()

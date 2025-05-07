@@ -301,10 +301,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockOnTarget: 1
   useBeatSync: 1
-  flashSpeed: 1
+  flashSpeed: 0.01
   flashIntensity: 2
   minIntensity: 0.2
-  maxIntensity: 2
+  maxIntensity: 6
 --- !u!1 &4821188117951624354
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a412f3339834f449f964417ba9c45f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  revealDuration: 20
+  revealDuration: 10
   OnTreeActivated:
     m_PersistentCalls:
       m_Calls: []

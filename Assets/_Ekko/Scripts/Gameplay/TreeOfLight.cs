@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
+using System.Collections;
 
 [RequireComponent(typeof(Collider2D))]
 public class TreeOfLight : MonoBehaviour
@@ -99,19 +100,11 @@ public class TreeOfLight : MonoBehaviour
     {
         currentState = TreeState.Lit;
         if (debug) Debug.Log("🌳 Tree fully activated!");
-        lightFlasher?.StartFlashing();
+        
+        lightFlasher?.FlashThenLock(1.5f); // 👈 une seule ligne, logique déléguée
+        
         OnTreeActivated?.Invoke();
-
         revealManager.ResetReveal();    // ✅ Stoppe la génération de waves
-
-        if (revealLight != null)
-        {
-            Debug.Log($"💡 Intensité finale de RevealLight : {revealLight.intensity:0.00}");
-        }
-        else
-        {
-            Debug.LogWarning("⚠️ RevealLight est null !");
-        }
     }
 
     private void CancelReveal()
