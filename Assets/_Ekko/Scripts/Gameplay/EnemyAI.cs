@@ -7,27 +7,22 @@ public class EnemyAI : MonoBehaviour, IAlertable
 {
     public enum EnemyState { Dormant, Alert, Chase, Return }
 
-    [Header("Réglages de mouvement")]
+    [Header("Movement")]
     [SerializeField] private float alertSpeed = 2f;
     [SerializeField] private float chaseSpeed = 3f;
     [SerializeField] private float alertDuration = 2f;
     [SerializeField] private float chaseDuration = 3f;
     [SerializeField] private float chaseRange = 6f;
 
-    [Header("Références de gameplay")]
+    [Header("Gameplay")]
     [SerializeField] private Transform player;
 
-    [Header("Révélation visuelle")]
+    [Header("Reveal")]
     [SerializeField] private Light2D revealLight;
     [SerializeField] private float revealDuration = 1.5f;
     [SerializeField] private float fadeSpeed = 2f;
 
-    [Header("Effet Flash Lumière")]
-    [SerializeField] private float flashSpeed = 6f;
-    [SerializeField] private float flashIntensity = 2f;
-
     private Coroutine revealRoutine;
-    private Coroutine flashRoutine;
 
     private Rigidbody2D rb;
     private Vector2 startPosition;
@@ -35,6 +30,8 @@ public class EnemyAI : MonoBehaviour, IAlertable
     private Vector2 returnPosition;
     private EnemyState currentState = EnemyState.Dormant;
     private float stateTimer = 0f;
+
+    private LightFlasher lightFlasher;
 
     private void Awake()
     {
@@ -45,6 +42,8 @@ public class EnemyAI : MonoBehaviour, IAlertable
         {
             revealLight.enabled = false;
         }
+
+        lightFlasher = GetComponentInChildren<LightFlasher>();
 
         Debug.Log("[EnemyAI] 💤 État initial : Dormant");
     }
@@ -206,28 +205,10 @@ public class EnemyAI : MonoBehaviour, IAlertable
         float distance = Vector2.Distance(transform.position, player.position);
         bool withinAbsorption = distance <= chaseRange;
 
-        if (withinAbsorption && flashRoutine == null)
-        {
-            flashRoutine = StartCoroutine(FlashLoop());
-        }
-        else if (!withinAbsorption && flashRoutine != null)
-        {
-            StopCoroutine(flashRoutine);
-            flashRoutine = null;
-            revealLight.intensity = 0f;
-        }
-    }
-
-    private IEnumerator FlashLoop()
-    {
-        revealLight.enabled = true;
-
-        while (true)
-        {
-            float t = Mathf.PingPong(Time.time * flashSpeed, 1f);
-            revealLight.intensity = Mathf.Lerp(0.3f, flashIntensity, t);
-            yield return null;
-        }
+        if (withinAbsorption)
+            lightFlasher.StartFlashing();
+        else
+            lightFlasher.StopFlashing();
     }
 
     private void OnDrawGizmosSelected()

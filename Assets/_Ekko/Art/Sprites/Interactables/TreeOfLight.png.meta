@@ -107,8 +107,8 @@ TextureImporter:
         y: 693
         width: 547
         height: 465
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -129,8 +129,8 @@ TextureImporter:
         y: 265
         width: 550
         height: 428
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -139,6 +139,28 @@ TextureImporter:
       bones: []
       spriteID: 7bfe039326a12491bafd212ebd6defc5
       internalID: -326389379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TreeOfLight_2
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 265
+        width: 547
+        height: 893
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05f39ead8df764ec0a72e0e7ef1581b8
+      internalID: -584880618
       vertices: []
       indices: 
       edges: []
@@ -158,6 +180,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       TreeOfLight_1: -326389379
+      TreeOfLight_2: -584880618
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Collider2D))]
 public class TreeOfLight : MonoBehaviour
@@ -12,8 +13,15 @@ public class TreeOfLight : MonoBehaviour
     [Header("Events")]
     public UnityEvent OnTreeActivated;
 
+    [Header("Flasher")]
+    [SerializeField] private LightFlasher lightFlasher;
+    [SerializeField] private Light2D persistentLight;
+    [SerializeField] private float finalIntensity = 1.2f;
+
     [Header("Debug")]
     [SerializeField] private bool debug = false;
+    
+
 
     private TreeState currentState = TreeState.Idle;
     private float timer = 0f;
@@ -21,10 +29,13 @@ public class TreeOfLight : MonoBehaviour
 
     private Collider2D triggerZone;
     [SerializeField] private LightRevealManager revealManager;
+    
 
     private void Awake()
     {
-         triggerZone = GetComponent<Collider2D>();
+        lightFlasher?.StopFlashing(); // au cas où
+
+        triggerZone = GetComponent<Collider2D>();
         triggerZone.isTrigger = true;
 
         if (revealManager == null)
@@ -68,6 +79,7 @@ public class TreeOfLight : MonoBehaviour
         timer = 0f;
         currentState = TreeState.Activating;
 
+        lightFlasher?.StartFlashing();
         revealManager.StartReveal();
         AudioManager.Instance.SetVolume("BackgroundTheme", 0.1f);
         AudioManager.Instance.PlayOverlayMusic("TreeReveal");
@@ -80,6 +92,7 @@ public class TreeOfLight : MonoBehaviour
         if (debug) Debug.Log("🚪 Player exited TreeOfLight zone.");
 
         playerInZone = false;
+        lightFlasher?.StopFlashing();
         revealManager.ResetReveal();
     }
 
@@ -87,6 +100,7 @@ public class TreeOfLight : MonoBehaviour
     {
         currentState = TreeState.Lit;
         if (debug) Debug.Log("🌳 Tree fully activated!");
+        lightFlasher?.StopFlashing();
         OnTreeActivated?.Invoke();
     }
 
@@ -96,6 +110,7 @@ public class TreeOfLight : MonoBehaviour
         timer = 0f;
         if (debug) Debug.Log("❌ Tree activation cancelled.");
 
+        lightFlasher?.StopFlashing();
         AudioManager.Instance.StopOverlayMusic();
         revealManager.ResetReveal();
     }
