@@ -1207,17 +1207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4354e2cfee1484b33b4ee127ca589360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &569699272 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4375984058918153414, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
-  m_PrefabInstance: {fileID: 1328657102}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3294,33 +3283,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3721278888846661424, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
-      propertyPath: wavePrefab
-      value: 
-      objectReference: {fileID: 8262087878520942701, guid: 7d55035cbbd7c43b386c2089db1bdbdc, type: 3}
-    - target: {fileID: 4375984058918153414, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
-      propertyPath: m_Intensity
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5480674505475888864, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
       propertyPath: m_Name
       value: TreeOfLight
-      objectReference: {fileID: 0}
-    - target: {fileID: 7229720116859728285, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
-      propertyPath: flashSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7229720116859728285, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
-      propertyPath: useBeatSync
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7229720116859728285, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
-      propertyPath: maxIntensity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7229720116859728285, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
-      propertyPath: flashIntensity
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7705123056748720175, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3366,26 +3331,6 @@ PrefabInstance:
       propertyPath: revealManager
       value: 
       objectReference: {fileID: 59398988}
-    - target: {fileID: 7917311158335370081, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
-      propertyPath: finalIntensity
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7917311158335370081, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
-      propertyPath: revealDuration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7917311158335370081, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
-      propertyPath: persistentLight
-      value: 
-      objectReference: {fileID: 569699272}
-    - target: {fileID: 7917311158335370081, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
-      propertyPath: lightRevealManager
-      value: 
-      objectReference: {fileID: 59398988}
-    - target: {fileID: 8334190592575040591, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.54
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3641,15 +3586,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
       propertyPath: growthPerBeat
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
       propertyPath: baseImpactForce
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
       propertyPath: baseTargetRadius
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
       propertyPath: waveTargetRadius
@@ -3661,7 +3606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
       propertyPath: spawnIntervalInBeats
-      value: 4
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

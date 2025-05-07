@@ -15,6 +15,7 @@ public class TreeOfLight : MonoBehaviour
 
     [Header("Flasher")]
     [SerializeField] private LightFlasher lightFlasher;
+    [SerializeField] private Light2D revealLight;
 
     [Header("Debug")]
     [SerializeField] private bool debug = false;
@@ -102,6 +103,15 @@ public class TreeOfLight : MonoBehaviour
         OnTreeActivated?.Invoke();
 
         revealManager.ResetReveal();    // ✅ Stoppe la génération de waves
+
+        if (revealLight != null)
+        {
+            Debug.Log($"💡 Intensité finale de RevealLight : {revealLight.intensity:0.00}");
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ RevealLight est null !");
+        }
     }
 
     private void CancelReveal()
