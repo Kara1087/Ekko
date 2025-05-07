@@ -299,11 +299,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4436721f832bc4bcdb4e27b288c0b320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockOnTarget: 1
+  useBeatSync: 1
   flashSpeed: 1
   flashIntensity: 2
   minIntensity: 0.2
   maxIntensity: 2
-  lockOnTarget: 1
 --- !u!1 &4821188117951624354
 GameObject:
   m_ObjectHideFlags: 0

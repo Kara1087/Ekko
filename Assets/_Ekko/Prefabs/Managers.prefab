@@ -73,6 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6258779837706314497}
   - component: {fileID: 1095803020156443738}
+  - component: {fileID: 7348930074118913587}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -120,6 +121,26 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 75b30124ec75642589992ff9f83ce9d3, type: 3}
     volume: 0.5
     pitch: 1
+  - name: TreeReveal
+    clip: {fileID: 8300000, guid: cea0ab5ca7df443f2b86c74fc5cbfdc9, type: 3}
+    volume: 1
+    pitch: 1
+--- !u!114 &7348930074118913587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4154007133496352730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd8c17a2cc7c40f9992e5c9aa3bda91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bpm: 120
+  OnBeat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4375647431202604507
 GameObject:
   m_ObjectHideFlags: 0

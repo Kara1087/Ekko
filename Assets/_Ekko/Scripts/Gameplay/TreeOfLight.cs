@@ -79,10 +79,11 @@ public class TreeOfLight : MonoBehaviour
         timer = 0f;
         currentState = TreeState.Activating;
 
-        lightFlasher?.StartFlashing();
-        revealManager.StartReveal();
         AudioManager.Instance.SetVolume("BackgroundTheme", 0.1f);
         AudioManager.Instance.PlayOverlayMusic("TreeReveal");
+        lightFlasher?.StartFlashing();
+        revealManager.StartReveal();
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)

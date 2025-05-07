@@ -503,24 +503,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
-      propertyPath: sounds.Array.size
-      value: 4
+      propertyPath: sounds.Array.data[0].bpm
+      value: 96
       objectReference: {fileID: 0}
     - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
-      propertyPath: sounds.Array.data[3].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: cea0ab5ca7df443f2b86c74fc5cbfdc9, type: 3}
-    - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
-      propertyPath: sounds.Array.data[3].name
-      value: TreeReveal
+      propertyPath: sounds.Array.data[2].bpm
+      value: 109
       objectReference: {fileID: 0}
     - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
-      propertyPath: sounds.Array.data[3].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
-      propertyPath: sounds.Array.data[3].volume
-      value: 1
+      propertyPath: sounds.Array.data[3].bpm
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 2561198515768645672, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
       propertyPath: blackoutImage
@@ -1213,6 +1205,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4354e2cfee1484b33b4ee127ca589360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &569699272 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4375984058918153414, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
+  m_PrefabInstance: {fileID: 1328657102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &619394800
@@ -3299,6 +3302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TreeOfLight
       objectReference: {fileID: 0}
+    - target: {fileID: 7229720116859728285, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
+      propertyPath: useBeatSync
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7705123056748720175, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.1
@@ -3344,9 +3351,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 59398988}
     - target: {fileID: 7917311158335370081, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
-      propertyPath: revealDuration
-      value: 15
+      propertyPath: finalIntensity
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7917311158335370081, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
+      propertyPath: revealDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7917311158335370081, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
+      propertyPath: persistentLight
+      value: 
+      objectReference: {fileID: 569699272}
     - target: {fileID: 7917311158335370081, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
       propertyPath: lightRevealManager
       value: 

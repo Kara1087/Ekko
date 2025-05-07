@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
         public AudioClip clip;
         [Range(0f, 1f)] public float volume = 1f;
         [Range(0.1f, 3f)] public float pitch = 1f;
+        public float bpm = 120f; // 🆕 BPM pour synchronisation
     }
 
     public List<Sound> sounds = new List<Sound>();
@@ -123,6 +124,12 @@ public class AudioManager : MonoBehaviour
         musicOverlaySource.volume = s.volume;
         musicOverlaySource.pitch = s.pitch;
         musicOverlaySource.Play();
+
+        // 🆕 Synchronisation automatique du MusicConductor avec cette musique
+        if (MusicConductor.Instance != null)
+        {
+            MusicConductor.Instance.SetSource(musicOverlaySource, s.bpm);
+        }
     }
 
     public void StopOverlayMusic()
