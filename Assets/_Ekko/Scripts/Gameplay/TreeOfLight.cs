@@ -15,8 +15,6 @@ public class TreeOfLight : MonoBehaviour
 
     [Header("Flasher")]
     [SerializeField] private LightFlasher lightFlasher;
-    [SerializeField] private Light2D persistentLight;
-    [SerializeField] private float finalIntensity = 1.2f;
 
     [Header("Debug")]
     [SerializeField] private bool debug = false;
@@ -81,7 +79,6 @@ public class TreeOfLight : MonoBehaviour
 
         AudioManager.Instance.SetVolume("BackgroundTheme", 0.1f);
         AudioManager.Instance.PlayOverlayMusic("TreeReveal");
-        lightFlasher?.StartFlashing();
         revealManager.StartReveal();
         
     }
@@ -101,8 +98,10 @@ public class TreeOfLight : MonoBehaviour
     {
         currentState = TreeState.Lit;
         if (debug) Debug.Log("🌳 Tree fully activated!");
-        lightFlasher?.StopFlashing();
+        lightFlasher?.StartFlashing();
         OnTreeActivated?.Invoke();
+
+        revealManager.ResetReveal();    // ✅ Stoppe la génération de waves
     }
 
     private void CancelReveal()

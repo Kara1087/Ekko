@@ -17,6 +17,7 @@ public class LightRevealManager : MonoBehaviour
 
     private bool isRevealing = false;
     private int beatCount = 0;
+    private float revealStartTime;
 
     public void StartReveal()
     {
@@ -28,13 +29,15 @@ public class LightRevealManager : MonoBehaviour
 
         isRevealing = true;
         beatCount = 0;
+        revealStartTime = Time.time;
+
+        if (debug) Debug.Log($"🌀 Reveal démarré à {revealStartTime:0.00}s");
 
         if (useBeatSync)
         {
             if (MusicConductor.Instance != null)
             {
                 MusicConductor.Instance.OnBeat.AddListener(SpawnWave);
-                if (debug) Debug.Log("🎵 Reveal synchronisé sur le beat.");
             }
             else
             {
@@ -52,13 +55,10 @@ public class LightRevealManager : MonoBehaviour
         if (useBeatSync && isRevealing && MusicConductor.Instance != null)
         {
             MusicConductor.Instance.OnBeat.RemoveListener(SpawnWave);
-            if (debug) Debug.Log("⛔ Arrêt de la synchro beat.");
         }
 
         isRevealing = false;
         beatCount = 0;
-
-        if (debug) Debug.Log("🔁 Reset du LightRevealManager.");
     }
 
     private void SpawnWave()
@@ -68,6 +68,15 @@ public class LightRevealManager : MonoBehaviour
         beatCount++;
 
         if (beatCount % spawnIntervalInBeats != 0) return; // 👈 on skip le beat
+
+        float impactForce = baseImpactForce + (beatCount * growthPerBeat);
+        float targetRadius = baseTargetRadius + (beatCount * growthPerBeat);
+
+        if (debug)
+        {
+            float timeSinceStart = Time.time - revealStartTime;
+            Debug.Log($"🌊 Wave #{beatCount} | Temps : {timeSinceStart:0.00}s | Force : {impactForce} | Rayon : {targetRadius}");
+        }
 
         if (wavePrefab == null)
         {
@@ -82,11 +91,6 @@ public class LightRevealManager : MonoBehaviour
             return;
         }
 
-        float impactForce = baseImpactForce + (beatCount * growthPerBeat);
-        float targetRadius = baseTargetRadius + (beatCount * growthPerBeat);
-
         wave.Initialize(impactForce, targetRadius);
-
-        if (debug) Debug.Log($"✅ Wave (beat #{beatCount}) — Force: {impactForce}, Radius: {targetRadius}");
     }
 }

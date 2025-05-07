@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1328657102}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
@@ -2730,11 +2730,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1986533620530436781, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.54
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: 1986533620530436781, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.18
+      value: 8.71
       objectReference: {fileID: 0}
     - target: {fileID: 1986533620530436781, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2791,7 +2791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7034531157227582197, guid: 0c0e479d859404bc488944fd04a194d9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 8.76
       objectReference: {fileID: 0}
     - target: {fileID: 7034531157227582197, guid: 0c0e479d859404bc488944fd04a194d9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3298,13 +3298,29 @@ PrefabInstance:
       propertyPath: wavePrefab
       value: 
       objectReference: {fileID: 8262087878520942701, guid: 7d55035cbbd7c43b386c2089db1bdbdc, type: 3}
+    - target: {fileID: 4375984058918153414, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5480674505475888864, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
       propertyPath: m_Name
       value: TreeOfLight
       objectReference: {fileID: 0}
     - target: {fileID: 7229720116859728285, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
+      propertyPath: flashSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229720116859728285, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
       propertyPath: useBeatSync
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229720116859728285, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
+      propertyPath: maxIntensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229720116859728285, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
+      propertyPath: flashIntensity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7705123056748720175, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3352,7 +3368,7 @@ PrefabInstance:
       objectReference: {fileID: 59398988}
     - target: {fileID: 7917311158335370081, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
       propertyPath: finalIntensity
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7917311158335370081, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
       propertyPath: revealDuration
@@ -3616,16 +3632,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8262087878520942701, guid: 7d55035cbbd7c43b386c2089db1bdbdc, type: 3}
     - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
+      propertyPath: useBeatSync
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
       propertyPath: revealRadius
       value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
+      propertyPath: growthPerBeat
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
+      propertyPath: baseImpactForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
+      propertyPath: baseTargetRadius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
       propertyPath: waveTargetRadius
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
       propertyPath: expansionDuration
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
+      propertyPath: spawnIntervalInBeats
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

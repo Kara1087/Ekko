@@ -13,9 +13,9 @@ public class LightFlasher : MonoBehaviour
     [SerializeField] private float minIntensity = 0.2f;
     [SerializeField] private float maxIntensity = 2f;
     
-
     private Light2D light2D;
     private Coroutine flashRoutine;
+    private bool isFlashing = false;
 
     private void Awake()
     {
@@ -43,12 +43,9 @@ public class LightFlasher : MonoBehaviour
         if (light2D == null) return;
 
         light2D.enabled = true;
+        isFlashing = true;
 
-        if (useBeatSync)
-        {
-            // Ne fait rien ici : écoute les beats
-        }
-        else if (flashRoutine == null)
+        if (!useBeatSync && flashRoutine == null)
         {
             flashRoutine = StartCoroutine(FlashLoop());
         }
@@ -56,6 +53,8 @@ public class LightFlasher : MonoBehaviour
 
     public void StopFlashing()
     {
+        isFlashing = false;
+
         if (!useBeatSync && flashRoutine != null)
         {
             StopCoroutine(flashRoutine);
@@ -81,7 +80,7 @@ public class LightFlasher : MonoBehaviour
 
     private void PulseOnce()
     {
-        if (!gameObject.activeInHierarchy || light2D == null) return;
+        if (!gameObject.activeInHierarchy || light2D == null || !isFlashing) return;
 
         light2D.enabled = true;
         light2D.intensity = flashIntensity;
