@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -57,5 +58,18 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("[GameManager] Aucun BlackoutEffect trouvé.");
             UIManager.Instance?.ShowScreen(UIScreen.GameOver); // fallback
         }
+    }
+
+    public void RestartLevel()
+    {
+        Debug.Log("[GameManager] 🔄 Restarting level...");
+        Time.timeScale = 1f; // Remettre le temps normal au cas où
+        IsPaused = false;
+        IsGameOver = false;
+        
+        UIManager.Instance?.HideAllScreens(); // Cacher tous les écrans
+
+        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentScene);
     }
 }

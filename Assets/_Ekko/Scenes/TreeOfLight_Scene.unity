@@ -502,18 +502,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
-      propertyPath: sounds.Array.data[0].bpm
-      value: 96
-      objectReference: {fileID: 0}
-    - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
-      propertyPath: sounds.Array.data[2].bpm
-      value: 109
-      objectReference: {fileID: 0}
-    - target: {fileID: 1095803020156443738, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
-      propertyPath: sounds.Array.data[3].bpm
-      value: 120
-      objectReference: {fileID: 0}
     - target: {fileID: 2561198515768645672, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
       propertyPath: blackoutImage
       value: 
@@ -852,7 +840,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 563018037}
+      - m_Target: {fileID: 6415623969249863658}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnStartButton
         m_Mode: 1
@@ -1196,17 +1184,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7034531157227582197, guid: 0c0e479d859404bc488944fd04a194d9, type: 3}
   m_PrefabInstance: {fileID: 1231459031}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &563018037 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6415623968972411334, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
-  m_PrefabInstance: {fileID: 277591596}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4354e2cfee1484b33b4ee127ca589360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,7 +1614,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 563018037}
+      - m_Target: {fileID: 6415623969249863658}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnExitButton
         m_Mode: 1
@@ -2564,7 +2541,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 563018037}
+      - m_Target: {fileID: 6415623969249863658}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnExitButton
         m_Mode: 1
@@ -2907,7 +2884,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 563018037}
+      - m_Target: {fileID: 6415623969249863658}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnStartButton
         m_Mode: 1
@@ -3114,9 +3091,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 563018037}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnStartButton
+      - m_Target: {fileID: 2335608501678034253}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3286,6 +3263,26 @@ PrefabInstance:
     - target: {fileID: 5480674505475888864, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
       propertyPath: m_Name
       value: TreeOfLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229720116859728285, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
+      propertyPath: maxIntensity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229720116859728285, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
+      propertyPath: minIntensity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7705123056748720175, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7705123056748720175, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7705123056748720175, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7705123056748720175, guid: a5612d7bdff4649289c375d46de5f27a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3524,10 +3521,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 754667084003452967, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
-      propertyPath: m_FalloffIntensity
-      value: 0.558
-      objectReference: {fileID: 0}
     - target: {fileID: 1240500105175319293, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.1
@@ -3572,45 +3565,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightRevealManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
-      propertyPath: wavePrefab
-      value: 
-      objectReference: {fileID: 8262087878520942701, guid: 7d55035cbbd7c43b386c2089db1bdbdc, type: 3}
-    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
-      propertyPath: useBeatSync
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
-      propertyPath: revealRadius
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
-      propertyPath: growthPerBeat
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
-      propertyPath: baseImpactForce
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
-      propertyPath: baseTargetRadius
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
-      propertyPath: waveTargetRadius
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
-      propertyPath: expansionDuration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524952247143610774, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
-      propertyPath: spawnIntervalInBeats
-      value: 12
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6041043532238349903, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd07d88695e1342828afd59a4a38e3fd, type: 3}
@@ -3775,7 +3731,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 563018037}
+      - m_Target: {fileID: 6415623969249863658}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnExitButton
         m_Mode: 1
@@ -4092,6 +4048,28 @@ Transform:
   - {fileID: 659815492}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2335608501678034253 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2335608501938518881, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
+  m_PrefabInstance: {fileID: 277591596}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fefe7ccb7f74aba9b2c37c2267e507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6415623969249863658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6415623968972411334, guid: 62478c601ce3349b2afac83dd2b65bea, type: 3}
+  m_PrefabInstance: {fileID: 277591596}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4354e2cfee1484b33b4ee127ca589360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7238778836552657382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4146,7 +4124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6849002070273823124, guid: 46f0e493214184c73a3860d6119a4d28, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7895379653381196692, guid: 46f0e493214184c73a3860d6119a4d28, type: 3}
       propertyPath: player

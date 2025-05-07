@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private BlackoutEffect blackoutEffect;
-
+    private bool hasShownStartScreen = false;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -24,10 +24,14 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
         // Lancement du fade-in, puis affichage de l’écran de démarrage
-        blackoutEffect?.StartFadeIn(() =>
+        if (!hasShownStartScreen)
         {
-            ShowScreen(UIScreen.Start);
-        });
+            hasShownStartScreen = true;
+            blackoutEffect?.StartFadeIn(() =>
+            {
+                ShowScreen(UIScreen.Start);
+            });
+        }
     }
 
     public void ShowScreen(UIScreen screen)

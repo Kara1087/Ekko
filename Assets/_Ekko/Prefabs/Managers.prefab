@@ -113,18 +113,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e63af53a286a84658990f57eddf196bb, type: 3}
     volume: 0.5
     pitch: 1
+    bpm: 96
   - name: SlamJump
     clip: {fileID: 8300000, guid: c410ed79f099343d996e0b05067dea9e, type: 3}
     volume: 1
     pitch: 1
+    bpm: 120
   - name: StartScreenTheme
     clip: {fileID: 8300000, guid: 75b30124ec75642589992ff9f83ce9d3, type: 3}
     volume: 0.5
     pitch: 1
+    bpm: 109
   - name: TreeReveal
     clip: {fileID: 8300000, guid: cea0ab5ca7df443f2b86c74fc5cbfdc9, type: 3}
     volume: 1
     pitch: 1
+    bpm: 120
 --- !u!114 &7348930074118913587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd8c17a2cc7c40f9992e5c9aa3bda91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  source: {fileID: 0}
   bpm: 120
   OnBeat:
     m_PersistentCalls:
