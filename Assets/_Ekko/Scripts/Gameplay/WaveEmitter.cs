@@ -8,12 +8,14 @@ public class WaveEmitter : MonoBehaviour
     [SerializeField] private float minRange = 1f;
     [SerializeField] private float maxRange = 16f;              // Plus grand rayon possible
     [SerializeField] private float rangePowerCurve = 1.5f;      // Exposant pour courbe puissance (1f = linéaire, 1.5f = exponentielle, 2f = quadratique)
+    [SerializeField] private float rangeMultiplier = 1f;      // Modulation globale
     [SerializeField] private float minForce = 1f;
     [SerializeField] private float maxForce = 20f;
     
     [Header("Debug")]
     [SerializeField] private Color debugColor = Color.cyan;
     private float debugGizmoRadius = 1f;                        // Valeur par défaut
+    
     private LandingClassifier landingClassifier;                // Pour accéder au dernier type d’atterrissage
     
     private void Awake()
@@ -31,7 +33,7 @@ public class WaveEmitter : MonoBehaviour
         float clampedForce = Mathf.Clamp(impactForce, minForce, maxForce);
         float t = Mathf.InverseLerp(minForce, maxForce, clampedForce);
         t = Mathf.Pow(t, rangePowerCurve);                              // Ajout de la courbe d’intensité
-        float targetRadius = Mathf.Lerp(minRange, maxRange, t);
+        float targetRadius = Mathf.Lerp(minRange, maxRange, t)* rangeMultiplier;
 
         // 2. Debug info
         // debugGizmoRadius = targetRadius;

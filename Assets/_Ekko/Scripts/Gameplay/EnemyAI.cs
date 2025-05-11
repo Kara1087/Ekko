@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour, IAlertable
     [SerializeField] private float alertDuration = 2f;
     [SerializeField] private float chaseDuration = 3f;
     [SerializeField] private float chaseRange = 6f;
+    [SerializeField] private float returnYOffset = -2f; // 👈 Y relatif au joueur
 
     [Header("Gameplay")]
     [SerializeField] private Transform player;
@@ -85,7 +86,12 @@ public class EnemyAI : MonoBehaviour, IAlertable
 
         if (stateTimer <= 0f)
         {
-            returnPosition = new Vector2(transform.position.x, 0f);
+            if (player != null)
+            {
+                float targetY = player.position.y + returnYOffset;
+                returnPosition = new Vector2(transform.position.x, targetY);
+                Debug.Log($"[EnemyAI] 🔁 Retour configuré vers Y={targetY:F2} (playerY={player.position.y:F2} + offset={returnYOffset})");
+            }
             ChangeState(EnemyState.Return);
         }
     }
@@ -117,7 +123,7 @@ public class EnemyAI : MonoBehaviour, IAlertable
     {
         MoveTowards(returnPosition, alertSpeed);
 
-        if (Mathf.Abs(transform.position.y - returnPosition.y) < 0.05f)
+        if (Vector2.Distance(transform.position, returnPosition) < 0.05f)
         {
             ChangeState(EnemyState.Dormant);
         }

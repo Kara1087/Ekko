@@ -53,6 +53,21 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayDynamic(string soundName, float volumeMultiplier = 1f, float pitchMultiplier = 1f)
+    {
+        if (!soundMap.ContainsKey(soundName))
+        {
+            Debug.LogWarning($"[AudioManager] Sound '{soundName}' not found.");
+            return;
+        }
+
+        Sound s = soundMap[soundName];
+
+        sfxSource.pitch = Mathf.Clamp(s.pitch * pitchMultiplier, 0.1f, 3f);
+        float finalVolume = Mathf.Clamp01(s.volume * volumeMultiplier);
+
+        sfxSource.PlayOneShot(s.clip, finalVolume);
+    }
     // 🔊 SFX
     public void Play(string soundName)
     {

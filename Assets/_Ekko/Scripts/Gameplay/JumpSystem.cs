@@ -126,8 +126,6 @@ public class JumpSystem : MonoBehaviour
         {
             landingType = LandingType.Slam;
             finalForce *= slamWaveMultiplier;
-
-            AudioManager.Instance.Play("SlamJump");
         }
         else if (isCushioned)
         {
@@ -135,8 +133,18 @@ public class JumpSystem : MonoBehaviour
             finalForce *= cushionWaveMultiplier;
         }
 
+        // Enregistrement
         landingClassifier.RegisterLanding(impactVelocity, landingType);
-        waveEmitter.EmitWave(finalForce); // appelé pour émettre une onde
+
+        // Onde
+        waveEmitter.EmitWave(finalForce);
+
+        // 🔊 Son dynamique selon force
+        float t = Mathf.InverseLerp(1f, 20f, finalForce);
+        float volume = Mathf.Lerp(0.04f, 0.6f, t);     // slam = 0.6, cushioned ≈ 0.04
+        float pitch = Mathf.Lerp(1.4f, 0.8f, t);       // cushioned = aigu, slam = grave
+
+        AudioManager.Instance.PlayDynamic("SlamJump", volume, pitch);
         
         // Réinitialisation
         isForcingSlam = false;
