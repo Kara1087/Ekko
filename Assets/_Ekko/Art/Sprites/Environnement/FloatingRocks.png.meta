@@ -1,0 +1,667 @@
+fileFormatVersion: 2
+guid: 248327cc9c69c41aeac0f79c1403f6cb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7890721293435919637
+    second: FloatingRocks_0
+  - first:
+      213: -7838751951161930939
+    second: FloatingRocks_1
+  - first:
+      213: -2305025341194129205
+    second: FloatingRocks_2
+  - first:
+      213: -8587856203475445220
+    second: FloatingRocks_3
+  - first:
+      213: -352127212020356431
+    second: FloatingRocks_4
+  - first:
+      213: 3378961551532643037
+    second: FloatingRocks_5
+  - first:
+      213: -1206876299017096483
+    second: FloatingRocks_6
+  - first:
+      213: -3907846440951365548
+    second: FloatingRocks_7
+  - first:
+      213: 6605833560770407041
+    second: FloatingRocks_8
+  - first:
+      213: 8163108862961952123
+    second: FloatingRocks_9
+  - first:
+      213: -8649096394988901873
+    second: FloatingRocks_10
+  - first:
+      213: 2550634056501349460
+    second: FloatingRocks_11
+  - first:
+      213: -4806985258516347353
+    second: FloatingRocks_12
+  - first:
+      213: -3116155344395001050
+    second: FloatingRocks_13
+  - first:
+      213: 4391659801279430922
+    second: FloatingRocks_14
+  - first:
+      213: -7469099383511710715
+    second: FloatingRocks_15
+  - first:
+      213: 2032736978211108871
+    second: FloatingRocks_16
+  - first:
+      213: -3686000732144937475
+    second: FloatingRocks_17
+  - first:
+      213: 1478729893922860314
+    second: FloatingRocks_18
+  - first:
+      213: -150051618418833674
+    second: FloatingRocks_19
+  - first:
+      213: -1302074562787202055
+    second: FloatingRocks_20
+  - first:
+      213: -4747479177900406946
+    second: FloatingRocks_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FloatingRocks_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1513
+        width: 655
+        height: 487
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be2242b5ac68e7290800000000000000
+      internalID: -7890721293435919637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_1
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 1292
+        width: 276
+        height: 718
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54bc794c1a8273390800000000000000
+      internalID: -7838751951161930939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_2
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 1186
+        width: 196
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc0b9db2aa7e200e0800000000000000
+      internalID: -2305025341194129205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_3
+      rect:
+        serializedVersion: 2
+        x: 1785
+        y: 1196
+        width: 215
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1a16b9884ec1d880800000000000000
+      internalID: -8587856203475445220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_4
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 986
+        width: 128
+        height: 361
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ba27c39a2efc1bf0800000000000000
+      internalID: -352127212020356431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_5
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 992
+        width: 104
+        height: 228
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd25ecce0ab74ee20800000000000000
+      internalID: 3378961551532643037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_6
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 541
+        width: 420
+        height: 887
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd27f3d7660504fe0800000000000000
+      internalID: -1206876299017096483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_7
+      rect:
+        serializedVersion: 2
+        x: 1340
+        y: 291
+        width: 672
+        height: 846
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 450c15add5a84c9c0800000000000000
+      internalID: -3907846440951365548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_8
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 46
+        width: 637
+        height: 495
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18ae213df92acab50800000000000000
+      internalID: 6605833560770407041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_9
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 40
+        width: 59
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b75a0b7c240394170800000000000000
+      internalID: 8163108862961952123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_10
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 84
+        width: 41
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0a239457ac38f780800000000000000
+      internalID: -8649096394988901873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_11
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 72
+        width: 62
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45cc6c9192ca56320800000000000000
+      internalID: 2550634056501349460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_12
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 83
+        width: 105
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 726089930682a4db0800000000000000
+      internalID: -4806985258516347353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_13
+      rect:
+        serializedVersion: 2
+        x: 1299
+        y: 46
+        width: 83
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 623a660793131c4d0800000000000000
+      internalID: -3116155344395001050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_14
+      rect:
+        serializedVersion: 2
+        x: 1409
+        y: 81
+        width: 46
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a018f9d325f42fc30800000000000000
+      internalID: 4391659801279430922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_15
+      rect:
+        serializedVersion: 2
+        x: 1496
+        y: 120
+        width: 56
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50402b50fad685890800000000000000
+      internalID: -7469099383511710715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_16
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 103
+        width: 77
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 708f214038bb53c10800000000000000
+      internalID: 2032736978211108871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_17
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 85
+        width: 43
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df5dba60dd1b8dcc0800000000000000
+      internalID: -3686000732144937475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_18
+      rect:
+        serializedVersion: 2
+        x: 1747
+        y: 88
+        width: 129
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1de50ef001858410800000000000000
+      internalID: 1478729893922860314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_19
+      rect:
+        serializedVersion: 2
+        x: 1978
+        y: 108
+        width: 45
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f64c2a19d8eaedf0800000000000000
+      internalID: -150051618418833674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_20
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 36
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fb2ff5751a1eede0800000000000000
+      internalID: -1302074562787202055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloatingRocks_21
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 7
+        width: 52
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e57cea647d09d1eb0800000000000000
+      internalID: -4747479177900406946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

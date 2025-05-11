@@ -1,0 +1,1492 @@
+fileFormatVersion: 2
+guid: a6def135d809649848130fd3f031c604
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4981153712222577762
+    second: AlienFlora_0
+  - first:
+      213: -8769833900707920325
+    second: AlienFlora_1
+  - first:
+      213: -810525043871525291
+    second: AlienFlora_2
+  - first:
+      213: 4700950127399035998
+    second: AlienFlora_3
+  - first:
+      213: 8870229802326778393
+    second: AlienFlora_4
+  - first:
+      213: 5986336587808920041
+    second: AlienFlora_5
+  - first:
+      213: -919310203466720976
+    second: AlienFlora_6
+  - first:
+      213: 2798919701821688817
+    second: AlienFlora_7
+  - first:
+      213: 2051071568154692232
+    second: AlienFlora_8
+  - first:
+      213: 8158216548099611928
+    second: AlienFlora_9
+  - first:
+      213: -6719067382962412011
+    second: AlienFlora_10
+  - first:
+      213: -6312433883558657701
+    second: AlienFlora_11
+  - first:
+      213: 9121519323676010618
+    second: AlienFlora_12
+  - first:
+      213: 7332384143504115563
+    second: AlienFlora_13
+  - first:
+      213: 7187439621429232058
+    second: AlienFlora_14
+  - first:
+      213: 6420292266078655866
+    second: AlienFlora_15
+  - first:
+      213: 5237696563238170485
+    second: AlienFlora_16
+  - first:
+      213: -8008795307566414529
+    second: AlienFlora_17
+  - first:
+      213: -8901998697132266766
+    second: AlienFlora_18
+  - first:
+      213: 489050627061875366
+    second: AlienFlora_19
+  - first:
+      213: -7656421598771613651
+    second: AlienFlora_20
+  - first:
+      213: -3304887220492359620
+    second: AlienFlora_21
+  - first:
+      213: 3529925708872951794
+    second: AlienFlora_22
+  - first:
+      213: 7297685337965025158
+    second: AlienFlora_23
+  - first:
+      213: -7997997133750655779
+    second: AlienFlora_24
+  - first:
+      213: 4480934008276893751
+    second: AlienFlora_25
+  - first:
+      213: -3518118683594031701
+    second: AlienFlora_26
+  - first:
+      213: -7089357834441958130
+    second: AlienFlora_27
+  - first:
+      213: -1374297272466348438
+    second: AlienFlora_28
+  - first:
+      213: 3429846780968208384
+    second: AlienFlora_29
+  - first:
+      213: -8398514154571868958
+    second: AlienFlora_30
+  - first:
+      213: 8008534224854467077
+    second: AlienFlora_31
+  - first:
+      213: 5914643524667872034
+    second: AlienFlora_32
+  - first:
+      213: 5805989767398476107
+    second: AlienFlora_33
+  - first:
+      213: 5497108969891941875
+    second: AlienFlora_34
+  - first:
+      213: -2448930770236523969
+    second: AlienFlora_35
+  - first:
+      213: 6972481441341655584
+    second: AlienFlora_36
+  - first:
+      213: -7679318317039761018
+    second: AlienFlora_37
+  - first:
+      213: -5992118130826761028
+    second: AlienFlora_38
+  - first:
+      213: 2398852140274362163
+    second: AlienFlora_39
+  - first:
+      213: -7433581077102036118
+    second: AlienFlora_40
+  - first:
+      213: -8746961476904299294
+    second: AlienFlora_41
+  - first:
+      213: -5559004161360317543
+    second: AlienFlora_42
+  - first:
+      213: -7160978075283496419
+    second: AlienFlora_43
+  - first:
+      213: -6125861796438145812
+    second: AlienFlora_44
+  - first:
+      213: 8431612161825270640
+    second: AlienFlora_45
+  - first:
+      213: 3277922129688626280
+    second: AlienFlora_46
+  - first:
+      213: -6995473891594368846
+    second: AlienFlora_47
+  - first:
+      213: 7832821625796115198
+    second: AlienFlora_48
+  - first:
+      213: 166585317497413057
+    second: AlienFlora_49
+  - first:
+      213: -2359881947769051148
+    second: AlienFlora_50
+  - first:
+      213: 5257039253825227795
+    second: AlienFlora_51
+  - first:
+      213: -257664717369100855
+    second: AlienFlora_52
+  - first:
+      213: -4497402110468933212
+    second: AlienFlora_53
+  - first:
+      213: 2635799873375051629
+    second: AlienFlora_54
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AlienFlora_0
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 901
+        width: 87
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26425a4f8ec902540800000000000000
+      internalID: 4981153712222577762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_1
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 903
+        width: 64
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b364029288a4b4680800000000000000
+      internalID: -8769833900707920325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_2
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 903
+        width: 66
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 556da7654cf60c4f0800000000000000
+      internalID: -810525043871525291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_3
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 905
+        width: 53
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e546272fb312d3140800000000000000
+      internalID: 4700950127399035998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_4
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 807
+        width: 60
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91265cb3203691b70800000000000000
+      internalID: 8870229802326778393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_5
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 806
+        width: 64
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e1564ed86db31350800000000000000
+      internalID: 5986336587808920041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_6
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 807
+        width: 79
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03959fb9d34fd33f0800000000000000
+      internalID: -919310203466720976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_7
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 830
+        width: 88
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fb8ce5b3a2c7d620800000000000000
+      internalID: 2798919701821688817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_8
+      rect:
+        serializedVersion: 2
+        x: 1219
+        y: 838
+        width: 117
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88a83c469bed67c10800000000000000
+      internalID: 2051071568154692232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_9
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 847
+        width: 79
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81dd036f9bec73170800000000000000
+      internalID: 8158216548099611928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_10
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 802
+        width: 191
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 516ac9870d311c2a0800000000000000
+      internalID: -6719067382962412011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_11
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 805
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b51c85ed3dab568a0800000000000000
+      internalID: -6312433883558657701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_12
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 804
+        width: 82
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a78e19b3f75269e70800000000000000
+      internalID: 9121519323676010618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_13
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 806
+        width: 86
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b670546a78cd1c560800000000000000
+      internalID: 7332384143504115563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_14
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 809
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab18bd7414aeeb360800000000000000
+      internalID: 7187439621429232058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_15
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 521
+        width: 225
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a755ec1ccc5791950800000000000000
+      internalID: 6420292266078655866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_16
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 661
+        width: 95
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57f6815164900b840800000000000000
+      internalID: 5237696563238170485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_17
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 662
+        width: 70
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3540b5a91b0bd090800000000000000
+      internalID: -8008795307566414529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_18
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 662
+        width: 30
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fae07a895fb57480800000000000000
+      internalID: -8901998697132266766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_19
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 661
+        width: 94
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a2843744f479c600800000000000000
+      internalID: 489050627061875366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_20
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 520
+        width: 106
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d20f6921f1deeb590800000000000000
+      internalID: -7656421598771613651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_21
+      rect:
+        serializedVersion: 2
+        x: 1592
+        y: 537
+        width: 134
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3823df359ea222d0800000000000000
+      internalID: -3304887220492359620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_22
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 521
+        width: 91
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f724e8dab0dcf030800000000000000
+      internalID: 3529925708872951794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_23
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 522
+        width: 108
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6875bfb6626964560800000000000000
+      internalID: 7297685337965025158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_24
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 525
+        width: 58
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd423386bf7610190800000000000000
+      internalID: -7997997133750655779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_25
+      rect:
+        serializedVersion: 2
+        x: 1257
+        y: 526
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 730cf415db97f2e30800000000000000
+      internalID: 4480934008276893751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_26
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 397
+        width: 110
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bad76b272b12d2fc0800000000000000
+      internalID: -3518118683594031701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_27
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 396
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0d54705c9a8d9d90800000000000000
+      internalID: -7089357834441958130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_28
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 402
+        width: 97
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a66eada79e38dece0800000000000000
+      internalID: -1374297272466348438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_29
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 281
+        width: 332
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00880a5a973499f20800000000000000
+      internalID: 3429846780968208384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_30
+      rect:
+        serializedVersion: 2
+        x: 1077
+        y: 389
+        width: 70
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e457a7afdb727b80800000000000000
+      internalID: -8398514154571868958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_31
+      rect:
+        serializedVersion: 2
+        x: 1297
+        y: 398
+        width: 111
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 502420c4277042f60800000000000000
+      internalID: 8008534224854467077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_32
+      rect:
+        serializedVersion: 2
+        x: 1497
+        y: 402
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22394e4d2f8051250800000000000000
+      internalID: 5914643524667872034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_33
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 278
+        width: 380
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b49c6579ee4039050800000000000000
+      internalID: 5805989767398476107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_34
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 285
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fdc502bb77a94c40800000000000000
+      internalID: 5497108969891941875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_35
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 289
+        width: 39
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3a37808076a30ed0800000000000000
+      internalID: -2448930770236523969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_36
+      rect:
+        serializedVersion: 2
+        x: 1065
+        y: 253
+        width: 101
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02a4c2addea33c060800000000000000
+      internalID: 6972481441341655584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_37
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 255
+        width: 70
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 689c1bb6da49d6590800000000000000
+      internalID: -7679318317039761018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_38
+      rect:
+        serializedVersion: 2
+        x: 1343
+        y: 258
+        width: 200
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbca4efbe48b7dca0800000000000000
+      internalID: -5992118130826761028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_39
+      rect:
+        serializedVersion: 2
+        x: 1626
+        y: 270
+        width: 66
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3372db9df4f6a4120800000000000000
+      internalID: 2398852140274362163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_40
+      rect:
+        serializedVersion: 2
+        x: 1277
+        y: 261
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6b744a256d96d890800000000000000
+      internalID: -7433581077102036118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_41
+      rect:
+        serializedVersion: 2
+        x: 1541
+        y: 266
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e4d71151ec8c9680800000000000000
+      internalID: -8746961476904299294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_42
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 137
+        width: 20
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99333390b237ad2b0800000000000000
+      internalID: -5559004161360317543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_43
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 133
+        width: 136
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d12ed5a81681f9c90800000000000000
+      internalID: -7160978075283496419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_44
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 128
+        width: 132
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce40b2007219cfaa0800000000000000
+      internalID: -6125861796438145812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_45
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 125
+        width: 96
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07b657da69a130570800000000000000
+      internalID: 8431612161825270640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_46
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 127
+        width: 131
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8648b7d4fc48d7d20800000000000000
+      internalID: 3277922129688626280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_47
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 125
+        width: 30
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b88ff72f851bee90800000000000000
+      internalID: -6995473891594368846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_48
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 131
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efa3392c4c5c3bc60800000000000000
+      internalID: 7832821625796115198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_49
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 129
+        width: 91
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cd9a32b674df4200800000000000000
+      internalID: 166585317497413057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_50
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 132
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f76e572fd3004fd0800000000000000
+      internalID: -2359881947769051148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_51
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 133
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31c898e2951c4f840800000000000000
+      internalID: 5257039253825227795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_52
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 25
+        width: 111
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c530120e479c6cf0800000000000000
+      internalID: -257664717369100855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_53
+      rect:
+        serializedVersion: 2
+        x: 1219
+        y: 17
+        width: 118
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a93869db940691c0800000000000000
+      internalID: -4497402110468933212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlienFlora_54
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 126
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6f1a8f050e349420800000000000000
+      internalID: 2635799873375051629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
