@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -139,12 +138,10 @@ public class JumpSystem : MonoBehaviour
         // Onde
         waveEmitter.EmitWave(finalForce);
 
-        // 🔊 Son dynamique selon force
-        float t = Mathf.InverseLerp(1f, 20f, finalForce);
-        float volume = Mathf.Lerp(0.04f, 0.6f, t);     // slam = 0.6, cushioned ≈ 0.04
-        float pitch = Mathf.Lerp(1.4f, 0.8f, t);       // cushioned = aigu, slam = grave
-
-        AudioManager.Instance.PlayDynamic("SlamJump", volume, pitch);
+        if (landingType == LandingType.Slam)
+        {
+            AudioManager.Instance.Play("SlamJump");
+        }
         
         // Réinitialisation
         isForcingSlam = false;
