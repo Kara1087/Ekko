@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum UIScreen { None, Start, Pause, GameOver }
 
@@ -7,11 +8,11 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     [Header("UI Screens")]
-    [SerializeField] private GameObject startScreen;
-    [SerializeField] private GameObject pauseScreen;
-    [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject startPanel;
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject gameOverQuotePanel;
     [SerializeField] private BlackoutEffect blackoutEffect;
-    private bool hasShownStartScreen = false;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -21,25 +22,25 @@ public class UIManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject); ❌ supprimé pour éviter persistance entre scènes
         
-        // Lancement du fade-in, puis affichage de l’écran de démarrage
-        if (!hasShownStartScreen)
+        // Affichage de l'écran de démarrage uniquement dans la scène du menu principal
+        if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            hasShownStartScreen = true;
-            blackoutEffect?.StartFadeIn(() =>
-            {
-                ShowScreen(UIScreen.Start);
-            });
+            blackoutEffect?.StartFadeIn(() => ShowScreen(UIScreen.Start));
+        }
+        else
+        {
+            ShowScreen(UIScreen.None);
         }
     }
 
     public void ShowScreen(UIScreen screen)
     {
 
-        startScreen?.SetActive(screen == UIScreen.Start);
-        pauseScreen?.SetActive(screen == UIScreen.Pause);
-        gameOverScreen?.SetActive(screen == UIScreen.GameOver);
+        startPanel?.SetActive(screen == UIScreen.Start);
+        pausePanel?.SetActive(screen == UIScreen.Pause);
+        gameOverPanel?.SetActive(screen == UIScreen.GameOver);
 
         AudioManager.Instance.SetMusicForScreen(screen); // 🔁 Appel centralisé
         
@@ -47,15 +48,17 @@ public class UIManager : MonoBehaviour
 
     public void HideAllScreens()
     {
-        startScreen?.SetActive(false);
-        pauseScreen?.SetActive(false);
-        gameOverScreen?.SetActive(false);
+        startPanel?.SetActive(false);
+        pausePanel?.SetActive(false);
+        gameOverPanel?.SetActive(false);
     }
 
     public void SetPauseScreen(bool show)
     {
-        pauseScreen?.SetActive(show);
+        pausePanel?.SetActive(show);
     }
+
+
 
     public void StartBlackoutEffect()
     {
@@ -66,18 +69,12 @@ public class UIManager : MonoBehaviour
 
     public void OnStartButton()
     {
-        HideAllScreens();
-        Time.timeScale = 1f;
-        // LevelController.Instance.FadeAndLoadScene("Level_1");
-        AudioManager.Instance.PlayMusicTheme("BackgroundTheme");
+        GameManager.Instance?.StartGame();
     }
 
     public void OnExitButton()
     {
-        Application.Quit();
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        GameManager.Instance?.QuitGame();
     }
 
     public void OnResumeButton()
@@ -87,15 +84,12 @@ public class UIManager : MonoBehaviour
 
     public void OnRetryButton()
     {
-        HideAllScreens();
-        Time.timeScale = 1f;
-        // LevelController.Instance.RestartLevel();
+        GameManager.Instance?.RestartGame();
     }
 
     public void OnMainMenuButton()
     {
-        ShowScreen(UIScreen.Start);
-        Time.timeScale = 0f;
+        GameManager.Instance?.ReturnToMainMenu();
     }
 
     public void OnPauseButton()

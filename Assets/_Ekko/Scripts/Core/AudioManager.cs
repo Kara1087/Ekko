@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject); ❌ supprimé pour éviter persistance entre scènes
 
         // Sources
         sfxSource = gameObject.AddComponent<AudioSource>();

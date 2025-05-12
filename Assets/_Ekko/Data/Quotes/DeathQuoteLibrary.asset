@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5da85a71a93240aaa2844030283f01e, type: 3}
+  m_Name: DeathQuoteLibrary
+  m_EditorClassIdentifier: 
+  quotes:
+  - {fileID: 11400000, guid: 6692eae8f9cbf4515b86802a707d4be1, type: 2}
+  - {fileID: 11400000, guid: 0d9a73e706af14e779e4c4056056bd8b, type: 2}
