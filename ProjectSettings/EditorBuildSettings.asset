@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Ekko/Scenes/_Bootstrap.unity
+    guid: 1581fe1740ebd4bb4ac71ab1db199d04
+  - enabled: 1
     path: Assets/_Ekko/Scenes/_MainMenu.unity
     guid: aa222036059e94a10a3ab34d35e08e27
   - enabled: 1

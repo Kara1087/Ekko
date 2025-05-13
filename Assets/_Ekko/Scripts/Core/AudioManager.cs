@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
         }
 
         Instance = this;
-        // DontDestroyOnLoad(gameObject); ❌ supprimé pour éviter persistance entre scènes
+        DontDestroyOnLoad(gameObject);
 
         // Sources
         sfxSource = gameObject.AddComponent<AudioSource>();
@@ -72,8 +72,8 @@ public class AudioManager : MonoBehaviour
     {
         if (!soundMap.ContainsKey(soundName)) return;
 
-        if (musicThemeSource.isPlaying && currentMusicName != soundName)
-            musicThemeSource.Stop();
+        if (currentMusicName == soundName && musicThemeSource.isPlaying)
+            return;
 
         Sound s = soundMap[soundName];
         musicThemeSource.clip = s.clip;

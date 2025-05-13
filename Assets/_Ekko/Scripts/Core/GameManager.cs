@@ -33,8 +33,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"[Debug] Time.timeScale = {Time.timeScale}");
-        Time.timeScale = 1f;
+        if (SceneManager.GetActiveScene().name == "_Bootstrap")
+        {
+            Debug.Log("[GameManager] 🧠 Bootstrap initialisation...");
+            SceneLoader.Instance.LoadSceneWithFade("_MainMenu");
+        }
     }
     
     private void Update()
@@ -117,7 +120,7 @@ public class GameManager : MonoBehaviour
         
         AudioManager.Instance.PlayMusicTheme("BackgroundTheme");
 
-        StartCoroutine(LoadLevelRoutine("Level_1"));
+        SceneLoader.Instance.LoadSceneWithFade("Level_1");
     }
 
     public void RestartGame()
@@ -153,7 +156,7 @@ public class GameManager : MonoBehaviour
         IsPaused = false;
         IsGameOver = false;
 
-        SceneManager.LoadScene("_MainMenu");
+        SceneLoader.Instance.LoadSceneWithFade("_MainMenu");
     }
 
     private void EnsureDependencies()

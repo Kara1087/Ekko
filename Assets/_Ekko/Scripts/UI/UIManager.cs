@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public enum UIScreen { None, Start, Pause, GameOver }
 
@@ -13,19 +14,25 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameOverQuotePanel;
     [SerializeField] private BlackoutEffect blackoutEffect;
+
     private void Awake()
     {
-        Debug.Log("[UIManager] 🧠 Awake() appelé dans scène " + SceneManager.GetActiveScene().name);
-        
+        InitSingleton();
+        InitUIScreen();
+    }
+
+    private void InitSingleton()
+    {
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
-        // DontDestroyOnLoad(gameObject); ❌ supprimé pour éviter persistance entre scènes
-        
+    }
+    
+    private void InitUIScreen()
+    {
         // Affichage de l'écran de démarrage uniquement dans la scène du menu principal
         if (SceneManager.GetActiveScene().name == "_MainMenu")
         {
@@ -62,11 +69,18 @@ public class UIManager : MonoBehaviour
         pausePanel?.SetActive(show);
     }
 
-
-
-    public void StartBlackoutEffect()
+    public IEnumerator StartBlackoutRoutine()
     {
-        blackoutEffect?.StartBlackout();
+        bool finished = false;
+        blackoutEffect?.StartBlackout(() => finished = true);
+        yield return new WaitUntil(() => finished);
+    }
+
+    public IEnumerator StartFadeInRoutine()
+    {
+        bool finished = false;
+        blackoutEffect?.StartFadeIn(() => finished = true);
+        yield return new WaitUntil(() => finished);
     }
 
     // ---------- Boutons UI ----------
