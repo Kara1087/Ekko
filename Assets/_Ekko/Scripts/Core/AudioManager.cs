@@ -70,7 +70,6 @@ public class AudioManager : MonoBehaviour
     // 🎵 Music Theme
     public void PlayMusicTheme(string soundName)
     {
-        Debug.Log($"[AudioManager] 🎵 Demande de lecture : {soundName}");
 
         if (!soundMap.ContainsKey(soundName))
         {

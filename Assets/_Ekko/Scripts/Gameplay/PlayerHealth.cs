@@ -23,7 +23,6 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         currentLight = maxLight;
-        Debug.Log("[PlayerHealth] 🔋 Initialisation : pleine lumière");
     }
 
     [ContextMenu("Test: Take Damage (-30)")]
