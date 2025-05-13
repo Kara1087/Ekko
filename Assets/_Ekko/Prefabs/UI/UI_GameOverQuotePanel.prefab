@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4543110369746613445}
   - component: {fileID: 2665165640037648010}
   - component: {fileID: 3972903998883420382}
-  - component: {fileID: 3018767160357060001}
   m_Layer: 5
   m_Name: UI_GameOverQuotePanel
   m_TagString: Untagged
@@ -77,21 +76,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3018767160357060001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2303014365911895925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e485cd0c4f83640659f850938a13a647, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quoteLibrary: {fileID: 11400000, guid: 4eafe70a358bd4275a3430828e3b1413, type: 2}
-  quotePanel: {fileID: 3349562847688491797}
-  quoteText: {fileID: 4314186298856449195}
 --- !u!1 &3349562847688491797
 GameObject:
   m_ObjectHideFlags: 0

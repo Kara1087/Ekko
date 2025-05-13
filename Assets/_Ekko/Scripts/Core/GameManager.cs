@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,18 +20,21 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        // DontDestroyOnLoad(gameObject); ❌ supprimé pour éviter persistance entre scènes
-    }
+        DontDestroyOnLoad(gameObject);
 
-    private void Start()
-    {
-        quoteManager = FindObjectOfType<QuoteManager>();
-        blackoutEffect = FindObjectOfType<BlackoutEffect>();
+        quoteManager = FindFirstObjectByType<QuoteManager>();
+        blackoutEffect = FindFirstObjectByType<BlackoutEffect>();
 
         if (quoteManager == null)
             Debug.LogWarning("❌ QuoteManager non trouvé dans la scène.");
         if (blackoutEffect == null)
             Debug.LogWarning("❌ BlackoutEffect non trouvé dans la scène.");
+    }
+
+    private void Start()
+    {
+        Debug.Log($"[Debug] Time.timeScale = {Time.timeScale}");
+        Time.timeScale = 1f;
     }
     
     private void Update()
@@ -57,32 +61,46 @@ public class GameManager : MonoBehaviour
 
     public void HandlePlayerDeath()
     {
+        if (IsGameOver) return;
+
         Debug.Log("[GameManager] 💀 Player is dead.");
         IsGameOver = true;
         Time.timeScale = 0f;
 
+        EnsureDependencies(); 
         if (quoteManager != null)
         {
-            quoteManager.ShowRandomQuote(() =>
+            quoteManager.ShowRandomQuote(OnQuoteComplete);
+        }
+        else
+        {
+            Debug.LogWarning("❌ QuoteManager non trouvé.");
+            OnQuoteComplete();
+        }
+    }
+
+    private void OnQuoteComplete()
+    {
+        // 🔄 Forcer une resynchronisation à chaud
+        blackoutEffect = FindFirstObjectByType<BlackoutEffect>();
+
+        if (blackoutEffect == null)
+        {
+            Debug.LogWarning("❌ BlackoutEffect non trouvé. Tentative via UIManager...");
+            blackoutEffect = UIManager.Instance?.GetComponentInChildren<BlackoutEffect>(true);
+        }
+
+        if (blackoutEffect != null)
+        {
+            blackoutEffect.StartBlackout(() =>
             {
-                ShowGameOverSequence();
+                Debug.Log("✅ Affichage GameOver après blackout");
+                UIManager.Instance?.ShowScreen(UIScreen.GameOver);
             });
         }
         else
         {
-            ShowGameOverSequence(); // fallback direct
-        }
-    }
-
-    private void ShowGameOverSequence()
-    {
-        if (blackoutEffect != null)
-        {
-            blackoutEffect.StartBlackout(); // Appelle ShowScreen(GameOver) en interne
-        }
-        else
-        {
-            Debug.LogWarning("❌ Aucun BlackoutEffect disponible.");
+            Debug.LogWarning("❌ BlackoutEffect définitivement introuvable. Affichage direct GameOver.");
             UIManager.Instance?.ShowScreen(UIScreen.GameOver);
         }
     }
@@ -95,9 +113,11 @@ public class GameManager : MonoBehaviour
         IsPaused = false;
         IsGameOver = false;
 
-        SceneManager.LoadScene("Level_1");   // Charge la scène de jeu
-
+        UIManager.Instance?.HideAllScreens(); // 🔁 Appelé une fois le bon UIManager chargé
+        
         AudioManager.Instance.PlayMusicTheme("BackgroundTheme");
+
+        StartCoroutine(LoadLevelRoutine("Level_1"));
     }
 
     public void RestartGame()
@@ -134,6 +154,55 @@ public class GameManager : MonoBehaviour
         IsGameOver = false;
 
         SceneManager.LoadScene("_MainMenu");
+    }
+
+    private void EnsureDependencies()
+    {
+        if (quoteManager == null)
+        quoteManager = FindFirstObjectByType<QuoteManager>();
+
+        if (blackoutEffect == null)
+        {
+            GameObject blackoutGO = GameObject.Find("UI_BlackoutPanel");
+
+            if (blackoutGO != null)
+            {
+                // 👇 S'il est inactif, on l'active temporairement pour récupérer le script
+                bool wasInactive = !blackoutGO.activeSelf;
+                if (wasInactive) blackoutGO.SetActive(true);
+
+                blackoutEffect = blackoutGO.GetComponent<BlackoutEffect>();
+
+                if (wasInactive) blackoutGO.SetActive(false); // 👈 On le remet dans son état initial
+            }
+
+            if (blackoutEffect == null)
+            {
+                Debug.LogWarning("❌ BlackoutEffect définitivement introuvable.");
+            }
+        }
+    }
+
+    private IEnumerator LoadLevelRoutine(string sceneName)
+    {
+        yield return new WaitForSecondsRealtime(0.1f); // laisse le temps à Unity de désactiver l’UI
+        SceneManager.LoadScene(sceneName);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log($"[GameManager] 🔄 Scene '{scene.name}' loaded. Réinitialisation des dépendances...");
+        EnsureDependencies();
     }
 
 }

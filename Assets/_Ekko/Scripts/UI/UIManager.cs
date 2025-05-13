@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private BlackoutEffect blackoutEffect;
     private void Awake()
     {
+        Debug.Log("[UIManager] 🧠 Awake() appelé dans scène " + SceneManager.GetActiveScene().name);
+        
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -25,7 +27,7 @@ public class UIManager : MonoBehaviour
         // DontDestroyOnLoad(gameObject); ❌ supprimé pour éviter persistance entre scènes
         
         // Affichage de l'écran de démarrage uniquement dans la scène du menu principal
-        if (SceneManager.GetActiveScene().name == "MainMenu")
+        if (SceneManager.GetActiveScene().name == "_MainMenu")
         {
             blackoutEffect?.StartFadeIn(() => ShowScreen(UIScreen.Start));
         }
@@ -48,6 +50,8 @@ public class UIManager : MonoBehaviour
 
     public void HideAllScreens()
     {
+        Debug.Log("[UIManager] ❌ HideAllScreens() appelé");
+        
         startPanel?.SetActive(false);
         pausePanel?.SetActive(false);
         gameOverPanel?.SetActive(false);

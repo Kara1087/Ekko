@@ -43,23 +43,27 @@ public class BlackoutEffect : MonoBehaviour
         {
             if (blackoutImage == null) return;
 
-        blackoutImage.gameObject.SetActive(true);
-        blackoutImage.color = new Color(0, 0, 0, 1f); // full noir
+            blackoutImage.DOKill(); // 🔒 stoppe tout tween existant sur l’image
 
-        blackoutImage.DOFade(0f, fadeDuration)
-            .SetUpdate(true) // ignore Time.timeScale
-            .OnComplete(() =>
-            {
-                blackoutImage.gameObject.SetActive(false);
-                onComplete?.Invoke();
-                Debug.Log("[BlackoutEffect] ✅ Fade-in terminé.");
-            });
+            blackoutImage.gameObject.SetActive(true);
+            blackoutImage.color = new Color(0, 0, 0, 1f); // full noir
+
+            blackoutImage.DOFade(0f, fadeDuration)
+                .SetUpdate(true) // ignore Time.timeScale
+                .OnComplete(() =>
+                {
+                    blackoutImage.gameObject.SetActive(false);
+                    onComplete?.Invoke();
+                    Debug.Log("[BlackoutEffect] ✅ Fade-in terminé.");
+                });
         }
     }
 
     public void StartBlackout(System.Action onComplete = null)
     {
         if (blackoutImage == null) return;
+
+        blackoutImage.DOKill(); // 🔒 stoppe tout tween existant sur l’image
 
         blackoutImage.gameObject.SetActive(true);
         blackoutImage.color = new Color(0, 0, 0, 0f); // transparent
@@ -68,8 +72,9 @@ public class BlackoutEffect : MonoBehaviour
             .SetUpdate(true)
             .OnComplete(() =>
             {
+                blackoutImage.gameObject.SetActive(false); // important sinon écran reste noir
+                Debug.Log("🌀 Blackout terminé");
                 onComplete?.Invoke();
-                Debug.Log("[BlackoutEffect] 🌑 Blackout terminé.");
             });
     }
 }
