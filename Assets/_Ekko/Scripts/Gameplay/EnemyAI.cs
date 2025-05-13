@@ -45,8 +45,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
         }
 
         lightFlasher = GetComponentInChildren<LightFlasher>();
-
-        Debug.Log("[EnemyAI] 💤 État initial : Dormant");
     }
 
     private void Update()

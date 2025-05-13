@@ -70,10 +70,19 @@ public class AudioManager : MonoBehaviour
     // 🎵 Music Theme
     public void PlayMusicTheme(string soundName)
     {
-        if (!soundMap.ContainsKey(soundName)) return;
+        Debug.Log($"[AudioManager] 🎵 Demande de lecture : {soundName}");
+
+        if (!soundMap.ContainsKey(soundName))
+        {
+            Debug.LogWarning($"[AudioManager] ⚠️ Sound '{soundName}' non trouvé dans soundMap.");
+            return;
+        }
 
         if (currentMusicName == soundName && musicThemeSource.isPlaying)
+        {
+            Debug.Log($"[AudioManager] ⏩ Musique déjà en cours : {soundName}");
             return;
+        }
 
         Sound s = soundMap[soundName];
         musicThemeSource.clip = s.clip;
@@ -82,6 +91,8 @@ public class AudioManager : MonoBehaviour
         musicThemeSource.Play();
 
         currentMusicName = soundName;
+
+        Debug.Log($"[AudioManager] ✅ Lecture de : {soundName}");
     }
 
     public void StopMusicTheme()

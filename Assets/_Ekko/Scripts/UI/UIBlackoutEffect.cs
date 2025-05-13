@@ -48,8 +48,6 @@ public class BlackoutEffect : MonoBehaviour
             return;
         }
 
-        Debug.Log("[BlackoutEffect] 🎬 Démarrage du Fade-In");
-
         // ✅ Active le panel parent (UI_BlackoutPanel) si désactivé
         Transform panelParent = blackoutImage.transform.parent;
         if (panelParent != null && !panelParent.gameObject.activeSelf)
@@ -68,7 +66,6 @@ public class BlackoutEffect : MonoBehaviour
             .OnComplete(() =>
             {
                 blackoutImage.gameObject.SetActive(false);
-                Debug.Log("[BlackoutEffect] ✅ Fade-in terminé.");
                 onComplete?.Invoke();
             });
     }

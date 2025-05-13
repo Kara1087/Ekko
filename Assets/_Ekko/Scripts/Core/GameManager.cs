@@ -33,9 +33,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        // Commenter pour phase test
         if (SceneManager.GetActiveScene().name == "_Bootstrap")
         {
-            Debug.Log("[GameManager] 🧠 Bootstrap initialisation...");
             SceneLoader.Instance.LoadSceneWithFade("_MainMenu");
         }
     }
@@ -118,8 +118,6 @@ public class GameManager : MonoBehaviour
 
         UIManager.Instance?.HideAllScreens(); // 🔁 Appelé une fois le bon UIManager chargé
         
-        AudioManager.Instance.PlayMusicTheme("BackgroundTheme");
-
         SceneLoader.Instance.LoadSceneWithFade("Level_1");
     }
 

@@ -36,6 +36,9 @@ public class UIManager : MonoBehaviour
         // Affichage de l'écran de démarrage uniquement dans la scène du menu principal
         if (SceneManager.GetActiveScene().name == "_MainMenu")
         {
+            // ✅ Lancer la musique AVANT le fade
+            AudioManager.Instance?.SetMusicForScreen(UIScreen.Start);
+
             blackoutEffect?.StartFadeIn(() => ShowScreen(UIScreen.Start));
         }
         else
@@ -46,13 +49,13 @@ public class UIManager : MonoBehaviour
 
     public void ShowScreen(UIScreen screen)
     {
+        Debug.Log($"[UIManager] 🎛️ Affichage de l'écran : {screen}");
 
         startPanel?.SetActive(screen == UIScreen.Start);
         pausePanel?.SetActive(screen == UIScreen.Pause);
         gameOverPanel?.SetActive(screen == UIScreen.GameOver);
 
         AudioManager.Instance.SetMusicForScreen(screen); // 🔁 Appel centralisé
-        
     }
 
     public void HideAllScreens()
