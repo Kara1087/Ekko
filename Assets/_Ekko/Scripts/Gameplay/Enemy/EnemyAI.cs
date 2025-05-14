@@ -30,6 +30,7 @@ public class EnemyAI : MonoBehaviour, IAlertable
     private Vector2 returnPosition;
     private EnemyState currentState = EnemyState.Dormant;
     private float stateTimer = 0f;
+    private bool hasHitPlayer = false;  // cooldown suite attaque
 
     private LightFlasher lightFlasher;
     private PlayerVFX playerVFX;
@@ -74,6 +75,11 @@ public class EnemyAI : MonoBehaviour, IAlertable
         HandleAbsorptionFlash();
     }
 
+    public void NotifyPlayerHit()       // Appelé par EnemyDamageTrigger
+    {
+        hasHitPlayer = true;
+    }
+
     private void UpdateAlert()
     {
         stateTimer -= Time.deltaTime;
@@ -102,6 +108,19 @@ public class EnemyAI : MonoBehaviour, IAlertable
         if (player == null)
         {
             ChangeState(EnemyState.Dormant);
+            return;
+        }
+
+        // 🆕 Si le joueur a été touché, retour immédiat
+        if (hasHitPlayer)
+        {
+            if (player != null)
+            {
+                float targetY = player.position.y + returnYOffset;
+                returnPosition = new Vector2(transform.position.x, targetY);
+            }
+            ChangeState(EnemyState.Return);
+            hasHitPlayer = false;
             return;
         }
 
