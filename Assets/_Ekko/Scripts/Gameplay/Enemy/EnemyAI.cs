@@ -116,7 +116,12 @@ public class EnemyAI : MonoBehaviour, IAlertable
 
         if (stateTimer <= 0f)
         {
-            ChangeState(EnemyState.Dormant);
+            if (player != null)
+            {
+                float targetY = player.position.y + returnYOffset;
+                returnPosition = new Vector2(transform.position.x, targetY);
+            }
+            ChangeState(EnemyState.Return); // 🔁 passage par retour avant dormant
         }
     }
 

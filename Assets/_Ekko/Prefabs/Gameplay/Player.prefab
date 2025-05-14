@@ -275,6 +275,7 @@ GameObject:
   - component: {fileID: 165381274287226765}
   - component: {fileID: 354689775183971246}
   - component: {fileID: 441468540923850232}
+  - component: {fileID: 2423670080596529113}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -584,6 +585,7 @@ MonoBehaviour:
   minRange: 0.5
   maxRange: 30
   rangePowerCurve: 1
+  rangeMultiplier: 1.5
   minForce: 5
   maxForce: 20
   debugColor: {r: 0, g: 1, b: 1, a: 1}
@@ -673,3 +675,19 @@ MonoBehaviour:
   absorbIntensityMultiplier: 0.5
   absorbRadiusMultiplier: 0.7
   absorbLerpSpeed: 2
+--- !u!114 &2423670080596529113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446427717985520308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b8587a4b77964781a3b2aea00b01719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightTrailPrefab: {fileID: 2515800603292719396, guid: 5ab75554564f64660aa5ce05c1d1d614, type: 3}
+  attractor: {fileID: 0}
+  attractRadius: 3
+  attractStrength: 3
