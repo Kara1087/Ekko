@@ -97,8 +97,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4436721f832bc4bcdb4e27b288c0b320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light2D: {fileID: 2878345422865635465}
+  lockOnTarget: 0
+  useBeatSync: 0
   flashSpeed: 1
+  flashIntensity: 2
   minIntensity: 0.2
   maxIntensity: 2
 --- !u!1 &2966952655074025045
@@ -293,7 +295,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -301,9 +303,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &6771078289576254939
 BoxCollider2D:
@@ -366,8 +368,9 @@ MonoBehaviour:
   alertSpeed: 1
   chaseSpeed: 3
   alertDuration: 2
-  chaseDuration: 3
-  chaseRange: 7
+  chaseDuration: 2
+  chaseRange: 9
+  returnYOffset: 10
   player: {fileID: 0}
   revealLight: {fileID: 2878345422865635465}
   revealDuration: 1.5

@@ -14,6 +14,9 @@ public class PlayerLight : MonoBehaviour
     public float minIntensity = 0.5f;
     public float maxIntensity = 1.5f;
 
+    [Header("Couleur dynamique")]
+    [SerializeField] private Gradient lightColorOverLife;
+
     [Header("Transition")]
     public float transitionDuration = 0.3f;
 
@@ -64,6 +67,8 @@ public class PlayerLight : MonoBehaviour
         if (lerpRoutine != null) StopCoroutine(lerpRoutine);
         lerpRoutine = StartCoroutine(LerpToTarget(baseRadius, baseIntensity));
 
+        light2D.color = lightColorOverLife.Evaluate(t); // 🎨 couleur dynamique
+
         Debug.Log($"[PlayerLight] 💡 UpdateLight -> Intensity: {targetIntensity:F2}, Radius: {targetRadius:F2}");
     }
 
@@ -81,6 +86,8 @@ public class PlayerLight : MonoBehaviour
 
             light2D.pointLightOuterRadius = Mathf.Lerp(startRadius, targetRadius, t);
             light2D.intensity = Mathf.Lerp(startIntensity, targetIntensity, t);
+
+            light2D.color = lightColorOverLife.Evaluate(playerHealth.GetLightRatio()); // 🎨 en temps réel
 
             yield return null;
         }

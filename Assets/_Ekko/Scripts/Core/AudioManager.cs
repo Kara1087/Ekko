@@ -91,7 +91,7 @@ public class AudioManager : MonoBehaviour
 
         currentMusicName = soundName;
 
-        Debug.Log($"[AudioManager] ✅ Lecture de : {soundName}");
+       // Debug.Log($"[AudioManager] ✅ Lecture de : {soundName}");
     }
 
     public void StopMusicTheme()
