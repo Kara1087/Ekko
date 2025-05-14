@@ -1331,7 +1331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7484bca31a00540a3638e8aeacc207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parallaxEffectMultiplier: {x: 0.05, y: 0}
+  _parallaxEffectMultiplier: {x: 0.35, y: 0}
 --- !u!1 &2107836644734641803
 GameObject:
   m_ObjectHideFlags: 0
