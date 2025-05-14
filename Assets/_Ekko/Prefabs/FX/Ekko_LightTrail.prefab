@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6623393533229328520}
   - component: {fileID: 7934824410989788380}
+  - component: {fileID: 7922017522191396190}
   - component: {fileID: 7450849989777333338}
   - component: {fileID: 8944677502771536264}
-  - component: {fileID: 7922017522191396190}
+  - component: {fileID: 7577817272207851965}
   m_Layer: 0
   m_Name: Ekko_LightTrail
   m_TagString: Untagged
@@ -108,7 +109,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -118,7 +119,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -171,7 +172,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -872,7 +873,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2691,7 +2692,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2848,7 +2849,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.5
+    frequency: 0.3
     damping: 1
     octaves: 1
     octaveMultiplier: 0.5
@@ -4758,6 +4759,21 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &7922017522191396190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2515800603292719396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51d102824a5e427789a655b05b90f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  followSpeed: 5
+  snapOnStart: 1
 --- !u!199 &7450849989777333338
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4850,7 +4866,7 @@ MonoBehaviour:
   targetLight: {fileID: 0}
   targetParticleSystem: {fileID: 7934824410989788380}
   radiusMultiplier: 0.7
---- !u!114 &7922017522191396190
+--- !u!114 &7577817272207851965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4859,8 +4875,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2515800603292719396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a51d102824a5e427789a655b05b90f88, type: 3}
+  m_Script: {fileID: 11500000, guid: f9a4e8116da134841ab40fcafb43c8f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  followSpeed: 5
+  attractionRadius: 4
+  force: 12
+  debugLogs: 1
+  showGizmos: 1
+  visualBoostMultiplier: 3

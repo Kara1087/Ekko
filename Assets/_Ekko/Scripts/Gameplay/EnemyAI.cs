@@ -24,7 +24,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
     [SerializeField] private float fadeSpeed = 2f;
 
     private Coroutine revealRoutine;
-
     private Rigidbody2D rb;
     private Vector2 startPosition;
     private Vector2 lastAlertPosition;
@@ -33,6 +32,7 @@ public class EnemyAI : MonoBehaviour, IAlertable
     private float stateTimer = 0f;
 
     private LightFlasher lightFlasher;
+    private PlayerVFX playerVFX;
 
     private void Awake()
     {
@@ -45,6 +45,9 @@ public class EnemyAI : MonoBehaviour, IAlertable
         }
 
         lightFlasher = GetComponentInChildren<LightFlasher>();
+        
+        if (player != null)
+            playerVFX = player.GetComponentInChildren<PlayerVFX>();
     }
 
     private void Update()
@@ -147,11 +150,19 @@ public class EnemyAI : MonoBehaviour, IAlertable
             case EnemyState.Chase:
                 stateTimer = chaseDuration;
                 Debug.Log("[EnemyAI] 🔥 État CHASE déclenché");
+
+                // 🆕 Activation de l’attraction visuelle dans PlayerVFX
+                if (playerVFX != null)
+                    playerVFX.SetAttractor(transform);
                 break;
 
             case EnemyState.Dormant:
                 rb.linearVelocity = Vector2.zero;
                 Debug.Log("[EnemyAI] 😴 Retour à l’état DORMANT");
+
+                // 🆕 Désactivation de l’attraction
+                if (playerVFX != null)
+                    playerVFX.ClearAttractor();
                 break;
 
             case EnemyState.Return:
