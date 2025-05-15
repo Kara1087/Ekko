@@ -593,6 +593,14 @@ PrefabInstance:
       propertyPath: quotePanel
       value: 
       objectReference: {fileID: 744298685}
+    - target: {fileID: 1244415274723615529, guid: ad878aa3093fc430f84a38fa12c37120, type: 3}
+      propertyPath: quoteLibrary
+      value: 
+      objectReference: {fileID: 11400000, guid: 3049c092730ef4846b07de3acc0396fb, type: 2}
+    - target: {fileID: 1244415274723615529, guid: ad878aa3093fc430f84a38fa12c37120, type: 3}
+      propertyPath: imageBackground
+      value: 
+      objectReference: {fileID: 818332454893196955}
     - target: {fileID: 3587115295550261714, guid: ad878aa3093fc430f84a38fa12c37120, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1848,10 +1856,6 @@ PrefabInstance:
     - target: {fileID: 5590316341698771988, guid: aed0643c60f8c4b3ca1bca7e8b0bb0c8, type: 3}
       propertyPath: m_Name
       value: Global Light 2D
-      objectReference: {fileID: 0}
-    - target: {fileID: 5590316341698771988, guid: aed0643c60f8c4b3ca1bca7e8b0bb0c8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7626423788755972338, guid: aed0643c60f8c4b3ca1bca7e8b0bb0c8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -101716,7 +101720,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2303014365911895925, guid: 408d6a63789ee429189a5db5f20c7262, type: 3}
       propertyPath: m_Name
-      value: UI_GameOverQuotePanel
+      value: UI_QuotePanel
       objectReference: {fileID: 0}
     - target: {fileID: 4543110369746613445, guid: 408d6a63789ee429189a5db5f20c7262, type: 3}
       propertyPath: m_Pivot.x
@@ -101806,6 +101810,11 @@ PrefabInstance:
 --- !u!224 &818332454893196954 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4543110369746613445, guid: 408d6a63789ee429189a5db5f20c7262, type: 3}
+  m_PrefabInstance: {fileID: 818332454893196953}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &818332454893196955 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3298767442664586246, guid: 408d6a63789ee429189a5db5f20c7262, type: 3}
   m_PrefabInstance: {fileID: 818332454893196953}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &1854229010100526734
@@ -101923,10 +101932,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_BlackoutPanel
       objectReference: {fileID: 0}
-    - target: {fileID: 8177719934256911004, guid: 20fe643d34d1648aa8b6fed97f3fccbc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -102004,45 +102009,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1854229010100526734}
     m_Modifications:
-    - target: {fileID: 525450183716991693, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 525450183716991693, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 525450183716991693, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 525450183716991693, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -81
-      objectReference: {fileID: 0}
-    - target: {fileID: 4230188505188396728, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4230188505188396728, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4230188505188396728, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 4230188505188396728, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -15
-      objectReference: {fileID: 0}
     - target: {fileID: 5501748987913058229, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
       propertyPath: m_Name
       value: UI_GameOverPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501748987913058229, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7604490594760146802, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
       propertyPath: m_Pivot.x

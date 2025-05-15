@@ -25,6 +25,17 @@ public class PlayerHealth : MonoBehaviour
         currentLight = maxLight;
     }
 
+    private void Update()
+    {
+    #if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Debug.Log("[Test] 💀 Touche G pressée → mort forcée");
+            HandleDeath(); // ou TakeDamage(currentLight) si tu veux simuler un dégât fatal
+        }
+    #endif
+    }
+
     [ContextMenu("Test: Take Damage (-30)")]
     private void TestTakeDamage()
     {

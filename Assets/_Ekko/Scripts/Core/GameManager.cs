@@ -34,10 +34,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // Commenter pour phase test
-        /*if (SceneManager.GetActiveScene().name == "_Bootstrap")
+        if (SceneManager.GetActiveScene().name == "_Bootstrap")
         {
             SceneLoader.Instance.LoadSceneWithFade("_MainMenu");
-        }*/
+        }
     }
     
     private void Update()
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         EnsureDependencies(); 
         if (quoteManager != null)
         {
-            quoteManager.ShowRandomQuote(OnQuoteComplete);
+            quoteManager.ShowRandomQuote(QuoteType.Death, OnQuoteComplete);
         }
         else
         {

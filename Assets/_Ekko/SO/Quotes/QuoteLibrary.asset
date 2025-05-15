@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 552441bd521354f6cb1c31e96d269350, type: 3}
+  m_Name: QuoteLibrary
+  m_EditorClassIdentifier: 
+  allQuotes:
+  - {fileID: 11400000, guid: ec9d236b0fa494da09792025d37fb2e2, type: 2}
+  - {fileID: 11400000, guid: 82c176164a00541df9a48af7f083fcc6, type: 2}
+  - {fileID: 11400000, guid: 3c5488cc29688401885f1f292b58de32, type: 2}
+  - {fileID: 11400000, guid: 07a4bb19f35e6499c9e27d32fba72063, type: 2}
+  - {fileID: 11400000, guid: a890d28d5413f4113ab8882afda88472, type: 2}
+  - {fileID: 11400000, guid: a890d28d5413f4113ab8882afda88472, type: 2}
+  - {fileID: 11400000, guid: 29f19e9ec8f3b49a79e0bef51847ab1b, type: 2}
+  - {fileID: 11400000, guid: b556b737b820c4875973d4565468a30f, type: 2}
+  - {fileID: 11400000, guid: b7891fb81c28d4592ade41e3196c1a4e, type: 2}
+  - {fileID: 11400000, guid: 7906f24b9be5645ccb99bb6728efc037, type: 2}
