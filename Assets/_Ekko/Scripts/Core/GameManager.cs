@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public bool IsPaused { get; private set; } = false;
-    public bool IsGameOver= false;
+    public bool IsGameOver { get; private set; } = false;
 
     private QuoteManager quoteManager;
     private BlackoutEffect blackoutEffect;
@@ -34,10 +34,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // Commenter pour phase test
-        /*if (SceneManager.GetActiveScene().name == "_Bootstrap")
+        if (SceneManager.GetActiveScene().name == "_Bootstrap")
         {
             SceneLoader.Instance.LoadSceneWithFade("_MainMenu");
-        }*/
+        }
     }
     
     private void Update()
@@ -178,10 +178,10 @@ public class GameManager : MonoBehaviour
                 if (wasInactive) blackoutGO.SetActive(false); // 👈 On le remet dans son état initial
             }
 
-            if (blackoutEffect == null)
+            /*if (blackoutEffect == null)
             {
                 Debug.LogWarning("❌ BlackoutEffect définitivement introuvable.");
-            }
+            }*/
         }
     }
 

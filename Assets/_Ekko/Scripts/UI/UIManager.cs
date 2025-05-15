@@ -26,8 +26,11 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        if (restartButton != null)
         restartButton.onClick.AddListener(GameManager.Instance.RestartGame);
-        exitButton.onClick.AddListener(GameManager.Instance.QuitGame);
+
+        if (exitButton != null)
+            exitButton.onClick.AddListener(GameManager.Instance.QuitGame);
     }
     private void InitSingleton()
     {
@@ -57,8 +60,6 @@ public class UIManager : MonoBehaviour
 
     public void ShowScreen(UIScreen screen)
     {
-        Debug.Log($"[UIManager] 🎛️ Affichage de l'écran : {screen}");
-
         startPanel?.SetActive(screen == UIScreen.Start);
         pausePanel?.SetActive(screen == UIScreen.Pause);
         gameOverPanel?.SetActive(screen == UIScreen.GameOver);
@@ -96,8 +97,10 @@ public class UIManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        restartButton.onClick.RemoveListener(GameManager.Instance.RestartGame);
-        exitButton.onClick.RemoveListener(GameManager.Instance.QuitGame);
+        if (restartButton != null)
+            restartButton.onClick.RemoveListener(GameManager.Instance.RestartGame);
+        if (exitButton != null)
+            exitButton.onClick.RemoveListener(GameManager.Instance.QuitGame);
     }
 
     // ---------- Boutons UI ----------

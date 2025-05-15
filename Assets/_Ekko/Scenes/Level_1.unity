@@ -102221,38 +102221,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6167772044050270858, guid: 03c617512dd6f4a70896298adc02a0b0, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6167772044050270858, guid: 03c617512dd6f4a70896298adc02a0b0, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6167772044050270858, guid: 03c617512dd6f4a70896298adc02a0b0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6167772044050270858, guid: 03c617512dd6f4a70896298adc02a0b0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7378127677133241401, guid: 03c617512dd6f4a70896298adc02a0b0, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7378127677133241401, guid: 03c617512dd6f4a70896298adc02a0b0, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7378127677133241401, guid: 03c617512dd6f4a70896298adc02a0b0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7378127677133241401, guid: 03c617512dd6f4a70896298adc02a0b0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7866121530965004297, guid: 03c617512dd6f4a70896298adc02a0b0, type: 3}
       propertyPath: m_Name
       value: UI_PausePanel
