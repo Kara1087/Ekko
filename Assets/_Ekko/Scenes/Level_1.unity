@@ -642,6 +642,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3850314827276043104, guid: ad878aa3093fc430f84a38fa12c37120, type: 3}
+      propertyPath: exitButton
+      value: 
+      objectReference: {fileID: 781784503}
+    - target: {fileID: 3850314827276043104, guid: ad878aa3093fc430f84a38fa12c37120, type: 3}
       propertyPath: pausePanel
       value: 
       objectReference: {fileID: 1404365607}
@@ -649,6 +653,10 @@ PrefabInstance:
       propertyPath: gameOverPanel
       value: 
       objectReference: {fileID: 1404365608}
+    - target: {fileID: 3850314827276043104, guid: ad878aa3093fc430f84a38fa12c37120, type: 3}
+      propertyPath: restartButton
+      value: 
+      objectReference: {fileID: 2095645776}
     - target: {fileID: 3850314827276043104, guid: ad878aa3093fc430f84a38fa12c37120, type: 3}
       propertyPath: gameOverQuotePanel
       value: 
@@ -1439,6 +1447,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &781784503 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 75993966889545183, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
+  m_PrefabInstance: {fileID: 6041124328893339152}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &917966754
 GameObject:
   m_ObjectHideFlags: 0
@@ -101673,6 +101692,17 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &2095645776 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3165863687673949944, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
+  m_PrefabInstance: {fileID: 6041124328893339152}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2139776896
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UI;
 
 public enum UIScreen { None, Start, Pause, GameOver }
 
@@ -14,6 +15,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameOverQuotePanel;
     [SerializeField] private BlackoutEffect blackoutEffect;
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button exitButton;
 
     private void Awake()
     {
@@ -21,6 +24,11 @@ public class UIManager : MonoBehaviour
         InitUIScreen();
     }
 
+    private void Start()
+    {
+        restartButton.onClick.AddListener(GameManager.Instance.RestartGame);
+        exitButton.onClick.AddListener(GameManager.Instance.QuitGame);
+    }
     private void InitSingleton()
     {
         if (Instance != null && Instance != this)
@@ -84,6 +92,12 @@ public class UIManager : MonoBehaviour
         bool finished = false;
         blackoutEffect?.StartFadeIn(() => finished = true);
         yield return new WaitUntil(() => finished);
+    }
+
+    private void OnDestroy()
+    {
+        restartButton.onClick.RemoveListener(GameManager.Instance.RestartGame);
+        exitButton.onClick.RemoveListener(GameManager.Instance.QuitGame);
     }
 
     // ---------- Boutons UI ----------

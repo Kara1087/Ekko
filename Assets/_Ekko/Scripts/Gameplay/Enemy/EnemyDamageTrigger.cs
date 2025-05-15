@@ -26,8 +26,6 @@ public class EnemyDamageTrigger : MonoBehaviour
                 player.TakeDamage(damageAmount);
                 lastDamageTime = Time.time;
 
-                Debug.Log("[EnemyDamageTrigger] 💥 Dégâts infligés au joueur");
-
                 // 🆕 Informer l'ennemi qu’un coup a été porté
                 if (enemyAI != null)
                 {

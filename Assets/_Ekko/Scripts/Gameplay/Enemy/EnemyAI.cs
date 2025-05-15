@@ -168,12 +168,12 @@ public class EnemyAI : MonoBehaviour, IAlertable
         {
             case EnemyState.Alert:
                 stateTimer = alertDuration;
-                Debug.Log("[EnemyAI] ⚠️ État ALERT déclenché");
+                //Debug.Log("[EnemyAI] ⚠️ État ALERT déclenché");
                 break;
 
             case EnemyState.Chase:
                 stateTimer = chaseDuration;
-                Debug.Log("[EnemyAI] 🔥 État CHASE déclenché");
+                //Debug.Log("[EnemyAI] 🔥 État CHASE déclenché");
 
                 // 🆕 Activation de l’attraction visuelle dans PlayerVFX
                 if (playerVFX != null)
@@ -182,7 +182,7 @@ public class EnemyAI : MonoBehaviour, IAlertable
 
             case EnemyState.Dormant:
                 rb.linearVelocity = Vector2.zero;
-                Debug.Log("[EnemyAI] 😴 Retour à l’état DORMANT");
+                //Debug.Log("[EnemyAI] 😴 Retour à l’état DORMANT");
 
                 // 🆕 Désactivation de l’attraction
                 if (playerVFX != null)
@@ -190,7 +190,7 @@ public class EnemyAI : MonoBehaviour, IAlertable
                 break;
 
             case EnemyState.Return:
-                Debug.Log("[EnemyAI] 🔙 État RETURN déclenché");
+                //Debug.Log("[EnemyAI] 🔙 État RETURN déclenché");
                 break;
         }
     }

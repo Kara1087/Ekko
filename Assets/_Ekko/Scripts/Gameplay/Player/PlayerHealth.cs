@@ -52,9 +52,16 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        
+        if (IsDead)
+        {
+            Debug.Log("[PlayerHealth] Ignoré : le joueur est déjà mort.");
+            return;
+        }
+        
         currentLight -= amount;
         currentLight = Mathf.Clamp(currentLight, 0f, maxLight);
-        Debug.Log($"[PlayerHealth] 💥 Dégâts reçus : -{amount} | Lumière restante : {currentLight}");
+        Debug.Log($"[PlayerHealth] 💥 Dégâts reçus : -{amount} | Lumière restante : {currentLight} | IsDead = {IsDead}");
 
         onLightChanged?.Invoke();
 
@@ -70,6 +77,13 @@ public class PlayerHealth : MonoBehaviour
             onDeath?.Invoke();
             HandleDeath();
         }
+    }
+
+    public void ResetHealth()
+    {
+        Debug.Log("[PlayerHealth] 🔁 Reset de la lumière");
+        currentLight = maxLight;
+        onLightChanged?.Invoke();
     }
 
     public void RestoreLight(float amount)
@@ -94,6 +108,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void HandleDeath()
     {
+        
         if (GameManager.Instance != null)
         {
             GameManager.Instance.HandlePlayerDeath();
