@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
     {
         // Commenter pour phase test
         // Lancer le menu principal si on démarre depuis _Bootstrap
-        if (SceneManager.GetActiveScene().name == "_Bootstrap")
-        {
-            SceneLoader.Instance.LoadSceneWithFade("_MainMenu");
-        }
+        ///if (SceneManager.GetActiveScene().name == "_Bootstrap")
+        ///{
+        ///    SceneLoader.Instance.LoadSceneWithFade("_MainMenu");
+        ///}
     }
 
     private void Update()

@@ -9,35 +9,38 @@ public class TreeOfLight : MonoBehaviour
     public enum TreeState { Idle, Activating, Lit, Failed }
 
     [Header("Reveal Config")]
+    [Tooltip("Durée de la révélation en secondes.")]
     [SerializeField] private float revealDuration = 5f;
 
     [Header("Events")]
-    public UnityEvent OnTreeActivated;
+    public UnityEvent OnTreeActivated;                  // Événement Unity déclenché une fois l’arbre activé
 
     [Header("Flasher")]
-    [SerializeField] private LightFlasher lightFlasher;
-    [SerializeField] private Light2D revealLight;
+    [SerializeField] private LightFlasher lightFlasher; // Script pour faire clignoter la lumière
+    [SerializeField] private Light2D revealLight;       // Lumière 2D utilisée pour le reveal
 
     [Header("Debug")]
     [SerializeField] private bool debug = false;
     
 
+    // 🔐 Variables internes
+    private TreeState currentState = TreeState.Idle;    // État actuel de l’arbre
+    private float timer = 0f;                           // Timer d'activation
+    private bool playerInZone = false;                  // Le joueur est-il dans la zone ?
 
-    private TreeState currentState = TreeState.Idle;
-    private float timer = 0f;
-    private bool playerInZone = false;
-
-    private Collider2D triggerZone;
-    [SerializeField] private LightRevealManager revealManager;
+    private Collider2D triggerZone;                     // Collider de détection   
+    [SerializeField] private LightRevealManager revealManager; // Système de révélation visuelle
     
 
     private void Awake()
     {
-        lightFlasher?.StopFlashing(); // au cas où
+        lightFlasher?.StopFlashing(); // Stoppe tout effet de flash au démarrage
 
+        // Configure le collider en mode trigger
         triggerZone = GetComponent<Collider2D>();
         triggerZone.isTrigger = true;
 
+        // Vérifie que le système de révélation est bien assigné
         if (revealManager == null)
             Debug.LogError("❌ LightRevealManager n’est pas assigné dans l’inspecteur !");
     }
@@ -48,6 +51,7 @@ public class TreeOfLight : MonoBehaviour
         {
             if (playerInZone)
             {
+                // ⏱️ Incrémente le timer tant que le joueur est présent
                 timer += Time.deltaTime;
                 if (timer >= revealDuration)
                     CompleteReveal();
