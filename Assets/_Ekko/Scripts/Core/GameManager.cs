@@ -2,6 +2,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+/// <summary>
+/// GameManager gère l'état global du jeu : pause, game over, transitions, etc.
+/// Il est persistant entre les scènes et interagit avec UIManager.
+/// </summary>
+/// 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -34,12 +39,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // Commenter pour phase test
+        // Lancer le menu principal si on démarre depuis _Bootstrap
         if (SceneManager.GetActiveScene().name == "_Bootstrap")
         {
             SceneLoader.Instance.LoadSceneWithFade("_MainMenu");
         }
     }
-    
+
     private void Update()
     {
         if (!IsGameOver && Input.GetKeyDown(KeyCode.Escape))
@@ -52,14 +58,19 @@ public class GameManager : MonoBehaviour
     {
         IsPaused = !IsPaused;
         Time.timeScale = IsPaused ? 0f : 1f;
-        UIManager.Instance?.SetPauseScreen(IsPaused);
+        UIManager.Instance?.ShowPause(IsPaused);
     }
 
     public void ResumeGame()
     {
         IsPaused = false;
         Time.timeScale = 1f;
-        UIManager.Instance?.SetPauseScreen(false);
+        UIManager.Instance?.ShowPause(false);
+
+        if (IsPaused)
+            AudioManager.Instance?.PlayPauseTheme();
+        else
+            AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
     }
 
     public void HandlePlayerDeath()
@@ -71,7 +82,7 @@ public class GameManager : MonoBehaviour
         IsGameOver = true;
         Time.timeScale = 0f;
 
-        EnsureDependencies(); 
+        EnsureDependencies();
         if (quoteManager != null)
         {
             quoteManager.ShowRandomQuote(QuoteType.Death, OnQuoteComplete);
@@ -81,11 +92,13 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("❌ QuoteManager non trouvé.");
             OnQuoteComplete();
         }
+
+        //AudioManager.Instance?.PlayGameOverTheme();
     }
 
     private void OnQuoteComplete()
     {
-        // 🔄 Forcer une resynchronisation à chaud
+        // Rechercher le blackout effect au besoin
         blackoutEffect = FindFirstObjectByType<BlackoutEffect>();
 
         if (blackoutEffect == null)
@@ -99,27 +112,31 @@ public class GameManager : MonoBehaviour
             blackoutEffect.StartBlackout(() =>
             {
                 Debug.Log("✅ Affichage GameOver après blackout");
-                UIManager.Instance?.ShowScreen(UIScreen.GameOver);
+                UIManager.Instance?.ShowGameOver();
             });
         }
         else
         {
             Debug.LogWarning("❌ BlackoutEffect définitivement introuvable. Affichage direct GameOver.");
-            UIManager.Instance?.ShowScreen(UIScreen.GameOver);
+            UIManager.Instance?.ShowGameOver();
         }
     }
 
     public void StartGame()
     {
         Debug.Log("[GameManager] ▶️ StartGame()");
-        
+
         Time.timeScale = 1f;
         IsPaused = false;
         IsGameOver = false;
 
-        UIManager.Instance?.HideAllScreens(); // 🔁 Appelé une fois le bon UIManager chargé
-        
+        UIManager.Instance?.ShowQuotePanel(true);
+        UIManager.Instance?.HideGameOver();
+
         SceneLoader.Instance.LoadSceneWithFade("Level_1");
+
+        AudioManager.Instance?.StopTheme(); // Arrêt de la musique de menu
+        AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
     }
 
     public void RestartGame()
@@ -130,7 +147,8 @@ public class GameManager : MonoBehaviour
         IsPaused = false;
         IsGameOver = false;
 
-        UIManager.Instance?.HideAllScreens();
+        UIManager.Instance?.ShowQuotePanel(true);
+        UIManager.Instance?.HideGameOver();
 
         string currentScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentScene);
@@ -141,9 +159,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("[GameManager] 🚪 Quit Game");
 
     #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
     #else
-        Application.Quit();
+            Application.Quit();
     #endif
     }
 
@@ -155,13 +173,17 @@ public class GameManager : MonoBehaviour
         IsPaused = false;
         IsGameOver = false;
 
+        UIManager.Instance?.ShowQuotePanel(false);
+        UIManager.Instance?.HideGameOver();
+
         SceneLoader.Instance.LoadSceneWithFade("_MainMenu");
     }
 
+    // Recherche manuelle des composants si absents
     private void EnsureDependencies()
     {
         if (quoteManager == null)
-        quoteManager = FindFirstObjectByType<QuoteManager>();
+            quoteManager = FindFirstObjectByType<QuoteManager>();
 
         if (blackoutEffect == null)
         {

@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// AudioManager gère la lecture de musiques, SFX et overlays. Singleton persistant entre les scènes.
+/// Interagit avec GameManager et UIManager.
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
@@ -34,7 +38,7 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // Sources
+        // Création des AudioSources
         sfxSource = gameObject.AddComponent<AudioSource>();
 
         musicThemeSource = gameObject.AddComponent<AudioSource>();
@@ -45,7 +49,7 @@ public class AudioManager : MonoBehaviour
         musicOverlaySource.loop = false;
         musicOverlaySource.playOnAwake = false;
 
-        // Sound map
+        // Création de la map de sons
         soundMap = new Dictionary<string, Sound>();
         foreach (var sound in sounds)
         {
@@ -67,7 +71,7 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(s.clip, s.volume);
     }
 
-    // 🎵 Music Theme
+    // 🎵 Joue une musique principale en boucle
     public void PlayMusicTheme(string soundName)
     {
 
@@ -91,7 +95,7 @@ public class AudioManager : MonoBehaviour
 
         currentMusicName = soundName;
 
-       // Debug.Log($"[AudioManager] ✅ Lecture de : {soundName}");
+        // Debug.Log($"[AudioManager] ✅ Lecture de : {soundName}");
     }
 
     public void StopMusicTheme()
@@ -99,7 +103,7 @@ public class AudioManager : MonoBehaviour
         musicThemeSource.Stop();
     }
 
-    // 🎚️ Volume
+    // 🎚️ Volume : Change dynamiquement le volume d'une musique donnée
     public void SetVolume(string soundName, float newVolume)
     {
         if (soundName == currentMusicName && musicThemeSource != null)
@@ -108,24 +112,28 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // 🎭 UI-specific themes
-    public void SetMusicForScreen(UIScreen screen)
+    // 🎭 Specific themes
+    public void PlayStartTheme() // Appelée depuis le menu principal
     {
-        switch (screen)
-        {
-            case UIScreen.Start:
-                PlayMusicTheme("StartScreenTheme");
-                break;
-            case UIScreen.GameOver:
-            case UIScreen.Pause:
-            case UIScreen.None:
-                StopMusicTheme();
-                break;
-        }
+        PlayMusicTheme("StartScreenTheme");
     }
 
-    // 🎶 Overlay
-    public void PlayOverlayMusic(string soundName)
+    public void PlayGameOverTheme() // Appelée quand le joueur meurt
+    {
+        PlayMusicTheme("GameOverTheme");
+    }
+
+    public void PlayPauseTheme()  // Appelée quand on met le jeu en pause
+    {
+        PlayMusicTheme("PauseTheme");
+    }
+
+    public void StopTheme()  // Appelée pour stopper toute musique
+    {
+        StopMusicTheme();
+    }
+
+    public void PlayOverlayMusic(string soundName)  // 🎶 Overlay : Musique temporaire (superposée à la musique principale)
     {
         if (!soundMap.ContainsKey(soundName)) return;
 
@@ -135,7 +143,7 @@ public class AudioManager : MonoBehaviour
         musicOverlaySource.pitch = s.pitch;
         musicOverlaySource.Play();
 
-        // 🆕 Synchronisation automatique du MusicConductor avec cette musique
+        // 🆕 Synchronisation automatique du MusicConductor
         if (MusicConductor.Instance != null)
         {
             MusicConductor.Instance.SetSource(musicOverlaySource, s.bpm);

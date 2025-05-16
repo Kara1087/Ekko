@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3587115295550261714}
   - component: {fileID: 3850314827276043104}
-  - component: {fileID: 1244415274723615529}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -45,23 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4354e2cfee1484b33b4ee127ca589360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPanel: {fileID: 2303014365911895925, guid: 872a4ac5793874e8087e35bcc71d2550, type: 3}
-  pausePanel: {fileID: 7866121530965004297, guid: 03c617512dd6f4a70896298adc02a0b0, type: 3}
-  gameOverPanel: {fileID: 5501748987913058229, guid: 47cd80302209e476b80db29b14dc5f19, type: 3}
-  gameOverQuotePanel: {fileID: 2303014365911895925, guid: 408d6a63789ee429189a5db5f20c7262, type: 3}
-  blackoutEffect: {fileID: 4563031006259505089, guid: 20fe643d34d1648aa8b6fed97f3fccbc, type: 3}
---- !u!114 &1244415274723615529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8921259765434801488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e485cd0c4f83640659f850938a13a647, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quoteLibrary: {fileID: 11400000, guid: 4eafe70a358bd4275a3430828e3b1413, type: 2}
-  quotePanel: {fileID: 0}
-  quoteText: {fileID: 0}
+  mainMenuPanel: {fileID: 0}
+  playButton: {fileID: 0}
+  quitButton: {fileID: 0}
