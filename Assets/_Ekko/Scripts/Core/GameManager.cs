@@ -132,6 +132,10 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("[GameManager] 🎬 Intro quote terminée, on charge la scène");
 
+            // ⛔ Désactiver le main menu AVANT le fade vers noir
+            var mainMenu = FindAnyObjectByType<UIMainMenu>();
+            if (mainMenu != null) mainMenu.Hide();
+
             // 🎵 musique
             AudioManager.Instance?.StopTheme();  // Arrêt de la musique de menu
 

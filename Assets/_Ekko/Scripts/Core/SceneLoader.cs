@@ -24,8 +24,6 @@ public class SceneLoader : MonoBehaviour
 
     private IEnumerator LoadRoutine(string sceneName, System.Action onComplete)
     {
-        //Debug.Log($"[SceneLoader] 🔄 LoadRoutine démarrée pour {sceneName}");
-
         Time.timeScale = 1f;
 
         yield return UIManager.Instance?.StartBlackoutRoutine();
