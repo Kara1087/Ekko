@@ -37,8 +37,6 @@ public class UIManager : MonoBehaviour
 
         if (blackoutEffect == null)
             Debug.LogWarning("[UIManager] ❌ BlackoutEffect toujours null après recherche automatique !");
-        else
-            Debug.Log("[UIManager] ✅ BlackoutEffect retrouvé automatiquement");
     }
 
     private void Start()

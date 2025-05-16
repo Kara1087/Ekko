@@ -756,6 +756,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_MainMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 6689073054051939841, guid: 925f5ae611d624601a88dcb461be80c2, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5991060591675171882, guid: 925f5ae611d624601a88dcb461be80c2, type: 3}

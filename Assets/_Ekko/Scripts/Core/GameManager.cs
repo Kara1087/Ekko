@@ -29,11 +29,6 @@ public class GameManager : MonoBehaviour
 
         quoteManager = FindFirstObjectByType<QuoteManager>();
         blackoutEffect = FindFirstObjectByType<BlackoutEffect>();
-
-        if (quoteManager == null)
-            Debug.LogWarning("❌ QuoteManager non trouvé dans la scène.");
-        if (blackoutEffect == null)
-            Debug.LogWarning("❌ BlackoutEffect non trouvé dans la scène.");
     }
 
     private void Start()
@@ -133,10 +128,16 @@ public class GameManager : MonoBehaviour
         UIManager.Instance?.ShowQuotePanel(true);
         UIManager.Instance?.HideGameOver();
 
-        SceneLoader.Instance.LoadSceneWithFade("Level_1");
+        quoteManager.ShowRandomQuote(QuoteType.Intro, () =>
+        {
+            Debug.Log("[GameManager] 🎬 Intro quote terminée, on charge la scène");
 
-        AudioManager.Instance?.StopTheme(); // Arrêt de la musique de menu
-        AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
+            // 🎵 musique
+            AudioManager.Instance?.StopTheme();  // Arrêt de la musique de menu
+
+            // 🎮 scène
+            SceneLoader.Instance.LoadSceneWithFade("Level_1");
+        });
     }
 
     public void RestartGame()
@@ -179,8 +180,8 @@ public class GameManager : MonoBehaviour
         SceneLoader.Instance.LoadSceneWithFade("_MainMenu");
     }
 
-    // Recherche manuelle des composants si absents
-    private void EnsureDependencies()
+    
+    private void EnsureDependencies() // Recherche manuelle des composants si absents
     {
         if (quoteManager == null)
             quoteManager = FindFirstObjectByType<QuoteManager>();

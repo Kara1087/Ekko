@@ -2,6 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
+/// <summary>
+/// Gère les effets de fondu écran noir (fade in/out) lors des transitions de scène ou de moments-clé.
+/// </summary>
+
 public class BlackoutEffect : MonoBehaviour
 {
     [SerializeField] private Image blackoutImage;
@@ -11,12 +15,16 @@ public class BlackoutEffect : MonoBehaviour
     {
         if (blackoutImage != null)
         {
-            // On s'assure que le parent est actif
+            // Activation parent + image
             blackoutImage.transform.parent?.gameObject.SetActive(true);
-            // Par défaut totalement opaque au démarrage
-            blackoutImage.color = new Color(0, 0, 0, 1f);
+            blackoutImage.color = new Color(0, 0, 0, 1f);  // noir opaque par défaut
             blackoutImage.gameObject.SetActive(true);     // toujours actif
         }
+        else
+        {
+            Debug.LogWarning("[BlackoutEffect] ⚠️ blackoutImage non assigné !");
+        }
+
     }
 
     private void Start()
@@ -28,20 +36,13 @@ public class BlackoutEffect : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        // 🔧 Test manuel avec la touche G
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            Debug.Log("[BlackoutEffect] Test manuel → StartBlackout()");
-            StartBlackout();
-        }
-    }
-
+    /// <summary>
+    /// Laisse apparaître progressivement la scène en réduisant l’opacité du panneau noir.
+    /// </summary>
     public void StartFadeIn(System.Action onComplete = null)
     {
-        
-        if (blackoutImage == null)
+
+        if (!IsValidTarget()) // sécurité
         {
             Debug.LogWarning("[BlackoutEffect] ⚠️ blackoutImage est null, impossible de lancer le fade-in.");
             onComplete?.Invoke();
@@ -72,7 +73,12 @@ public class BlackoutEffect : MonoBehaviour
 
     public void StartBlackout(System.Action onComplete = null)
     {
-        if (blackoutImage == null) return;
+        if (!IsValidTarget())
+        {
+            Debug.LogWarning("[BlackoutEffect] ⚠️ blackoutImage est null ou détruit → blackout annulé.");
+            onComplete?.Invoke();
+            return;
+        }
 
         blackoutImage.DOKill(); // 🔒 stoppe tout tween existant sur l’image
 
@@ -83,9 +89,19 @@ public class BlackoutEffect : MonoBehaviour
             .SetUpdate(true)
             .OnComplete(() =>
             {
-                blackoutImage.gameObject.SetActive(false); // important sinon écran reste noir
+                if (IsValidTarget())
+                    blackoutImage.gameObject.SetActive(false); // important sinon écran reste noir
+
                 Debug.Log("🌀 Blackout terminé");
                 onComplete?.Invoke();
             });
+    }
+
+    /// <summary>
+    /// Vérifie que l’image est valide et non détruite.
+    /// </summary>
+    private bool IsValidTarget()
+    {
+        return blackoutImage != null && blackoutImage.gameObject != null;
     }
 }

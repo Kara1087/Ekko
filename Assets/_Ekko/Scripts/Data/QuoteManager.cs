@@ -47,6 +47,11 @@ public class QuoteManager : MonoBehaviour
     /// </summary>
     public void ShowRandomQuote(QuoteType type, QuoteTag tag, System.Action onComplete = null)
     {
+        Debug.Log($"[QuoteManager] 🔍 quotePanel.activeSelf = {quotePanel.activeSelf}");
+        Debug.Log($"[QuoteManager] 🔍 quotePanel.activeInHierarchy = {quotePanel.activeInHierarchy}");
+
+        Debug.Log($"[QuoteManager] 🎤 Demande de citation : {type}");
+
         if (quoteLibrary == null)
         {
             Debug.LogWarning("❌ QuoteLibrary non assignée !");
@@ -71,12 +76,14 @@ public class QuoteManager : MonoBehaviour
         {
             quoteText.text = quoteData.quoteText;
             quotePanel.SetActive(true);
+            
+             Debug.Log($"[QuoteManager] 📝 Quote '{quoteData.quoteText}' affichée pendant {quoteData.displayDuration} sec");
 
             // Active ou désactive le fond noir selon le type
             if (imageBackground != null)
             {
-                bool showBackground = quoteData.type == QuoteType.Intro 
-                                    || quoteData.type == QuoteType.Death 
+                bool showBackground = quoteData.type == QuoteType.Intro
+                                    || quoteData.type == QuoteType.Death
                                     || quoteData.type == QuoteType.Victory;
 
                 imageBackground.SetActive(showBackground);
