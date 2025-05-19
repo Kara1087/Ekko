@@ -647,6 +647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 448216937}
   - component: {fileID: 448216936}
+  - component: {fileID: 448216938}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -681,6 +682,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &448216938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448216935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df6b72d30f21645869ef62f193326e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  focusCam: {fileID: 8561677}
+  followCam: {fileID: 1622477493}
+  focusDuration: 4
+  logDebug: 1
 --- !u!1 &487622736
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,54 +2299,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1477020620
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1477020622}
-  - component: {fileID: 1477020621}
-  m_Layer: 0
-  m_Name: CameraManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1477020621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477020620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df6b72d30f21645869ef62f193326e80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  focusCam: {fileID: 8561677}
-  followCam: {fileID: 1622477493}
-  focusDuration: 4
-  logDebug: 1
---- !u!4 &1477020622
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477020620}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.0919805, y: 14.7263, z: -45.520847}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1503327316 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2953280701381156680, guid: 0c0e479d859404bc488944fd04a194d9, type: 3}
@@ -102179,7 +102148,7 @@ PrefabInstance:
     - target: {fileID: 5716417256518816882, guid: 1c5477b6c07a34bd6ab4abdbab46685a, type: 3}
       propertyPath: cameraSwitcher
       value: 
-      objectReference: {fileID: 1477020621}
+      objectReference: {fileID: 448216938}
     - target: {fileID: 5716417256518816882, guid: 1c5477b6c07a34bd6ab4abdbab46685a, type: 3}
       propertyPath: 'crystalSources.Array.data[0]'
       value: 
@@ -102408,7 +102377,6 @@ SceneRoots:
   - {fileID: 1316440473}
   - {fileID: 448216937}
   - {fileID: 1805823021}
-  - {fileID: 1477020622}
   - {fileID: 1720057084}
   - {fileID: 1261898791}
   - {fileID: 1582113603}
