@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 4375984058918153414}
   - component: {fileID: 7229720116859728285}
   m_Layer: 10
-  m_Name: RevealLight
+  m_Name: Light2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -440,14 +440,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a412f3339834f449f964417ba9c45f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightFlasher: {fileID: 7229720116859728285}
+  revealManager: {fileID: 0}
   revealDuration: 10
   OnTreeActivated:
     m_PersistentCalls:
       m_Calls: []
-  lightFlasher: {fileID: 7229720116859728285}
-  revealLight: {fileID: 4375984058918153414}
-  debug: 1
-  revealManager: {fileID: 0}
 --- !u!58 &7799598688091967094
 CircleCollider2D:
   m_ObjectHideFlags: 0
