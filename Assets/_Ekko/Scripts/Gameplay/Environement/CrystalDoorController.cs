@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
 using System.Collections;
+using Unity.Cinemachine;
 
 /// <summary>
 /// Contrôle l'ouverture d'une porte en fonction de l'activation de plusieurs cristaux.
@@ -30,8 +31,10 @@ public class CrystalDoorController : MonoBehaviour
     [SerializeField] private float moveDistance = 3f;         // Distance de descente
     [SerializeField] private float moveDuration = 1f;         // Durée du mouvement
 
-    private Vector3 initialPosition;
+    [Header("Caméra")]
+    [SerializeField] private CameraSwitcher cameraSwitcher; // Script pour switcher temporairement la caméra
 
+    private Vector3 initialPosition;
     private IActivatableLight[] crystals;
     private bool isOpen = false;
 
@@ -112,6 +115,12 @@ public class CrystalDoorController : MonoBehaviour
         isOpen = true;
         Debug.Log("[CrystalDoor] 🚪 Tous les cristaux sont activés → ouverture !");
         onDoorOpened?.Invoke();
+
+        // 🔁 Focus caméra
+        if (cameraSwitcher != null)
+        {
+            cameraSwitcher.SwitchToFocus();
+        }
 
         StartCoroutine(AnimateDoorDescent());
 
