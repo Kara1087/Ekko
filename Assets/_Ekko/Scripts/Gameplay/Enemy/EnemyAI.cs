@@ -40,7 +40,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
         rb = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
 
-        // Désactive la lumière de révélation au départ
         if (revealLight != null)
         {
             revealLight.enabled = false;
@@ -54,7 +53,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
 
     private void Update()
     {
-        // Comportement différent selon l’état actuel
         switch (currentState)
         {
             case EnemyState.Dormant:
@@ -74,7 +72,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
                 break;
         }
 
-        // Gestion de l’effet de flash clignotant si joueur proche
         HandleAbsorptionFlash();
     }
 
@@ -240,9 +237,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
         revealLight.intensity = 1f;
     }
 
-    /// <summary>
-    /// Gère l’effet de flash clignotant si le joueur est dans la zone de traque
-    /// </summary>
     private void HandleAbsorptionFlash()
     {
         if (player == null || revealLight == null) return;

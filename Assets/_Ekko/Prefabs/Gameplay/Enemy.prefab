@@ -216,7 +216,6 @@ GameObject:
   - component: {fileID: 7098494325069253144}
   - component: {fileID: 6771078289576254939}
   - component: {fileID: 7895379653381196692}
-  - component: {fileID: 3777975239042621458}
   - component: {fileID: 130884024088766041}
   m_Layer: 10
   m_Name: Enemy
@@ -389,24 +388,7 @@ MonoBehaviour:
   chaseRange: 9
   returnYOffset: 10
   player: {fileID: 0}
-  revealLight: {fileID: 2878345422865635465}
-  revealDuration: 1.5
-  fadeSpeed: 2
---- !u!114 &3777975239042621458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6849002070273823124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f87cedff3f08e4b4f8b21b2d37ded641, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 25
-  playerTag: Player
-  applyOnce: 1
+  damager: {fileID: 0}
 --- !u!114 &130884024088766041
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ public class ProximityLightActivator : MonoBehaviour, IActivatableLight
         if (!autoActivateOnPlayer) return;
         if (!other.CompareTag(playerTag)) return;
 
-        Debug.Log("[ProximityLight] 🔆 Joueur entré → allumage");
+        //Debug.Log("[ProximityLight] 🔆 Joueur entré → allumage");
         if (delayedFadeRoutine != null) StopCoroutine(delayedFadeRoutine);
         Activate();
     }
@@ -58,7 +58,7 @@ public class ProximityLightActivator : MonoBehaviour, IActivatableLight
         if (!autoActivateOnPlayer) return;
         if (!other.CompareTag(playerTag)) return;
 
-        Debug.Log("[ProximityLight] 🚪 Joueur sorti →");
+        //Debug.Log("[ProximityLight] 🚪 Joueur sorti →");
         if (extinguishOnExit)
         {
             Debug.Log("   → Extinction immédiate");
@@ -119,7 +119,7 @@ public class ProximityLightActivator : MonoBehaviour, IActivatableLight
         targetLight.intensity = endIntensity;
         targetLight.pointLightOuterRadius = endRadius;
 
-        Debug.Log($"[ProximityLight] ✅ Transition terminée → {(grow ? "ON" : "OFF")}");
+        //Debug.Log($"[ProximityLight] ✅ Transition terminée → {(grow ? "ON" : "OFF")}");
     }
 
     public bool IsActive()
