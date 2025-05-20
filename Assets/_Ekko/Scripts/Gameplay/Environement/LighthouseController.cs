@@ -22,6 +22,7 @@ public class LighthouseController : MonoBehaviour
 
     [Header("Comportement")]
     [SerializeField] private bool activateOnlyOnce = false;
+    
     private bool hasBeenActivated = false;
     private bool playerInside = false;
 
@@ -83,6 +84,9 @@ public class LighthouseController : MonoBehaviour
 
         if (globalLightRoutine != null) StopCoroutine(globalLightRoutine);
         globalLightRoutine = StartCoroutine(LerpGlobalLight(globalLight.intensity, boostedIntensity, transitionDuration));
+
+        AudioManager.Instance.SetVolume("BackgroundTheme", 0.1f);
+        AudioManager.Instance.PlayOverlayMusic("TreeReveal");
     }
 
     private IEnumerator SequenceExit()
