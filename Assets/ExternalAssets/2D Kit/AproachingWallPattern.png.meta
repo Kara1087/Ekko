@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AproachingWallPattern_0: 5153642759581875737
+      AproachingWallPattern_1: -2548956628636494272
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

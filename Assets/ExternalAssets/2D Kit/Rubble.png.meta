@@ -259,7 +259,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Rubble_0: 8925041302659959871
+      Rubble_1: -587150950014049679
+      Rubble_2: 214114065171227488
+      Rubble_3: 6337752458073939332
+      Rubble_4: -6663053601707798133
+      Rubble_5: -4760365249953953574
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

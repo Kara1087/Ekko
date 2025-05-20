@@ -884,7 +884,38 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LowerPlants1_0: -4145693101995552569
+      LowerPlants1_1: 6192491218834519138
+      LowerPlants1_10: 2005905155966551446
+      LowerPlants1_11: -4758661963185173841
+      LowerPlants1_12: -5445428604859441989
+      LowerPlants1_13: 8340521920417721363
+      LowerPlants1_14: -1091780484766674748
+      LowerPlants1_15: 8867996735319017399
+      LowerPlants1_16: -2033371549173133596
+      LowerPlants1_17: -1101215041801966365
+      LowerPlants1_18: -2993918439268978155
+      LowerPlants1_19: -3213638028534880552
+      LowerPlants1_2: -6405408565144670237
+      LowerPlants1_20: -2126285250743863965
+      LowerPlants1_21: 4198034827399874800
+      LowerPlants1_22: 3608337807123251084
+      LowerPlants1_23: -8352437586726251087
+      LowerPlants1_24: -7292195448448020073
+      LowerPlants1_25: 4219652239486949050
+      LowerPlants1_26: -9092032001450960122
+      LowerPlants1_27: 3523620994111405893
+      LowerPlants1_28: 7795571863919823241
+      LowerPlants1_29: -3302489270668488416
+      LowerPlants1_3: 8234611809807987047
+      LowerPlants1_30: 7703516747511275015
+      LowerPlants1_4: -2530776696305917091
+      LowerPlants1_5: -3614948957761696404
+      LowerPlants1_6: -6233190641572660931
+      LowerPlants1_7: -5011223977627628618
+      LowerPlants1_8: -2659515924449901382
+      LowerPlants1_9: 5656913753487155859
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

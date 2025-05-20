@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AlienBlock05_0: -8319153905842733417
+      AlienBlock05_1: -119175178273508742
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

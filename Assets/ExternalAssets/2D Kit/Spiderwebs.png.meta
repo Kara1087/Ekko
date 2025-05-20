@@ -384,7 +384,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Spiderwebs_0: 3873474430974499451
+      Spiderwebs_1: 7239500335111039476
+      Spiderwebs_10: -2600422908398969120
+      Spiderwebs_2: -8917400198511976308
+      Spiderwebs_3: 1057699951958770052
+      Spiderwebs_4: 151660709852473629
+      Spiderwebs_5: 8853061788219605437
+      Spiderwebs_6: 2930696838054290782
+      Spiderwebs_7: 5508822941157632112
+      Spiderwebs_8: 6127229526298869809
+      Spiderwebs_9: 7669050431040808546
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

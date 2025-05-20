@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3345600c40011438ba5f5e2f44e4f667
+guid: d87093f98d47b41a2b32d5eacd496936
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5515439225188256779
-    second: WallTile_0
+      213: -5698238427480057892
+    second: Sky-4_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,12 +100,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WallTile_0
+      name: Sky-4_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
+        width: 3072
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b0c0a95d0c6ca8c40800000000000000
-      internalID: 5515439225188256779
+      spriteID: cd7129c375acbe0b0800000000000000
+      internalID: -5698238427480057892
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      WallTile_0: 5515439225188256779
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

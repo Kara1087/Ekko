@@ -659,7 +659,29 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FloatingRocks_0: -7890721293435919637
+      FloatingRocks_1: -7838751951161930939
+      FloatingRocks_10: -8649096394988901873
+      FloatingRocks_11: 2550634056501349460
+      FloatingRocks_12: -4806985258516347353
+      FloatingRocks_13: -3116155344395001050
+      FloatingRocks_14: 4391659801279430922
+      FloatingRocks_15: -7469099383511710715
+      FloatingRocks_16: 2032736978211108871
+      FloatingRocks_17: -3686000732144937475
+      FloatingRocks_18: 1478729893922860314
+      FloatingRocks_19: -150051618418833674
+      FloatingRocks_2: -2305025341194129205
+      FloatingRocks_20: -1302074562787202055
+      FloatingRocks_21: -4747479177900406946
+      FloatingRocks_3: -8587856203475445220
+      FloatingRocks_4: -352127212020356431
+      FloatingRocks_5: 3378961551532643037
+      FloatingRocks_6: -1206876299017096483
+      FloatingRocks_7: -3907846440951365548
+      FloatingRocks_8: 6605833560770407041
+      FloatingRocks_9: 8163108862961952123
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -309,7 +309,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HangingPlants2_0: 5554903221703008534
+      HangingPlants2_1: -4354922397173168974
+      HangingPlants2_2: 8839504062136285532
+      HangingPlants2_3: -6725741155642342347
+      HangingPlants2_4: 2736266716308178510
+      HangingPlants2_5: -9186191744126565959
+      HangingPlants2_6: -310806542318259045
+      HangingPlants2_7: -8662716396703055297
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
