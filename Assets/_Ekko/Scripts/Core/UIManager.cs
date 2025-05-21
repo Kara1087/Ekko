@@ -41,11 +41,11 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        // Lancer un fade-in automatique seulement la première fois
-        if (!hasFadedInOnce)
-        {
-            blackoutEffect?.StartFadeIn(() => hasFadedInOnce = true);
-        }
+        // Lancer un fade-in automatique seulement la première fois 👉 automatiquement dans UIBlackoutEffect
+        //if (!hasFadedInOnce)
+        //{
+        //    blackoutEffect?.StartFadeIn(() => hasFadedInOnce = true);
+        //}
 
         // Abonnement aux boutons globaux
         if (restartButton != null)

@@ -69,7 +69,7 @@ public class PlayerLight : MonoBehaviour
 
         light2D.color = lightColorOverLife.Evaluate(t); // 🎨 couleur dynamique
 
-        Debug.Log($"[PlayerLight] 💡 UpdateLight -> Intensity: {targetIntensity:F2}, Radius: {targetRadius:F2}");
+        //Debug.Log($"[PlayerLight] 💡 UpdateLight -> Intensity: {targetIntensity:F2}, Radius: {targetRadius:F2}");
     }
 
     private IEnumerator LerpToTarget(float targetRadius, float targetIntensity)

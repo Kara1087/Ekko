@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
     {
         // Commenter pour phase test
         // Lancer le menu principal si on démarre depuis _Bootstrap
-        ///if (SceneManager.GetActiveScene().name == "_Bootstrap")
-        ///{
-        ///    SceneLoader.Instance.LoadSceneWithFade("_MainMenu");
-        ///}
+        if (SceneManager.GetActiveScene().name == "_Bootstrap")
+        {
+            StartCoroutine(TransitionManager.Instance.LoadSceneWithFade("_MainMenu"));
+        }
     }
 
     private void Update()
@@ -70,51 +70,15 @@ public class GameManager : MonoBehaviour
 
     public void HandlePlayerDeath()
     {
-        Debug.Log("[GameManager] ☠️ HandlePlayerDeath()");
         if (IsGameOver) return;
 
         Debug.Log("[GameManager] 💀 Player is dead.");
         IsGameOver = true;
-        Time.timeScale = 0f;
+        Time.timeScale = 0f;        // Stop le temps et les inputs
 
-        EnsureDependencies();
-        if (quoteManager != null)
-        {
-            quoteManager.ShowRandomQuote(QuoteType.Death, OnQuoteComplete);
-        }
-        else
-        {
-            Debug.LogWarning("❌ QuoteManager non trouvé.");
-            OnQuoteComplete();
-        }
+        TransitionManager.Instance?.PlayDeathSequence();
 
         //AudioManager.Instance?.PlayGameOverTheme();
-    }
-
-    private void OnQuoteComplete()
-    {
-        // Rechercher le blackout effect au besoin
-        blackoutEffect = FindFirstObjectByType<BlackoutEffect>();
-
-        if (blackoutEffect == null)
-        {
-            Debug.LogWarning("❌ BlackoutEffect non trouvé. Tentative via UIManager...");
-            blackoutEffect = UIManager.Instance?.GetComponentInChildren<BlackoutEffect>(true);
-        }
-
-        if (blackoutEffect != null)
-        {
-            blackoutEffect.StartBlackout(() =>
-            {
-                Debug.Log("✅ Affichage GameOver après blackout");
-                UIManager.Instance?.ShowGameOver();
-            });
-        }
-        else
-        {
-            Debug.LogWarning("❌ BlackoutEffect définitivement introuvable. Affichage direct GameOver.");
-            UIManager.Instance?.ShowGameOver();
-        }
     }
 
     public void RespawnPlayer()
@@ -173,23 +137,10 @@ public class GameManager : MonoBehaviour
         IsPaused = false;
         IsGameOver = false;
 
-        UIManager.Instance?.ShowQuotePanel(true);
-        UIManager.Instance?.HideGameOver();
+        //UIManager.Instance?.ShowQuotePanel(true);
+        //UIManager.Instance?.HideGameOver();
 
-        quoteManager.ShowRandomQuote(QuoteType.Intro, () =>
-        {
-            Debug.Log("[GameManager] 🎬 Intro quote terminée, on charge la scène");
-
-            // ⛔ Désactiver le main menu AVANT le fade vers noir
-            var mainMenu = FindAnyObjectByType<UIMainMenu>();
-            if (mainMenu != null) mainMenu.Hide();
-
-            // 🎵 musique
-            AudioManager.Instance?.StopTheme();  // Arrêt de la musique de menu
-
-            // 🎮 scène
-            SceneLoader.Instance.LoadSceneWithFade("Level_1");
-        });
+        TransitionManager.Instance?.PlayIntroSequence();
     }
 
     public void RestartGame()
@@ -229,9 +180,8 @@ public class GameManager : MonoBehaviour
         UIManager.Instance?.ShowQuotePanel(false);
         UIManager.Instance?.HideGameOver();
 
-        SceneLoader.Instance.LoadSceneWithFade("_MainMenu");
+        StartCoroutine(TransitionManager.Instance.LoadSceneWithFade("_MainMenu"));
     }
-
     
     private void EnsureDependencies() // Recherche manuelle des composants si absents
     {
@@ -260,11 +210,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator LoadLevelRoutine(string sceneName)
-    {
-        yield return new WaitForSecondsRealtime(0.1f); // laisse le temps à Unity de désactiver l’UI
-        SceneManager.LoadScene(sceneName);
-    }
 
     private void OnEnable()
     {
@@ -278,7 +223,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log($"[GameManager] 🔄 Scene '{scene.name}' loaded. Réinitialisation des dépendances...");
+        //Debug.Log($"[GameManager] 🔄 Scene '{scene.name}' loaded. Réinitialisation des dépendances...");
         EnsureDependencies();
     }
 

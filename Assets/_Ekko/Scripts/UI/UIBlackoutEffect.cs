@@ -40,7 +40,8 @@ public class BlackoutEffect : MonoBehaviour
     /// Laisse apparaître progressivement la scène en réduisant l’opacité du panneau noir.
     /// </summary>
     public void StartFadeIn(System.Action onComplete = null)
-    {
+    {   
+        Debug.Log("[BlackoutEffect] 🎬 Début Fade In");
 
         if (!IsValidTarget()) // sécurité
         {
@@ -66,6 +67,7 @@ public class BlackoutEffect : MonoBehaviour
             .SetUpdate(true)
             .OnComplete(() =>
             {
+                Debug.Log("[BlackoutEffect] ✅ Fin Fade In");
                 blackoutImage.gameObject.SetActive(false);
                 onComplete?.Invoke();
             });
@@ -73,6 +75,8 @@ public class BlackoutEffect : MonoBehaviour
 
     public void StartBlackout(System.Action onComplete = null)
     {
+        Debug.Log("[BlackoutEffect] 🎬 Début Fade Out (Blackout)");
+
         if (!IsValidTarget())
         {
             Debug.LogWarning("[BlackoutEffect] ⚠️ blackoutImage est null ou détruit → blackout annulé.");

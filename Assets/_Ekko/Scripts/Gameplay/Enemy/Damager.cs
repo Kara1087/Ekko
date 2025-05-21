@@ -43,7 +43,7 @@ public class Damager : MonoBehaviour
         // On déclenche tous les feedbacks (ex : fx, son, flash...)
         foreach (var feedback in feedbackModules)
         {
-            Debug.Log($"[Damager] → Activation de {feedback}");
+            //Debug.Log($"[Damager] → Activation de {feedback}");
             feedback?.TriggerFeedback();
         }
 

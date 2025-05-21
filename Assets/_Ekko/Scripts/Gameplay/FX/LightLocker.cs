@@ -45,7 +45,7 @@ public class LightLocker : MonoBehaviour, IDamagerFeedback
         targetLight.intensity = litIntensity;
         targetLight.pointLightOuterRadius = litRadius;
 
-        Debug.Log($"[LightLocker] 💡 Activation lumière → Intensity: {litIntensity} | Radius: {litRadius}");
+        //Debug.Log($"[LightLocker] 💡 Activation lumière → Intensity: {litIntensity} | Radius: {litRadius}");
 
     }
 
