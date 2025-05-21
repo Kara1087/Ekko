@@ -6,17 +6,17 @@ using UnityEngine.Rendering.Universal;
 public class Wave : MonoBehaviour
 {
     [Header("Wave Settings")]
-    [SerializeField] private float maxExpansionSpeed = 6f;
-    [SerializeField] private float baseFadeSpeed = 0.5f;
-    [SerializeField] private float fadeSpeedMultiplier = 0.05f;
+    [SerializeField] private float maxExpansionSpeed = 6f;        // Vitesse d'expansion maximale (rarement utilisée directement ici)
+    [SerializeField] private float baseFadeSpeed = 0.5f;          // Vitesse de disparition de l'onde (plus élevé = plus rapide)
+    [SerializeField] private float fadeSpeedMultiplier = 0.05f;   // Modifie la fadeSpeed selon la force d’impact
 
     [Header("Light Settings")]
-    [SerializeField] private float lightIntensityFactor = 0.2f;
-    [SerializeField] private float intensityMinRatio = 0.2f;
+    [SerializeField] private float lightIntensityFactor = 0.2f;   // Intensité maximale de la lumière
+    [SerializeField] private float intensityMinRatio = 0.2f;      // Ratio pour calculer l’intensité minimale en fade
 
     [Header("Layer Masks")]
-    [SerializeField] private LayerMask revealableLayers;
-    [SerializeField] private LayerMask alertableLayers;
+    [SerializeField] private LayerMask revealableLayers;          // Couches contenant les objets à révéler
+    [SerializeField] private LayerMask alertableLayers;           // Couches contenant les ennemis ou objets à alerter
 
     [Header("Debug Settings")]
     [SerializeField] private bool debugMode = false;
@@ -26,11 +26,12 @@ public class Wave : MonoBehaviour
     private float alpha = 1f;
     private float targetRadius;
     private float revealDuration;
+    private float waveIntensity = 1f; // Force normalisée entre 0 et 1 (slam = 1, saut léger = 0)
 
     private CircleCollider2D col;
     private SpriteRenderer sr;
-    private Transform visualTransform;
-    private Transform centerMaskTransform;
+    private Transform visualTransform;                          // Pour l'onde visuelle (SpriteRenderer)
+    private Transform centerMaskTransform;                      // Pour l’effet d’ombre centrale
     private Light2D light2D;
 
     private bool isFadingOut = false;
@@ -49,16 +50,28 @@ public class Wave : MonoBehaviour
         centerMaskTransform = GetComponentInChildren<SpriteMask>()?.transform;
     }
 
+    /// <summary>
+    /// Initialise l’onde avec des paramètres dynamiques selon la force.
+    /// </summary>
     public void Initialize(float impactForce, float assignedTargetRadius, float minForce = 1f, float maxForce = 20f)
     {
+        // 1. Rayon cible final
         targetRadius = assignedTargetRadius;
 
+        // 2. Taux de force normalisé entre [0,1]
         float forceT = Mathf.InverseLerp(minForce, maxForce, Mathf.Clamp(impactForce, minForce, maxForce));
+
+        // 3. Calcul dynamique de la vitesse de fade (plus la force est grande, plus ça fade lentement)
         fadeSpeed = baseFadeSpeed / (1f + (impactForce * fadeSpeedMultiplier));
         float fadeDuration = 1f / fadeSpeed;
-        bool shouldEnableLight = impactForce >= 10f;
-        revealDuration = Mathf.Lerp(0.5f, 3f, forceT);
 
+        // 4. Seuil d’activation de la lumière (ex : que pour slam ou fort impact)
+        bool shouldEnableLight = impactForce >= 10f;
+
+        // 5. Calcul du temps pendant lequel un objet révélé restera visible
+        revealDuration = Mathf.Lerp(0.5f, 3f, forceT); // → Entre 0.5s (petit saut) et 3s (slam)
+
+        // 6. Préparation du collider et de l’expansion
         if (col != null)
         {
             float startingRadius = assignedTargetRadius * 0.3f;
@@ -66,9 +79,11 @@ public class Wave : MonoBehaviour
             expansionSpeed = (assignedTargetRadius / 2f - startingRadius) / fadeDuration;
         }
 
+        // 7. Remise à zéro de l’échelle visuelle
         if (visualTransform != null)
             visualTransform.localScale = Vector3.zero;
 
+        // 8. Activation et configuration de la lumière
         if (light2D != null)
         {
             light2D.enabled = shouldEnableLight;
@@ -82,6 +97,7 @@ public class Wave : MonoBehaviour
             }
         }
 
+        // 9. Reset de la position et échelle du masque central
         if (centerMaskTransform != null)
         {
             centerMaskTransform.localPosition = Vector3.zero;
@@ -96,20 +112,24 @@ public class Wave : MonoBehaviour
 
     private void Update()
     {
+        // 🌀 Expansion du collider
         float growth = expansionSpeed * Time.deltaTime;
 
         if (col != null)
             col.radius += growth;
 
+        // 🔍 Mise à jour de l’échelle visuelle
         if (visualTransform != null && col != null)
         {
             float diameter = col.radius * 2f;
             visualTransform.localScale = new Vector3(diameter, diameter, 1f);
         }
 
+        // 💠 Mise à jour du masque central (effet stylisé d’onde creuse)
         if (centerMaskTransform != null && col != null)
         {
             float forceFactor = Mathf.InverseLerp(1f, 20f, targetRadius);
+
             float startRatio = Mathf.Lerp(0.1f, 0.05f, forceFactor);
             float endRatio = Mathf.Lerp(0.95f, 0.6f, forceFactor);
 
@@ -121,6 +141,7 @@ public class Wave : MonoBehaviour
             centerMaskTransform.localScale = new Vector3(innerDiameter, innerDiameter, 1f);
         }
 
+        // 🔅 Fade de l’opacité du sprite
         if (sr != null)
         {
             alpha -= fadeSpeed * Time.deltaTime;
@@ -130,6 +151,7 @@ public class Wave : MonoBehaviour
             sr.color = new Color(c.r, c.g, c.b, alpha);
         }
 
+        // 💡 Mise à jour dynamique de la lumière
         if (light2D != null && light2D.enabled && col != null)
         {
             light2D.pointLightOuterRadius = col.radius;
@@ -139,9 +161,11 @@ public class Wave : MonoBehaviour
             light2D.intensity = Mathf.Lerp(minIntensity, maxIntensity, alpha);
         }
 
+        // 🔍 Recherche des objets à révéler et alerter
         ScanForRevealables();
         ScanForAlertables();
 
+        // 💥 Destruction quand l’onde est totalement transparente
         if (!isFadingOut && alpha <= 0f)
         {
             isFadingOut = true;
@@ -155,6 +179,7 @@ public class Wave : MonoBehaviour
         Destroy(gameObject);
     }
 
+// --- 🧠 INTERACTIONS ---
     private void ScanForRevealables()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, col.radius, revealableLayers);
@@ -162,9 +187,12 @@ public class Wave : MonoBehaviour
         {
             IRevealable revealable = hit.GetComponent<IRevealable>();
             if (revealable != null)
-                revealable.Reveal(revealDuration);
+            {
+                revealable.Reveal(waveIntensity); // ✅ Utilise la force normalisée (0 à 1)
+            }
         }
     }
+
 
     private void ScanForAlertables()
     {
@@ -176,6 +204,8 @@ public class Wave : MonoBehaviour
                 alertable.Alert(transform.position);
         }
     }
+
+// --- 🧪 VISUALISATION SCÈNE ÉDITEUR ---
 
     private void OnDrawGizmos()
     {

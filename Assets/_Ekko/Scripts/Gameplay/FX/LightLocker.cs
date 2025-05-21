@@ -9,14 +9,14 @@ using UnityEngine.Rendering.Universal;
 
 public class LightLocker : MonoBehaviour, IDamagerFeedback
 {
-    [Header("Lumière ciblée")]
+    [Header("Target Light")]
     [SerializeField] private Light2D targetLight;         // Lumière 2D à contrôler (doit être assignée dans l’inspecteur)
 
-    [Header("Valeurs quand activé")]
+    [Header("Valeurs ON")]
     [SerializeField] private float litIntensity = 1f;     // Intensité quand la lumière est "allumée"
     [SerializeField] private float litRadius = 5f;        // Rayon extérieur quand la lumière est "allumée"
 
-    [Header("Valeurs quand désactivé")]
+    [Header("Valeurs OFF")]
     [SerializeField] private float offIntensity = 0f;     // Intensité quand la lumière est éteinte
     [SerializeField] private float offRadius = 0f;        // Rayon quand la lumière est éteinte
 
@@ -41,10 +41,11 @@ public class LightLocker : MonoBehaviour, IDamagerFeedback
             return;
         }
 
-        Debug.Log("[LightLocker] 💡 Activation lumière");
         targetLight.enabled = true;
         targetLight.intensity = litIntensity;
         targetLight.pointLightOuterRadius = litRadius;
+
+        Debug.Log($"[LightLocker] 💡 Activation lumière → Intensity: {litIntensity} | Radius: {litRadius}");
 
     }
 

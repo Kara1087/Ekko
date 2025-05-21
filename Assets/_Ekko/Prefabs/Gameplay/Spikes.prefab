@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 3759995761808582938}
   - component: {fileID: 2896400040182433321}
   - component: {fileID: 7487803621073169318}
+  - component: {fileID: 8500221445868397948}
   m_Layer: 7
   m_Name: Spikes
   m_TagString: Untagged
@@ -250,6 +251,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87cedff3f08e4b4f8b21b2d37ded641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 50
+  damageAmount: 25
   playerTag: Player
   applyOnce: 0
+  feedbackModulesRaw:
+  - {fileID: 8730401521498451723}
+--- !u!114 &8500221445868397948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4633722971695711739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4e3bd6e08a14090ad2567ee1a39cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeInDuration: 0.1
+  visibleDuration: 3
+  fadeOutDuration: 0.5
+  useWaveIntensity: 1
+  minMultiplier: 0.5
+  maxMultiplier: 2

@@ -12,6 +12,7 @@ public class Damager : MonoBehaviour
     [SerializeField] private float damageAmount = 25f;
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private bool applyOnce = true;             // Si activé, les dégâts sont appliqués une seule fois 
+    [SerializeField] private MonoBehaviour[] feedbackModulesRaw;
 
     private IDamagerFeedback[] feedbackModules;                 // Liste de modules visuels à activer (doivent implémenter IDamagerFeedback)
     private bool hasAppliedDamage = false;                      // Pour éviter d'appliquer plusieurs fois les dégâts
@@ -42,6 +43,7 @@ public class Damager : MonoBehaviour
         // On déclenche tous les feedbacks (ex : fx, son, flash...)
         foreach (var feedback in feedbackModules)
         {
+            Debug.Log($"[Damager] → Activation de {feedback}");
             feedback?.TriggerFeedback();
         }
 
