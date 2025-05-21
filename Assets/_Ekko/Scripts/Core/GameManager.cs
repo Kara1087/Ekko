@@ -117,6 +117,54 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RespawnPlayer()
+    {
+        Debug.Log("[GameManager] 🌌 RespawnPlayer()");
+
+        // Récupère la positions du dernier checkpoint
+        if (!CheckpointManager.Instance || !CheckpointManager.Instance.HasCheckpoint())
+        {
+            Debug.LogWarning("[GameManager] Aucun checkpoint trouvé, rechargement de la scène...");
+            RestartGame();
+            return;
+        }
+
+        Vector2 checkpointPos = CheckpointManager.Instance.GetLastCheckpointPosition();
+
+        // Réactive le jeu
+        Time.timeScale = 1f;
+        IsPaused = false;
+        IsGameOver = false;
+
+        // Reset du joueur
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            // Replace le joueur au checkpoint
+            player.transform.position = checkpointPos;
+
+            // Réinitialise la vie/lumière
+            PlayerHealth ph = player.GetComponent<PlayerHealth>();
+            if (ph != null)
+            {
+                ph.SetLight(ph.MaxLight); // Réinitialise la vie/lumière
+            }
+
+            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
+        }
+
+        // UI : Nettoie le GameOver
+        UIManager.Instance?.HideGameOver();
+        UIManager.Instance?.ShowQuotePanel(false);
+
+        Debug.Log("[GameManager] ✅ Respawn effectué depuis le dernier checkpoint.");
+    }
+
+
     public void StartGame()
     {
         Debug.Log("[GameManager] ▶️ StartGame()");

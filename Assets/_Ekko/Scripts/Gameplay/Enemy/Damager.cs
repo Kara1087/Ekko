@@ -22,7 +22,7 @@ public class Damager : MonoBehaviour
     {
         // Recherche automatique dans les enfants
         feedbackModules = GetComponentsInChildren<IDamagerFeedback>();
-        Debug.Log($"[Damager] 🔍 Feedbacks trouvés automatiquement : {feedbackModules.Length}");
+        //Debug.Log($"[Damager] 🔍 Feedbacks trouvés automatiquement : {feedbackModules.Length}");
     }
     
     /// <summary>
