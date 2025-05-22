@@ -14,5 +14,6 @@ public class QuoteData : ScriptableObject
     public QuoteType type;
 
     [Tooltip("Contexte spécifique (ex: Slam, Zone01...)")]
+
     public QuoteTag tag = QuoteTag.None;
 }

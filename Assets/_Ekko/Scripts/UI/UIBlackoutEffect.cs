@@ -40,8 +40,8 @@ public class BlackoutEffect : MonoBehaviour
     /// Laisse apparaître progressivement la scène en réduisant l’opacité du panneau noir.
     /// </summary>
     public void StartFadeIn(System.Action onComplete = null)
-    {   
-        Debug.Log("[BlackoutEffect] 🎬 Début Fade In");
+    {
+        //Debug.Log("[BlackoutEffect] 🎬 Début Fade In");
 
         if (!IsValidTarget()) // sécurité
         {
@@ -66,8 +66,10 @@ public class BlackoutEffect : MonoBehaviour
         blackoutImage.DOFade(0f, fadeDuration)
             .SetUpdate(true)
             .OnComplete(() =>
-            {
-                Debug.Log("[BlackoutEffect] ✅ Fin Fade In");
+            {   
+                if (!IsValidTarget()) return;
+
+                //Debug.Log("[BlackoutEffect] ✅ Fin Fade In");
                 blackoutImage.gameObject.SetActive(false);
                 onComplete?.Invoke();
             });
@@ -93,9 +95,9 @@ public class BlackoutEffect : MonoBehaviour
             .SetUpdate(true)
             .OnComplete(() =>
             {
-                if (IsValidTarget())
-                    blackoutImage.gameObject.SetActive(false); // important sinon écran reste noir
-
+                if (!IsValidTarget()) return;
+                    
+                blackoutImage.gameObject.SetActive(false); // important sinon écran reste noir
                 Debug.Log("🌀 Blackout terminé");
                 onComplete?.Invoke();
             });
@@ -107,5 +109,10 @@ public class BlackoutEffect : MonoBehaviour
     private bool IsValidTarget()
     {
         return blackoutImage != null && blackoutImage.gameObject != null;
+    }
+    
+    private void OnDestroy()
+    {
+        blackoutImage?.DOKill();
     }
 }

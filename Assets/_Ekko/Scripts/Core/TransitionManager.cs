@@ -25,15 +25,14 @@ public class TransitionManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        ui = UIManager.Instance;
-        game = GameManager.Instance;
-        quote = FindFirstObjectByType<QuoteManager>();
     }
 
     private void Start()
     {
+        // Sécurité pour re-capturer les singletons s'ils n'étaient pas encore prêts à l'Awake
+        if (game == null) game = GameManager.Instance;
         if (ui == null) ui = UIManager.Instance;
+        if (quote == null) quote = FindFirstObjectByType<QuoteManager>();
     }
 
     /// <summary>

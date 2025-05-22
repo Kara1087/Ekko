@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Intro_3
   m_EditorClassIdentifier: 
   quoteText: "Ce monde n\u2019a pas toujours \xE9t\xE9 plong\xE9 dans l\u2019ombre."
-  displayDuration: 3
+  displayDuration: 5
   type: 0
   tag: 0

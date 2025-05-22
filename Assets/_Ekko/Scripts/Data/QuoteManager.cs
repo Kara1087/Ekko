@@ -5,22 +5,48 @@ using System.Collections;
 
 public class QuoteManager : MonoBehaviour
 {
+    public static QuoteManager Instance { get; private set; }
+
     [Header("Data")]
     [SerializeField] private QuoteLibrary quoteLibrary;
 
     [Header("UI Elements")]
     [SerializeField] private GameObject quotePanel;
     [SerializeField] private TMP_Text quoteText;
-    [SerializeField] private GameObject imageBackground;
+    [SerializeField] private GameObject imageBackground;    // Fond noir optionnel selon le type
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        // On cache le panneau au lancement
         if (quotePanel != null)
             quotePanel.SetActive(false);
     }
 
     /// <summary>
-    /// Affiche une citation aléatoire selon son type.
+    /// Affiche une citation spécifique.
+    /// </summary>
+    public void ShowSpecificQuote(QuoteData quote, System.Action onComplete = null)
+    {
+        if (quote == null)
+        {
+            Debug.LogWarning("[QuoteManager] Citation spécifique manquante !");
+            return;
+        }
+
+        StartCoroutine(ShowQuoteRoutine(quote, onComplete));
+    }
+
+    /// <summary>
+    /// Affiche une citation aléatoire selon son type (sans tenir compte du tag).
+    /// Exemple : une citation de type Tip ou Intro.
     /// </summary>
     public void ShowRandomQuote(QuoteType type, System.Action onComplete = null)
     {
@@ -43,14 +69,16 @@ public class QuoteManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Affiche une citation aléatoire selon son type et son tag.
+    /// Affiche une citation aléatoire selon son type ET son tag.
+    /// Exemple : Tip + Jump.
+    /// Utilisé notamment dans les triggers contextuels.
     /// </summary>
     public void ShowRandomQuote(QuoteType type, QuoteTag tag, System.Action onComplete = null)
     {
+        // Logs de debug utiles pour vérifier l'état de l'UI
         Debug.Log($"[QuoteManager] 🔍 quotePanel.activeSelf = {quotePanel.activeSelf}");
         Debug.Log($"[QuoteManager] 🔍 quotePanel.activeInHierarchy = {quotePanel.activeInHierarchy}");
-
-        Debug.Log($"[QuoteManager] 🎤 Demande de citation : {type}");
+        Debug.Log($"[QuoteManager] 🎤 Demande de citation : {type} / Tag : {tag}");
 
         if (quoteLibrary == null)
         {
@@ -70,14 +98,19 @@ public class QuoteManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine qui affiche la citation, attend sa durée, puis la cache.
+    /// Gère aussi l'activation du fond noir selon le type.
+    /// </summary>
     private IEnumerator ShowQuoteRoutine(QuoteData quoteData, System.Action onComplete)
     {
         if (quotePanel != null && quoteText != null)
-        {
+        {   
+            // Affichage du texte
             quoteText.text = quoteData.quoteText;
             quotePanel.SetActive(true);
-            
-             Debug.Log($"[QuoteManager] 📝 Quote '{quoteData.quoteText}' affichée pendant {quoteData.displayDuration} sec");
+
+            Debug.Log($"[QuoteManager] 📝 Quote affichée : '{quoteData.quoteText}' | Tag: {quoteData.tag} | Type: {quoteData.type} | Durée: {quoteData.displayDuration} sec");
 
             // Active ou désactive le fond noir selon le type
             if (imageBackground != null)
@@ -88,14 +121,16 @@ public class QuoteManager : MonoBehaviour
 
                 imageBackground.SetActive(showBackground);
             }
-        
+
         }
 
+        // Attend que la durée soit écoulée avant de cacher
         yield return new WaitForSecondsRealtime(quoteData.displayDuration);
 
         if (quotePanel != null)
             quotePanel.SetActive(false);
 
+        // Exécute l'action à la fin (utile pour les transitions)
         onComplete?.Invoke();
     }
 }

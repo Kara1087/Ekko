@@ -12,16 +12,17 @@ public class CameraZoomController : MonoBehaviour
     [SerializeField] private CinemachineCamera virtualCamera;
 
     [Header("Zoom settings")]
-    [SerializeField] private float zoomedInSize = 2f;
-    [SerializeField] private float zoomedOutSize = 6f;
-    [SerializeField] private float zoomDuration = 2f;
+    [SerializeField] private float zoomedInSize = 2f;                       // Taille initiale du zoom (plan rapproché)
+    [SerializeField] private float zoomedOutSize = 6f;                      // Taille cible du zoom-out
+    [SerializeField] private float zoomDuration = 2f;                       // Durée de l’animation de zoom
 
     [Header("Offset settings")]
-    [SerializeField] private Vector3 offsetZoomIn = new Vector3(0f, 1f, 0f);
-    [SerializeField] private Vector3 offsetZoomOut = Vector3.zero;
+    [SerializeField] private Vector3 offsetZoomIn = new Vector3(0f, 1f, 0f); // Décalage caméra au démarrage
+    [SerializeField] private Vector3 offsetZoomOut = Vector3.zero;          // Décalage à appliquer après zoom-out
 
-    private CinemachinePositionComposer positionComposer;
-    private Coroutine zoomCoroutine;
+    [SerializeField] private Transform playerTransform;                     // 🔍 Référence au joueur (à assigner dans l'inspector)
+    private CinemachinePositionComposer positionComposer;                   // Contrôle de l’offset cible de la caméra
+    private Coroutine zoomCoroutine;                                        // Pour éviter de lancer plusieurs coroutines simultanément
 
     private void Awake()
     {
@@ -46,22 +47,47 @@ public class CameraZoomController : MonoBehaviour
 
     private void Start()
     {
-        // Lancement automatique du zoom-out après 1.5 secondes
-        StartCoroutine(DelayedZoomOut(1.5f));
+        if (playerTransform != null)
+        {
+            // Si le joueur est à (0, 0), on lance le zoom-out
+            if (playerTransform.position == Vector3.zero)
+            {
+                StartCoroutine(DelayedZoomOut(1.5f));
+            }
+            else
+            {
+                Debug.Log("[CameraZoomController] 🚫 Player n’est pas à (0,0), zoom non déclenché.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[CameraZoomController] ⚠️ PlayerTransform non assigné !");
+        }
     }
 
+    /// <summary>
+    /// Coroutine qui attend un certain délai avant de lancer le zoom-out.
+    /// </summary>
     private IEnumerator DelayedZoomOut(float delay)
     {
         yield return new WaitForSeconds(delay);
         TriggerZoomOut();
     }
 
+    /// <summary>
+    /// Déclenche un zoom-out avec recadrage (offset recentré).
+    /// </summary>
     public void TriggerZoomOut()
     {
+        // On interrompt une éventuelle animation précédente
         if (zoomCoroutine != null) StopCoroutine(zoomCoroutine);
+        // On lance une nouvelle animation de zoom avec recentrage
         zoomCoroutine = StartCoroutine(ZoomAndRecenter(zoomedOutSize, offsetZoomOut));
     }
 
+    /// <summary>
+    /// Coroutine qui anime à la fois le zoom (size) et le recentrage (offset) de la caméra.
+    /// </summary>
     private IEnumerator ZoomAndRecenter(float targetSize, Vector3 targetOffset)
     {
         float startSize = virtualCamera.Lens.OrthographicSize;
@@ -83,5 +109,35 @@ public class CameraZoomController : MonoBehaviour
         // Valeurs finales
         virtualCamera.Lens.OrthographicSize = targetSize;
         positionComposer.TargetOffset = targetOffset;
+    }
+
+    /// <summary>
+    /// Déclenche un zoom vers une taille cible (sans changer l'offset).
+    /// Appelable depuis un trigger ou un événement.
+    /// </summary>
+    public void TriggerZoom(float targetSize, float duration)
+    {
+        if (zoomCoroutine != null) StopCoroutine(zoomCoroutine);
+        zoomCoroutine = StartCoroutine(ZoomOnly(targetSize, duration));
+    }
+
+    /// <summary>
+    /// Coroutine qui anime uniquement la taille de la caméra sans changer l’offset.
+    /// </summary>
+    private IEnumerator ZoomOnly(float targetSize, float duration)
+    {
+        float startSize = virtualCamera.Lens.OrthographicSize;
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            float t = timer / duration;
+
+            virtualCamera.Lens.OrthographicSize = Mathf.Lerp(startSize, targetSize, t);
+            yield return null;
+        }
+
+        virtualCamera.Lens.OrthographicSize = targetSize;
     }
 }

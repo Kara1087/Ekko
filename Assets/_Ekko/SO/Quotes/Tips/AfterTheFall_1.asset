@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007353c963a384c158400ee67462af62, type: 3}
   m_Name: AfterTheFall_1
   m_EditorClassIdentifier: 
-  quoteText: "On peut trouver le salut m\xEAme dans les moments les plus sombres.\_Il
-    suffit de se souvenir d'allumer la lumi\xE8re."
+  quoteText: "Ils ont oubli\xE9 que la lumi\xE8re vient toujours apr\xE8s la chute."
   displayDuration: 3
   type: 2
   tag: 3

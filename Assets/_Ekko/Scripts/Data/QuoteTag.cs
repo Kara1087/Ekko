@@ -6,6 +6,8 @@ public enum QuoteTag
     Slam,
     Cushion,
     Fall,
+    Jump,
+    Diversion,
     Zone01,
     Zone02
 }

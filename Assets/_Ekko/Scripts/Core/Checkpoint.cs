@@ -13,7 +13,6 @@ public class Checkpoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             CheckpointManager.Instance?.SetCurrentCheckpoint(transform.position);
-            Debug.Log($"[Checkpoint] ✅ Nouveau checkpoint activé à {transform.position}");
         }
     }
 
