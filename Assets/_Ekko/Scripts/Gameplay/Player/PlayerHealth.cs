@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
     public UnityEvent onLowLight;               // Appelé quand la lumière passe sous le seuil critique
     public UnityEvent onDeath;
 
-    private bool hasTriggeredFirstDamageQuote = false;                  
+    private bool hasTriggeredFirstSpectreQuote = false;                  
 
     // --- GETTERS PUBLICS ---
     public float CurrentLight => currentLight;
@@ -46,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("[PlayerHealth] TestRestoreLight: +30");
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, GameObject source = null)
     {
         if (IsDead)
             return;
@@ -57,29 +57,23 @@ public class PlayerHealth : MonoBehaviour
 
         Debug.Log($"[PlayerHealth] 💥 Dégâts reçus : -{amount} | Lumière restante : {currentLight} | IsDead = {IsDead}");
 
-        if (!hasTriggeredFirstDamageQuote)
+        // Déclenche une citation si la source est un ennemi spécifique
+        if (!hasTriggeredFirstSpectreQuote && source != null && source.CompareTag("Enemy"))
         {
-            hasTriggeredFirstDamageQuote = true;
+            hasTriggeredFirstSpectreQuote = true;
 
             // Affiche une citation Tip liée aux dégâts (tag personnalisé)
             QuoteManager.Instance?.ShowRandomQuote(QuoteType.Tip, QuoteTag.Diversion);
-
-            // Tu peux changer le tag en QuoteTag.FirstDamage si tu en crées un
+            Debug.Log("[PlayerHealth] ⚠️ Premier dégât reçu d'un Spectre !");
         }
 
         onLightChanged?.Invoke();   // Notifie tout système écoutant ce changement (UI, shader, etc.)
 
-        if (IsLow)
-        {
-            Debug.Log("[PlayerHealth] ⚠️ Lumière critique !");
-            onLowLight?.Invoke();
-        }
-
+        if (IsLow) onLowLight?.Invoke();
         if (IsDead)
         {
-            Debug.Log("[PlayerHealth] ☠️ Le joueur est mort.");
             onDeath?.Invoke();
-            HandleDeath();  // Appelle GameManager pour gérer la mort (Game Over, respawn, etc.)
+            HandleDeath();
         }
     }
 
@@ -90,6 +84,7 @@ public class PlayerHealth : MonoBehaviour
     {
         //Debug.Log("[PlayerHealth] 🔁 Reset de la lumière");
         currentLight = maxLight;
+        //hasTriggeredFirstSpectreQuote = false; // 🔁 reset aussi la citation contextuelle si besoin
         onLightChanged?.Invoke();
     }
 

@@ -23,7 +23,7 @@ public class EnemyDamageTrigger : MonoBehaviour
             PlayerHealth player = other.GetComponent<PlayerHealth>();
             if (player != null)
             {
-                player.TakeDamage(damageAmount);
+                player.TakeDamage(damageAmount, enemyAI?.gameObject);
                 lastDamageTime = Time.time;
 
                 // 🆕 Informer l'ennemi qu’un coup a été porté
