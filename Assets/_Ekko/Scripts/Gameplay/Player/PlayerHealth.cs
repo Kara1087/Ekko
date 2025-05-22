@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Gère la "vie" du joueur sous forme de lumière.
+/// Appelle des événements quand la lumière change, devient faible ou tombe à zéro.
+/// </summary>
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Lumière/Vie")]
@@ -11,10 +15,13 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float lowLightThreshold = 20f;
 
     [Header("Events")]
-    public UnityEvent onLightChanged;
-    public UnityEvent onLowLight;
+    public UnityEvent onLightChanged;           // Appelé à chaque changement de lumière (dégâts ou soin)
+    public UnityEvent onLowLight;               // Appelé quand la lumière passe sous le seuil critique
     public UnityEvent onDeath;
 
+    private bool hasTriggeredFirstDamageQuote = false;                  
+
+    // --- GETTERS PUBLICS ---
     public float CurrentLight => currentLight;
     public float MaxLight => maxLight;
     public bool IsDead => currentLight <= 0f;
@@ -22,27 +29,16 @@ public class PlayerHealth : MonoBehaviour
 
     private void Awake()
     {
+        // Initialisation max light
         currentLight = maxLight;
     }
 
     private void Update()
     {
-    #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            Debug.Log("[Test] 💀 Touche G pressée → mort forcée");
-            HandleDeath(); // ou TakeDamage(currentLight) si tu veux simuler un dégât fatal
-        }
-    #endif
+
     }
 
-    [ContextMenu("Test: Take Damage (-30)")]
-    private void TestTakeDamage()
-    {
-        TakeDamage(30f);
-        Debug.Log("[PlayerHealth] TestTakeDamage: -30");
-    }
-
+    // --- MÉTHODES DE TEST RAPIDES ---
     [ContextMenu("Test: Restore Light (30)")]
     private void TestRestoreLight()
     {
@@ -52,18 +48,26 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        
         if (IsDead)
-        {
-            Debug.Log("[PlayerHealth] Ignoré : le joueur est déjà mort.");
             return;
-        }
-        
+
+        // Réduction de lumière
         currentLight -= amount;
-        currentLight = Mathf.Clamp(currentLight, 0f, maxLight);
+        currentLight = Mathf.Clamp(currentLight, 0f, maxLight);     // Évite d’aller en négatif
+
         Debug.Log($"[PlayerHealth] 💥 Dégâts reçus : -{amount} | Lumière restante : {currentLight} | IsDead = {IsDead}");
 
-        onLightChanged?.Invoke();
+        if (!hasTriggeredFirstDamageQuote)
+        {
+            hasTriggeredFirstDamageQuote = true;
+
+            // Affiche une citation Tip liée aux dégâts (tag personnalisé)
+            QuoteManager.Instance?.ShowRandomQuote(QuoteType.Tip, QuoteTag.Diversion);
+
+            // Tu peux changer le tag en QuoteTag.FirstDamage si tu en crées un
+        }
+
+        onLightChanged?.Invoke();   // Notifie tout système écoutant ce changement (UI, shader, etc.)
 
         if (IsLow)
         {
@@ -75,25 +79,33 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("[PlayerHealth] ☠️ Le joueur est mort.");
             onDeath?.Invoke();
-            HandleDeath();
+            HandleDeath();  // Appelle GameManager pour gérer la mort (Game Over, respawn, etc.)
         }
     }
 
+    /// <summary>
+    /// Réinitialise la lumière au maximum (utile après un respawn ou une transition).
+    /// </summary>
     public void ResetHealth()
     {
-        Debug.Log("[PlayerHealth] 🔁 Reset de la lumière");
+        //Debug.Log("[PlayerHealth] 🔁 Reset de la lumière");
         currentLight = maxLight;
         onLightChanged?.Invoke();
     }
 
+    /// <summary>
+    /// Restaure de la lumière (équivalent d’un soin ou d’un bonus lumineux).
+    /// </summary>
     public void RestoreLight(float amount)
     {
         currentLight += amount;
         currentLight = Mathf.Clamp(currentLight, 0f, maxLight);
-        Debug.Log($"[PlayerHealth] ✨ Lumière restaurée : +{amount} | Lumière actuelle : {currentLight}");
         onLightChanged?.Invoke();
     }
 
+    /// <summary>
+    /// Définir manuellement la lumière (debug, chargement de sauvegarde, effet spécial).
+    /// </summary>
     public void SetLight(float value) // Cas d'usage : Réinitialisation, Effets de script/Debug, Chargement de sauvegarde, Pouvoir spécial/Scène narrative
     {
         currentLight = Mathf.Clamp(value, 0f, maxLight);
@@ -101,14 +113,20 @@ public class PlayerHealth : MonoBehaviour
         onLightChanged?.Invoke();
     }
 
+    /// <summary>
+    /// Retourne un ratio entre 0 et 1 pour représenter visuellement la lumière (utile en UI).
+    /// </summary>
     public float GetLightRatio()
     {
         return currentLight / maxLight;
     }
 
+    /// <summary>
+    /// Gère la mort du joueur via le GameManager.
+    /// </summary>
     private void HandleDeath()
     {
-        
+
         if (GameManager.Instance != null)
         {
             GameManager.Instance.HandlePlayerDeath();
