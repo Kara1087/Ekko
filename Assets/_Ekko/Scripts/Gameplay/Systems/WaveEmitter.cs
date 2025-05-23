@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class WaveEmitter : MonoBehaviour
+
+public class WaveEmitter : MonoBehaviour, ILandingListener
 {
     [Header("Wave Settings")]
     [SerializeField] private GameObject wavePrefab;         // Prefab d’onde à instancier lors d’un atterrissage
@@ -16,13 +17,11 @@ public class WaveEmitter : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private Color debugColor = Color.cyan;
     private float debugGizmoRadius = 1f;                        // Valeur par défaut
-    // 🔍 Référence au composant qui donne le type de l’atterrissage (léger, moyen, violent…)
-    private LandingClassifier landingClassifier;                
     
-    private void Awake()
+    public void OnLandingDetected(float impactForce, LandingType type)
     {
-        // Récupère le composant LandingClassifier sur le même GameObject
-        landingClassifier = GetComponent<LandingClassifier>();
+        Debug.Log($"[WaveEmitter] 🔊 Reçu impact {impactForce} depuis JumpSystem");
+        EmitWave(impactForce);
     }
 
     /// <summary>

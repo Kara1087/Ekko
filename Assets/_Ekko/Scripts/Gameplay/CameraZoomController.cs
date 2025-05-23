@@ -56,7 +56,7 @@ public class CameraZoomController : MonoBehaviour
             }
             else
             {
-                Debug.Log("[CameraZoomController] 🚫 Player n’est pas à (0,0), zoom non déclenché.");
+                //Debug.Log("[CameraZoomController] 🚫 Player n’est pas à (0,0), zoom non déclenché.");
             }
         }
         else

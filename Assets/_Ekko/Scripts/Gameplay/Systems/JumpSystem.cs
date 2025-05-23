@@ -35,7 +35,6 @@ public class JumpSystem : MonoBehaviour
     private PlayerController controller;
     private InputHandler input;
     private LandingClassifier landingClassifier;
-    private WaveEmitter waveEmitter;
 
     private void Awake()
     {
@@ -43,7 +42,6 @@ public class JumpSystem : MonoBehaviour
         controller = GetComponent<PlayerController>();
         input = GetComponent<InputHandler>();
         landingClassifier = GetComponent<LandingClassifier>();
-        waveEmitter = GetComponent<WaveEmitter>();
     }
 
     private void Update()
@@ -141,9 +139,6 @@ public class JumpSystem : MonoBehaviour
 
         NotifyLandingListeners(finalForce, landingType);
 
-        // Onde
-        waveEmitter.EmitWave(finalForce);
-
         if (landingType == LandingType.Slam)
         {
             AudioManager.Instance.Play("SlamJump");
@@ -156,7 +151,7 @@ public class JumpSystem : MonoBehaviour
 
     private void NotifyLandingListeners(float impactForce, LandingType type)
     {
-        float radius = 0.5f; // Portée du message autour du joueur
+        float landingNotifyRadius = 0.5f; // Portée du message autour du joueur
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, landingNotifyRadius);
         Debug.Log($"[JumpSystem] 📣 NotifyLandingListeners - objets détectés : {hits.Length}");
