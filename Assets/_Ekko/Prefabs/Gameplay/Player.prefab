@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 354689775183971246}
   - component: {fileID: 441468540923850232}
   - component: {fileID: 2423670080596529113}
+  - component: {fileID: 9218443062767646362}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -609,6 +610,7 @@ MonoBehaviour:
   cushionFallDamping: 0.3
   slamWaveMultiplier: 1.5
   cushionWaveMultiplier: 0.1
+  landingNotifyRadius: 1.5
 --- !u!114 &165381274287226765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,3 +723,17 @@ MonoBehaviour:
   attractor: {fileID: 0}
   attractRadius: 3
   attractStrength: 3
+--- !u!114 &9218443062767646362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446427717985520308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7587830e3a16a4ce4b30a589d809a292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cushionMusicFadeTime: 0.5
+  cushionTargetVolume: 0.1

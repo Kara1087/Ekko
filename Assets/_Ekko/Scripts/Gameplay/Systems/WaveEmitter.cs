@@ -13,11 +13,28 @@ public class WaveEmitter : MonoBehaviour, ILandingListener
     [SerializeField] private float minForce = 1f;           // Force minimale attendue à l’atterrissage
     [SerializeField] private float maxForce = 20f;          // Force maximale attendue à l’atterrissage
 
-    
+
     [Header("Debug")]
     [SerializeField] private Color debugColor = Color.cyan;
     private float debugGizmoRadius = 1f;                        // Valeur par défaut
-    
+
+    private JumpSystem jumpSystem;
+
+    private void OnEnable()
+    {
+        if (jumpSystem == null)
+            jumpSystem = FindFirstObjectByType<JumpSystem>();
+
+        if (jumpSystem != null)
+            jumpSystem.RegisterLandingListener(this);
+    }
+
+    private void OnDisable()
+    {
+        if (jumpSystem != null)
+            jumpSystem.UnregisterLandingListener(this);
+    }
+
     public void OnLandingDetected(float impactForce, LandingType type)
     {
         Debug.Log($"[WaveEmitter] 🔊 Reçu impact {impactForce} depuis JumpSystem");

@@ -96,7 +96,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ControlFall",
+                    "name": "Cushion",
                     "type": "Button",
                     "id": "c8423b34-3af2-49ae-a9b6-97dbff043792",
                     "expectedControlType": "",
@@ -542,7 +542,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "ControlFall",
+                    "action": "Cushion",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -553,7 +553,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "ControlFall",
+                    "action": "Cushion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "91b22c05-5239-4d73-b0c8-3c19aa017e3e",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cushion",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

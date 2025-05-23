@@ -57,6 +57,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public float GetCurrentMusicVolume()
+    {
+        return musicThemeSource != null ? musicThemeSource.volume : 1f;
+    }
+
     // 🔊 SFX
     public void Play(string soundName)
     {

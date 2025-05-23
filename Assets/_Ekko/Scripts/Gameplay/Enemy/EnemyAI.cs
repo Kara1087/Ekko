@@ -2,28 +2,36 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using System.Collections;
 
+/// <summary>
+/// Gère le comportement d’un ennemi avec plusieurs états (Dormant, Alert, Chase, Return),
+/// incluant le mouvement, la détection du joueur, et un effet visuel de révélation.
+/// Implémente l’interface IAlertable pour réagir à une onde ou un événement.
+/// </summary>
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyAI : MonoBehaviour, IAlertable
 {
     public enum EnemyState { Dormant, Alert, Chase, Return }
 
     [Header("Movement")]
-    [Tooltip("Se dirige vers le point d’alerte")]
+    [Tooltip("Deplacement vers le point d’alerte")]
     [SerializeField] private float alertSpeed = 2f;
-    [Tooltip("Se dirige vers le joueur")]
+    [Tooltip("Déplacement vers le joueur")]
     [SerializeField] private float chaseSpeed = 3f;
     [Tooltip("Durée état d’alerte avant de revenir")]
     [SerializeField] private float alertDuration = 2f;
-    [Tooltip("Durée poursouite joueur après détection")]
+    [Tooltip("Durée max poursouite après détection")]
     [SerializeField] private float chaseDuration = 3f;
-    [Tooltip("Distance max de détection pour passer en mode CHASE")]
+    [Tooltip("Rayon de détection du joueur")]
     [SerializeField] private float chaseRange = 6f;
+    [Tooltip("Décalage vertical appliqué à la position de retour")]
     [SerializeField] private float returnYOffset = -2f; // 👈 Y relatif au joueur
 
     [Header("Gameplay")]
     [SerializeField] private Transform player;
 
     [Header("Reveal")]
+    [Tooltip("Lumière utilisée lors de la révélation de l’ennemi")]
     [SerializeField] private Light2D revealLight;
     [SerializeField] private float revealDuration = 1.5f;
     [SerializeField] private float fadeSpeed = 2f;
@@ -80,11 +88,17 @@ public class EnemyAI : MonoBehaviour, IAlertable
         HandleAbsorptionFlash();
     }
 
-    public void NotifyPlayerHit()       // Appelé par EnemyDamageTrigger
+    /// <summary>
+    /// Méthode appelée lorsque le joueur est touché (via EnemyDamageTrigger).
+    /// </summary>
+    public void NotifyPlayerHit()
     {
         hasHitPlayer = true;
     }
 
+    /// <summary>
+    /// Comportement en mode Alert : déplacement vers la source d’alerte, puis retour.
+    /// </summary>
     private void UpdateAlert()
     {
         stateTimer -= Time.deltaTime;
@@ -108,6 +122,9 @@ public class EnemyAI : MonoBehaviour, IAlertable
         }
     }
 
+    /// <summary>
+    /// Comportement en mode Chase : poursuite du joueur.
+    /// </summary>
     private void UpdateChase()
     {
         if (player == null)
@@ -149,6 +166,9 @@ public class EnemyAI : MonoBehaviour, IAlertable
         }
     }
 
+    /// <summary>
+    /// Comportement de retour à une position après alerte ou poursuite.
+    /// </summary>
     private void UpdateReturn()
     {
         MoveTowards(returnPosition, alertSpeed);
@@ -159,12 +179,18 @@ public class EnemyAI : MonoBehaviour, IAlertable
         }
     }
 
+    /// <summary>
+    /// Déplace l’ennemi vers une cible donnée à une certaine vitesse.
+    /// </summary>
     private void MoveTowards(Vector2 target, float speed)
     {
         Vector2 dir = (target - (Vector2)transform.position).normalized;
         rb.linearVelocity = dir * speed;
     }
 
+    /// <summary>
+    /// Change l’état de l’ennemi et met à jour les timers associés.
+    /// </summary>
     private void ChangeState(EnemyState newState)
     {
         currentState = newState;
@@ -200,6 +226,9 @@ public class EnemyAI : MonoBehaviour, IAlertable
         }
     }
 
+    /// <summary>
+    /// Réagit à une alerte extérieure (ex: onde) et déclenche l’effet visuel si disponible.
+    /// </summary>
     public void Alert(Vector2 sourcePosition)
     {
         lastAlertPosition = sourcePosition;
@@ -220,6 +249,9 @@ public class EnemyAI : MonoBehaviour, IAlertable
         }
     }
 
+    /// <summary>
+    /// Coroutine qui gère un flash lumineux lors de la révélation.
+    /// </summary>
     private IEnumerator RevealEffect()
     {
         revealLight.enabled = true;
@@ -242,6 +274,9 @@ public class EnemyAI : MonoBehaviour, IAlertable
         revealLight.intensity = 1f;
     }
 
+    /// <summary>
+    /// Déclenche un effet visuel (flash) lorsque le joueur est à portée.
+    /// </summary>
     private void HandleAbsorptionFlash()
     {
         if (player == null || revealLight == null) return;

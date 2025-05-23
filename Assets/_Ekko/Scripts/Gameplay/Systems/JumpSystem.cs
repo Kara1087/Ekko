@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerController))]
@@ -13,16 +14,15 @@ public class JumpSystem : MonoBehaviour
     [SerializeField] private float jumpBufferTime = 0.15f;        // Tolérance avant de toucher le sol
     [SerializeField] private float controlledFallWindow = 0.2f;   // Temps pour amortir l’atterrissage
 
-    [Header("Fall Behavior (comportement chute)")]
+    [Header("Fall Behavior")]
     [SerializeField] private float slamFallAcceleration = 2f;        // Accélération vers le bas (slam)
     [SerializeField] private float cushionFallDamping = 0.3f;        // Réduction vitesse de chute (amorti)
 
-    [Header("Wave Impact (onde feedback)")]
+    [Header("Wave Impact Settings")]
     [SerializeField] private float slamWaveMultiplier = 1.5f;        // Onde plus forte (slam)
     [SerializeField] private float cushionWaveMultiplier = 0.1f;     // Onde plus faible (amorti)
 
-    [SerializeField] private float landingNotifyRadius = 1.5f;
-
+    [SerializeField] private float landingNotifyRadius = 1.5f;      // Rayon pour notifier les objets autour à l’atterrissage
 
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
@@ -31,10 +31,13 @@ public class JumpSystem : MonoBehaviour
     private bool isJumping;
     private bool isForcingSlam;
 
+    private readonly List<ILandingListener> landingListeners = new List<ILandingListener>();
+
     private Rigidbody2D rb;
     private PlayerController controller;
     private InputHandler input;
     private LandingClassifier landingClassifier;
+
 
     private void Awake()
     {
@@ -51,11 +54,11 @@ public class JumpSystem : MonoBehaviour
         if (isJumping && input.JumpReleased)
             CutJumpShort();
 
-        // Détection d’un atterrissage contrôlé
+        // Enregistre le moment où le joueur tente d’amortir une chute
         if (input.ControlFallPressedThisFrame)
             lastControlledFallInputTime = Time.time;
 
-        // Détection du slam (touche bas en l’air)
+        // Active le slam si la touche bas est maintenue en l’air
         if (input.DownHeld && !controller.IsGrounded)
             isForcingSlam = true;
     }
@@ -82,6 +85,9 @@ public class JumpSystem : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gère le jump buffer et le coyote time.
+    /// </summary>
     private void HandleTimers()
     {
         // Buffer input
@@ -95,6 +101,9 @@ public class JumpSystem : MonoBehaviour
             coyoteTimeCounter = coyoteTime;
     }
 
+    /// <summary>
+    /// Applique la force de saut au Rigidbody.
+    /// </summary>
     private void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -103,6 +112,9 @@ public class JumpSystem : MonoBehaviour
         isJumping = true;
     }
 
+    /// <summary>
+    /// Interrompt le saut si le joueur relâche la touche trop tôt.
+    /// </summary>
     private void CutJumpShort()
     {
         if (rb.linearVelocity.y > 0)
@@ -112,6 +124,10 @@ public class JumpSystem : MonoBehaviour
         isJumping = false;
     }
 
+    /// <summary>
+    /// Appelé lors de l’atterrissage par PlayerController.
+    /// Classifie l’atterrissage et notifie les systèmes intéressés.
+    /// </summary>
     public void OnLand(float impactVelocity)
     {
         Debug.Log($"[JumpSystem] 🛬 Atterrissage détecté - vitesse: {impactVelocity:F2}");
@@ -139,31 +155,32 @@ public class JumpSystem : MonoBehaviour
 
         NotifyLandingListeners(finalForce, landingType);
 
-        if (landingType == LandingType.Slam)
-        {
-            AudioManager.Instance.Play("SlamJump");
-        }
-
         // Réinitialisation
         isForcingSlam = false;
         lastControlledFallInputTime = -10f;
     }
 
+    public void RegisterLandingListener(ILandingListener listener)
+    {
+        if (!landingListeners.Contains(listener))
+            landingListeners.Add(listener);
+    }
+
+    public void UnregisterLandingListener(ILandingListener listener)
+    {
+        if (landingListeners.Contains(listener))
+            landingListeners.Remove(listener);
+    }
+
+    /// <summary>
+    /// Notifie tous les objets proches qui écoutent les atterrissages.
+    /// </summary>
     private void NotifyLandingListeners(float impactForce, LandingType type)
     {
-        float landingNotifyRadius = 0.5f; // Portée du message autour du joueur
-
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, landingNotifyRadius);
-        Debug.Log($"[JumpSystem] 📣 NotifyLandingListeners - objets détectés : {hits.Length}");
-
-        foreach (Collider2D hit in hits)
+        foreach (var listener in landingListeners)
         {
-            ILandingListener listener = hit.GetComponent<ILandingListener>();
-            if (listener != null)
-            {
-                Debug.Log($"[JumpSystem] 🎯 Notify {hit.gameObject.name} via {listener.GetType().Name}");
-                listener.OnLandingDetected(impactForce, type);
-            }
+            Debug.Log($"[JumpSystem] 🎯 Notify {listener.GetType().Name}");
+            listener.OnLandingDetected(impactForce, type);
         }
     }
 

@@ -4664,7 +4664,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.8, y: -110.2, z: -8}
+  m_LocalPosition: {x: 9.5, y: -105.1, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7889,11 +7889,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1986533620530436781, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.8
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: 1986533620530436781, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -110.2
+      value: -105.1
       objectReference: {fileID: 0}
     - target: {fileID: 1986533620530436781, guid: 6407216989d2b47aeb684900d032b9b6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8404,8 +8404,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactThreshold: 5
-  descendDistance: 3
-  descendDuration: 0.4
+  descendDistance: 4
+  descendDuration: 0.6
 --- !u!251 &1154374305
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -8738,7 +8738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4633722971695711739, guid: 0d0d25b57816a49bea179715c7a9b327, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6392135030713452349, guid: 0d0d25b57816a49bea179715c7a9b327, type: 3}
       propertyPath: m_LocalScale.x
@@ -12657,7 +12657,7 @@ Transform:
   m_GameObject: {fileID: 1622477491}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.8, y: -110.2, z: -8}
+  m_LocalPosition: {x: 9.5, y: -105.1, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16522,13 +16522,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7034531157446417587}
+  - component: {fileID: 8946108196602973535}
   - component: {fileID: 8946108196602973533}
   - component: {fileID: 1154374305}
   - component: {fileID: 3466309679261513062}
-  - component: {fileID: 1154374304}
   - component: {fileID: 8946108196602973534}
+  - component: {fileID: 1154374304}
   m_Layer: 9
-  m_Name: RevealableSensitivePlatform
+  m_Name: RevealableReactivePlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16986,9 +16987,36 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.4, y: 0.2}
-  m_Size: {x: 11.78, y: 6.52}
+  m_Offset: {x: 0.65, y: 0}
+  m_Size: {x: 11, y: 5}
   m_Direction: 1
+--- !u!50 &8946108196602973535
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2953280701067325710}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
