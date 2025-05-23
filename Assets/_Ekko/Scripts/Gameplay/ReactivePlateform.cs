@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 /// <summary>
 /// Cette plateforme descend si l'impact du joueur est supérieur à un seuil défini.
@@ -49,7 +50,7 @@ public class ReactivePlatform : MonoBehaviour, ILandingListener
     {
         if (other.CompareTag("Player"))
         {
-            if(other.gameObject.activeSelf == false)
+            if(other.gameObject.IsDestroyed())
                 return;
 
             StopAllCoroutines(); // Arrête toute descente en cours
