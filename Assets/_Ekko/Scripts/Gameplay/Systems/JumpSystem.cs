@@ -20,7 +20,9 @@ public class JumpSystem : MonoBehaviour
     [Header("Wave Impact (onde feedback)")]
     [SerializeField] private float slamWaveMultiplier = 1.5f;        // Onde plus forte (slam)
     [SerializeField] private float cushionWaveMultiplier = 0.1f;     // Onde plus faible (amorti)
-    
+
+    [SerializeField] private float landingNotifyRadius = 1.5f;
+
 
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
@@ -43,7 +45,7 @@ public class JumpSystem : MonoBehaviour
         landingClassifier = GetComponent<LandingClassifier>();
         waveEmitter = GetComponent<WaveEmitter>();
     }
-    
+
     private void Update()
     {
         HandleTimers();
@@ -67,14 +69,14 @@ public class JumpSystem : MonoBehaviour
         {
             Jump();
         }
-        
+
         // ⇩ Slam : chute plus rapide
         if (isForcingSlam)
         {
             float slamBoost = Physics2D.gravity.y * slamFallAcceleration * Time.fixedDeltaTime;
             rb.linearVelocity += Vector2.up * slamBoost; // accélère fortement la chute
         }
-        
+
         // ⇧ Cushion : amortir la descente
         else if ((Time.time - lastControlledFallInputTime) <= controlledFallWindow && rb.linearVelocity.y < 0)
         {
@@ -114,6 +116,8 @@ public class JumpSystem : MonoBehaviour
 
     public void OnLand(float impactVelocity)
     {
+        Debug.Log($"[JumpSystem] 🛬 Atterrissage détecté - vitesse: {impactVelocity:F2}");
+
         float impactForce = Mathf.Abs(impactVelocity); // vitesse à laquelle le joueur a touché le sol, sans tenir compte du sens
         bool isCushioned = (Time.time - lastControlledFallInputTime) <= controlledFallWindow;
 
@@ -135,6 +139,8 @@ public class JumpSystem : MonoBehaviour
         // Enregistrement
         landingClassifier.RegisterLanding(impactVelocity, landingType);
 
+        NotifyLandingListeners(finalForce, landingType);
+
         // Onde
         waveEmitter.EmitWave(finalForce);
 
@@ -142,10 +148,33 @@ public class JumpSystem : MonoBehaviour
         {
             AudioManager.Instance.Play("SlamJump");
         }
-        
+
         // Réinitialisation
         isForcingSlam = false;
         lastControlledFallInputTime = -10f;
     }
 
+    private void NotifyLandingListeners(float impactForce, LandingType type)
+    {
+        float radius = 0.5f; // Portée du message autour du joueur
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, landingNotifyRadius);
+        Debug.Log($"[JumpSystem] 📣 NotifyLandingListeners - objets détectés : {hits.Length}");
+
+        foreach (Collider2D hit in hits)
+        {
+            ILandingListener listener = hit.GetComponent<ILandingListener>();
+            if (listener != null)
+            {
+                Debug.Log($"[JumpSystem] 🎯 Notify {hit.gameObject.name} via {listener.GetType().Name}");
+                listener.OnLandingDetected(impactForce, type);
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, landingNotifyRadius);
+    }
 }

@@ -203,6 +203,7 @@ MonoBehaviour:
   damageAmount: 25
   playerTag: Player
   applyOnce: 0
+  feedbackModulesRaw: []
 --- !u!1 &6849002070273823124
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,13 +383,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alertSpeed: 1
-  chaseSpeed: 3
+  chaseSpeed: 2
   alertDuration: 2
-  chaseDuration: 2
-  chaseRange: 9
+  chaseDuration: 1.5
+  chaseRange: 14
   returnYOffset: 10
   player: {fileID: 0}
-  damager: {fileID: 0}
+  revealLight: {fileID: 2878345422865635465}
+  revealDuration: 1.5
+  fadeSpeed: 2
 --- !u!114 &130884024088766041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,4 +405,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeInDuration: 0.5
+  visibleDuration: 2
   fadeOutDuration: 1.5
+  useWaveIntensity: 1
+  minMultiplier: 0.5
+  maxMultiplier: 2

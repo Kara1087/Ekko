@@ -82,7 +82,6 @@ public class CrystalDoorController : MonoBehaviour
     /// </summary>
     private void UpdateDoorSprite()
     {
-        Debug.Log("[CrystalDoor] 🔄 UpdateDoorSprite() appelée");
         if (spriteRenderer == null || doorStates == null || doorStates.Length == 0) return;
 
         int activeCount = 0;
@@ -95,13 +94,13 @@ public class CrystalDoorController : MonoBehaviour
         int spriteIndex = Mathf.Clamp(activeCount, 0, doorStates.Length - 1);
 
         // Log d'état
-        Debug.Log($"[CrystalDoor] ✨ Cristaux activés : {activeCount}/{crystals.Length} → sprite #{spriteIndex}");
+        //Debug.Log($"[CrystalDoor] ✨ Cristaux activés : {activeCount}/{crystals.Length} → sprite #{spriteIndex}");
 
         // Mise à jour du sprite
         if (spriteRenderer.sprite != doorStates[spriteIndex])
         {
             spriteRenderer.sprite = doorStates[spriteIndex];
-            Debug.Log($"[CrystalDoor] 🖼️ Sprite changé → {doorStates[spriteIndex].name}");
+            //Debug.Log($"[CrystalDoor] 🖼️ Sprite changé → {doorStates[spriteIndex].name}");
         }
     }
 
@@ -147,7 +146,7 @@ public class CrystalDoorController : MonoBehaviour
         }
 
         transform.position = end;
-        Debug.Log("[CrystalDoor] 📉 Porte descendue et ouverte !");
+        //Debug.Log("[CrystalDoor] 📉 Porte descendue et ouverte !");
 }
 
     /// <summary>

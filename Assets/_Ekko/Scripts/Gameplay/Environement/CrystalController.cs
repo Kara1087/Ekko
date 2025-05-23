@@ -31,7 +31,7 @@ public class CrystalController : MonoBehaviour, IActivatableLight
     {
         if (!activateOnTrigger) return;
         if (!other.CompareTag(playerTag)) return;
-
+        
         TryActivate();
     }
 
@@ -46,6 +46,9 @@ public class CrystalController : MonoBehaviour, IActivatableLight
 
         if (lightActivator != null)
             lightActivator.Activate();
+
+        AudioManager.Instance.SetVolume("BackgroundTheme", 0.1f);
+        AudioManager.Instance.PlayOverlayMusic("TreeReveal");
 
         Debug.Log("[CrystalController] ✨ Cristal activé");
         OnCrystalActivated?.Invoke();

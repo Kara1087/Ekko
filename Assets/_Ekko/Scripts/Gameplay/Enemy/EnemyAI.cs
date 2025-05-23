@@ -8,10 +8,15 @@ public class EnemyAI : MonoBehaviour, IAlertable
     public enum EnemyState { Dormant, Alert, Chase, Return }
 
     [Header("Movement")]
+    [Tooltip("Se dirige vers le point d’alerte")]
     [SerializeField] private float alertSpeed = 2f;
+    [Tooltip("Se dirige vers le joueur")]
     [SerializeField] private float chaseSpeed = 3f;
+    [Tooltip("Durée état d’alerte avant de revenir")]
     [SerializeField] private float alertDuration = 2f;
+    [Tooltip("Durée poursouite joueur après détection")]
     [SerializeField] private float chaseDuration = 3f;
+    [Tooltip("Distance max de détection pour passer en mode CHASE")]
     [SerializeField] private float chaseRange = 6f;
     [SerializeField] private float returnYOffset = -2f; // 👈 Y relatif au joueur
 
