@@ -25,7 +25,7 @@ public class LandingAudioCue : MonoBehaviour, ILandingListener
             jumpSystem.UnregisterLandingListener(this);
     }
 
-    public void OnLandingDetected(float force, LandingType type)
+    public void OnLandingDetected(float force, LandingType type, Transform landObject)
     {
         //Debug.Log($"[LandingAudioCue] 📥 Reçu : type={type}, force={force}");
 

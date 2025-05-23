@@ -49,12 +49,12 @@ public class PlayerController : MonoBehaviour
 
 
         // GroundCheck
-        CheckGrounded();
+        Transform landObject = CheckGrounded();
 
         // Transition air → sol = atterrissage
         if (!wasGroundedLastFrame && IsGrounded)
         {
-            jumpSystem.OnLand(previousVerticalVelocity); // 👈 Vélocité pré-impact
+            jumpSystem.OnLand(previousVerticalVelocity,landObject); // 👈 Vélocité pré-impact
         }
         wasGroundedLastFrame = IsGrounded;
     }
@@ -75,9 +75,11 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.flipX = !isFacingRight;
     }
 
-    private void CheckGrounded()
+    private Transform CheckGrounded()
     {
-        IsGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayers);
+        Collider2D collision = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayers);
+        IsGrounded = collision != null;
+        return collision != null ? collision.transform : null;
     }
 
     

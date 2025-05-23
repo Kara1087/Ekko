@@ -35,7 +35,7 @@ public class WaveEmitter : MonoBehaviour, ILandingListener
             jumpSystem.UnregisterLandingListener(this);
     }
 
-    public void OnLandingDetected(float impactForce, LandingType type)
+    public void OnLandingDetected(float impactForce, LandingType type, Transform landObject)
     {
         Debug.Log($"[WaveEmitter] 🔊 Reçu impact {impactForce} depuis JumpSystem");
         EmitWave(impactForce);
