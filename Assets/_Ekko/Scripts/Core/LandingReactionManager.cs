@@ -1,10 +1,15 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public class LandingAudioCue : MonoBehaviour, ILandingListener
+public class LandingReactionManager : MonoBehaviour, ILandingListener
 {
+     [Header("Cushion Settings")]
     [SerializeField] private float cushionMusicFadeTime = 0.5f;
     [SerializeField] private float cushionTargetVolume = 0.1f;
-    [SerializeField] private float slamSoundThreshold = 25f;
+    [Header("Slam Settings")]
+    [SerializeField] private float slamThreshold = 25f;
+    [Header("Events")]
+    public UnityEvent onHeavyLanding;
 
     private float originalMusicVolume = 1f;
     private bool isFading = false;
@@ -30,28 +35,19 @@ public class LandingAudioCue : MonoBehaviour, ILandingListener
     {
         //Debug.Log($"[LandingAudioCue] 📥 Reçu : type={type}, force={force}");
 
-        switch (type)
+        if (LandingUtils.IsHeavyImpact(force, type, slamThreshold))
         {
-            case LandingType.Slam:
-                AudioManager.Instance.Play("SlamJump");
-                break;
+            onHeavyLanding?.Invoke();
+            AudioManager.Instance.Play("SlamJump");
+            //CameraShakeManager.Instance?.Shake(); // si déjà implémenté
+        }
 
-            case LandingType.Cushioned:
-                if (!isFading)
-                {
-                    isFading = true;
-                    originalMusicVolume = AudioManager.Instance.GetCurrentMusicVolume();
-                    AudioManager.Instance.SetVolume("BackgroundTheme", cushionTargetVolume);
-                    Invoke(nameof(RestoreVolume), cushionMusicFadeTime);
-                }
-                break;
-                
-            default:
-            if (force >= slamSoundThreshold)
-            {
-                AudioManager.Instance.Play("SlamJump");
-            }
-            break;
+        if (type == LandingType.Cushioned && !isFading)
+        {
+            isFading = true;
+            originalMusicVolume = AudioManager.Instance.GetCurrentMusicVolume();
+            AudioManager.Instance.SetVolume("BackgroundTheme", cushionTargetVolume);
+            Invoke(nameof(RestoreVolume), cushionMusicFadeTime);
         }
     }
 

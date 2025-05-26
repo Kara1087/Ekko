@@ -125,9 +125,7 @@ public class QuoteManager : MonoBehaviour
         }
 
         // Attend que la durée soit écoulée avant de cacher
-        Debug.Log("[QuoteManager] ⏳ Attente avant fermeture de la citation...");
         yield return new WaitForSecondsRealtime(quoteData.displayDuration);
-        Debug.Log("[QuoteManager] 🔚 Fin du délai, on ferme la citation");
 
         if (quotePanel != null)
             quotePanel.SetActive(false);
