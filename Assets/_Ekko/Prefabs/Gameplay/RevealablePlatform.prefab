@@ -171,6 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cdd5f6bd15c14e0695732f066011a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerCushionOnboarding: 0
+  specificCushionQuote: {fileID: 0}
   impactThreshold: 5
   descendDistance: 1
   descendDuration: 0.4

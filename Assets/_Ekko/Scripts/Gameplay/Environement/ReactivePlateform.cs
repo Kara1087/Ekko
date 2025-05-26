@@ -10,6 +10,9 @@ using Unity.VisualScripting;
 [RequireComponent(typeof(Collider2D))]
 public class ReactivePlatform : MonoBehaviour, ILandingListener
 {
+    [Header("Reactive Platform")]
+    [Tooltip("Active ou désactive le comportement réactif")]
+    [SerializeField] private bool isReactive = true;
     [Header("Onboarding Cushion")]
     [SerializeField] private bool triggerCushionOnboarding = false;
     [Tooltip("Citation onboarding Cushion")]
@@ -59,9 +62,11 @@ public class ReactivePlatform : MonoBehaviour, ILandingListener
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (!isReactive) return;
+
         if (other.CompareTag("Player"))
         {
-            if(other.gameObject.IsDestroyed())
+            if (other.gameObject.IsDestroyed())
                 return;
 
             StopAllCoroutines(); // Arrête toute descente en cours
@@ -84,7 +89,7 @@ public class ReactivePlatform : MonoBehaviour, ILandingListener
                 && transform.gameObject.activeInHierarchy)
             {
                 other.transform.SetParent(null);
-            }   
+            }
 
         }
 
@@ -93,6 +98,8 @@ public class ReactivePlatform : MonoBehaviour, ILandingListener
 
     public void OnLandingDetected(float impactForce, LandingType type, Transform landObject)
     {
+        if (!isReactive) return;
+
         // 🚨 Ne réagit que si le joueur est sur la plateforme
         if (transform != landObject || type == LandingType.Cushioned)
             return;
