@@ -3,7 +3,8 @@ using UnityEngine;
 public class LandingAudioCue : MonoBehaviour, ILandingListener
 {
     [SerializeField] private float cushionMusicFadeTime = 0.5f;
-    [SerializeField] private float cushionTargetVolume = 0.1f;  
+    [SerializeField] private float cushionTargetVolume = 0.1f;
+    [SerializeField] private float slamSoundThreshold = 25f;
 
     private float originalMusicVolume = 1f;
     private bool isFading = false;
@@ -44,6 +45,13 @@ public class LandingAudioCue : MonoBehaviour, ILandingListener
                     Invoke(nameof(RestoreVolume), cushionMusicFadeTime);
                 }
                 break;
+                
+            default:
+            if (force >= slamSoundThreshold)
+            {
+                AudioManager.Instance.Play("SlamJump");
+            }
+            break;
         }
     }
 
