@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
     {
         // Commenter pour phase test
         // Lancer le menu principal si on démarre depuis _Bootstrap
-        /*if (SceneManager.GetActiveScene().name == "_Bootstrap")
+        if (SceneManager.GetActiveScene().name == "_Bootstrap")
         {
             StartCoroutine(TransitionManager.Instance.LoadSceneWithFade("_MainMenu"));
-        }*/
+        }
     }
 
     private void Update()
@@ -76,9 +76,8 @@ public class GameManager : MonoBehaviour
         IsGameOver = true;
         Time.timeScale = 0f;        // Stop le temps et les inputs
 
+        AudioManager.Instance?.FadeOutMusicTheme(2f);
         TransitionManager.Instance?.PlayDeathSequence();
-
-        //AudioManager.Instance?.PlayGameOverTheme();
     }
 
     public void RespawnPlayer()
@@ -101,11 +100,14 @@ public class GameManager : MonoBehaviour
         IsGameOver = false;
 
         // Reset du joueur
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); // Trouve le joueur dynamiquement (au cas où il a été détruit ou désactivé)
         if (player != null)
         {
             // Replace le joueur au checkpoint
             player.transform.position = checkpointPos;
+
+            // Réinitialise EnemeyAI
+            ResetAllEnemies();
 
             // Réinitialise la vie/lumière
             PlayerHealth ph = player.GetComponent<PlayerHealth>();
@@ -119,13 +121,23 @@ public class GameManager : MonoBehaviour
             {
                 rb.linearVelocity = Vector2.zero;
             }
+
+
         }
 
         // UI : Nettoie le GameOver
-        UIManager.Instance?.HideGameOver();
+        //UIManager.Instance?.HideGameOver();
         UIManager.Instance?.ShowQuotePanel(false);
 
         Debug.Log("[GameManager] ✅ Respawn effectué depuis le dernier checkpoint.");
+    }
+
+    public void ResetAllEnemies()
+    {
+        foreach (var enemy in FindObjectsByType<EnemyAI>(FindObjectsSortMode.None))
+        {
+            enemy.ResetToCheckpoint();
+        }
     }
 
 

@@ -41,6 +41,7 @@ public class EnemyAI : MonoBehaviour, IAlertable
     private Vector2 startPosition;
     private Vector2 lastAlertPosition;
     private Vector2 returnPosition;
+    private Vector2 checkpointPosition;
     private EnemyState currentState = EnemyState.Dormant;
     private float stateTimer = 0f;
     private bool hasHitPlayer = false;  // cooldown suite attaque
@@ -52,6 +53,7 @@ public class EnemyAI : MonoBehaviour, IAlertable
     {
         rb = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
+        checkpointPosition = startPosition;
 
         if (revealLight != null)
         {
@@ -94,6 +96,19 @@ public class EnemyAI : MonoBehaviour, IAlertable
     public void NotifyPlayerHit()
     {
         hasHitPlayer = true;
+    }
+
+    public void UpdateCheckpointPosition()
+    {
+        checkpointPosition = transform.position;
+    }
+
+    public void ResetToCheckpoint()
+    {
+        transform.position = checkpointPosition;
+        ChangeState(EnemyState.Dormant);
+        rb.linearVelocity = Vector2.zero;
+        //rb.angularVelocity = 0f;
     }
 
     /// <summary>
@@ -289,6 +304,8 @@ public class EnemyAI : MonoBehaviour, IAlertable
         else
             lightFlasher.StopFlashing();
     }
+
+
 
     private void OnDrawGizmosSelected()
     {

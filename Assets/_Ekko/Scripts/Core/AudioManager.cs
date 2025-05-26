@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 /// <summary>
 /// AudioManager gère la lecture de musiques, SFX et overlays. Singleton persistant entre les scènes.
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
+    private Coroutine fadeOutRoutine;
 
     [System.Serializable]
     public class Sound
@@ -161,5 +163,33 @@ public class AudioManager : MonoBehaviour
         {
             musicOverlaySource.Stop();
         }
+    }
+
+    public void FadeOutMusicTheme(float duration)
+    {
+        if (fadeOutRoutine != null)
+            StopCoroutine(fadeOutRoutine);
+
+        fadeOutRoutine = StartCoroutine(FadeOutMusicRoutine(duration));
+    }
+
+    private IEnumerator FadeOutMusicRoutine(float duration)
+    {
+        if (musicThemeSource == null || !musicThemeSource.isPlaying)
+            yield break;
+
+        float startVolume = musicThemeSource.volume;
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            timer += Time.unscaledDeltaTime;
+            float t = timer / duration;
+            musicThemeSource.volume = Mathf.Lerp(startVolume, 0f, t);
+            yield return null;
+        }
+
+        musicThemeSource.Stop();
+        musicThemeSource.volume = startVolume; // on remet le volume initial pour les prochains morceaux
     }
 }

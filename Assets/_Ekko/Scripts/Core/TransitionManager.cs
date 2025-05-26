@@ -69,6 +69,10 @@ public class TransitionManager : MonoBehaviour
 
         // 🔆 4. Fade in
         yield return ui.StartFadeInRoutine();
+
+        // ✅ 5. Rejoue la musique de fond
+        AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
+
         isRunning = false;
     }
 
@@ -87,7 +91,10 @@ public class TransitionManager : MonoBehaviour
         // 🔲 1. Fondu vers noir
         yield return ui.StartBlackoutRoutine();
 
-        // 📝 2. Citation d’intro (si disponible)
+        // ✅ 2. Joue la musique de fond
+        AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
+
+        // 📝 3. Citation d’intro (si disponible)
         if (quote != null)
         {
             bool done = false;
@@ -99,11 +106,11 @@ public class TransitionManager : MonoBehaviour
             Debug.LogWarning("[TransitionManager] ⚠️ QuoteManager manquant pour l’intro");
         }
 
-        // 🔲 3. Avant le chargement de la scène, cacher le menu principal s’il est présent
+        // 🔲 4. Avant le chargement de la scène, cacher le menu principal s’il est présent
         var mainMenu = FindAnyObjectByType<UIMainMenu>();
         if (mainMenu != null) mainMenu.Hide();
 
-        // 🚪 4. Chargement de la scène
+        // 🚪 5. Chargement de la scène
         yield return LoadSceneWithFade("Level_1");
 
         isRunning = false;
