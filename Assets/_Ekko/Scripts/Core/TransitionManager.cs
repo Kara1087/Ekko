@@ -40,7 +40,11 @@ public class TransitionManager : MonoBehaviour
     /// </summary>
     public void PlayDeathSequence()
     {
-        if (isRunning) return;
+        if (isRunning)
+        {
+            Debug.LogWarning("[TransitionManager] ⚠ DeathSequence déjà en cours !");
+            return;
+        }
 
         StartCoroutine(DeathSequence());
     }
@@ -49,14 +53,26 @@ public class TransitionManager : MonoBehaviour
     {
         isRunning = true;
 
-        // 🔲 1. Fondu vers noir
+        // 1. Fondu vers noir
         yield return ui.StartBlackoutRoutine();
 
-        // 📝 2. Citation (si disponible)
+        // 2. Citation (si disponible)
         if (quote != null)
         {
             bool done = false;
-            quote.ShowRandomQuote(QuoteType.Death, () => done = true);
+            if (game.HasOverrideDeathQuote())
+            {
+                // Si Cushion Onboarding, on affiche une citation spécifique
+                var cushionQuote = game.GetOverrideDeathQuote();
+                cushionQuote.forceBackground = true;
+                quote.ShowSpecificQuote(game.GetOverrideDeathQuote(), () => done = true);
+                game.ClearOverrideDeathQuote(); // pour éviter que ça reste activé
+            }
+            else
+            {
+                // Sinon, on affiche une citation aléatoire de type Death
+                quote.ShowRandomQuote(QuoteType.Death, () => done = true);
+            }
             yield return new WaitUntil(() => done);
         }
         else
@@ -64,13 +80,13 @@ public class TransitionManager : MonoBehaviour
             Debug.LogWarning("[TransitionManager] ❌ QuoteManager manquant, saut de citation");
         }
 
-        // 🔁 3. Respawn
+        // 3. Respawn
         game.RespawnPlayer();
 
-        // 🔆 4. Fade in
+        // 4. Fade in
         yield return ui.StartFadeInRoutine();
 
-        // ✅ 5. Rejoue la musique de fond
+        // 5. Rejoue la musique de fond
         AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
 
         isRunning = false;
@@ -88,13 +104,13 @@ public class TransitionManager : MonoBehaviour
 
     private IEnumerator IntroSequence()
     {
-        // 🔲 1. Fondu vers noir
+        // 1. Fondu vers noir
         yield return ui.StartBlackoutRoutine();
 
-        // ✅ 2. Joue la musique de fond
+        // 2. Joue la musique de fond
         AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
 
-        // 📝 3. Citation d’intro (si disponible)
+        // 3. Citation d’intro (si disponible)
         if (quote != null)
         {
             bool done = false;
@@ -106,11 +122,11 @@ public class TransitionManager : MonoBehaviour
             Debug.LogWarning("[TransitionManager] ⚠️ QuoteManager manquant pour l’intro");
         }
 
-        // 🔲 4. Avant le chargement de la scène, cacher le menu principal s’il est présent
+        // 4. Avant le chargement de la scène, cacher le menu principal s’il est présent
         var mainMenu = FindAnyObjectByType<UIMainMenu>();
         if (mainMenu != null) mainMenu.Hide();
 
-        // 🚪 5. Chargement de la scène
+        // 5. Chargement de la scène
         yield return LoadSceneWithFade("Level_1");
 
         isRunning = false;

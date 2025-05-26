@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007353c963a384c158400ee67462af62, type: 3}
   m_Name: Cushion_1
   m_EditorClassIdentifier: 
-  quoteText: "Parfois, il faut effleurer le sol pour ne pas troubler l\u2019ombre."
+  quoteText: "Ma\xEEtrise la chute, et elle t\u2019ouvrira un chemin"
   displayDuration: 3
   type: 2
   tag: 2

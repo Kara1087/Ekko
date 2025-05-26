@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool IsPaused { get; private set; } = false;
     public bool IsGameOver { get; private set; } = false;
 
+    private QuoteData cushionOverrideDeathQuote = null;
     private QuoteManager quoteManager;
     private BlackoutEffect blackoutEffect;
 
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // Commenter pour phase test
+        // 👉👉👉  Commenter pour phase test
         // Lancer le menu principal si on démarre depuis _Bootstrap
         if (SceneManager.GetActiveScene().name == "_Bootstrap")
         {
@@ -66,6 +67,26 @@ public class GameManager : MonoBehaviour
             AudioManager.Instance?.PlayPauseTheme();
         else
             AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
+    }
+
+    public void MarkNextDeathAsCushionOnboarding(QuoteData quote)
+    {
+        cushionOverrideDeathQuote = quote;
+    }
+
+    public bool HasOverrideDeathQuote()
+    {
+        return cushionOverrideDeathQuote != null;
+    }
+
+    public QuoteData GetOverrideDeathQuote()
+    {
+        return cushionOverrideDeathQuote;
+    }
+
+    public void ClearOverrideDeathQuote()
+    {
+        cushionOverrideDeathQuote = null;
     }
 
     public void HandlePlayerDeath()
@@ -101,6 +122,13 @@ public class GameManager : MonoBehaviour
 
         // Reset du joueur
         GameObject player = GameObject.FindGameObjectWithTag("Player"); // Trouve le joueur dynamiquement (au cas où il a été détruit ou désactivé)
+        // Sécurité : on détache le joueur de toute plateforme potentielle
+        if (player.transform.parent != null)
+        {
+            Debug.LogWarning("[GameManager] 🔧 Reset parent du joueur lors du respawn");
+            player.transform.SetParent(null);
+        }
+
         if (player != null)
         {
             // Replace le joueur au checkpoint

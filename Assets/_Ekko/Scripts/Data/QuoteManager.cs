@@ -115,20 +115,25 @@ public class QuoteManager : MonoBehaviour
             // Active ou désactive le fond noir selon le type
             if (imageBackground != null)
             {
-                bool showBackground = quoteData.type == QuoteType.Intro
+                bool showBackground = quoteData.forceBackground
+                                    || quoteData.type == QuoteType.Intro
                                     || quoteData.type == QuoteType.Death
                                     || quoteData.type == QuoteType.Victory;
-
                 imageBackground.SetActive(showBackground);
             }
 
         }
 
         // Attend que la durée soit écoulée avant de cacher
+        Debug.Log("[QuoteManager] ⏳ Attente avant fermeture de la citation...");
         yield return new WaitForSecondsRealtime(quoteData.displayDuration);
+        Debug.Log("[QuoteManager] 🔚 Fin du délai, on ferme la citation");
 
         if (quotePanel != null)
             quotePanel.SetActive(false);
+
+        foreach (Transform child in quotePanel.transform)
+            child.gameObject.SetActive(false);
 
         // Exécute l'action à la fin (utile pour les transitions)
         onComplete?.Invoke();
