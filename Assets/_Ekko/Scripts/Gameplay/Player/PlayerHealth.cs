@@ -6,7 +6,8 @@ using UnityEngine.Events;
 /// Appelle des événements quand la lumière change, devient faible ou tombe à zéro.
 /// </summary>
 public class PlayerHealth : MonoBehaviour
-{
+{   
+    
     [Header("Lumière/Vie")]
     [SerializeField] private float maxLight = 100f;
     [SerializeField] private float currentLight;
@@ -19,6 +20,10 @@ public class PlayerHealth : MonoBehaviour
     public UnityEvent onLowLight;               // Appelé quand la lumière passe sous le seuil critique
     public UnityEvent onDeath;
 
+    [Header("References")]
+    [SerializeField] private PlayerVFX playerVFX;
+    [SerializeField] private PlayerLight playerLight;
+    
     private bool hasTriggeredFirstSpectreQuote = false;                  
 
     // --- GETTERS PUBLICS ---
@@ -51,7 +56,7 @@ public class PlayerHealth : MonoBehaviour
         if (IsDead)
             return;
 
-        // Réduction de lumière
+        // Réduction de lumière : Diminue currentLight
         currentLight -= amount;
         currentLight = Mathf.Clamp(currentLight, 0f, maxLight);     // Évite d’aller en négatif
 
@@ -68,6 +73,10 @@ public class PlayerHealth : MonoBehaviour
         }
 
         onLightChanged?.Invoke();   // Notifie tout système écoutant ce changement (UI, shader, etc.)
+
+        // Feedback visuel
+        playerLight?.FlashAbsorptionEffect(); // Effet visuel de flash/lumière aspirée
+        playerVFX?.TriggerDamageFeedback(); // Particules aspirées/burst visuel
 
         if (IsLow) onLowLight?.Invoke();
         if (IsDead)

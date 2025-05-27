@@ -18,6 +18,7 @@ public class PlayerVFX : MonoBehaviour
     private GameObject lightTrailInstance;
     private ParticleSystem targetParticleSystem;
     private ParticleSystem.Particle[] particles;
+    //[SerializeField] private ParticleSystem damageBurst;
 
     void Start()
     {
@@ -38,7 +39,7 @@ public class PlayerVFX : MonoBehaviour
     }
 
     void LateUpdate()
-    {   
+    {
         // Si pas de particules ou pas d’ennemi attracteur => rien à faire
         if (targetParticleSystem == null || attractor == null) return;
 
@@ -87,5 +88,13 @@ public class PlayerVFX : MonoBehaviour
     {
         attractor = null;
     }
+    
+    public void TriggerDamageFeedback()
+{
+    if (targetParticleSystem != null)
+    {
+        targetParticleSystem.Emit(10); // ou Play() si c’est une burst loop inactive par défaut
+    }
+}
 
 }

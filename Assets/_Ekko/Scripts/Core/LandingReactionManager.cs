@@ -1,13 +1,20 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Unity.Cinemachine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class LandingReactionManager : MonoBehaviour, ILandingListener
 {
-     [Header("Cushion Settings")]
+    [Header("Cushion Settings")]
     [SerializeField] private float cushionMusicFadeTime = 0.5f;
     [SerializeField] private float cushionTargetVolume = 0.1f;
     [Header("Slam Settings")]
     [SerializeField] private float slamThreshold = 25f;
+    //[SerializeField] private CinemachineImpulseSource impulseSource;
+
+    //[SerializeField] private Volume globalVolume;
+    //[SerializeField] private float motionBlurDuration = 0.25f;
     [Header("Events")]
     public UnityEvent onHeavyLanding;
 
@@ -30,6 +37,7 @@ public class LandingReactionManager : MonoBehaviour, ILandingListener
         if (jumpSystem != null)
             jumpSystem.UnregisterLandingListener(this);
     }
+
 
     public void OnLandingDetected(float force, LandingType type, Transform landObject)
     {
@@ -57,4 +65,27 @@ public class LandingReactionManager : MonoBehaviour, ILandingListener
         isFading = false;
     }
     
+    /*public void TriggerCameraShake()
+    {
+        if (impulseSource != null)
+        impulseSource.GenerateImpulse();
+        else
+            Debug.LogWarning("[LandingReactionManager] 🎥 impulseSource non assigné !");
+    }
+
+    public void TriggerMotionBlur()
+    {
+        if (globalVolume.profile.TryGet<MotionBlur>(out var motionBlur))
+        {
+            motionBlur.active = true;
+            motionBlur.intensity.Override(1f); // valeur forte (0.7 à 1)
+            Invoke(nameof(DisableMotionBlur), motionBlurDuration);
+        }
+    }
+
+    private void DisableMotionBlur()
+    {
+        if (globalVolume.profile.TryGet<MotionBlur>(out var motionBlur))
+            motionBlur.active = false;
+    }*/
 }

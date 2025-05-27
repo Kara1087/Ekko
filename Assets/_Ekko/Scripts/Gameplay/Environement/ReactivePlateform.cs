@@ -80,7 +80,7 @@ public class ReactivePlatform : MonoBehaviour, ILandingListener
                 StartCoroutine(Ascend());
             }
 
-            Debug.Log($"[ReactivePlatform] ❌ Player est sorti de la plateforme");
+            //Debug.Log($"[ReactivePlatform] ❌ Player est sorti de la plateforme");
 
             // 🧒 libération sécurisée : eviter bug respwawn player au mm moment ou la plateform essaye de remettre null comme parent
             if (isActiveAndEnabled

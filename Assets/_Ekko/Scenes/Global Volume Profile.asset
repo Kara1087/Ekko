@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Global Volume (1) Profile
+  m_Name: Global Volume Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 219778997067746994}
---- !u!114 &219778997067746994
+  - {fileID: 3023091808913926844}
+--- !u!114 &3023091808913926844
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,42 +27,37 @@ MonoBehaviour:
   m_Name: Bloom
   m_EditorClassIdentifier: 
   active: 1
-  m_AdvancedMode: 0
+  skipIterations:
+    m_OverrideState: 0
+    m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.57
-    min: 0
+    m_Value: 0.9
   intensity:
     m_OverrideState: 1
-    m_Value: 1
-    min: 0
+    m_Value: 0.9
   scatter:
-    m_OverrideState: 1
-    m_Value: 0.25
-    min: 0
-    max: 1
+    m_OverrideState: 0
+    m_Value: 0.7
   clamp:
-    m_OverrideState: 1
-    m_Value: 100
-    min: 0
+    m_OverrideState: 0
+    m_Value: 65472
   tint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0, b: 0.7717538, a: 1}
-    hdr: 0
-    showAlpha: 0
-    showEyeDropper: 1
+    m_Value: {r: 0.8443396, g: 1, b: 0.98524576, a: 1}
   highQualityFiltering:
-    m_OverrideState: 1
-    m_Value: 1
-  skipIterations:
-    m_OverrideState: 1
-    m_Value: 1
-    min: 0
-    max: 16
+    m_OverrideState: 0
+    m_Value: 0
+  downscale:
+    m_OverrideState: 0
+    m_Value: 0
+  maxIterations:
+    m_OverrideState: 0
+    m_Value: 6
   dirtTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
+    dimension: 1
   dirtIntensity:
     m_OverrideState: 0
-    m_Value: 1
-    min: 0
+    m_Value: 0

@@ -606,6 +606,7 @@ MonoBehaviour:
   coyoteTime: 0.1
   jumpBufferTime: 0.15
   controlledFallWindow: 0.2
+  cushionTimingWindow: 0.2
   slamFallAcceleration: 2
   cushionFallDamping: 0.3
   slamWaveMultiplier: 1.5
@@ -649,6 +650,8 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+  playerVFX: {fileID: 2423670080596529113}
+  playerLight: {fileID: 441468540923850232}
 --- !u!114 &441468540923850232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,3 +740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cushionMusicFadeTime: 0.5
   cushionTargetVolume: 0.1
+  slamThreshold: 25
+  onHeavyLanding:
+    m_PersistentCalls:
+      m_Calls: []
