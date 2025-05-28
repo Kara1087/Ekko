@@ -9,6 +9,7 @@ public class Wave : MonoBehaviour
     [SerializeField] private float maxExpansionSpeed = 6f;        // Vitesse d'expansion maximale (rarement utilisée directement ici)
     [SerializeField] private float baseFadeSpeed = 0.5f;          // Vitesse de disparition de l'onde (plus élevé = plus rapide)
     [SerializeField] private float fadeSpeedMultiplier = 0.05f;   // Modifie la fadeSpeed selon la force d’impact
+    private float spawnTime;
 
     [Header("Light Settings")]
     [SerializeField] private float lightIntensityFactor = 0.2f;   // Intensité maximale de la lumière
@@ -55,6 +56,8 @@ public class Wave : MonoBehaviour
     /// </summary>
     public void Initialize(float impactForce, float assignedTargetRadius, float minForce = 1f, float maxForce = 20f)
     {
+        spawnTime = Time.time;
+
         // 1. Rayon cible final
         targetRadius = assignedTargetRadius;
 
@@ -107,6 +110,12 @@ public class Wave : MonoBehaviour
         if (debugMode)
         {
             Debug.Log($"🌐 [Wave] Initialize | Force: {impactForce:F2}, TargetRadius: {targetRadius:F2}, FadeSpeed: {fadeSpeed:F2}, ExpansionSpeed: {expansionSpeed:F2}");
+        }
+
+        // 10. Déclenche l'effet shader en donnant l'heure de naissance
+        if (sr != null && sr.material != null)
+        {
+            sr.material.SetFloat("_WaveTime", Time.time);
         }
     }
 
@@ -169,6 +178,10 @@ public class Wave : MonoBehaviour
         if (!isFadingOut && alpha <= 0f)
         {
             isFadingOut = true;
+
+            float lifetime = Time.time - spawnTime;
+            Debug.Log($"[Wave] 💨 Durée de vie totale : {lifetime:F2} sec");
+
             StartCoroutine(DestroyAfterDelay(destroyDelay));
         }
     }

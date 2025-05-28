@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Shockwave
-  m_Shader: {fileID: -6465566751694194690, guid: 38e41f307a6914f618d17463845c2a76, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 1a38e5d394bdb49f1a624ffb83788fe5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -42,11 +42,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Magnification: -0.16
+    - _Magnification: -0.2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Size: 0.05
-    - _Speed: 1.06
+    - _Size: 0.1
+    - _Speed: 0.4
+    - _WaveTime: 8
     m_Colors:
     - _FocalPoint: {r: 0.5, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
