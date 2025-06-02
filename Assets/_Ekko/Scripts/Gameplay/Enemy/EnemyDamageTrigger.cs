@@ -1,10 +1,15 @@
 using UnityEngine;
 
+/// <summary>
+/// Déclenche des dégâts au joueur lorsqu’il entre en collision avec ce trigger ennemi.
+/// Utilise un cooldown global pour limiter la fréquence des dégâts.
+/// </summary>
+
 public class EnemyDamageTrigger : MonoBehaviour
 {
     [SerializeField] private float damageAmount = 10f;
     [SerializeField] private float damageCooldown = 1f;
-    private float lastDamageTime;
+    private float lastDamageTime = -999f; // initialisé loin dans le passé
     private EnemyAI enemyAI; // Référence pour déclencher retour
 
     private void Awake()
@@ -13,24 +18,23 @@ public class EnemyDamageTrigger : MonoBehaviour
         if (enemyAI == null)
             Debug.LogWarning("[EnemyDamageTrigger] ❌ Aucun EnemyAI trouvé dans les parents !");
     }
-    
-    private void OnTriggerStay2D(Collider2D other)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!other.CompareTag("Player")) return;
+
         if (Time.time < lastDamageTime + damageCooldown) return;
 
-        if (other.CompareTag("Player")) // ← évite d’appliquer sur tout
+        PlayerHealth player = other.GetComponent<PlayerHealth>();
+        if (player != null)
         {
-            PlayerHealth player = other.GetComponent<PlayerHealth>();
-            if (player != null)
-            {
-                player.TakeDamage(damageAmount, enemyAI?.gameObject);
-                lastDamageTime = Time.time;
+            player.TakeDamage(damageAmount, enemyAI?.gameObject);
+            lastDamageTime = Time.time;
 
-                // 🆕 Informer l'ennemi qu’un coup a été porté
-                if (enemyAI != null)
-                {
-                    enemyAI.NotifyPlayerHit();
-                }
+            // Informer l'ennemi qu’un coup a été porté
+            if (enemyAI != null)
+            {
+                enemyAI.NotifyPlayerHit();
             }
         }
     }

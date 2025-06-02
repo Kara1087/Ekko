@@ -9,18 +9,21 @@ using UnityEngine;
 
 public class PlayerVFX : MonoBehaviour
 {
-    [SerializeField] private GameObject lightTrailPrefab;   // Prefab de la traînée lumineuse (particules)
-    [SerializeField] private Transform attractor;           // 👉 l'ennemi qui attire (assigné dynamiquement)
-    [SerializeField] private float attractRadius = 3f;      // Rayon d’attraction autour de l’ennemi
-    [SerializeField] private float attractStrength = 3f;    // Force d’attraction exercée sur les particules
+    [Header("Light Trail")]
+    [SerializeField] private GameObject lightTrailPrefab;       // Prefab de la traînée lumineuse (particules)
+    [Header("Attraction")]
+    [SerializeField] private float scanRadius = 10f;             // Rayon de détection des ennemis
+    [SerializeField] private float attractRadius = 3f;          // Rayon d’attraction autour de l’ennemi
+    [SerializeField] private float attractStrength = 3f;        // Force d’attraction exercée sur les particules
+    [SerializeField] private LayerMask enemyLayerMask;           // Masque pour détecter les ennemis (tag layer "Enemy")
 
     // Références internes    
     private GameObject lightTrailInstance;
     private ParticleSystem targetParticleSystem;
     private ParticleSystem.Particle[] particles;
-    //[SerializeField] private ParticleSystem damageBurst;
+    private readonly Collider2D[] enemyBuffer = new Collider2D[10]; // Buffer pour éviter d’allouer
 
-    void Start()
+    private void Start()
     {
         // Instancie le système de particules de traînée lumineuse au démarrage
         if (lightTrailPrefab != null)
@@ -40,8 +43,20 @@ public class PlayerVFX : MonoBehaviour
 
     void LateUpdate()
     {
-        // Si pas de particules ou pas d’ennemi attracteur => rien à faire
-        if (targetParticleSystem == null || attractor == null) return;
+        if (targetParticleSystem == null) return;
+
+        // --- SCAN DES ENNEMIS ---
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(enemyLayerMask);
+        filter.useTriggers = true;
+
+        // On rempli un  tableau temporaire avec les ennemis détectés
+        int enemyCount = Physics2D.OverlapCircle(
+            transform.position,
+            scanRadius,
+            filter,
+            enemyBuffer
+        );
 
         // Nombre actuel de particules à manipuler
         int count = targetParticleSystem.particleCount;
@@ -53,19 +68,23 @@ public class PlayerVFX : MonoBehaviour
         // Copie les particules du système dans notre tableau
         targetParticleSystem.GetParticles(particles, count);
 
-        Vector3 attractorPos = attractor.position;
-
         // Pour chaque particule, vérifie si elle est dans le rayon d’attraction
         for (int i = 0; i < count; i++)
         {
-            float dist = Vector3.Distance(particles[i].position, attractorPos);
-            if (dist < attractRadius)
-            {
-                // Calcule la direction vers l’attracteur
-                Vector3 dir = (attractorPos - particles[i].position).normalized;
+            Vector3 particlePos = particles[i].position;
 
-                // Applique une force d’attraction (modifie la vélocité)
-                particles[i].velocity += dir * attractStrength * Time.deltaTime;
+            // Pour chaque ennemi détecté
+            for (int j = 0; j < enemyCount; j++)
+            {
+                Transform enemy = enemyBuffer[j].transform;
+                Vector3 enemyPos = enemy.position;
+
+                float dist = Vector3.Distance(particlePos, enemyPos);
+                if (dist < attractRadius)
+                {
+                    Vector3 dir = (enemyPos - particlePos).normalized;
+                    particles[i].velocity += dir * attractStrength * Time.deltaTime;
+                }
             }
         }
 
@@ -73,28 +92,33 @@ public class PlayerVFX : MonoBehaviour
         targetParticleSystem.SetParticles(particles, count);
     }
 
-    /// <summary>
-    /// Définit un ennemi comme nouvel attracteur de particules
-    /// </summary>
-    public void SetAttractor(Transform enemyTransform)
+    public void TriggerDamageFeedback()
     {
-        attractor = enemyTransform;
-    }
-
-    /// <summary>
-    /// Supprime l’attracteur, les particules ne sont plus attirées
-    /// </summary>
-    public void ClearAttractor()
-    {
-        attractor = null;
+        if (targetParticleSystem != null)
+        {
+            targetParticleSystem.Emit(10); // ou Play() si c’est une burst loop inactive par défaut
+        }
     }
     
-    public void TriggerDamageFeedback()
-{
-    if (targetParticleSystem != null)
+    private void OnDrawGizmosSelected()
     {
-        targetParticleSystem.Emit(10); // ou Play() si c’est une burst loop inactive par défaut
+        // Couleur pour le scanRadius
+        Gizmos.color = new Color(0f, 1f, 1f, 0.4f); // Cyan transparent
+        Gizmos.DrawWireSphere(transform.position, scanRadius);
+
+        // Couleur pour l'attractRadius
+        Gizmos.color = new Color(1f, 0.5f, 0f, 0.4f); // Orange transparent
+
+    #if UNITY_EDITOR
+        if (Application.isPlaying && enemyBuffer != null)
+        {
+            foreach (var enemy in enemyBuffer)
+            {
+                if (enemy != null)
+                    Gizmos.DrawWireSphere(enemy.transform.position, attractRadius);
+            }
+        }
+    #endif
     }
-}
 
 }

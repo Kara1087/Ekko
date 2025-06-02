@@ -181,7 +181,7 @@ MonoBehaviour:
   alertableLayers:
     serializedVersion: 2
     m_Bits: 1024
-  debugMode: 1
+  debugMode: 0
 --- !u!1 &8638112210858404177
 GameObject:
   m_ObjectHideFlags: 0

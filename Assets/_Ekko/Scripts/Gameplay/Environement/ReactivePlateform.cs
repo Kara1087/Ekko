@@ -107,7 +107,7 @@ public class ReactivePlatform : MonoBehaviour, ILandingListener
         StopAllCoroutines(); // Arrête toute descente en cours
         playerOnPlatform = jumpSystem.transform;
         
-        Debug.Log($"[SensitivePlatform] Impact reçu : {impactForce:F2} | Type : {type}");
+        //Debug.Log($"[SensitivePlatform] Impact reçu : {impactForce:F2} | Type : {type}");
         if (impactForce >= impactThreshold)
         {
             // 👇 Ajout : déclenche l’onboarding Cushion si activé

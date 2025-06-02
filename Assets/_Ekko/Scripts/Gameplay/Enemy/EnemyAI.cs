@@ -24,11 +24,7 @@ public class EnemyAI : MonoBehaviour, IAlertable
     [SerializeField] private float chaseDuration = 3f;
     [Tooltip("Rayon de détection du joueur")]
     [SerializeField] private float chaseRange = 6f;
-    [Tooltip("Décalage vertical appliqué à la position de retour")]
-    [SerializeField] private float returnYOffset = -2f; // 👈 Y relatif au joueur
 
-    [Header("Gameplay")]
-    [SerializeField] private Transform player;
 
     [Header("Reveal")]
     [Tooltip("Lumière utilisée lors de la révélation de l’ennemi")]
@@ -39,14 +35,13 @@ public class EnemyAI : MonoBehaviour, IAlertable
     private Coroutine revealRoutine;
     private Rigidbody2D rb;
     private Vector2 startPosition;
-    private Vector2 lastAlertPosition;
-    private Vector2 returnPosition;
+    private Vector2 lastAlertPosition;  // Dernière position de onde
     private Vector2 checkpointPosition;
     private EnemyState currentState = EnemyState.Dormant;
     private float stateTimer = 0f;
-    private bool hasHitPlayer = false;  // cooldown suite attaque
-
+    private bool hasHitPlayer = false;  // Indique si le joueur a été touché récemment, arrêt poursuite
     private LightFlasher lightFlasher;  // Gère l'effet visuel de flash clignotant
+    private Transform player;
     private PlayerVFX playerVFX;        // Gère les effets visuels du joueur (ex : particules attirées)
 
     private void Awake()
@@ -55,15 +50,26 @@ public class EnemyAI : MonoBehaviour, IAlertable
         startPosition = transform.position;
         checkpointPosition = startPosition;
 
+        // Désactive la lumière de révélation au départ
         if (revealLight != null)
-        {
             revealLight.enabled = false;
-        }
 
         lightFlasher = GetComponentInChildren<LightFlasher>();
-        
-        if (player != null)
+    }
+    
+    private void Start()
+    {    
+        // Cherche automatiquement le joueur dans la scène
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
             playerVFX = player.GetComponentInChildren<PlayerVFX>();
+        }
+        else
+        {
+            Debug.LogWarning("[EnemyAI] ❌ Aucun objet avec le tag 'Player' trouvé !");
+        }
     }
 
     private void Update()
@@ -82,28 +88,27 @@ public class EnemyAI : MonoBehaviour, IAlertable
                 UpdateChase();
                 break;
 
-            case EnemyState.Return:
-                UpdateReturn();
-                break;
+                //case EnemyState.Return:
+                //    UpdateReturn();
+                //    break;
         }
-
+        // Gère l'effet visuel si le joueur est proche
         HandleAbsorptionFlash();
     }
 
-    /// <summary>
-    /// Méthode appelée lorsque le joueur est touché (via EnemyDamageTrigger).
-    /// </summary>
-    public void NotifyPlayerHit()
+    
+    public void NotifyPlayerHit()           // Appelé quand le joueur est touché
     {
         hasHitPlayer = true;
     }
 
-    public void UpdateCheckpointPosition()
+    public void UpdateCheckpointPosition()  // Met à jour un point de retour personnalisé (checkpoint)
     {
         checkpointPosition = transform.position;
     }
 
-    public void ResetToCheckpoint()
+    
+    public void ResetToCheckpoint()         // Remet l’ennemi à son checkpoint
     {
         transform.position = checkpointPosition;
         ChangeState(EnemyState.Dormant);
@@ -117,23 +122,23 @@ public class EnemyAI : MonoBehaviour, IAlertable
     private void UpdateAlert()
     {
         stateTimer -= Time.deltaTime;
+        //Debug.Log($"[Alert] ⏳ Temps restant : {stateTimer:F2}");
+
         MoveTowards(lastAlertPosition, alertSpeed);
 
+        // Détection joueur pendant l'état alerte
         if (player != null && Vector2.Distance(transform.position, player.position) <= chaseRange)
-        {
+        {   
+            Debug.Log("[Alert] 👀 Joueur détecté → passage en Chase");
             ChangeState(EnemyState.Chase);
             return;
         }
 
+        // Fin du timer : retour à la position du joueur
         if (stateTimer <= 0f)
         {
-            if (player != null)
-            {
-                float targetY = player.position.y + returnYOffset;
-                returnPosition = new Vector2(transform.position.x, targetY);
-                Debug.Log($"[EnemyAI] 🔁 Retour configuré vers Y={targetY:F2} (playerY={player.position.y:F2} + offset={returnYOffset})");
-            }
-            ChangeState(EnemyState.Return);
+            Debug.Log("[Alert] 🔚 Timer écoulé → retour à Dormant");
+            ChangeState(EnemyState.Dormant);
         }
     }
 
@@ -143,60 +148,54 @@ public class EnemyAI : MonoBehaviour, IAlertable
     private void UpdateChase()
     {
         if (player == null)
-        {
+        {   
+            Debug.LogWarning("[Chase] ❌ Joueur manquant → passage à Dormant");
             ChangeState(EnemyState.Dormant);
             return;
         }
 
-        // 🆕 Si le joueur a été touché, retour immédiat
+        MoveTowards(player.position, chaseSpeed);
+
+        // Si le joueur a été touché, on arrête la poursuite
         if (hasHitPlayer)
         {
-            if (player != null)
-            {
-                float targetY = player.position.y + returnYOffset;
-                returnPosition = new Vector2(transform.position.x, targetY);
-            }
-            ChangeState(EnemyState.Return);
+            Debug.Log("[Chase] 💥 Joueur touché → arrêt de la poursuite");
+            ChangeState(EnemyState.Dormant);
             hasHitPlayer = false;
             return;
         }
 
-        stateTimer -= Time.deltaTime;
-        MoveTowards(player.position, chaseSpeed);
+        stateTimer -= Time.deltaTime;       // Timer de poursuite dimine chaque frame
+        //Debug.Log($"[Chase] ⏳ Temps de poursuite restant : {stateTimer:F2}"); 
 
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        if (distanceToPlayer <= chaseRange)
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position); 
+        if (Vector2.Distance(transform.position, player.position) <= chaseRange)
         {
+            Debug.Log($"[Chase] ⏳ Temps de poursuite restant : {stateTimer:F2}");
             stateTimer = chaseDuration;
         }
 
         if (stateTimer <= 0f)
         {
-            if (player != null)
-            {
-                float targetY = player.position.y + returnYOffset;
-                returnPosition = new Vector2(transform.position.x, targetY);
-            }
-            ChangeState(EnemyState.Return); // 🔁 passage par retour avant dormant
+            Debug.Log("[Chase] 💤 Fin de poursuite → passage à Dormant");
+            ChangeState(EnemyState.Dormant);
         }
     }
 
     /// <summary>
     /// Comportement de retour à une position après alerte ou poursuite.
     /// </summary>
-    private void UpdateReturn()
+    /*private void UpdateReturn()
     {
         MoveTowards(returnPosition, alertSpeed);
 
+        // Une fois revenu, retour à l’état dormant
         if (Vector2.Distance(transform.position, returnPosition) < 0.05f)
         {
             ChangeState(EnemyState.Dormant);
         }
-    }
+    }*/
 
-    /// <summary>
-    /// Déplace l’ennemi vers une cible donnée à une certaine vitesse.
-    /// </summary>
     private void MoveTowards(Vector2 target, float speed)
     {
         Vector2 dir = (target - (Vector2)transform.position).normalized;
@@ -204,7 +203,7 @@ public class EnemyAI : MonoBehaviour, IAlertable
     }
 
     /// <summary>
-    /// Change l’état de l’ennemi et met à jour les timers associés.
+    /// Change l’état et gère visuals & timers
     /// </summary>
     private void ChangeState(EnemyState newState)
     {
@@ -214,53 +213,54 @@ public class EnemyAI : MonoBehaviour, IAlertable
         {
             case EnemyState.Alert:
                 stateTimer = alertDuration;
-                //Debug.Log("[EnemyAI] ⚠️ État ALERT déclenché");
                 break;
 
             case EnemyState.Chase:
                 stateTimer = chaseDuration;
-                //Debug.Log("[EnemyAI] 🔥 État CHASE déclenché");
 
-                // 🆕 Activation de l’attraction visuelle dans PlayerVFX
-                if (playerVFX != null)
-                    playerVFX.SetAttractor(transform);
+                // Activation de l’attraction visuelle dans PlayerVFX
+                //if (playerVFX != null)
+                //    playerVFX.SetAttractor(transform);
                 break;
 
             case EnemyState.Dormant:
                 rb.linearVelocity = Vector2.zero;
-                //Debug.Log("[EnemyAI] 😴 Retour à l’état DORMANT");
 
-                // 🆕 Désactivation de l’attraction
-                if (playerVFX != null)
-                    playerVFX.ClearAttractor();
+                // Désactivation de l’attraction
+                //if (playerVFX != null)
+                //    playerVFX.ClearAttractor();
                 break;
 
-            case EnemyState.Return:
-                //Debug.Log("[EnemyAI] 🔙 État RETURN déclenché");
-                break;
+            //case EnemyState.Return:
+            //    break;
         }
     }
 
     /// <summary>
-    /// Réagit à une alerte extérieure (ex: onde) et déclenche l’effet visuel si disponible.
+    /// Réagit à une alerte (onde) et déclenche l’effet visuel si disponible
     /// </summary>
     public void Alert(Vector2 sourcePosition)
     {
+        Debug.Log($"[EnemyAI] ⚠️ Reçu alerte depuis {sourcePosition}");
         lastAlertPosition = sourcePosition;
+        
+        TriggerRevealEffect();
 
-        if (revealRoutine != null)
-            StopCoroutine(revealRoutine);
-
-        if (revealLight != null)
-            revealRoutine = StartCoroutine(RevealEffect());
-
-        if (player != null && Vector2.Distance(transform.position, player.position) <= chaseRange)
+        switch (currentState)
         {
-            ChangeState(EnemyState.Chase);
-        }
-        else if (currentState == EnemyState.Dormant)
-        {
-            ChangeState(EnemyState.Alert);
+            case EnemyState.Dormant:
+                // L’ennemi dort → il se réveille et va vers la source
+                ChangeState(EnemyState.Alert);
+                break;
+
+            case EnemyState.Alert:
+            case EnemyState.Chase:
+                // S’il est déjà en alerte ou en poursuite, on ignore
+                break;
+
+            default:
+                ChangeState(EnemyState.Alert);
+                break;
         }
     }
 
@@ -289,6 +289,15 @@ public class EnemyAI : MonoBehaviour, IAlertable
         revealLight.intensity = 1f;
     }
 
+    private void TriggerRevealEffect()
+    {
+        if (revealRoutine != null)
+            StopCoroutine(revealRoutine);
+
+        if (revealLight != null)
+            revealRoutine = StartCoroutine(RevealEffect());
+    }
+    
     /// <summary>
     /// Déclenche un effet visuel (flash) lorsque le joueur est à portée.
     /// </summary>

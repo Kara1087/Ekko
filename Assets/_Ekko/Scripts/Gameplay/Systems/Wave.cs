@@ -180,7 +180,7 @@ public class Wave : MonoBehaviour
             isFadingOut = true;
 
             float lifetime = Time.time - spawnTime;
-            Debug.Log($"[Wave] 💨 Durée de vie totale : {lifetime:F2} sec");
+            //Debug.Log($"[Wave] 💨 Durée de vie totale : {lifetime:F2} sec");
 
             StartCoroutine(DestroyAfterDelay(destroyDelay));
         }

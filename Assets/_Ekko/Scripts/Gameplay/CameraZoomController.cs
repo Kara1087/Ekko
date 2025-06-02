@@ -43,21 +43,14 @@ public class CameraZoomController : MonoBehaviour
         // Initialisation au zoom rapproché
         virtualCamera.Lens.OrthographicSize = zoomedInSize;
         positionComposer.TargetOffset = offsetZoomIn;
+        Debug.Log($"[CameraZoomController] ✅ Caméra initialisée à zoomIn={zoomedInSize}, offset={offsetZoomIn}");
     }
 
     private void Start()
     {
         if (playerTransform != null)
         {
-            // Si le joueur est à (0, 0), on lance le zoom-out
-            if (playerTransform.position == Vector3.zero)
-            {
-                StartCoroutine(DelayedZoomOut(1.5f));
-            }
-            else
-            {
-                //Debug.Log("[CameraZoomController] 🚫 Player n’est pas à (0,0), zoom non déclenché.");
-            }
+            StartCoroutine(DelayedZoomOut(1.5f));
         }
         else
         {

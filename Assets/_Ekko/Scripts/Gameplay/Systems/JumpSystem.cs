@@ -65,7 +65,7 @@ public class JumpSystem : MonoBehaviour
         // Enregistre le moment où le joueur tente d’amortir une chute
         if (input.ControlFallPressedThisFrame)
             lastCushionInputTime = Time.time;
-        
+
         // Cushion input : capté une seule fois par saut
         if (input.ControlFallPressedThisFrame && !hasUsedCushion)
         {
@@ -146,8 +146,8 @@ public class JumpSystem : MonoBehaviour
     /// </summary>
     public void OnLand(float impactVelocity, Transform landObject)
     {
-        Debug.Log($"[JumpSystem] 🛬 Atterrissage détecté - vitesse: {impactVelocity:F2}");
-        if(impactVelocity > 0)
+        //Debug.Log($"[JumpSystem] 🛬 Atterrissage détecté - vitesse: {impactVelocity:F2}");
+        if (impactVelocity > 0)
             return; // Ignore les atterrissages ascendants
         // Calcule la force de l'impact : vitesse à laquelle le joueur a touché le sol, sans tenir compte du sens
         float impactForce = Mathf.Abs(impactVelocity);
@@ -201,11 +201,5 @@ public class JumpSystem : MonoBehaviour
         {
             listener.OnLandingDetected(impactForce, type, landObject);
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, landingNotifyRadius);
     }
 }
