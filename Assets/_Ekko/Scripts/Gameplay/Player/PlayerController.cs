@@ -8,10 +8,18 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float moveSpeed = 6f;
-    private Vector2 moveInput;
     private bool isFacingRight = true;
     private SpriteRenderer spriteRenderer;
+    public float moveSpeed = 6f;
+    private Vector2 moveInput;
+
+    [Header("Movement en l'air")]
+    [SerializeField, Range(0f, 1f)]
+    private float currentControlFactor = 1f;
+    [SerializeField] private float controlTransitionSpeed = 5f; // Plus grand = plus rapide
+    [SerializeField] private float maxFallSpeed = -10f; // vitesse verticale max estimée pour chutes longues
+    [SerializeField] private AnimationCurve airControlCurve = AnimationCurve.Linear(0f, 1f, 1f, 0.05f);  // Courbe de contrôle en l'air, modifiable dans l'éditeur
+
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;
@@ -28,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private JumpSystem jumpSystem;
 
     private bool wasGroundedLastFrame;
-    
+
 
     private void Awake()
     {
@@ -64,8 +72,25 @@ public class PlayerController : MonoBehaviour
         // Capture de la vélocité verticale avant résolution physique
         previousVerticalVelocity = rb.linearVelocity.y;
         
-        // Mouvement horizontal
-        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+        // Détermine la cible selon l'état au sol
+        float targetControl;
+
+        if (IsGrounded)
+        {
+            targetControl = 1f;
+        }
+        else
+        {
+            float normalizedFallSpeed = Mathf.InverseLerp(0f, maxFallSpeed, Mathf.Abs(previousVerticalVelocity));
+            float dynamicAirControl = airControlCurve.Evaluate(normalizedFallSpeed); // ← permet de garder du contrôle au début
+            targetControl = dynamicAirControl;
+        }
+
+        // Interpolation lissée (transition fluide)
+        currentControlFactor = Mathf.Lerp(currentControlFactor, targetControl, Time.fixedDeltaTime * controlTransitionSpeed);
+
+        // Applique le facteur de mouvement
+        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed * currentControlFactor, rb.linearVelocity.y);
 
     }
     
