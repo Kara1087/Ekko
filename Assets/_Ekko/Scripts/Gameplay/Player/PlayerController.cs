@@ -66,12 +66,12 @@ public class PlayerController : MonoBehaviour
         }
         wasGroundedLastFrame = IsGrounded;
     }
-    
+
     private void FixedUpdate()
     {
         // Capture de la vélocité verticale avant résolution physique
         previousVerticalVelocity = rb.linearVelocity.y;
-        
+
         // Détermine la cible selon l'état au sol
         float targetControl;
 
@@ -81,8 +81,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            float normalizedFallSpeed = Mathf.InverseLerp(0f, maxFallSpeed, Mathf.Abs(previousVerticalVelocity));
-            float dynamicAirControl = airControlCurve.Evaluate(normalizedFallSpeed); // ← permet de garder du contrôle au début
+            float fallSpeed = Mathf.Clamp01(-previousVerticalVelocity / Mathf.Abs(maxFallSpeed));
+            float dynamicAirControl = airControlCurve.Evaluate(fallSpeed); // ← permet de garder du contrôle au début
             targetControl = dynamicAirControl;
         }
 
@@ -91,6 +91,10 @@ public class PlayerController : MonoBehaviour
 
         // Applique le facteur de mouvement
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed * currentControlFactor, rb.linearVelocity.y);
+        
+        #if UNITY_EDITOR
+            Debug.Log($"[AirControl] Y: {previousVerticalVelocity:F2} | Normalized: {Mathf.InverseLerp(0f, maxFallSpeed, Mathf.Abs(previousVerticalVelocity)):F2} | Control: {currentControlFactor:F2} | X Velocity: {rb.linearVelocity.x:F2}");
+        #endif
 
     }
     
