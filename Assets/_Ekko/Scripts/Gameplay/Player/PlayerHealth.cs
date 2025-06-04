@@ -51,6 +51,13 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("[PlayerHealth] TestRestoreLight: +30");
     }
 
+    [ContextMenu("Test: Take Damage (25)")]
+    private void TestTakeDamage()
+    {
+        TakeDamage(25f); // Appelle la méthode normale avec 25 de dégâts
+        Debug.Log("[PlayerHealth] TestTakeDamage: -25");
+    }
+
     public void TakeDamage(float amount, GameObject source = null)
     {
         if (IsDead)

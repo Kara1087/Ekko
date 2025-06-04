@@ -36,7 +36,7 @@ public class JumpSystem : MonoBehaviour
 
     private bool isJumping;
     private bool isForcingSlam;
-    private bool hasUsedCushion;
+    private bool hasUsedCushion; // Utilisé pour bloquer l'amorti après un seul usage
 
     private readonly List<ILandingListener> landingListeners = new List<ILandingListener>();
 
@@ -62,11 +62,7 @@ public class JumpSystem : MonoBehaviour
         if (isJumping && input.JumpReleased)
             CutJumpShort();
 
-        // Enregistre le moment où le joueur tente d’amortir une chute
-        if (input.ControlFallPressedThisFrame)
-            lastCushionInputTime = Time.time;
-
-        // Cushion input : capté une seule fois par saut
+        // Enregistre l'input cushion uniquement si pas déjà utilisé
         if (input.ControlFallPressedThisFrame && !hasUsedCushion)
         {
             lastCushionInputTime = Time.time;
@@ -96,6 +92,7 @@ public class JumpSystem : MonoBehaviour
         else if (!hasUsedCushion && (Time.time - lastCushionInputTime) <= controlledFallWindow && rb.linearVelocity.y < 0)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * cushionFallDamping);
+            hasUsedCushion = true;
         }
     }
 
@@ -146,15 +143,16 @@ public class JumpSystem : MonoBehaviour
     /// </summary>
     public void OnLand(float impactVelocity, Transform landObject)
     {
-        //Debug.Log($"[JumpSystem] 🛬 Atterrissage détecté - vitesse: {impactVelocity:F2}");
+        // Ignore les atterrissages ascendants
         if (impactVelocity > 0)
-            return; // Ignore les atterrissages ascendants
+            return;
+
         // Calcule la force de l'impact : vitesse à laquelle le joueur a touché le sol, sans tenir compte du sens
         float impactForce = Mathf.Abs(impactVelocity);
 
         // Détecte si un cushion a été activé à temps
         bool cushionTimingOk = (Time.time - lastCushionInputTime) <= cushionTimingWindow;
-        bool isCushioned = cushionTimingOk && !hasUsedCushion;
+        bool isCushioned = cushionTimingOk && !hasUsedCushion;      // Vérifie qu’on n’a pas utilisé cushion AVANT l’atterrissage
 
         // Classification du type d’atterrissage
         LandingType landingType = LandingType.Normal;

@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class EnemyDamageTrigger : MonoBehaviour
 {
-    [SerializeField] private float damageAmount = 10f;
+    [SerializeField] private float damageAmount = 20f;
     [SerializeField] private float damageCooldown = 1f;
     private float lastDamageTime = -999f; // initialisé loin dans le passé
     private EnemyAI enemyAI; // Référence pour déclencher retour
@@ -23,15 +23,17 @@ public class EnemyDamageTrigger : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
+        // Si le cooldown n’est pas terminé, on ne fait rien
         if (Time.time < lastDamageTime + damageCooldown) return;
 
         PlayerHealth player = other.GetComponent<PlayerHealth>();
         if (player != null)
-        {
+        {   
+            // Inflige les dégâts au joueur, en passant en paramètre l’ennemi responsable (utile pour feedback ou UI)
             player.TakeDamage(damageAmount, enemyAI?.gameObject);
             lastDamageTime = Time.time;
 
-            // Informer l'ennemi qu’un coup a été porté
+            // Informer l'ennemi qu’un coup a été porté (sortir de Chase)
             if (enemyAI != null)
             {
                 enemyAI.NotifyPlayerHit();

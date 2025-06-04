@@ -11,7 +11,7 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyAI : MonoBehaviour, IAlertable
 {
-    public enum EnemyState { Dormant, Alert, Chase, Return }
+    public enum EnemyState { Dormant, Alert, Chase }
 
     [Header("Movement")]
     [Tooltip("Deplacement vers le point d’alerte")]
@@ -87,10 +87,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
             case EnemyState.Chase:
                 UpdateChase();
                 break;
-
-                //case EnemyState.Return:
-                //    UpdateReturn();
-                //    break;
         }
         // Gère l'effet visuel si le joueur est proche
         HandleAbsorptionFlash();
