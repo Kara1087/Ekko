@@ -20,6 +20,6 @@ public class Checkpoint : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(transform.position, 0.2f);
-        UnityEditor.Handles.Label(transform.position + Vector3.up * 0.5f, "Checkpoint");
+        //UnityEditor.Handles.Label(transform.position + Vector3.up * 0.5f, "Checkpoint");
     }
 }
