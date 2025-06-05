@@ -6,7 +6,6 @@ using UnityEngine.Rendering.Universal;
 public class Wave : MonoBehaviour
 {
     [Header("Wave Settings")]
-    [SerializeField] private float maxExpansionSpeed = 6f;        // Vitesse d'expansion maximale (rarement utilisée directement ici)
     [SerializeField] private float baseFadeSpeed = 0.5f;          // Vitesse de disparition de l'onde (plus élevé = plus rapide)
     [SerializeField] private float fadeSpeedMultiplier = 0.05f;   // Modifie la fadeSpeed selon la force d’impact
     private float spawnTime;

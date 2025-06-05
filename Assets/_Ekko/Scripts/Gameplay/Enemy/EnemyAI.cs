@@ -151,7 +151,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
         float distanceToPlayer = Vector2.Distance(transform.position, player.position); 
         if (Vector2.Distance(transform.position, player.position) <= chaseRange)
         {
-            Debug.Log($"[Chase] ⏳ Temps de poursuite restant : {stateTimer:F2}");
             stateTimer = chaseDuration;
         }
 

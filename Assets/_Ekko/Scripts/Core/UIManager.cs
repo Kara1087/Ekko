@@ -18,8 +18,6 @@ public class UIManager : MonoBehaviour
     [Header("UI Buttons")]
     [SerializeField] private Button restartButton;
     [SerializeField] private Button exitButton;
-    
-    private bool hasFadedInOnce = false; // évite de faire plusieurs fade-in consécutifs
 
     private void Awake()
     {
@@ -124,8 +122,7 @@ public class UIManager : MonoBehaviour
     // Affiche ou cache le HUD
     public void ShowQuotePanel(bool show)
     {
-        if (quotePanel != null)
-            quotePanel.SetActive(show);
+        quotePanel.SetActive(show);
     }
 
     // Lance un blackout (fondu vers noir) et attend la fin de l'effet

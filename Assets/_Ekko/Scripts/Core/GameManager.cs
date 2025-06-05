@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
 
         // UI : Nettoie le GameOver
         //UIManager.Instance?.HideGameOver();
-        UIManager.Instance?.ShowQuotePanel(false);
+        UIManager.Instance.ShowQuotePanel(false);
 
         Debug.Log("[GameManager] ✅ Respawn effectué depuis le dernier checkpoint.");
     }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Intro_1
   m_EditorClassIdentifier: 
   quoteText: "Chaque pas que tu fais \xE9claire ce qui fut\u2026 et ce qui peut rena\xEEtre."
-  displayDuration: 5
+  displayDuration: 3
   type: 0
   tag: 0
+  forceBackground: 0

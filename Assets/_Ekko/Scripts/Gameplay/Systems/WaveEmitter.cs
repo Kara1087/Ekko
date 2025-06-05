@@ -16,7 +16,6 @@ public class WaveEmitter : MonoBehaviour, ILandingListener
 
     [Header("Debug")]
     [SerializeField] private Color debugColor = Color.cyan;
-    private float debugGizmoRadius = 1f;                        // Valeur par défaut
 
     private JumpSystem jumpSystem;
 

@@ -91,14 +91,16 @@ public class PlayerHealth : MonoBehaviour
         // Feedback visuel
         playerLight?.FlashAbsorptionEffect();                       // Effet visuel de flash/lumière aspirée
         playerVFX?.TriggerDamageFeedback();                         // Particules aspirées/burst visuel
-        cameraShake?.Shake();                                     // Shake de caméra pour impact
 
         if (IsLow) onLowLight?.Invoke();
         if (IsDead)
         {
             onDeath?.Invoke();
             HandleDeath();
+            return;
         }
+         cameraShake?.Shake();                                     // Shake de caméra pour impact
+
     }
 
     /// <summary>
