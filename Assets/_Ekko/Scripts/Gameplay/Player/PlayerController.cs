@@ -91,11 +91,6 @@ public class PlayerController : MonoBehaviour
 
         // Applique le facteur de mouvement
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed * currentControlFactor, rb.linearVelocity.y);
-        
-        #if UNITY_EDITOR
-            Debug.Log($"[AirControl] Y: {previousVerticalVelocity:F2} | Normalized: {Mathf.InverseLerp(0f, maxFallSpeed, Mathf.Abs(previousVerticalVelocity)):F2} | Control: {currentControlFactor:F2} | X Velocity: {rb.linearVelocity.x:F2}");
-        #endif
-
     }
     
     private void Flip()

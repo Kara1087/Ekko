@@ -17,8 +17,6 @@ public class CameraZoomController : MonoBehaviour
     [SerializeField] private float zoomDuration = 2f;                       // Durée de l’animation de zoom
 
     [Header("Offset settings")]
-    [SerializeField] private Vector3 offsetZoomIn = new Vector3(0f, 1f, 0f); // Décalage caméra au démarrage
-    [SerializeField] private Vector3 offsetZoomOut = Vector3.zero;          // Décalage à appliquer après zoom-out
 
     [SerializeField] private Transform playerTransform;                     // 🔍 Référence au joueur (à assigner dans l'inspector)
     private CinemachinePositionComposer positionComposer;                   // Contrôle de l’offset cible de la caméra
@@ -42,8 +40,7 @@ public class CameraZoomController : MonoBehaviour
 
         // Initialisation au zoom rapproché
         virtualCamera.Lens.OrthographicSize = zoomedInSize;
-        positionComposer.TargetOffset = offsetZoomIn;
-        Debug.Log($"[CameraZoomController] ✅ Caméra initialisée à zoomIn={zoomedInSize}, offset={offsetZoomIn}");
+        Debug.Log($"[CameraZoomController] ✅ Caméra initialisée à zoomIn={zoomedInSize}");
     }
 
     private void Start()
@@ -74,17 +71,16 @@ public class CameraZoomController : MonoBehaviour
     {
         // On interrompt une éventuelle animation précédente
         if (zoomCoroutine != null) StopCoroutine(zoomCoroutine);
-        // On lance une nouvelle animation de zoom avec recentrage
-        zoomCoroutine = StartCoroutine(ZoomAndRecenter(zoomedOutSize, offsetZoomOut));
+        // On lance une nouvelle animation de zoom
+        zoomCoroutine = StartCoroutine(ZoomAndRecenter(zoomedOutSize));
     }
 
     /// <summary>
-    /// Coroutine qui anime à la fois le zoom (size) et le recentrage (offset) de la caméra.
+    /// Coroutine qui anime le zoom (size) de la caméra
     /// </summary>
-    private IEnumerator ZoomAndRecenter(float targetSize, Vector3 targetOffset)
+    private IEnumerator ZoomAndRecenter(float targetSize)
     {
         float startSize = virtualCamera.Lens.OrthographicSize;
-        Vector3 startOffset = positionComposer.TargetOffset;
         float timer = 0f;
 
         while (timer < zoomDuration)
@@ -92,16 +88,13 @@ public class CameraZoomController : MonoBehaviour
             timer += Time.deltaTime;
             float t = timer / zoomDuration;
 
-            // Interpolation du zoom et de l'offset
+            // Interpolation du zoom
             virtualCamera.Lens.OrthographicSize = Mathf.Lerp(startSize, targetSize, t);
-            positionComposer.TargetOffset = Vector3.Lerp(startOffset, targetOffset, t);
-
             yield return null;
         }
 
-        // Valeurs finales
+        // Valeur finale
         virtualCamera.Lens.OrthographicSize = targetSize;
-        positionComposer.TargetOffset = targetOffset;
     }
 
     /// <summary>
