@@ -24,7 +24,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private PlayerVFX playerVFX;
     [SerializeField] private PlayerLight playerLight;
     
-    private bool hasTriggeredFirstSpectreQuote = false;                  
+    private bool hasTriggeredFirstSpectreQuote = false;
+    private CameraShake cameraShake; // Référence pour le shake de caméra        
 
     // --- GETTERS PUBLICS ---
     public float CurrentLight => currentLight;
@@ -38,6 +39,12 @@ public class PlayerHealth : MonoBehaviour
         currentLight = maxLight;
     }
 
+    private void Start()
+    {
+        // Initialisation de la caméra shake
+        cameraShake = GetComponent<CameraShake>();
+    }
+
     private void Update()
     {
 
@@ -47,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
     [ContextMenu("Test: Restore Light (30)")]
     private void TestRestoreLight()
     {
-        RestoreLight(30f);
+        RestoreLight(maxLight);
         Debug.Log("[PlayerHealth] TestRestoreLight: +30");
     }
 
@@ -79,11 +86,12 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("[PlayerHealth] ⚠️ Premier dégât reçu d'un Spectre !");
         }
 
-        onLightChanged?.Invoke();   // Notifie tout système écoutant ce changement (UI, shader, etc.)
+        onLightChanged?.Invoke();                                   // Notifie tout système écoutant ce changement (UI, shader, etc.)
 
         // Feedback visuel
-        playerLight?.FlashAbsorptionEffect(); // Effet visuel de flash/lumière aspirée
-        playerVFX?.TriggerDamageFeedback(); // Particules aspirées/burst visuel
+        playerLight?.FlashAbsorptionEffect();                       // Effet visuel de flash/lumière aspirée
+        playerVFX?.TriggerDamageFeedback();                         // Particules aspirées/burst visuel
+        cameraShake?.Shake();                                     // Shake de caméra pour impact
 
         if (IsLow) onLowLight?.Invoke();
         if (IsDead)

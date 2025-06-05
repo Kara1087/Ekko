@@ -60,6 +60,15 @@ public class Revealable : MonoBehaviour, IRevealable
         currentRoutine = StartCoroutine(FadeRoutine(visibleDuration));
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Si le joueur touche cet objet, on le révèle
+        if (collision.collider.CompareTag("Player"))
+        {
+            Reveal(1f); // Révélation maximale
+        }
+    }
+
     /// <summary>
     /// Coroutine qui gère l’apparition, la visibilité, puis la disparition
     /// </summary>

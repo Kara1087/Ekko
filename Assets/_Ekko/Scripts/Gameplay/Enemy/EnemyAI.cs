@@ -39,7 +39,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
     private Vector2 checkpointPosition;
     private EnemyState currentState = EnemyState.Dormant;
     private float stateTimer = 0f;
-    private bool hasHitPlayer = false;  // Indique si le joueur a été touché récemment, arrêt poursuite
     private LightFlasher lightFlasher;  // Gère l'effet visuel de flash clignotant
     private Transform player;
     private PlayerVFX playerVFX;        // Gère les effets visuels du joueur (ex : particules attirées)
@@ -90,12 +89,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
         }
         // Gère l'effet visuel si le joueur est proche
         HandleAbsorptionFlash();
-    }
-
-    
-    public void NotifyPlayerHit()           // Appelé quand le joueur est touché
-    {
-        hasHitPlayer = true;
     }
 
     public void UpdateCheckpointPosition()  // Met à jour un point de retour personnalisé (checkpoint)
@@ -152,15 +145,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
 
         MoveTowards(player.position, chaseSpeed);
 
-        // Si le joueur a été touché, on arrête la poursuite
-        if (hasHitPlayer)
-        {
-            Debug.Log("[Chase] 💥 Joueur touché → arrêt de la poursuite");
-            ChangeState(EnemyState.Dormant);
-            hasHitPlayer = false;
-            return;
-        }
-
         stateTimer -= Time.deltaTime;       // Timer de poursuite dimine chaque frame
         //Debug.Log($"[Chase] ⏳ Temps de poursuite restant : {stateTimer:F2}"); 
 
@@ -177,20 +161,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
             ChangeState(EnemyState.Dormant);
         }
     }
-
-    /// <summary>
-    /// Comportement de retour à une position après alerte ou poursuite.
-    /// </summary>
-    /*private void UpdateReturn()
-    {
-        MoveTowards(returnPosition, alertSpeed);
-
-        // Une fois revenu, retour à l’état dormant
-        if (Vector2.Distance(transform.position, returnPosition) < 0.05f)
-        {
-            ChangeState(EnemyState.Dormant);
-        }
-    }*/
 
     private void MoveTowards(Vector2 target, float speed)
     {
@@ -237,7 +207,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
     /// </summary>
     public void Alert(Vector2 sourcePosition)
     {
-        Debug.Log($"[EnemyAI] ⚠️ Reçu alerte depuis {sourcePosition}");
         lastAlertPosition = sourcePosition;
         
         TriggerRevealEffect();
@@ -309,8 +278,6 @@ public class EnemyAI : MonoBehaviour, IAlertable
         else
             lightFlasher.StopFlashing();
     }
-
-
 
     private void OnDrawGizmosSelected()
     {

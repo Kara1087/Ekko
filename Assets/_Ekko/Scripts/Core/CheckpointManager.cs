@@ -24,7 +24,6 @@ public class CheckpointManager : MonoBehaviour
     public void SetCurrentCheckpoint(Vector2 position)
     {
         currentCheckpoint = position;
-        Debug.Log($"[CheckpointManager] 💾 Checkpoint enregistré : {position}");
     }
 
     public Vector2 GetLastCheckpointPosition()

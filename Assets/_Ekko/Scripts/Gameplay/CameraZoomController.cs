@@ -40,7 +40,6 @@ public class CameraZoomController : MonoBehaviour
 
         // Initialisation au zoom rapproché
         virtualCamera.Lens.OrthographicSize = zoomedInSize;
-        Debug.Log($"[CameraZoomController] ✅ Caméra initialisée à zoomIn={zoomedInSize}");
     }
 
     private void Start()

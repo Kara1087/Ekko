@@ -39,19 +39,16 @@ public class CameraVerticalBiasController : MonoBehaviour
         {
             currentState = CameraBiasState.Jumping;
             targetScreenY = screenYUp;
-            Debug.Log("📷 Caméra : passage en mode SAUT");
         }
         else if (verticalVelocity < -1f && currentState != CameraBiasState.Falling)
         {
             currentState = CameraBiasState.Falling;
             targetScreenY = screenYDown;
-            Debug.Log("📷 Caméra : passage en mode CHUTE");
         }
         else if (Mathf.Abs(verticalVelocity) < 0.1f && currentState != CameraBiasState.Neutral)
         {
             currentState = CameraBiasState.Neutral;
             targetScreenY = 0f; // Centre de l'écran
-            Debug.Log("📷 Caméra : retour à NEUTRE");
         }
 
         // On utilise une vitesse différente pour la chute
