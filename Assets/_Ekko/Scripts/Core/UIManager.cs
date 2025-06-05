@@ -19,7 +19,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button restartButton;
     [SerializeField] private Button exitButton;
     
-    private bool hasFadedInOnce = false; // évite de faire plusieurs fade-in consécutifs
 
     private void Awake()
     {

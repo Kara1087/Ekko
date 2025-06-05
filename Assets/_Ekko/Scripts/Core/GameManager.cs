@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     private QuoteManager quoteManager;
     private BlackoutEffect blackoutEffect;
 
+    private bool startGame;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -36,14 +38,17 @@ public class GameManager : MonoBehaviour
     {
         // 👉👉👉  Commenter pour phase test
         // Lancer le menu principal si on démarre depuis _Bootstrap
-        if (SceneManager.GetActiveScene().name == "_Bootstrap")
-        {
-            StartCoroutine(TransitionManager.Instance.LoadSceneWithFade("_MainMenu"));
-        }
+        startGame = true;
     }
 
     private void Update()
     {
+        if (startGame)
+        {
+            startGame = false;
+            StartCoroutine(TransitionManager.Instance.LoadSceneWithFade("_MainMenu"));
+            return;
+        }
         if (!IsGameOver && Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
