@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quoteText: "Tu n\u2019\xE9claires pas le monde. Tu lui rappelles qu\u2019il peut
     briller."
-  displayDuration: 5
+  displayDuration: 3
   type: 0
   tag: 0
+  forceBackground: 0

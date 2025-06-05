@@ -123,8 +123,7 @@ public class UIManager : MonoBehaviour
     // Affiche ou cache le HUD
     public void ShowQuotePanel(bool show)
     {
-        if (quotePanel != null)
-            quotePanel.SetActive(show);
+        quotePanel.SetActive(show);
     }
 
     // Lance un blackout (fondu vers noir) et attend la fin de l'effet

@@ -127,11 +127,7 @@ public class QuoteManager : MonoBehaviour
         // Attend que la durée soit écoulée avant de cacher
         yield return new WaitForSecondsRealtime(quoteData.displayDuration);
 
-        if (quotePanel != null)
-            quotePanel.SetActive(false);
-
-        foreach (Transform child in quotePanel.transform)
-            child.gameObject.SetActive(false);
+        quotePanel.SetActive(false);
 
         // Exécute l'action à la fin (utile pour les transitions)
         onComplete?.Invoke();
