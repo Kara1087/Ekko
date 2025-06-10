@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        // Auto-load menu depuis Bootstrap
         if (startGame && SceneManager.GetActiveScene().name == "_Bootstrap")
         {
             startGame = false;
@@ -226,11 +227,6 @@ public class GameManager : MonoBehaviour
 
                 if (wasInactive) blackoutGO.SetActive(false); // 👈 On le remet dans son état initial
             }
-
-            /*if (blackoutEffect == null)
-            {
-                Debug.LogWarning("❌ BlackoutEffect définitivement introuvable.");
-            }*/
         }
     }
 
@@ -247,7 +243,6 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //Debug.Log($"[GameManager] 🔄 Scene '{scene.name}' loaded. Réinitialisation des dépendances...");
         EnsureDependencies();
     }
 

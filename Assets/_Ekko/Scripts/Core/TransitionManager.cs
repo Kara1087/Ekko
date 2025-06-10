@@ -92,7 +92,6 @@ public class TransitionManager : MonoBehaviour
         isRunning = false;
     }
 
-
     /// <summary>
     /// Lance la séquence d’intro : blackout → citation → chargement de la scène → fade-in.
     /// </summary>
