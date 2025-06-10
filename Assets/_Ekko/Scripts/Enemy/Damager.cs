@@ -2,13 +2,13 @@ using UnityEngine;
 using System.Collections;
 
 /// <summary>
-/// Composant qui inflige des dégâts au joueur lors d’un contact avec un trigger 2D.
-/// Peut être configuré pour n’appliquer le dégât qu’une seule fois et déclencher des feedbacks visuels/sonores.
+/// Composant générique infligeant des dégâts à tout objet compatible (via tag + interface IDamageable).
+/// Peut être déclenché manuellement ou via collision/trigger.
 /// </summary>
-/// 
+
 public class Damager : MonoBehaviour
 {
-    [Header("Paramètres de dégâts")]
+    [Header("Damage Settings")]
     [SerializeField] private float damageAmount = 25f;
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private bool applyOnce = true;             // Si activé, les dégâts sont appliqués une seule fois 
@@ -43,7 +43,6 @@ public class Damager : MonoBehaviour
         // On déclenche tous les feedbacks (ex : fx, son, flash...)
         foreach (var feedback in feedbackModules)
         {
-            //Debug.Log($"[Damager] → Activation de {feedback}");
             feedback?.TriggerFeedback();
         }
 
