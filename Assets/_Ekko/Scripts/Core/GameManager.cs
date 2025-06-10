@@ -14,10 +14,10 @@ public class GameManager : MonoBehaviour
     public bool IsPaused { get; private set; } = false;
     public bool IsGameOver { get; private set; } = false;
 
-    private QuoteData cushionOverrideDeathQuote = null;
+    private bool startGame; // Pour éviter de lancer le jeu avant que tout soit prêt
     private QuoteManager quoteManager;
     private BlackoutEffect blackoutEffect;
-    private bool startGame; // Pour éviter de lancer le jeu avant que tout soit prêt
+    
 
     private void Awake()
     {
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (startGame)
+        if (startGame && SceneManager.GetActiveScene().name == "_Bootstrap")
         {
             startGame = false;
             StartCoroutine(TransitionManager.Instance.LoadSceneWithFade("_MainMenu"));
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     {
         IsPaused = !IsPaused;
         Time.timeScale = IsPaused ? 0f : 1f;
-        UIManager.Instance?.ShowPause(IsPaused);
+        UIManager.Instance.ShowPause(IsPaused);
     }
 
     public void ResumeGame()
@@ -67,29 +67,9 @@ public class GameManager : MonoBehaviour
         UIManager.Instance?.ShowPause(false);
 
         if (IsPaused)
-            AudioManager.Instance?.PlayPauseTheme();
+            AudioManager.Instance.PlayPauseTheme();
         else
-            AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
-    }
-
-    public void MarkNextDeathAsCushionOnboarding(QuoteData quote)
-    {
-        cushionOverrideDeathQuote = quote;
-    }
-
-    public bool HasOverrideDeathQuote()
-    {
-        return cushionOverrideDeathQuote != null;
-    }
-
-    public QuoteData GetOverrideDeathQuote()
-    {
-        return cushionOverrideDeathQuote;
-    }
-
-    public void ClearOverrideDeathQuote()
-    {
-        cushionOverrideDeathQuote = null;
+            AudioManager.Instance.PlayMusicTheme("BackgroundTheme");
     }
 
     public void HandlePlayerDeath()
@@ -101,7 +81,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;        // Stop le temps et les inputs
 
         AudioManager.Instance?.FadeOutMusicTheme(2f);
-        TransitionManager.Instance?.PlayDeathSequence();
+        TransitionManager.Instance.PlayDeathSequence();
+        
     }
 
     public void RespawnPlayer()
@@ -183,7 +164,7 @@ public class GameManager : MonoBehaviour
         //UIManager.Instance?.ShowQuotePanel(true);
         //UIManager.Instance?.HideGameOver();
 
-        TransitionManager.Instance?.PlayIntroSequence();
+        TransitionManager.Instance.PlayIntroSequence();
     }
 
     public void RestartGame()

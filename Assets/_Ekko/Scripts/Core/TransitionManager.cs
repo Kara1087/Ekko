@@ -29,7 +29,7 @@ public class TransitionManager : MonoBehaviour
 
     private void Start()
     {
-        // Sécurité pour re-capturer les singletons s'ils n'étaient pas encore prêts à l'Awake
+        // Sécurité pour re-capturer les singletons s'ils pas encore prêts à l'Awake
         if (game == null) game = GameManager.Instance;
         if (ui == null) ui = UIManager.Instance;
         if (quote == null) quote = FindFirstObjectByType<QuoteManager>();
@@ -56,21 +56,21 @@ public class TransitionManager : MonoBehaviour
         // 1. Fondu vers noir
         yield return ui.StartBlackoutRoutine();
 
-        // 2. Citation (si disponible)
+        // 2. Citation (spécifique ou aléatoire)
         if (quote != null)
         {
             bool done = false;
-            if (game.HasOverrideDeathQuote())
+            if (quote.HasOverrideDeathQuote())
             {
-                // Si Cushion Onboarding, on affiche une citation spécifique
-                var cushionQuote = game.GetOverrideDeathQuote();
-                cushionQuote.forceBackground = true;
-                quote.ShowSpecificQuote(game.GetOverrideDeathQuote(), () => done = true);
-                game.ClearOverrideDeathQuote(); // pour éviter que ça reste activé
+                // Citation spécifique (ex : cushion onboarding) gérée depuis QuoteManager
+                QuoteData specialQuote = quote.GetOverrideDeathQuote();
+                quote.ClearOverrideDeathQuote();                            // Nettoyage une fois utilisée
+                specialQuote.forceBackground = true;                        // S’assure que le fond noir est visible
+                quote.ShowSpecificQuote(specialQuote, () => done = true);
             }
             else
             {
-                // Sinon, on affiche une citation aléatoire de type Death
+                // Citation aléatoire (Death)
                 quote.ShowRandomQuote(QuoteType.Death, () => done = true);
             }
             yield return new WaitUntil(() => done);

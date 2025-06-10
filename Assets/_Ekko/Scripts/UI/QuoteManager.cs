@@ -14,6 +14,7 @@ public class QuoteManager : MonoBehaviour
     [SerializeField] private GameObject quotePanel;
     [SerializeField] private TMP_Text quoteText;
     [SerializeField] private GameObject imageBackground;    // Fond noir optionnel selon le type
+    private QuoteData overrideDeathQuote = null; // Citation de remplacement pour la mort
 
     private void Awake()
     {
@@ -28,6 +29,38 @@ public class QuoteManager : MonoBehaviour
         // On cache le panneau au lancement
         if (quotePanel != null)
             quotePanel.SetActive(false);
+    }
+
+    /// <summary>
+    /// Permet de définir une citation spécifique pour la prochaine mort.
+    /// </summary>
+    public void SetOverrideDeathQuote(QuoteData quote)
+    {
+        overrideDeathQuote = quote;
+    }
+
+    /// <summary>
+    /// Vérifie s’il existe une citation de mort spécifique à afficher.
+    /// </summary>
+    public bool HasOverrideDeathQuote()
+    {
+        return overrideDeathQuote != null;
+    }
+
+    /// <summary>
+    /// Récupère la citation de mort spécifique.
+    /// </summary>
+    public QuoteData GetOverrideDeathQuote()
+    {
+        return overrideDeathQuote;
+    }
+
+    /// <summary>
+    /// Nettoie l’override après affichage.
+    /// </summary>
+    public void ClearOverrideDeathQuote()
+    {
+        overrideDeathQuote = null;
     }
 
     /// <summary>

@@ -77,7 +77,7 @@ public class BlackoutEffect : MonoBehaviour
 
     public void StartBlackout(System.Action onComplete = null)
     {
-        Debug.Log("[BlackoutEffect] 🎬 Début Fade Out (Blackout)");
+        //Debug.Log("[BlackoutEffect] 🎬 Début Fade Out (Blackout)");
 
         if (!IsValidTarget())
         {

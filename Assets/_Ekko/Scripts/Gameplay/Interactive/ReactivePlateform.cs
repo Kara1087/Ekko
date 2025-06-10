@@ -103,18 +103,19 @@ public class ReactivePlatform : MonoBehaviour, ILandingListener
         // 🚨 Ne réagit que si le joueur est sur la plateforme
         if (transform != landObject || type == LandingType.Cushioned)
             return;
+
+        Debug.Log($"[ReactivePlatform] 💥 Impact détecté : {impactForce:F2} | Seuil : {impactThreshold} | Type : {type}");
         
         StopAllCoroutines(); // Arrête toute descente en cours
         playerOnPlatform = jumpSystem.transform;
         
-        //Debug.Log($"[SensitivePlatform] Impact reçu : {impactForce:F2} | Type : {type}");
         if (impactForce >= impactThreshold)
         {
             // 👇 Ajout : déclenche l’onboarding Cushion si activé
-            if (triggerCushionOnboarding)
+            if (triggerCushionOnboarding && QuoteManager.Instance != null)
             {
                 Debug.Log("[ReactivePlatform] 🧠 Onboarding Cushion déclenché");
-                GameManager.Instance?.MarkNextDeathAsCushionOnboarding(specificCushionQuote);
+                QuoteManager.Instance.SetOverrideDeathQuote(specificCushionQuote);
             }
 
             if (isActiveAndEnabled)

@@ -15,10 +15,10 @@ public class JumpSystem : MonoBehaviour
 {
     [Header("Jump Settings")]
     [SerializeField] private float jumpForce = 14f;
-    [SerializeField] private float coyoteTime = 0.1f;             // Tolérance après avoir quitté le sol
-    [SerializeField] private float jumpBufferTime = 0.15f;        // Tolérance avant de toucher le sol
-    [SerializeField] private float controlledFallWindow = 0.2f;   // Temps pour amortir l’atterrissage
-    [SerializeField] private float cushionTimingWindow = 0.2f;      // Temps pour amortir l’atterrissage
+    [SerializeField] private float coyoteTime = 0.1f;               // Tolérance après avoir quitté le sol
+    [SerializeField] private float jumpBufferTime = 0.15f;          // Tolérance avant de toucher le sol
+    [SerializeField] private float controlledFallWindow = 0.2f;     
+    [SerializeField] private float cushionTimingWindow = 0.2f;      
 
     [Header("Fall Behavior")]
     [SerializeField] private float slamFallAcceleration = 2f;        // Accélération vers le bas (slam)
