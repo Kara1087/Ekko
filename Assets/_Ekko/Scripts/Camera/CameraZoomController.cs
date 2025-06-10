@@ -19,7 +19,6 @@ public class CameraZoomController : MonoBehaviour
     [Header("Offset settings")]
 
     [SerializeField] private Transform playerTransform;                     // 🔍 Référence au joueur (à assigner dans l'inspector)
-    private CinemachinePositionComposer positionComposer;                   // Contrôle de l’offset cible de la caméra
     private Coroutine zoomCoroutine;                                        // Pour éviter de lancer plusieurs coroutines simultanément
 
     private void Awake()
@@ -27,14 +26,6 @@ public class CameraZoomController : MonoBehaviour
         if (virtualCamera == null)
         {
             Debug.LogError("Virtual Camera non assignée !");
-            return;
-        }
-
-        // Accès au composant PositionComposer (modulaire)
-        positionComposer = virtualCamera.GetComponentInChildren<CinemachinePositionComposer>();
-        if (positionComposer == null)
-        {
-            Debug.LogError("PositionComposer non trouvé sur la CinemachineCamera !");
             return;
         }
 

@@ -13,6 +13,6 @@ public class CameraShake : MonoBehaviour
     public void Shake(float force = 1f)
     {
         Debug.Log($"[CameraShake] Shake called with force: {force}");
-        impulseSource.GenerateImpulse();
+        impulseSource.GenerateImpulse(force);
     }
 }

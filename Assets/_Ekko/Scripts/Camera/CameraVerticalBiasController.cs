@@ -5,7 +5,6 @@ public class CameraVerticalBiasController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D playerRb;
     [SerializeField] private CinemachinePositionComposer positionComposer;
-    [SerializeField] private CinemachineCamera virtualCamera;
 
     [Header("Settings")]
     [SerializeField] private float screenYUp = 1f;              // Quand on saute
@@ -22,7 +21,6 @@ public class CameraVerticalBiasController : MonoBehaviour
     {
         if (playerRb == null) Debug.LogError("❌ Player Rigidbody2D manquant !");
         if (positionComposer == null) Debug.LogError("❌ Cinemachine Position Composer manquant !");
-        if (virtualCamera == null) Debug.LogError("❌ VirtualCamera non assignée !");
     }
 
     private void Update()

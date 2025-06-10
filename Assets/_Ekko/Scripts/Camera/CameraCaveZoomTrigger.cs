@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class CameraZoomTrigger : MonoBehaviour
+public class CameraCaveZoomTrigger : MonoBehaviour
 {
     [SerializeField] private float targetZoom = 4f;
     [SerializeField] private float zoomDuration = 1f;
