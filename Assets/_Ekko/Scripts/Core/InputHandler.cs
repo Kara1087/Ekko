@@ -24,7 +24,7 @@ public class InputHandler : MonoBehaviour
             JumpReleased = true;
     }
 
-    public void OnControlFall(InputAction.CallbackContext context)
+    public void OnCushion(InputAction.CallbackContext context)
     {
         if (context.performed)
             ControlFallPressedThisFrame = true;

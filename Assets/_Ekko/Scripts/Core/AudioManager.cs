@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 
 /// <summary>
-/// AudioManager gère la lecture de musiques, SFX et overlays. Singleton persistant entre les scènes.
+/// AudioManager gère la lecture de musiques, SFX, thèmes et overlays. Singleton persistant entre les scènes.
 /// Interagit avec GameManager et UIManager.
 /// </summary>
 public class AudioManager : MonoBehaviour
@@ -64,7 +64,7 @@ public class AudioManager : MonoBehaviour
         return musicThemeSource != null ? musicThemeSource.volume : 1f;
     }
 
-    // 🔊 SFX
+    // 🔊 SFX : Joue SFX via sfxSource
     public void Play(string soundName)
     {
         if (!soundMap.ContainsKey(soundName))
