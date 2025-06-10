@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private QuoteData cushionOverrideDeathQuote = null;
     private QuoteManager quoteManager;
     private BlackoutEffect blackoutEffect;
+    private bool startGame; // Pour éviter de lancer le jeu avant que tout soit prêt
 
     private void Awake()
     {
@@ -34,16 +35,18 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // 👉👉👉  Commenter pour phase test
-        // Lancer le menu principal si on démarre depuis _Bootstrap
-        if (SceneManager.GetActiveScene().name == "_Bootstrap")
-        {
-            StartCoroutine(TransitionManager.Instance.LoadSceneWithFade("_MainMenu"));
-        }
+        startGame = true;
     }
 
     private void Update()
     {
+        if (startGame)
+        {
+            startGame = false;
+            StartCoroutine(TransitionManager.Instance.LoadSceneWithFade("_MainMenu"));
+            return;
+        }
+
         if (!IsGameOver && Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();

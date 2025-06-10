@@ -129,7 +129,7 @@ MonoBehaviour:
     bpm: 96
   - name: SlamJump
     clip: {fileID: 8300000, guid: c410ed79f099343d996e0b05067dea9e, type: 3}
-    volume: 0.6
+    volume: 0.1
     pitch: 0.8
     bpm: 120
   - name: StartScreenTheme
