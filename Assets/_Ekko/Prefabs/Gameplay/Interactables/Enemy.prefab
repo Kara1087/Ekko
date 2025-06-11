@@ -283,7 +283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alertSpeed: 1
   chaseSpeed: 2
-  alertDuration: 2
+  alertDuration: 3
   chaseDuration: 1
   chaseRange: 8
   revealLight: {fileID: 2878345422865635465}

@@ -73,14 +73,11 @@ public class ReactivePlatform : MonoBehaviour, ILandingListener
             playerOnPlatform = null;
 
             if (isActiveAndEnabled                              // Le script est actif et le GameObject aussi
-                && other.transform.parent == transform          // Le joueur est bien parenté à la plateforme
                 && other.gameObject.activeInHierarchy           // Le joueur est actif dans la hiérarchie
                 && transform.gameObject.activeInHierarchy)      // La plateforme est active aussi
             {
                 StartCoroutine(Ascend());
             }
-
-            //Debug.Log($"[ReactivePlatform] ❌ Player est sorti de la plateforme");
 
             // 🧒 libération sécurisée : eviter bug respwawn player au mm moment ou la plateform essaye de remettre null comme parent
             if (isActiveAndEnabled
@@ -92,8 +89,6 @@ public class ReactivePlatform : MonoBehaviour, ILandingListener
             }
 
         }
-
-        
     }
 
     public void OnLandingDetected(float impactForce, LandingType type, Transform landObject)
@@ -126,7 +121,6 @@ public class ReactivePlatform : MonoBehaviour, ILandingListener
             Debug.Log($"[ReactivePlatform] Impact insuffisant ({impactForce:F2} < seuil {impactThreshold})");
         }
     }
-
 
     private IEnumerator DescendWithPlayer(Transform player)
     {
