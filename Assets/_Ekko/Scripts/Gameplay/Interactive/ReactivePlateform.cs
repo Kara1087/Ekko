@@ -103,7 +103,7 @@ public class ReactivePlatform : MonoBehaviour, ILandingListener
         
         StopAllCoroutines(); // Arrête toute descente en cours
         playerOnPlatform = jumpSystem.transform;
-        
+
         if (impactForce >= impactThreshold)
         {
             // 👇 Ajout : déclenche l’onboarding Cushion si activé
@@ -119,7 +119,27 @@ public class ReactivePlatform : MonoBehaviour, ILandingListener
         else
         {
             Debug.Log($"[ReactivePlatform] Impact insuffisant ({impactForce:F2} < seuil {impactThreshold})");
+            if (isActiveAndEnabled)
+            StartCoroutine(MiniBounce());
         }
+    }
+
+    private IEnumerator MiniBounce()
+    {
+        Vector3 originalPosition = transform.position;
+        float bounceHeight = 0.4f; // Hauteur du mini rebond
+        float bounceDuration = 0.2f; // Durée du rebond
+        float t = 0f;
+
+        while (t < bounceDuration)
+        {
+            t += Time.deltaTime;
+            float yOffset = -Mathf.Sin(t / bounceDuration * Mathf.PI) * bounceHeight; // Sinus pour un rebond doux
+            transform.position = new Vector3(originalPosition.x, originalPosition.y + yOffset, originalPosition.z);
+            yield return null;
+        }
+
+        transform.position = originalPosition; // Retour à la position initiale
     }
 
     private IEnumerator DescendWithPlayer(Transform player)
