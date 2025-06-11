@@ -4879,7 +4879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  attractionRadius: 4
+  attractionRadius: 1
   force: 12
   debugLogs: 1
   showGizmos: 1

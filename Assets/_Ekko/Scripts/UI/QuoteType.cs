@@ -5,5 +5,5 @@ public enum QuoteType
     Intro,
     Death,
     Tip,
-    Victory
+    Success
 }

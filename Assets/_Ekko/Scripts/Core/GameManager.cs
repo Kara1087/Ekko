@@ -202,9 +202,6 @@ public class GameManager : MonoBehaviour
         IsPaused = false;
         IsGameOver = false;
 
-        UIManager.Instance?.ShowQuotePanel(false);
-        UIManager.Instance?.HideGameOver();
-
         StartCoroutine(TransitionManager.Instance.LoadSceneWithFade("_MainMenu"));
     }
     

@@ -151,7 +151,7 @@ public class QuoteManager : MonoBehaviour
                 bool showBackground = quoteData.forceBackground
                                     || quoteData.type == QuoteType.Intro
                                     || quoteData.type == QuoteType.Death
-                                    || quoteData.type == QuoteType.Victory;
+                                    || quoteData.type == QuoteType.Success;
                 imageBackground.SetActive(showBackground);
             }
 

@@ -130,6 +130,44 @@ public class TransitionManager : MonoBehaviour
 
         isRunning = false;
     }
+
+    /// <summary>
+    /// Lance la séquence de fin de niveau : blackout → citation de victoire → retour menu.
+    /// </summary>
+    public void PlayEndLevelSequence()
+    {
+        if (isRunning)
+        {
+            Debug.LogWarning("[TransitionManager] ⚠ VictorySequence déjà en cours !");
+            return;
+        }
+
+        StartCoroutine(EndLevelSequence());
+    }
+
+    private IEnumerator EndLevelSequence()
+    {
+        isRunning = true;
+
+        // 1. Fondu vers noir
+        yield return ui.StartBlackoutRoutine();
+
+        // 2. Citation de success (si disponible)
+        if (quote != null)
+        {
+            bool done = false;
+            quote.ShowRandomQuote(QuoteType.Success, () => done = true);
+            yield return new WaitUntil(() => done);
+        }
+        else
+        {
+            Debug.LogWarning("[TransitionManager] ⚠️ QuoteManager manquant pour l’intro");
+        }
+
+        // 3. Retour au menu principal (via GameManager)
+        GameManager.Instance.ReturnToMainMenu();
+        isRunning = false;
+    }
     
     /// <summary>
     /// Charge une scène après un fondu vers noir.
@@ -138,7 +176,6 @@ public class TransitionManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        yield return ui.StartBlackoutRoutine();
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         while (!asyncLoad.isDone)
@@ -147,6 +184,7 @@ public class TransitionManager : MonoBehaviour
         }
 
         yield return new WaitForSecondsRealtime(0.1f);
+        Debug.Log($"[TransitionManager] Chargement de la scène {sceneName} terminé.");  
         yield return ui.StartFadeInRoutine();
     }
 }

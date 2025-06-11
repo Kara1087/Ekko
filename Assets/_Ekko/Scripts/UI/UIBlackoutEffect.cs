@@ -29,6 +29,7 @@ public class BlackoutEffect : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("[BlackoutEffect] 🌀 Initialisation du BlackoutEffect");
         // Auto fade-in si on arrive depuis une autre scène
         if (blackoutImage != null && blackoutImage.color.a >= 0.9f)
         {
@@ -41,7 +42,7 @@ public class BlackoutEffect : MonoBehaviour
     /// </summary>
     public void StartFadeIn(System.Action onComplete = null)
     {
-        //Debug.Log("[BlackoutEffect] 🎬 Début Fade In");
+        Debug.Log("[BlackoutEffect] 🎬 Début Fade In");
 
         if (!IsValidTarget()) // sécurité
         {
@@ -55,12 +56,10 @@ public class BlackoutEffect : MonoBehaviour
         if (panelParent != null && !panelParent.gameObject.activeSelf)
         {
             Debug.Log("[BlackoutEffect] 🔧 Activation du UI_BlackoutPanel désactivé.");
-            panelParent.gameObject.SetActive(true);
         }
 
         blackoutImage.DOKill();
 
-        blackoutImage.gameObject.SetActive(true);
         blackoutImage.color = new Color(0, 0, 0, 1f); // full noir
 
         blackoutImage.DOFade(0f, fadeDuration)
@@ -70,14 +69,13 @@ public class BlackoutEffect : MonoBehaviour
                 if (!IsValidTarget()) return;
 
                 //Debug.Log("[BlackoutEffect] ✅ Fin Fade In");
-                blackoutImage.gameObject.SetActive(false);
                 onComplete?.Invoke();
             });
     }
 
     public void StartBlackout(System.Action onComplete = null)
     {
-        //Debug.Log("[BlackoutEffect] 🎬 Début Fade Out (Blackout)");
+        Debug.Log("[BlackoutEffect] 🎬 Début Fade Out (Blackout)");
 
         if (!IsValidTarget())
         {
@@ -88,7 +86,6 @@ public class BlackoutEffect : MonoBehaviour
 
         blackoutImage.DOKill(); // 🔒 stoppe tout tween existant sur l’image
 
-        blackoutImage.gameObject.SetActive(true);
         blackoutImage.color = new Color(0, 0, 0, 0f); // transparent
 
         blackoutImage.DOFade(1f, fadeDuration)
@@ -97,7 +94,6 @@ public class BlackoutEffect : MonoBehaviour
             {
                 if (!IsValidTarget()) return;
                     
-                blackoutImage.gameObject.SetActive(false); // important sinon écran reste noir
                 Debug.Log("🌀 Blackout terminé");
                 onComplete?.Invoke();
             });
