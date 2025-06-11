@@ -10,9 +10,9 @@ using UnityEngine.Rendering.Universal;
 
 public class ParticleSync : MonoBehaviour
 {
-    [SerializeField] private Light2D targetLight;       // Lumière 2D (Unity URP) à suivre
-    [SerializeField] private ParticleSystem targetParticleSystem; // Système de particules à synchroniser
-    [SerializeField] private float radiusMultiplier = 0.9f; // Facteur d’ajustement (ex : un peu plus petit que la lumière)
+    [SerializeField] private Light2D targetLight;                   // Lumière 2D (Unity URP) à suivre
+    [SerializeField] private ParticleSystem targetParticleSystem;   // Système de particules à synchroniser
+    [SerializeField] private float radiusMultiplier = 0.9f;     // Facteur d’ajustement (ex : un peu plus petit que la lumière)
 
     // Accès direct au module "shape" du système de particules
     private ParticleSystem.ShapeModule shape;
