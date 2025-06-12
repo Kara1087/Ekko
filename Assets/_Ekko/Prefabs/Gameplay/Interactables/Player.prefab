@@ -523,7 +523,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3463463673784859910}
         m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
-        m_MethodName: OnControlFall
+        m_MethodName: OnCushion
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -567,7 +567,7 @@ MonoBehaviour:
   moveSpeed: 6
   currentControlFactor: 1
   controlTransitionSpeed: 5
-  maxFallSpeed: -6
+  maxFallSpeed: -20
   airControlCurve:
     serializedVersion: 2
     m_Curve:
@@ -581,8 +581,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.12764409
-      value: 0.3638323
+      time: 0.6515393
+      value: 0.41931325
       inSlope: -1.4887403
       outSlope: -1.4887403
       tangentMode: 0
@@ -590,8 +590,8 @@ MonoBehaviour:
       inWeight: 0.019455606
       outWeight: 0.05442129
     - serializedVersion: 3
-      time: 0.9978943
-      value: 0.019975325
+      time: 1.0020447
+      value: 0.11012425
       inSlope: -0.14384384
       outSlope: -0.14384384
       tangentMode: 0
@@ -640,7 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b651e04625c4b3ca21a21524c37776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 14
+  jumpForce: 12
   coyoteTime: 0.1
   jumpBufferTime: 0.15
   controlledFallWindow: 0.4
@@ -649,7 +649,6 @@ MonoBehaviour:
   cushionFallDamping: 0.3
   slamWaveMultiplier: 1.5
   cushionWaveMultiplier: 0.1
-  landingNotifyRadius: 3
 --- !u!114 &165381274287226765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -677,7 +676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLight: 100
-  currentLight: 100
+  currentLight: 50
   lowLightThreshold: 30
   onLightChanged:
     m_PersistentCalls:
@@ -744,7 +743,7 @@ MonoBehaviour:
   pulseSpeedNormal: 0.5
   pulseSpeedCritical: 5
   enemy: {fileID: 0}
-  suckRadius: 3
+  suckRadius: 2
   absorbIntensityMultiplier: 0.5
   absorbRadiusMultiplier: 0.7
   absorbLerpSpeed: 2
@@ -799,7 +798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ImpulseDefinition:
     ImpulseChannel: 1
-    ImpulseShape: 2
+    ImpulseShape: 3
     CustomImpulseShape:
       serializedVersion: 2
       m_Curve: []
@@ -807,7 +806,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     ImpulseDuration: 0.2
-    ImpulseType: 3
+    ImpulseType: 0
     DissipationRate: 0.25
     RawSignal: {fileID: 11400000, guid: 36500764bda23428e8fbf062739f7471, type: 2}
     AmplitudeGain: 1.5
@@ -837,7 +836,7 @@ MonoBehaviour:
     DissipationMode: 2
     DissipationDistance: 100
     PropagationSpeed: 343
-  DefaultVelocity: {x: 0.3, y: -0.6, z: 0}
+  DefaultVelocity: {x: 0.2, y: 0, z: 0}
 --- !u!114 &3223245780015205020
 MonoBehaviour:
   m_ObjectHideFlags: 0

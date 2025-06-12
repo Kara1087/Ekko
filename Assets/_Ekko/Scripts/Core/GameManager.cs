@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Unity.Cinemachine;
 
 /// <summary>
 /// GameManager gère l'état global du jeu : pause, game over, transitions, etc.
@@ -17,7 +18,8 @@ public class GameManager : MonoBehaviour
     private bool startGame; // Pour éviter de lancer le jeu avant que tout soit prêt
     private QuoteManager quoteManager;
     private BlackoutEffect blackoutEffect;
-    
+
+
 
     private void Awake()
     {
@@ -100,13 +102,19 @@ public class GameManager : MonoBehaviour
 
         Vector2 checkpointPos = CheckpointManager.Instance.GetLastCheckpointPosition();
 
+        // Nettoie les waves en cours
+        foreach (var wave in FindObjectsByType<Wave>(FindObjectsSortMode.None))
+        {
+            Destroy(wave.gameObject);
+        }
+
         // Réactive le jeu
         Time.timeScale = 1f;
         IsPaused = false;
         IsGameOver = false;
 
-        // Reset du joueur
-        GameObject player = GameObject.FindGameObjectWithTag("Player"); // Trouve le joueur dynamiquement (au cas où il a été détruit ou désactivé)
+        // Reset du joueur : Trouve le joueur dynamiquement (au cas où il a été détruit ou désactivé)
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         // Sécurité : on détache le joueur de toute plateforme potentielle
         if (player.transform.parent != null)
         {

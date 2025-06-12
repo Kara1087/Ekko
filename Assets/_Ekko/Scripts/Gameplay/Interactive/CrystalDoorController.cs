@@ -37,6 +37,7 @@ public class CrystalDoorController : MonoBehaviour
     private Vector3 initialPosition;
     private IActivatableLight[] crystals;
     private bool isOpen = false;
+    public bool IsOpen() => isOpen; // Pour vérifier l'état de la porte depuis d'autres scripts
 
     private void Awake()
     {
@@ -93,14 +94,10 @@ public class CrystalDoorController : MonoBehaviour
 
         int spriteIndex = Mathf.Clamp(activeCount, 0, doorStates.Length - 1);
 
-        // Log d'état
-        //Debug.Log($"[CrystalDoor] ✨ Cristaux activés : {activeCount}/{crystals.Length} → sprite #{spriteIndex}");
-
         // Mise à jour du sprite
         if (spriteRenderer.sprite != doorStates[spriteIndex])
         {
             spriteRenderer.sprite = doorStates[spriteIndex];
-            //Debug.Log($"[CrystalDoor] 🖼️ Sprite changé → {doorStates[spriteIndex].name}");
         }
     }
 
