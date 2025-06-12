@@ -64,6 +64,13 @@ public class PlayerHealth : MonoBehaviour
         TakeDamage(25f); // Appelle la méthode normale avec 25 de dégâts
         Debug.Log("[PlayerHealth] TestTakeDamage: -25");
     }
+    
+    [ContextMenu("Test: Kill (100)")]
+    private void TestKill()
+    {
+        TakeDamage(100f);
+        Debug.Log("[PlayerHealth] TestKill: -100");
+    }
 
     public void TakeDamage(float amount, GameObject source = null)
     {
@@ -99,7 +106,7 @@ public class PlayerHealth : MonoBehaviour
             HandleDeath();
             return;
         }
-         cameraShake?.Shake();                                     // Shake de caméra pour impact
+        cameraShake?.Shake();                                     // Shake de caméra pour impact
 
     }
 

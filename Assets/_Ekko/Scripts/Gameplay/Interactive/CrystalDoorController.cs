@@ -67,7 +67,7 @@ public class CrystalDoorController : MonoBehaviour
     public void CheckCrystals()
     {
         // 🔁 On update le sprite à chaque check, même si tous ne sont pas activés
-        UpdateDoorSprite(); 
+        UpdateDoorSprite();
 
         foreach (var crystal in crystals)
         {
@@ -109,7 +109,7 @@ public class CrystalDoorController : MonoBehaviour
         if (isOpen) return;
 
         isOpen = true;
-        Debug.Log("[CrystalDoor] 🚪 Tous les cristaux sont activés → ouverture !");
+        //Debug.Log("[CrystalDoor]🚪 Tous les cristaux sont activés → ouverture !");
         onDoorOpened?.Invoke();
 
         // 🔁 Focus caméra
@@ -120,8 +120,12 @@ public class CrystalDoorController : MonoBehaviour
 
         StartCoroutine(AnimateDoorDescent());
 
+        AudioManager.Instance?.StopTheme();
+
         if (openOnlyOnce)
             enabled = false;    // Stop le script si on ne doit plus checker
+
+
 
     }
 
@@ -144,7 +148,7 @@ public class CrystalDoorController : MonoBehaviour
 
         transform.position = end;
         //Debug.Log("[CrystalDoor] 📉 Porte descendue et ouverte !");
-}
+    }
 
     /// <summary>
     /// Permet de réinitialiser manuellement la porte (utile pour tests ou puzzles).
@@ -157,4 +161,13 @@ public class CrystalDoorController : MonoBehaviour
 
         UpdateDoorSprite(); // 🔁 met à jour le visuel à la réinitialisation
     }
+    
+    #if UNITY_EDITOR
+    [ContextMenu("🔓 Forcer l'ouverture de la porte (debug)")]
+    private void DebugForceOpenDoor()
+    {
+        Debug.Log("[CrystalDoorController] 🧪 Ouverture manuelle déclenchée via menu contextuel");
+        OpenDoor();
+    }
+    #endif
 }

@@ -29,7 +29,7 @@ public class BlackoutEffect : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("[BlackoutEffect] 🌀 Initialisation du BlackoutEffect");
+        //Debug.Log("[BlackoutEffect] 🌀 Initialisation du BlackoutEffect");
         // Auto fade-in si on arrive depuis une autre scène
         if (blackoutImage != null && blackoutImage.color.a >= 0.9f)
         {
@@ -75,7 +75,7 @@ public class BlackoutEffect : MonoBehaviour
 
     public void StartBlackout(System.Action onComplete = null)
     {
-        Debug.Log("[BlackoutEffect] 🎬 Début Fade Out (Blackout)");
+        //Debug.Log("[BlackoutEffect] 🎬 Début Fade Out (Blackout)");
 
         if (!IsValidTarget())
         {

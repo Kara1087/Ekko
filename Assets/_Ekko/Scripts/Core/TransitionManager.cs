@@ -15,6 +15,7 @@ public class TransitionManager : MonoBehaviour
     private GameManager game;
     private QuoteManager quote;
     private bool isRunning = false;
+    private string lastThemeBeforeDeath;
 
     private void Awake()
     {
@@ -52,6 +53,7 @@ public class TransitionManager : MonoBehaviour
     private IEnumerator DeathSequence()
     {
         isRunning = true;
+        lastThemeBeforeDeath = AudioManager.Instance?.GetCurrentMusicName();
 
         // 1. Fondu vers noir
         yield return ui.StartBlackoutRoutine();
@@ -86,8 +88,15 @@ public class TransitionManager : MonoBehaviour
         // 4. Fade in
         yield return ui.StartFadeInRoutine();
 
-        // 5. Rejoue la musique de fond
-        AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
+        // 5. Rejoue la musique
+        if (!string.IsNullOrEmpty(lastThemeBeforeDeath))
+        {
+            AudioManager.Instance?.PlayMusicTheme(lastThemeBeforeDeath);
+        }
+        else
+        {
+            AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
+        }
 
         isRunning = false;
     }
@@ -164,7 +173,11 @@ public class TransitionManager : MonoBehaviour
             Debug.LogWarning("[TransitionManager] ⚠️ QuoteManager manquant pour l’intro");
         }
 
-        // 3. Retour au menu principal (via GameManager)
+        // 3. Arrête la musique de fond
+        Debug.Log("[TransitionManager] Arrêt de la musique de fond.");
+        AudioManager.Instance?.StopTheme();
+
+        // 4. Retour au menu principal (via GameManager)
         GameManager.Instance.ReturnToMainMenu();
         isRunning = false;
     }

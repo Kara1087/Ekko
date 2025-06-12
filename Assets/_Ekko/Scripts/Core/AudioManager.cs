@@ -59,6 +59,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public string GetCurrentMusicName()
+    {
+        return currentMusicName;
+    }
     public float GetCurrentMusicVolume()
     {
         return musicThemeSource != null ? musicThemeSource.volume : 1f;
@@ -135,9 +139,15 @@ public class AudioManager : MonoBehaviour
         PlayMusicTheme("PauseTheme");
     }
 
-    public void StopTheme()  // Appelée pour stopper toute musique
+    public void StopTheme(float fadeDuration = 3f)  // Appelée pour stopper toute musique
     {
-        StopMusicTheme();
+        Debug.Log($"[AudioManager] ⏹️ StopTheme appelé → fade sur {fadeDuration}s");
+        FadeOutMusicTheme(fadeDuration);
+    }
+
+    public void SwitchMusicTheme(string newThemeName, float fadeDuration = 2f)
+    {
+        StartCoroutine(SwitchMusicThemeRoutine(newThemeName, fadeDuration));
     }
 
     public void PlayOverlayMusic(string soundName)  // 🎶 Overlay : Musique temporaire (superposée à la musique principale)
@@ -171,6 +181,35 @@ public class AudioManager : MonoBehaviour
             StopCoroutine(fadeOutRoutine);
 
         fadeOutRoutine = StartCoroutine(FadeOutMusicRoutine(duration));
+    }
+
+    private IEnumerator SwitchMusicThemeRoutine(string newTheme, float fadeDuration)
+    {
+        bool wasPlaying = musicThemeSource.isPlaying;
+
+        if (wasPlaying)
+        {
+            float startVolume = musicThemeSource.volume;
+            float timer = 0f;
+
+            while (timer < fadeDuration)
+            {
+                timer += Time.unscaledDeltaTime;
+                float t = timer / fadeDuration;
+                musicThemeSource.volume = Mathf.Lerp(startVolume, 0f, t);
+                yield return null;
+            }
+
+            musicThemeSource.Stop();
+            musicThemeSource.volume = startVolume;
+        }
+        else
+        {
+            // Si aucune musique ne jouait, on attend quand même le "fade" pour lisser le rythme
+            yield return new WaitForSeconds(fadeDuration);
+        }
+
+        PlayMusicTheme(newTheme);
     }
 
     private IEnumerator FadeOutMusicRoutine(float duration)

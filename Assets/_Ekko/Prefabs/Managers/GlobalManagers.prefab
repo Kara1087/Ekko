@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1fefe7ccb7f74aba9b2c37c2267e507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
 --- !u!114 &3295093843533556987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +155,16 @@ MonoBehaviour:
   - name: WakeUpTheme
     clip: {fileID: 8300000, guid: 0335e766da7ed43b893f24f3517c5731, type: 3}
     volume: 1
+    pitch: 1
+    bpm: 120
+  - name: TensionTheme
+    clip: {fileID: 8300000, guid: 201f92e362acc4c6dbfe8713f60e1b65, type: 3}
+    volume: 0.15
+    pitch: 0.6
+    bpm: 120
+  - name: NowWeAreFree
+    clip: {fileID: 8300000, guid: efcc748cdd1804ad8b9f97cc19e442f0, type: 3}
+    volume: 0.5
     pitch: 1
     bpm: 120
 --- !u!114 &6082230899010381783
