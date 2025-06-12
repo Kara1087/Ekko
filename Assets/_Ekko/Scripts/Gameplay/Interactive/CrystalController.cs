@@ -10,21 +10,23 @@ using UnityEngine.Events;
 public class CrystalController : MonoBehaviour, IActivatableLight
 {
     [Header("Références visuelles")]
-    [SerializeField] private ProximityLightActivator lightActivator; // Active visuellement la lumière
+    [SerializeField] private ProximityLightActivator lightActivator;    // Active visuellement la lumière
+    [SerializeField] private LightRevealManager lightRevealManager;     // Gère les waves de lumière
 
     [Header("Comportement")]
-    [SerializeField] private bool activateOnTrigger = true;          // Active le cristal automatiquement au contact
+    [SerializeField] private bool activateOnTrigger = true;             // Active le cristal automatiquement au contact
     [SerializeField] private string playerTag = "Player";
 
     [Header("Événements")]
-    public UnityEvent OnCrystalActivated;     // Déclenché une fois lorsque le cristal est activé
+    public UnityEvent OnCrystalActivated;                               // Déclenché une fois lorsque le cristal est activé
 
-    private bool isActivated = false;         // Empêche les activations multiples
+    private bool isActivated = false;                                   // Empêche les activations multiples
 
     private void Awake()
     {
         if (lightActivator == null)
             lightActivator = GetComponentInChildren<ProximityLightActivator>();
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -46,6 +48,12 @@ public class CrystalController : MonoBehaviour, IActivatableLight
 
         if (lightActivator != null)
             lightActivator.Activate();
+
+        // Demande au LightTrailController d’activer la traînée
+        GetComponent<LightTrailController>()?.OnLightStateChanged();
+
+        // Expansion lumineuse via LightRevealManager (si présent)
+        lightRevealManager?.StartReveal();
 
         AudioManager.Instance.SetVolume("BackgroundTheme", 0.1f);
         AudioManager.Instance.PlayOverlayMusic("TreeReveal");

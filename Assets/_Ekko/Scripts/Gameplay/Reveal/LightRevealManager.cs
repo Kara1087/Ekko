@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class LightRevealManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class LightRevealManager : MonoBehaviour
     [Header("Beat Sync")]
     [SerializeField] private bool useBeatSync = false;
     [SerializeField] private int spawnIntervalInBeats = 2; // 👈 génère 1 wave tous les X beats
+
+    [Header("Durée")]
+    [SerializeField] private float revealDuration = 10f; // durée max en secondes
 
     [Header("Debug")]
     [SerializeField] private bool debug = false;
@@ -48,6 +52,8 @@ public class LightRevealManager : MonoBehaviour
         {
             SpawnWave();
         }
+
+        StartCoroutine(RevealDurationRoutine());
     }
 
     public void ResetReveal()
@@ -92,5 +98,12 @@ public class LightRevealManager : MonoBehaviour
         }
 
         wave.Initialize(impactForce, targetRadius);
+    }
+
+    private IEnumerator RevealDurationRoutine()
+    {
+        yield return new WaitForSeconds(revealDuration);
+        if (debug) Debug.Log($"⏹️ Fin automatique du Reveal après {revealDuration} secondes.");
+        ResetReveal();
     }
 }
