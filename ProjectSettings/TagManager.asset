@@ -43,5 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: test
+    uniqueID: 257808233
+    locked: 0
   m_RenderingLayers:
   - Default
+  - NotAffectedByLight
