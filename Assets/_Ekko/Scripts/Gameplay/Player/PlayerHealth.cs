@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -5,7 +6,7 @@ using UnityEngine.Events;
 /// Gère la "vie" du joueur sous forme de lumière.
 /// Appelle des événements quand la lumière change, devient faible ou tombe à zéro.
 /// </summary>
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDamageable
 {   
     
     [Header("Lumière/Vie")]
@@ -15,11 +16,13 @@ public class PlayerHealth : MonoBehaviour
     [Header("Seuil critique")]
     [SerializeField] private float lowLightThreshold = 20f;
 
-    [Header("Events")]
+    [Header("Events")]//TODO Cleanup this
     public UnityEvent onLightChanged;           // Appelé à chaque changement de lumière (dégâts ou soin)
     public UnityEvent onLowLight;               // Appelé quand la lumière passe sous le seuil critique
     public UnityEvent onDeath;
 
+    public static Action<Transform> OnPlayerDeath;
+    
     [Header("References")]
     [SerializeField] private PlayerVFX playerVFX;
     [SerializeField] private PlayerLight playerLight;
@@ -44,62 +47,13 @@ public class PlayerHealth : MonoBehaviour
         // Initialisation de la caméra shake
         cameraShake = GetComponent<CameraShake>();
     }
-
-    private void Update()
-    {
-
-    }
-
+    
     // --- MÉTHODES DE TEST RAPIDES ---
     [ContextMenu("Test: Restore Light (30)")]
     private void TestRestoreLight()
     {
         RestoreLight(maxLight);
         Debug.Log("[PlayerHealth] TestRestoreLight: +30");
-    }
-
-    [ContextMenu("Test: Take Damage (25)")]
-    private void TestTakeDamage()
-    {
-        TakeDamage(25f); // Appelle la méthode normale avec 25 de dégâts
-        Debug.Log("[PlayerHealth] TestTakeDamage: -25");
-    }
-
-    public void TakeDamage(float amount, GameObject source = null)
-    {
-        if (IsDead)
-            return;
-
-        // Réduction de lumière : Diminue currentLight
-        currentLight -= amount;
-        currentLight = Mathf.Clamp(currentLight, 0f, maxLight);     // Évite d’aller en négatif
-
-        Debug.Log($"[PlayerHealth] 💥 Dégâts reçus : -{amount} | Lumière restante : {currentLight} | IsDead = {IsDead}");
-
-        // Déclenche une citation si la source est un ennemi spécifique
-        if (!hasTriggeredFirstSpectreQuote && source != null && source.CompareTag("Enemy"))
-        {
-            hasTriggeredFirstSpectreQuote = true;
-
-            // Affiche une citation Tip liée aux dégâts (tag personnalisé)
-            QuoteManager.Instance?.ShowRandomQuote(QuoteType.Tip, QuoteTag.Diversion);
-            Debug.Log("[PlayerHealth] ⚠️ Premier dégât reçu d'un Spectre !");
-        }
-
-        onLightChanged?.Invoke();                                   // Notifie tout système écoutant ce changement (UI, shader, etc.)
-
-        // Feedback visuel
-        playerLight?.FlashAbsorptionEffect();                       // Effet visuel de flash/lumière aspirée
-        playerVFX?.TriggerDamageFeedback();                         // Particules aspirées/burst visuel
-
-        if (IsLow) onLowLight?.Invoke();
-        if (IsDead)
-        {
-            onDeath?.Invoke();
-            HandleDeath();
-            return;
-        }
-        cameraShake?.Shake();                                     // Shake de caméra pour impact
     }
 
     /// <summary>
@@ -140,7 +94,44 @@ public class PlayerHealth : MonoBehaviour
     {
         return currentLight / maxLight;
     }
+    public void TakeDamage(float damageAmount, Transform source = null)
+    {
+        if (IsDead)
+            return;
 
+        // Réduction de lumière : Diminue currentLight
+        currentLight -= damageAmount;
+        currentLight = Mathf.Clamp(currentLight, 0f, maxLight);     // Évite d’aller en négatif
+
+        Debug.Log($"[PlayerHealth] 💥 Dégâts reçus : -{damageAmount} | Lumière restante : {currentLight} | IsDead = {IsDead}");
+
+        // Déclenche une citation si la source est un ennemi spécifique
+        if (!hasTriggeredFirstSpectreQuote && source != null && source.CompareTag("Enemy"))
+        {
+            hasTriggeredFirstSpectreQuote = true;
+
+            // Affiche une citation Tip liée aux dégâts (tag personnalisé)
+            QuoteManager.Instance?.ShowRandomQuote(QuoteType.Tip, QuoteTag.Diversion);
+            Debug.Log("[PlayerHealth] ⚠️ Premier dégât reçu d'un Spectre !");
+        }
+
+        onLightChanged?.Invoke();                                   // Notifie tout système écoutant ce changement (UI, shader, etc.)
+
+        // Feedback visuel
+        playerLight?.FlashAbsorptionEffect();                       // Effet visuel de flash/lumière aspirée
+        playerVFX?.TriggerDamageFeedback();                         // Particules aspirées/burst visuel
+
+        if (IsLow) onLowLight?.Invoke();
+        if (IsDead)
+        {
+            OnPlayerDeath?.Invoke(source);
+            onDeath?.Invoke();
+            HandleDeath();
+            return;
+        }
+        cameraShake?.Shake();                                     // Shake de caméra pour impact
+    }
+    
     /// <summary>
     /// Gère la mort du joueur via le GameManager.
     /// </summary>
@@ -156,4 +147,5 @@ public class PlayerHealth : MonoBehaviour
             Debug.LogWarning("[PlayerHealth] GameManager.Instance est null !");
         }
     }
+
 }

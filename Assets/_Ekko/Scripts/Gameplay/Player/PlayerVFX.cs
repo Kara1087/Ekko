@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -17,6 +18,8 @@ public class PlayerVFX : MonoBehaviour
     [SerializeField] private float attractStrength = 3f;        // Force d’attraction exercée sur les particules
     [SerializeField] private LayerMask enemyLayerMask;           // Masque pour détecter les ennemis (tag layer "Enemy")
 
+    [SerializeField] private GameObject splashPrefab;
+    
     // Références internes    
     private GameObject lightTrailInstance;
     private ParticleSystem targetParticleSystem;
@@ -41,6 +44,22 @@ public class PlayerVFX : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        PlayerHealth.OnPlayerDeath += OnPlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        PlayerHealth.OnPlayerDeath -= OnPlayerDeath;
+        
+    }
+
+    private void OnPlayerDeath(Transform obj)
+    {
+       ObjectPoolManager.SpawnObject(splashPrefab, obj.position, Quaternion.identity);
+    }
+    
     void LateUpdate()
     {
         if (targetParticleSystem == null) return;

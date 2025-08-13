@@ -767,6 +767,7 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  splashPrefab: {fileID: 2848330765371235717, guid: 65942cac359f2cb4291f39e736d36704, type: 3}
 --- !u!114 &9218443062767646362
 MonoBehaviour:
   m_ObjectHideFlags: 0

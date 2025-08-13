@@ -49,3 +49,4 @@ TagManager:
   m_RenderingLayers:
   - Default
   - NotAffectedByLight
+  - Splash

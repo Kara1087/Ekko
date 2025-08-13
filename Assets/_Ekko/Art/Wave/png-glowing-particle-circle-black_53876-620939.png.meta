@@ -1,0 +1,2242 @@
+fileFormatVersion: 2
+guid: 3e264d7fba6067c478ccb167035e6c20
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2370545584244621696
+    second: png-glowing-particle-circle-black_53876-620939_0
+  - first:
+      213: -821153799810493329
+    second: png-glowing-particle-circle-black_53876-620939_1
+  - first:
+      213: 8565599749301635642
+    second: png-glowing-particle-circle-black_53876-620939_2
+  - first:
+      213: 2619627610285148238
+    second: png-glowing-particle-circle-black_53876-620939_3
+  - first:
+      213: 2133476229133078208
+    second: png-glowing-particle-circle-black_53876-620939_4
+  - first:
+      213: 3946285856517607535
+    second: png-glowing-particle-circle-black_53876-620939_5
+  - first:
+      213: -892609258053840780
+    second: png-glowing-particle-circle-black_53876-620939_6
+  - first:
+      213: -3825636162705296465
+    second: png-glowing-particle-circle-black_53876-620939_7
+  - first:
+      213: 2236207330141704718
+    second: png-glowing-particle-circle-black_53876-620939_8
+  - first:
+      213: 1676252154079689724
+    second: png-glowing-particle-circle-black_53876-620939_9
+  - first:
+      213: 4663391801977763017
+    second: png-glowing-particle-circle-black_53876-620939_10
+  - first:
+      213: -1039159393989616538
+    second: png-glowing-particle-circle-black_53876-620939_11
+  - first:
+      213: -3426218747344351084
+    second: png-glowing-particle-circle-black_53876-620939_12
+  - first:
+      213: 3142371928765389764
+    second: png-glowing-particle-circle-black_53876-620939_13
+  - first:
+      213: 263667609732963603
+    second: png-glowing-particle-circle-black_53876-620939_14
+  - first:
+      213: -4799087076612281342
+    second: png-glowing-particle-circle-black_53876-620939_15
+  - first:
+      213: 2278281091004339777
+    second: png-glowing-particle-circle-black_53876-620939_16
+  - first:
+      213: 4909573051383474909
+    second: png-glowing-particle-circle-black_53876-620939_17
+  - first:
+      213: -449580691739245176
+    second: png-glowing-particle-circle-black_53876-620939_18
+  - first:
+      213: -7957472915013018208
+    second: png-glowing-particle-circle-black_53876-620939_19
+  - first:
+      213: -2791505668189565778
+    second: png-glowing-particle-circle-black_53876-620939_20
+  - first:
+      213: -4175064084874607919
+    second: png-glowing-particle-circle-black_53876-620939_21
+  - first:
+      213: -8245321233269502303
+    second: png-glowing-particle-circle-black_53876-620939_22
+  - first:
+      213: 1638365827902982733
+    second: png-glowing-particle-circle-black_53876-620939_23
+  - first:
+      213: 9085764957078924922
+    second: png-glowing-particle-circle-black_53876-620939_24
+  - first:
+      213: -7872879075441612910
+    second: png-glowing-particle-circle-black_53876-620939_25
+  - first:
+      213: -3747154326124184382
+    second: png-glowing-particle-circle-black_53876-620939_26
+  - first:
+      213: 5975599496950431216
+    second: png-glowing-particle-circle-black_53876-620939_27
+  - first:
+      213: -7036807208894540885
+    second: png-glowing-particle-circle-black_53876-620939_28
+  - first:
+      213: 4859800017780994774
+    second: png-glowing-particle-circle-black_53876-620939_29
+  - first:
+      213: -7097332625787067492
+    second: png-glowing-particle-circle-black_53876-620939_30
+  - first:
+      213: 2112594371348452124
+    second: png-glowing-particle-circle-black_53876-620939_31
+  - first:
+      213: 9113874188391003795
+    second: png-glowing-particle-circle-black_53876-620939_32
+  - first:
+      213: 79875925553058537
+    second: png-glowing-particle-circle-black_53876-620939_33
+  - first:
+      213: -8766808655388354603
+    second: png-glowing-particle-circle-black_53876-620939_34
+  - first:
+      213: -9051980814591619425
+    second: png-glowing-particle-circle-black_53876-620939_35
+  - first:
+      213: -7471474516309787462
+    second: png-glowing-particle-circle-black_53876-620939_36
+  - first:
+      213: -8112176384695985301
+    second: png-glowing-particle-circle-black_53876-620939_37
+  - first:
+      213: 7457077371879202468
+    second: png-glowing-particle-circle-black_53876-620939_38
+  - first:
+      213: 987798062287029138
+    second: png-glowing-particle-circle-black_53876-620939_39
+  - first:
+      213: 4665293372776254562
+    second: png-glowing-particle-circle-black_53876-620939_40
+  - first:
+      213: -3597155019676527228
+    second: png-glowing-particle-circle-black_53876-620939_41
+  - first:
+      213: -8081758653323139494
+    second: png-glowing-particle-circle-black_53876-620939_42
+  - first:
+      213: -6024346005034447468
+    second: png-glowing-particle-circle-black_53876-620939_43
+  - first:
+      213: -2182868809435332564
+    second: png-glowing-particle-circle-black_53876-620939_44
+  - first:
+      213: -3095076039463246170
+    second: png-glowing-particle-circle-black_53876-620939_45
+  - first:
+      213: -1992227222795497217
+    second: png-glowing-particle-circle-black_53876-620939_46
+  - first:
+      213: 3575494387887137973
+    second: png-glowing-particle-circle-black_53876-620939_47
+  - first:
+      213: 8370565726973231144
+    second: png-glowing-particle-circle-black_53876-620939_48
+  - first:
+      213: 7305757407054844980
+    second: png-glowing-particle-circle-black_53876-620939_49
+  - first:
+      213: -4187826335377343825
+    second: png-glowing-particle-circle-black_53876-620939_50
+  - first:
+      213: 1721362936261517450
+    second: png-glowing-particle-circle-black_53876-620939_51
+  - first:
+      213: 783610013150039503
+    second: png-glowing-particle-circle-black_53876-620939_52
+  - first:
+      213: 7794891040252159605
+    second: png-glowing-particle-circle-black_53876-620939_53
+  - first:
+      213: 8110166992622479947
+    second: png-glowing-particle-circle-black_53876-620939_54
+  - first:
+      213: 7969385816563834476
+    second: png-glowing-particle-circle-black_53876-620939_55
+  - first:
+      213: -5221170981260521510
+    second: png-glowing-particle-circle-black_53876-620939_56
+  - first:
+      213: 2847935210884605837
+    second: png-glowing-particle-circle-black_53876-620939_57
+  - first:
+      213: -639112491201270438
+    second: png-glowing-particle-circle-black_53876-620939_58
+  - first:
+      213: -5962128866480605164
+    second: png-glowing-particle-circle-black_53876-620939_59
+  - first:
+      213: 8601499287397737566
+    second: png-glowing-particle-circle-black_53876-620939_60
+  - first:
+      213: 6876817625079571296
+    second: png-glowing-particle-circle-black_53876-620939_61
+  - first:
+      213: 1156703065612877739
+    second: png-glowing-particle-circle-black_53876-620939_62
+  - first:
+      213: 5636611929562993403
+    second: png-glowing-particle-circle-black_53876-620939_63
+  - first:
+      213: -2071143614332684791
+    second: png-glowing-particle-circle-black_53876-620939_64
+  - first:
+      213: -1198803213831833902
+    second: png-glowing-particle-circle-black_53876-620939_65
+  - first:
+      213: -1168904937507227332
+    second: png-glowing-particle-circle-black_53876-620939_66
+  - first:
+      213: -315198195857160539
+    second: png-glowing-particle-circle-black_53876-620939_67
+  - first:
+      213: 5579904042897815633
+    second: png-glowing-particle-circle-black_53876-620939_68
+  - first:
+      213: 6757291827941562020
+    second: png-glowing-particle-circle-black_53876-620939_69
+  - first:
+      213: -8516599457399197607
+    second: png-glowing-particle-circle-black_53876-620939_70
+  - first:
+      213: -6942414451544544890
+    second: png-glowing-particle-circle-black_53876-620939_71
+  - first:
+      213: -3630552610898772710
+    second: png-glowing-particle-circle-black_53876-620939_72
+  - first:
+      213: -2250803425776503676
+    second: png-glowing-particle-circle-black_53876-620939_73
+  - first:
+      213: -3334892808678437186
+    second: png-glowing-particle-circle-black_53876-620939_74
+  - first:
+      213: 7521180588776008357
+    second: png-glowing-particle-circle-black_53876-620939_75
+  - first:
+      213: -2574363723464905495
+    second: png-glowing-particle-circle-black_53876-620939_76
+  - first:
+      213: 494908241549690652
+    second: png-glowing-particle-circle-black_53876-620939_77
+  - first:
+      213: -971579598933564656
+    second: png-glowing-particle-circle-black_53876-620939_78
+  - first:
+      213: -4788013442730722079
+    second: png-glowing-particle-circle-black_53876-620939_79
+  - first:
+      213: 1626685502741925149
+    second: png-glowing-particle-circle-black_53876-620939_80
+  - first:
+      213: -867425262669507143
+    second: png-glowing-particle-circle-black_53876-620939_81
+  - first:
+      213: 3376567976601642662
+    second: png-glowing-particle-circle-black_53876-620939_82
+  - first:
+      213: -2222200076102005324
+    second: png-glowing-particle-circle-black_53876-620939_83
+  - first:
+      213: -4070375712224284852
+    second: png-glowing-particle-circle-black_53876-620939_84
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_0
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 89
+        width: 224
+        height: 438
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08e7a3fc9512a1fd0800000000000000
+      internalID: -2370545584244621696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_1
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 513
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f64555048fcaa94f0800000000000000
+      internalID: -821153799810493329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_2
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 522
+        width: 26
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3a8c49e69f1fd670800000000000000
+      internalID: 8565599749301635642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_3
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 533
+        width: 14
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e480ad2ae69ca5420800000000000000
+      internalID: 2619627610285148238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_4
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 517
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ce8736a351ab9d10800000000000000
+      internalID: 2133476229133078208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_5
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 522
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6051e3041604c630800000000000000
+      internalID: 3946285856517607535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_6
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 477
+        width: 36
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 470d97aeb90dc93f0800000000000000
+      internalID: -892609258053840780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_7
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 512
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa3ff0add2c98eac0800000000000000
+      internalID: -3825636162705296465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_8
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 524
+        width: 22
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e02983508ba980f10800000000000000
+      internalID: 2236207330141704718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_9
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 516
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfb37e5f37e334710800000000000000
+      internalID: 1676252154079689724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_10
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 522
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c47a5dd222b7b040800000000000000
+      internalID: 4663391801977763017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_11
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 469
+        width: 39
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66c1d30790a2491f0800000000000000
+      internalID: -1039159393989616538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_12
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 504
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49091c1c330a370d0800000000000000
+      internalID: -3426218747344351084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_13
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 522
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cb5836ce92fb9b20800000000000000
+      internalID: 3142371928765389764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_14
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 518
+        width: 54
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31dd8e84b4cb8a300800000000000000
+      internalID: 263667609732963603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_15
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 506
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20c6b500bb7366db0800000000000000
+      internalID: -4799087076612281342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_16
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 501
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1469dc7d4941e9f10800000000000000
+      internalID: 2278281091004339777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_17
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 469
+        width: 38
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddaea8e9dae422440800000000000000
+      internalID: 4909573051383474909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_18
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 519
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 885020b2eb4c2c9f0800000000000000
+      internalID: -449580691739245176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_19
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 505
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ad5bd65b80619190800000000000000
+      internalID: -7957472915013018208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_20
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 537
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eac421382649249d0800000000000000
+      internalID: -2791505668189565778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_21
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 528
+        width: 23
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d2ce82d5513f06c0800000000000000
+      internalID: -4175064084874607919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_22
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 518
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ae4cff160cb29d80800000000000000
+      internalID: -8245321233269502303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_23
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 398
+        width: 113
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4acb404a05acb610800000000000000
+      internalID: 1638365827902982733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_24
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 535
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7ea16b071f171e70800000000000000
+      internalID: 9085764957078924922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_25
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 501
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29762b4713aedb290800000000000000
+      internalID: -7872879075441612910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_26
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 501
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ccbcc06efe6ffbc0800000000000000
+      internalID: -3747154326124184382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_27
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 505
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fdbbb715189de250800000000000000
+      internalID: 5975599496950431216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_28
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 505
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba3dee8402d385e90800000000000000
+      internalID: -7036807208894540885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_29
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 503
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d2f54b2e5a717340800000000000000
+      internalID: 4859800017780994774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_30
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 502
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c93eb238495318d90800000000000000
+      internalID: -7097332625787067492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_31
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 497
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c13d6b24361715d10800000000000000
+      internalID: 2112594371348452124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_32
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 492
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 396b5a6794cfa7e70800000000000000
+      internalID: 9113874188391003795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_33
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 492
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e212b82bb6cb1100800000000000000
+      internalID: 79875925553058537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_34
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 247
+        width: 97
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d7d1c9f9f9065680800000000000000
+      internalID: -8766808655388354603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_35
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 412
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9e8d989867e06280800000000000000
+      internalID: -9051980814591619425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_36
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 406
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abcb8f2538dff4890800000000000000
+      internalID: -7471474516309787462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_37
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 407
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6b12eaee82cb6f80800000000000000
+      internalID: -8112176384695985301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_38
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 387
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ae96754c5cdc7760800000000000000
+      internalID: 7457077371879202468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_39
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 400
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2930074aa1d55bd00800000000000000
+      internalID: 987798062287029138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_40
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 368
+        width: 28
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26c0051da937eb040800000000000000
+      internalID: 4665293372776254562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_41
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 399
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 485da227196541ec0800000000000000
+      internalID: -3597155019676527228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_42
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 370
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a562c34e253d7df80800000000000000
+      internalID: -8081758653323139494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_43
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 383
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49dc0ed0a39356ca0800000000000000
+      internalID: -6024346005034447468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_44
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 372
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c20c3561264e4b1e0800000000000000
+      internalID: -2182868809435332564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_45
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 368
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a668f29db41c05d0800000000000000
+      internalID: -3095076039463246170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_46
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 371
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff0596965ef2a54e0800000000000000
+      internalID: -1992227222795497217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_47
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 330
+        width: 33
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b46a66b335be9130800000000000000
+      internalID: 3575494387887137973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_48
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 347
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8208c45fd293a2470800000000000000
+      internalID: 8370565726973231144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_49
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 362
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 434dea677a3436560800000000000000
+      internalID: 7305757407054844980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_50
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 356
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faabec2d22ad1e5c0800000000000000
+      internalID: -4187826335377343825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_51
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 360
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a802469687283e710800000000000000
+      internalID: 1721362936261517450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_52
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 355
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcd4f3cb721ffda00800000000000000
+      internalID: 783610013150039503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_53
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 346
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 576ea1d1a140d2c60800000000000000
+      internalID: 7794891040252159605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_54
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 341
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4a6c5809e91d8070800000000000000
+      internalID: 8110166992622479947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_55
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 344
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6ed2523d22f89e60800000000000000
+      internalID: 7969385816563834476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_56
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 342
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adf836ec7acaa87b0800000000000000
+      internalID: -5221170981260521510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_57
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 336
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d87aa1c3cf5e58720800000000000000
+      internalID: 2847935210884605837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_58
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 315
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5dee6e439a6127f0800000000000000
+      internalID: -639112491201270438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_59
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 330
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41832587263424da0800000000000000
+      internalID: -5962128866480605164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_60
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 324
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e542e19770aae5770800000000000000
+      internalID: 8601499287397737566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_61
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 317
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0636300f13d5f6f50800000000000000
+      internalID: 6876817625079571296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_62
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 297
+        width: 23
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baff5784f4f6d0010800000000000000
+      internalID: 1156703065612877739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_63
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 293
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf2d4569fa4493e40800000000000000
+      internalID: 5636611929562993403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_64
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 275
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 906b1ec2bd1d143e0800000000000000
+      internalID: -2071143614332684791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_65
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 62
+        width: 243
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d6f4fb14defc5fe0800000000000000
+      internalID: -1198803213831833902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_66
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 243
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c397ea7072737cfe0800000000000000
+      internalID: -1168904937507227332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_67
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 253
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a6071e29e030abf0800000000000000
+      internalID: -315198195857160539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_68
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 156
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 158b0b5d92dcf6d40800000000000000
+      internalID: 5579904042897815633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_69
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 143
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a65b18ad19b6cd50800000000000000
+      internalID: 6757291827941562020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_70
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 141
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 950bf679ae5fec980800000000000000
+      internalID: -8516599457399197607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_71
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 130
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 689262cb6d697af90800000000000000
+      internalID: -6942414451544544890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_72
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 126
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1df209c2afad9dc0800000000000000
+      internalID: -3630552610898772710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_73
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 132
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 484fb53a53a83c0e0800000000000000
+      internalID: -2250803425776503676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_74
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 124
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebe87b6d8a418b1d0800000000000000
+      internalID: -3334892808678437186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_75
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 120
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aaae8585e9906860800000000000000
+      internalID: 7521180588776008357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_76
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 119
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ece83445d5064cd0800000000000000
+      internalID: -2574363723464905495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_77
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 114
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c178bfd6c644ed600800000000000000
+      internalID: 494908241549690652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_78
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 112
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0136c8e90814482f0800000000000000
+      internalID: -971579598933564656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_79
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 111
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ec7d3e442f8d8db0800000000000000
+      internalID: -4788013442730722079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_80
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 98
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1dc530a8d5239610800000000000000
+      internalID: 1626685502741925149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_81
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 93
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b55265c15946f3f0800000000000000
+      internalID: -867425262669507143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_82
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 99
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a6ec455faafbde20800000000000000
+      internalID: 3376567976601642662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_83
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 95
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bd0814fdc82921e0800000000000000
+      internalID: -2222200076102005324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: png-glowing-particle-circle-black_53876-620939_84
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 68
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4f6e720bde1387c0800000000000000
+      internalID: -4070375712224284852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

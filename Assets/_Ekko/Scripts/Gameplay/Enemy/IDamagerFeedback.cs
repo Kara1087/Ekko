@@ -1,4 +1,5 @@
-// IDamagerFeedback.cs
+using UnityEngine;
+
 public interface IDamagerFeedback
 {
     void TriggerFeedback();

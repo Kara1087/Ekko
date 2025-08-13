@@ -34,17 +34,17 @@ public class Damager : MonoBehaviour
         if (!other.CompareTag(playerTag)) return;
         if (applyOnce && hasAppliedDamage) return;
 
-        PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-        if (playerHealth != null)
+        IDamageable damageable = other.GetComponent<IDamageable>();
+        if (damageable != null)
         {
-            ApplyDamage(playerHealth);
+            damageable.TakeDamage(damageAmount, transform);
         }
 
         // On déclenche tous les feedbacks (ex : fx, son, flash...)
         foreach (var feedback in feedbackModules)
         {
             //Debug.Log($"[Damager] → Activation de {feedback}");
-            feedback?.TriggerFeedback();
+            feedback?.TriggerFeedback();;
         }
 
         if (applyOnce)
@@ -66,13 +66,5 @@ public class Damager : MonoBehaviour
                 feedback.StopFeedback();
             }
         }
-    }
-
-    /// <summary>
-    /// Méthode qui applique réellement les dégâts au joueur
-    /// </summary>
-    public void ApplyDamage(PlayerHealth player)
-    {
-        player.TakeDamage(damageAmount);
     }
 }

@@ -11,11 +11,6 @@ public class EnemyDamageTrigger : MonoBehaviour
     [SerializeField] private float damageCooldown = 1f;
     private float lastDamageTime = -999f; // initialisé loin dans le passé
 
-    private void Awake()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
@@ -27,7 +22,7 @@ public class EnemyDamageTrigger : MonoBehaviour
         if (player != null)
         {   
             // Inflige les dégâts au joueur, en passant en paramètre l’ennemi responsable (utile pour feedback ou UI)
-            player.TakeDamage(damageAmount, gameObject);
+            player.TakeDamage(damageAmount, transform);
             lastDamageTime = Time.time;
         }
     }
