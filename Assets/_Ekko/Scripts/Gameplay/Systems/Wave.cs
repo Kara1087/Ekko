@@ -30,6 +30,13 @@ public class Wave : MonoBehaviour
     [SerializeField] private float particleStartPlaybackSpeed = 10f;
     [SerializeField] private float particleEndPlaybackSpeed = 3f;
     [SerializeField] private float playbackLerpTimeSpeed = 0.7f;
+    
+    
+    [Header("End time settings")]
+    [SerializeField] private float endTimeSpeed = 0.8f;
+    
+    
+    private float endTimeLerpTime;
     private float playbackLerpTime;
     private float emissionLerpTime;
     
@@ -84,7 +91,7 @@ public class Wave : MonoBehaviour
         main.simulationSpeed = particleStartPlaybackSpeed;
         playbackLerpTime = 0;
         emissionLerpTime = 0;
-
+        endTimeLerpTime = 0;
         
         // 6. Préparation du collider et de l’expansion
         if (col)
@@ -121,9 +128,18 @@ public class Wave : MonoBehaviour
         float growth = expansionSpeed * Time.deltaTime;
 
         if (emissionLerpTime >= 1)
+        {
+            endTimeLerpTime += endTimeSpeed * Time.deltaTime;
+            light2D.intensity = Mathf.Lerp(light2D.intensity,  0, endTimeLerpTime);
+            if (light2D.intensity <= 0)
+            {
+                StartCoroutine(DestroyAfterDelay(0.2f));
+            }
             return;
+        }
         if (col)
             col.radius += growth;
+        emissionLerpTime += emissionLerpTimeSpeed* Time.deltaTime;
 
         // 💡 Mise à jour dynamique de la lumière// TODO montrer a Karine que ce code fucntionne pas lol
         if (light2D && light2D.enabled && col)
@@ -132,7 +148,7 @@ public class Wave : MonoBehaviour
 
             float minIntensity = lightIntensityFactor * intensityMinRatio;
             float maxIntensity = lightIntensityFactor;
-            light2D.intensity = Mathf.Lerp(minIntensity, maxIntensity, alpha);
+            light2D.intensity = Mathf.Lerp(minIntensity, maxIntensity, emissionLerpTime);
         }
         
         var main = waveParticle.main;
@@ -141,14 +157,11 @@ public class Wave : MonoBehaviour
         main.simulationSpeed = Mathf.Lerp(particleStartPlaybackSpeed, particleEndPlaybackSpeed, playbackLerpTime);;
         
         var emission = waveParticle.emission;
-        emissionLerpTime += emissionLerpTimeSpeed* Time.deltaTime;
         emission.rateOverTimeMultiplier =  Mathf.Lerp(particleMaxEmission, 0, emissionLerpTime);
 
         // 🔍 Recherche des objets à révéler et alerter
         ScanForRevealables();
         ScanForAlertables();
-
-        StartCoroutine(DestroyAfterDelay(10));
     }
 
     private IEnumerator DestroyAfterDelay(float delay)

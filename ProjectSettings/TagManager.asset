@@ -46,6 +46,9 @@ TagManager:
   - name: test
     uniqueID: 257808233
     locked: 0
+  - name: Shock
+    uniqueID: 368438977
+    locked: 0
   m_RenderingLayers:
   - Default
   - NotAffectedByLight
