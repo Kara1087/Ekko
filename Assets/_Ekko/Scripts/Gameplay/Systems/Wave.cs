@@ -120,13 +120,15 @@ public class Wave : MonoBehaviour
         // 🌀 Expansion du collider
         float growth = expansionSpeed * Time.deltaTime;
 
+        if (emissionLerpTime >= 1)
+            return;
         if (col)
             col.radius += growth;
 
         // 💡 Mise à jour dynamique de la lumière// TODO montrer a Karine que ce code fucntionne pas lol
         if (light2D && light2D.enabled && col)
         {
-            light2D.pointLightOuterRadius = col.radius;
+            light2D.shapeLightFalloffSize = col.radius;
 
             float minIntensity = lightIntensityFactor * intensityMinRatio;
             float maxIntensity = lightIntensityFactor;
