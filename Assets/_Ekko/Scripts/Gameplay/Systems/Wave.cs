@@ -7,7 +7,6 @@ using UnityEngine.Rendering.Universal;
 [RequireComponent(typeof(CircleCollider2D))]
 public class Wave : MonoBehaviour
 {
-    //TODO faire en sorte que le temps depends de la force d'impact ^^ deux ligne de code ;)
     #region Constants
     private const float LIGHT_ACTIVATION_THRESHOLD = 10f;
     private const float STARTING_RADIUS_RATIO = 0.3f;
@@ -21,7 +20,7 @@ public class Wave : MonoBehaviour
     
     [Header("Wave Settings"),]
     [SerializeField] private Ease colliderExpansionCurve;
-    [SerializeField] private float waveExpansionDuration;
+    [SerializeField] private float waveMaxExpansionDuration = 2.5f;
     
     [Space(10),Header("Light Settings")]
     [SerializeField] private float lightIntensityFactor = 0.2f;   // Intensité maximale de la lumière
@@ -110,7 +109,15 @@ public class Wave : MonoBehaviour
         float normalizedForce = CalculateNormalizedForce(impactForce, minForce, maxForce);
         waveIntensity = normalizedForce;
         
-        ConfigureWaveSpeed(impactForce);
+        //TODO Voire avec Karine
+       /* bool shouldEnableWave = impactForce >= WAVE_ACTIVATION_THRESHOLD;
+        if (!shouldEnableWave)
+        {
+            ResetWaveForPool();
+            ObjectPoolManager.ReturnObjectToPool(gameObject, ObjectPoolManager.PoolType.Wave);
+            return;
+        }*/
+        CalculateWaveDuration(impactForce);
         ConfigureCollider(assignedTargetRadius);
         ConfigureParticles();
         ConfigureLight(impactForce);
@@ -130,10 +137,9 @@ public class Wave : MonoBehaviour
         float clampedForce = Mathf.Clamp(impactForce, minForce, maxForce);
         return Mathf.InverseLerp(minForce, maxForce, clampedForce);
     }
-    private void ConfigureWaveSpeed(float impactForce)
+    private void CalculateWaveDuration(float impactForce)
     {
-      
-        
+       //TODO voire avec Karine
     }
 
     private void ConfigureCollider(float assignedTargetRadius)
@@ -183,7 +189,7 @@ public class Wave : MonoBehaviour
                 () => waveCollider.radius,
                 radius => waveCollider.radius = radius,
                 targetRadius * 0.5f,
-                waveExpansionDuration
+                waveMaxExpansionDuration
             ).SetEase(colliderExpansionCurve);
             
             waveSequence.Join(expansionTween);
@@ -226,7 +232,7 @@ public class Wave : MonoBehaviour
             () => waveLight.intensity,
             intensity => waveLight.intensity = intensity,
             maxIntensity,
-            waveExpansionDuration * lightMaxIntensityDuration
+            waveMaxExpansionDuration * lightMaxIntensityDuration
         ).SetEase(lightIntensityCurve);
         
         // Animate light radius to match wave expansion
@@ -234,7 +240,7 @@ public class Wave : MonoBehaviour
             () => waveLight.shapeLightFalloffSize,
             radius => waveLight.shapeLightFalloffSize = radius,
             targetRadius * 0.5f,
-            waveExpansionDuration
+            waveMaxExpansionDuration
         ).SetEase(lightRadiusCurve);
         
         waveSequence.Join(intensityTween);
