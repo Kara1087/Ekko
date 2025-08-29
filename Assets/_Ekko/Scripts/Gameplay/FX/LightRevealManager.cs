@@ -3,7 +3,7 @@ using UnityEngine;
 public class LightRevealManager : MonoBehaviour
 {
     [Header("Wave Settings")]
-    [SerializeField] private GameObject wavePrefab;
+    [SerializeField] private Wave wavePrefab;
     [SerializeField] private float baseImpactForce = 30f;
     [SerializeField] private float baseTargetRadius = 35f;
     [SerializeField] private float growthPerBeat = 5f; // 👈 croissance par beat
@@ -84,13 +84,8 @@ public class LightRevealManager : MonoBehaviour
             return;
         }
 
-        GameObject waveGO = Instantiate(wavePrefab, transform.position, Quaternion.identity);
-        if (!waveGO.TryGetComponent(out Wave wave))
-        {
-            Debug.LogWarning("❌ Le prefab Wave n’a pas de composant Wave !");
-            return;
-        }
-
+        //Pass in ObjectPool
+        Wave wave =  ObjectPoolManager.SpawnObject(wavePrefab, transform.position, Quaternion.identity, ObjectPoolManager.PoolType.Wave);
         wave.Initialize(impactForce, targetRadius);
     }
 }

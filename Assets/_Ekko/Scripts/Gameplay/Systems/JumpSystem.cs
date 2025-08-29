@@ -28,8 +28,6 @@ public class JumpSystem : MonoBehaviour
     [SerializeField] private float slamWaveMultiplier = 1.5f;        // Onde plus forte (slam)
     [SerializeField] private float cushionWaveMultiplier = 0.1f;     // Onde plus faible (amorti)
 
-    [SerializeField] private float landingNotifyRadius = 1.5f;      // Rayon pour notifier les objets autour à l’atterrissage
-
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
     private float lastCushionInputTime;

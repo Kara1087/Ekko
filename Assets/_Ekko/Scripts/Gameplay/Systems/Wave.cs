@@ -1,231 +1,398 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(CircleCollider2D))]
 public class Wave : MonoBehaviour
 {
-    [Header("Wave Settings")]
-    [SerializeField] private float maxExpansionSpeed = 6f;        // Vitesse d'expansion maximale (rarement utilisée directement ici)
-    [SerializeField] private float baseFadeSpeed = 0.5f;          // Vitesse de disparition de l'onde (plus élevé = plus rapide)
-    [SerializeField] private float fadeSpeedMultiplier = 0.05f;   // Modifie la fadeSpeed selon la force d’impact
-    private float spawnTime;
-
-    [Header("Light Settings")]
-    [SerializeField] private float lightIntensityFactor = 0.2f;   // Intensité maximale de la lumière
-    [SerializeField] private float intensityMinRatio = 0.2f;      // Ratio pour calculer l’intensité minimale en fade
-
+    //TODO faire en sorte que le temps depends de la force d'impact ^^ deux ligne de code ;)
+    #region Constants
+    private const float LIGHT_ACTIVATION_THRESHOLD = 10f;
+    private const float STARTING_RADIUS_RATIO = 0.3f;
+    private const float DESTRUCTION_DELAY = 0.2f;
+    private const float SCAN_INTERVAL = 0.2f; // Scan every 100ms instead of every frame
+    #endregion
+    
     [Header("Layer Masks")]
     [SerializeField] private LayerMask revealableLayers;          // Couches contenant les objets à révéler
     [SerializeField] private LayerMask alertableLayers;           // Couches contenant les ennemis ou objets à alerter
-
-    [Header("Debug Settings")]
-    [SerializeField] private bool debugMode = false;
-
-    [Header("Particle Settings")]
-    [SerializeField] private float particleMatchFactor = 4f;
-    [SerializeField] private float particleMaxEmission = 3f;
-    [SerializeField] private float emissionLerpTimeSpeed = 0.5f;
     
-    [SerializeField] private float particleStartPlaybackSpeed = 10f;
+    [Header("Wave Settings"),]
+    [SerializeField] private Ease colliderExpansionCurve;
+    [SerializeField] private float waveExpansionDuration;
+    
+    [Space(10),Header("Light Settings")]
+    [SerializeField] private float lightIntensityFactor = 0.2f;   // Intensité maximale de la lumière
+    [SerializeField,Range(0f,1f)] private float intensityMinRatio = 0.2f;      // Ratio pour calculer l’intensité minimale en fade
+    [SerializeField, Range(0.01f, 1f),Tooltip("Porcentage of wave Duration to get max intensity")]
+    private float lightMaxIntensityDuration;
+    [SerializeField] private Ease lightIntensityCurve;
+    [Space(10)]
+    [SerializeField] private Ease lightRadiusCurve;
+    [Space(10)]
+    [SerializeField] private float disappearanceLightDuration;
+    [SerializeField] private AnimationCurve disappearanceCurve;
+    
+    
+    [Header("\nParticle Settings")]
+    [SerializeField] private float particleMatchSizeFactor = 4f;
+    [SerializeField, Space(10)] private float particleStartPlaybackSpeed = 10f;
     [SerializeField] private float particleEndPlaybackSpeed = 3f;
-    [SerializeField] private float playbackLerpTimeSpeed = 0.7f;
+    [SerializeField] private float playbackChangeDuration;
+    [SerializeField] private Ease playbackDurationCurve;
+    
+    [SerializeField,Space(10)] private float particleStartEmissionQuantity = 3f;
+    [SerializeField] private float emissionDuration;
+    [SerializeField] private Ease emissionDurationCurve;
     
     
-    [Header("End time settings")]
-    [SerializeField] private float endTimeSpeed = 0.8f;
-    
-    
-    private float endTimeLerpTime;
-    private float playbackLerpTime;
-    private float emissionLerpTime;
-    
-    
-    private float expansionSpeed;
-    private float fadeSpeed;
-    private float alpha = 1f;
+    // Wave properties
     private float targetRadius;
-    private float waveIntensity = 1f; // Force normalisée entre 0 et 1 (slam = 1, saut léger = 0)
-
-    private CircleCollider2D col;
-    private ParticleSystem waveParticle;                   // Pour l'onde visuelle (SpriteRenderer)
-    private Light2D light2D;
-    private bool isFadingOut = false;
-    private float destroyDelay = 0.2f;
-
-
-
+    private float waveIntensity = 1f;
+    
+    // Component references (cached)
+    private CircleCollider2D waveCollider;
+    private ParticleSystem waveParticle;
+    private Light2D waveLight;
+    
+    // Cached particle system modules
+    private ParticleSystem.MainModule particleMain;
+    private ParticleSystem.EmissionModule particleEmission;
+    
+    // Collections for affected objects (to avoid duplicate processing)
+    private HashSet<IRevealable> processedRevealables = new HashSet<IRevealable>();
+    private HashSet<IAlertable> processedAlertables = new HashSet<IAlertable>();
+    
+    // Animation Sequence
+    private Sequence waveSequence;
+    
+    #region init
     private void Awake()
     {
-        col = GetComponent<CircleCollider2D>();
-        waveParticle = GetComponentInChildren<ParticleSystem>();
-        light2D = GetComponentInChildren<Light2D>();
-
-        if (col != null)
-            col.isTrigger = true;
+        CacheComponents();
+        InitializeCollider();
     }
+    
+    private void CacheComponents()
+    {
+        waveCollider = GetComponent<CircleCollider2D>();
+        waveParticle = GetComponentInChildren<ParticleSystem>();
+        waveLight = GetComponentInChildren<Light2D>();
 
+        if (waveParticle != null)
+        {
+            particleMain = waveParticle.main;
+            particleEmission = waveParticle.emission;
+        }
+    }
+    private void InitializeCollider()
+    {
+        if (waveCollider != null)
+        {
+            waveCollider.isTrigger = true;
+        }
+    }
+    #endregion
+    
+    #region Initialization
     /// <summary>
     /// Initialise l’onde avec des paramètres dynamiques selon la force.
     /// </summary>
     public void Initialize(float impactForce, float assignedTargetRadius, float minForce = 1f, float maxForce = 20f)
     {
-        spawnTime = Time.time;
-
-        // 1. Rayon cible final
+        ResetWaveState();
+        
+        
         targetRadius = assignedTargetRadius;
-
-        // 2. Taux de force normalisé entre [0,1]
-        float forceT = Mathf.InverseLerp(minForce, maxForce, Mathf.Clamp(impactForce, minForce, maxForce));
-
-        // 3. Calcul dynamique de la vitesse de fade (plus la force est grande, plus ça fade lentement)
-        fadeSpeed = baseFadeSpeed / (1f + (impactForce * fadeSpeedMultiplier));
-        float fadeDuration = 1f / fadeSpeed;
-
-        // 4. Seuil d’activation de la lumière (ex : que pour slam ou fort impact)
-        bool shouldEnableLight = impactForce >= 10f;
-
-        var main = waveParticle.main;
-        var emission = waveParticle.emission;
-        emission.rateOverTimeMultiplier = particleMaxEmission;
-        main.simulationSpeed = particleStartPlaybackSpeed;
-        playbackLerpTime = 0;
-        emissionLerpTime = 0;
-        endTimeLerpTime = 0;
         
-        // 6. Préparation du collider et de l’expansion
-        if (col)
-        {
-            float startingRadius = assignedTargetRadius * 0.3f;
-            col.radius = startingRadius;
-            main.startSize = startingRadius * particleMatchFactor;
-            expansionSpeed = (assignedTargetRadius / 2f - startingRadius) / fadeDuration;
-        }
+        float normalizedForce = CalculateNormalizedForce(impactForce, minForce, maxForce);
+        waveIntensity = normalizedForce;
         
-        // 8. Activation et configuration de la lumière
-        if (light2D)
+        ConfigureWaveSpeed(impactForce);
+        ConfigureCollider(assignedTargetRadius);
+        ConfigureParticles();
+        ConfigureLight(impactForce);
+        
+        
+        // Start wave animation
+        StartWaveAnimation();
+    }
+    private void ResetWaveState()
+    {
+        processedRevealables.Clear();
+        processedAlertables.Clear();
+    }
+    
+    private float CalculateNormalizedForce(float impactForce, float minForce, float maxForce)
+    {
+        float clampedForce = Mathf.Clamp(impactForce, minForce, maxForce);
+        return Mathf.InverseLerp(minForce, maxForce, clampedForce);
+    }
+    private void ConfigureWaveSpeed(float impactForce)
+    {
+      
+        
+    }
+
+    private void ConfigureCollider(float assignedTargetRadius)
+    {
+        if (!waveCollider) return;
+        
+        waveCollider.radius = 0;
+        
+        if (waveParticle)
         {
-            light2D.enabled = shouldEnableLight;
-
-            if (shouldEnableLight && col)
-            {
-                light2D.pointLightOuterRadius = col.radius;
-
-                float minIntensity = lightIntensityFactor * intensityMinRatio;
-                light2D.intensity = minIntensity;
-            }
-        }
-
-        if (debugMode)
-        {
-            Debug.Log($"🌐 [Wave] Initialize | Force: {impactForce:F2}, TargetRadius: {targetRadius:F2}, FadeSpeed: {fadeSpeed:F2}, ExpansionSpeed: {expansionSpeed:F2}");
+            particleMain.startSize = assignedTargetRadius * STARTING_RADIUS_RATIO * particleMatchSizeFactor;;
         }
     }
 
-    private void Update()
+    private void ConfigureParticles()
     {
-        // 🌀 Expansion du collider
-        float growth = expansionSpeed * Time.deltaTime;
+        if (!waveParticle) return;
+        
+        particleEmission.rateOverTimeMultiplier = particleStartEmissionQuantity;
+        particleMain.simulationSpeed = particleStartPlaybackSpeed;
+    }
 
-        if (emissionLerpTime >= 1)
+    private void ConfigureLight(float impactForce)
+    {
+        if (!waveLight) return;
+        
+        bool shouldEnableLight = impactForce >= LIGHT_ACTIVATION_THRESHOLD;
+        waveLight.enabled = shouldEnableLight;
+
+        if (shouldEnableLight && waveCollider)
         {
-            endTimeLerpTime += endTimeSpeed * Time.deltaTime;
-            light2D.intensity = Mathf.Lerp(light2D.intensity,  0, endTimeLerpTime);
-            if (light2D.intensity <= 0)
-            {
-                StartCoroutine(DestroyAfterDelay(0.2f));
-            }
-            return;
-        }
-        if (col)
-            col.radius += growth;
-        emissionLerpTime += emissionLerpTimeSpeed* Time.deltaTime;
-
-        // 💡 Mise à jour dynamique de la lumière// TODO montrer a Karine que ce code fucntionne pas lol
-        if (light2D && light2D.enabled && col)
-        {
-            light2D.shapeLightFalloffSize = col.radius;
-
+            waveLight.shapeLightFalloffSize = waveCollider.radius;
             float minIntensity = lightIntensityFactor * intensityMinRatio;
-            float maxIntensity = lightIntensityFactor;
-            light2D.intensity = Mathf.Lerp(minIntensity, maxIntensity, emissionLerpTime);
+            waveLight.intensity = minIntensity;
+        }
+    }
+    #endregion
+
+    #region Wave Animation (Coroutines + Tweening)
+    private void StartWaveAnimation()
+    {
+        waveSequence = DOTween.Sequence();
+
+        if (waveCollider)
+        {
+            var expansionTween = DOTween.To(
+                () => waveCollider.radius,
+                radius => waveCollider.radius = radius,
+                targetRadius * 0.5f,
+                waveExpansionDuration
+            ).SetEase(colliderExpansionCurve);
+            
+            waveSequence.Join(expansionTween);
         }
         
-        var main = waveParticle.main;
-        main.startSize =  col.radius*particleMatchFactor;
-        playbackLerpTime += playbackLerpTimeSpeed * Time.deltaTime; 
-        main.simulationSpeed = Mathf.Lerp(particleStartPlaybackSpeed, particleEndPlaybackSpeed, playbackLerpTime);;
-        
-        var emission = waveParticle.emission;
-        emission.rateOverTimeMultiplier =  Mathf.Lerp(particleMaxEmission, 0, emissionLerpTime);
+        // light animation if enabled
+        if (waveLight && waveLight.enabled)
+        {
+            AnimateLightExpansion();
+        }
 
-        // 🔍 Recherche des objets à révéler et alerter
-        ScanForRevealables();
-        ScanForAlertables();
+        if (waveParticle)
+        {
+            AnimateParticles();
+        }
+        
+        
+        // Fade out light at the end
+        waveSequence.Append(
+            DOTween.To(
+                () => waveLight.intensity,
+                intensity => waveLight.intensity = intensity,
+                0f, 
+                disappearanceLightDuration
+            ).SetEase(disappearanceCurve)
+        );
+        
+        waveSequence.OnComplete(ReturnWaveToPool);
+        
+        
+        StartCoroutine(ObjectScanningCoroutine());
+    }
+
+    private void AnimateLightExpansion()
+    {
+        float maxIntensity = lightIntensityFactor;
+        
+        // Animate light intensity
+        var intensityTween = DOTween.To(
+            () => waveLight.intensity,
+            intensity => waveLight.intensity = intensity,
+            maxIntensity,
+            waveExpansionDuration * lightMaxIntensityDuration
+        ).SetEase(lightIntensityCurve);
+        
+        // Animate light radius to match wave expansion
+        var radiusTween = DOTween.To(
+            () => waveLight.shapeLightFalloffSize,
+            radius => waveLight.shapeLightFalloffSize = radius,
+            targetRadius * 0.5f,
+            waveExpansionDuration
+        ).SetEase(lightRadiusCurve);
+        
+        waveSequence.Join(intensityTween);
+        waveSequence.Join(radiusTween);
+        
+    }
+    
+    
+    private void AnimateParticles()
+    {
+        // Keep this manual - needs real-time tracking
+        DOTween.To(() => particleMain.simulationSpeed, 
+                x => particleMain.simulationSpeed = x, 
+                particleEndPlaybackSpeed, 
+                playbackChangeDuration)
+            .SetEase(playbackDurationCurve);
+        
+        DOTween.To(() => particleEmission.rateOverTimeMultiplier, 
+                x => particleEmission.rateOverTimeMultiplier = x, 
+                0f, 
+                emissionDuration)
+            .SetEase(emissionDurationCurve)
+            .From(particleStartEmissionQuantity);
+    }
+    
+    private IEnumerator ObjectScanningCoroutine()
+    {
+        while (waveCollider.radius > 1f)
+        {
+            yield return new WaitForSeconds(SCAN_INTERVAL);
+            
+            if (waveCollider)
+            {
+                ScanForRevealables();
+                ScanForAlertables();
+            }
+        }
+    }
+
+    #endregion
+
+    private void ReturnWaveToPool()
+    {
+        StartCoroutine(DestroyAfterDelay(DESTRUCTION_DELAY));
     }
 
     private IEnumerator DestroyAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
+        
+        // Reset components before returning to pool
+        ResetWaveForPool();
+        ObjectPoolManager.ReturnObjectToPool(gameObject, ObjectPoolManager.PoolType.Wave);
     }
 
-// --- 🧠 INTERACTIONS ---
-    private void ScanForRevealables()
+    private void ResetWaveForPool()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, col.radius, revealableLayers);
-        foreach (Collider2D hit in hits)
+        if (waveLight) waveLight.enabled = false;
+        if (waveCollider) waveCollider.radius = 0f;
+        if (waveParticle) waveParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        
+        ResetWaveState();
+    }
+
+    #region Object Interaction
+
+    private void HandleRevealable(Collider2D other)
+    {
+        if (!IsInLayerMask(other.gameObject.layer, revealableLayers)) return;
+        
+        var revealable = other.GetComponent<IRevealable>();
+        if (revealable != null && !processedRevealables.Contains(revealable))
         {
-            IRevealable revealable = hit.GetComponent<IRevealable>();
-            if (revealable != null)
-            {
-                revealable.Reveal(waveIntensity); // ✅ Utilise la force normalisée (0 à 1)
-            }
+            revealable.Reveal(waveIntensity);
+            processedRevealables.Add(revealable);
         }
     }
 
+    private void HandleAlertable(Collider2D other)
+    {
+        if (!IsInLayerMask(other.gameObject.layer, alertableLayers)) return;
+        
+        var alertable = other.GetComponent<IAlertable>();
+        if (alertable != null && !processedAlertables.Contains(alertable))
+        {
+            alertable.Alert(transform.position);
+            processedAlertables.Add(alertable);
+        }
+    }
+
+    private void ScanForRevealables()
+    {
+        var hits = Physics2D.OverlapCircleAll(transform.position, waveCollider.radius, revealableLayers);
+        
+        foreach (var hit in hits)
+        {
+            HandleRevealable(hit);
+        }
+    }
 
     private void ScanForAlertables()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, col.radius, alertableLayers);
-        foreach (Collider2D hit in hits)
+        var hits = Physics2D.OverlapCircleAll(transform.position, waveCollider.radius, alertableLayers);
+        
+        foreach (var hit in hits)
         {
-            IAlertable alertable = hit.GetComponent<IAlertable>();
-            if (alertable != null)
-                alertable.Alert(transform.position);
+            HandleAlertable(hit);
         }
     }
 
-// --- 🧪 VISUALISATION SCÈNE ÉDITEUR ---
+    private bool IsInLayerMask(int layer, LayerMask mask)
+    {
+        return (mask.value & (1 << layer)) != 0;
+    }
+    #endregion
 
+    #region Debug Visualization
     private void OnDrawGizmos()
     {
-        if (col == null)
-            col = GetComponent<CircleCollider2D>();
+        DrawWaveColliderGizmo();
+        DrawTargetRadiusGizmo();
+        DrawLightGizmo();
+    }
 
-        if (col != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, col.radius);
+    private void DrawWaveColliderGizmo()
+    {
+        if (waveCollider == null)
+            waveCollider = GetComponent<CircleCollider2D>();
 
-#if UNITY_EDITOR
-            UnityEditor.Handles.Label(transform.position + Vector3.up * (col.radius + 0.2f),
-                $"Collider radius: {col.radius:F2}");
-#endif
+        if (waveCollider == null) return;
 
-            Gizmos.color = new Color(0f, 0.5f, 1f, 0.5f);
-            Gizmos.DrawWireSphere(transform.position, targetRadius / 2f);
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, waveCollider.radius);
 
 #if UNITY_EDITOR
-        if (light2D != null && light2D.enabled)
-        {
-            Gizmos.color = new Color(1f, 1f, 0f, 0.3f);
-            Gizmos.DrawWireSphere(light2D.transform.position, light2D.pointLightOuterRadius);
-
-            UnityEditor.Handles.Label(light2D.transform.position + Vector3.up * 0.2f,
-                $"Light radius: {light2D.pointLightOuterRadius:F2} | Intensity: {light2D.intensity:F2}");
-        }
+        var labelPosition = transform.position + Vector3.up * (waveCollider.radius + 0.2f);
+        UnityEditor.Handles.Label(labelPosition, $"Wave Radius: {waveCollider.radius:F2}");
 #endif
     }
+
+    private void DrawTargetRadiusGizmo()
+    {
+        Gizmos.color = new Color(0f, 0.5f, 1f, 0.5f);
+        Gizmos.DrawWireSphere(transform.position, targetRadius *0.5f);
+    }
+
+    private void DrawLightGizmo()
+    {
+#if UNITY_EDITOR
+        if (waveLight == null || !waveLight.enabled) return;
+
+        Gizmos.color = new Color(1f, 1f, 0f, 0.3f);
+        Gizmos.DrawWireSphere(waveLight.transform.position, waveLight.pointLightOuterRadius);
+
+        var labelPosition = waveLight.transform.position + Vector3.up * 0.2f;
+        var labelText = $"Light Radius: {waveLight.pointLightOuterRadius:F2} | Intensity: {waveLight.intensity:F2}";
+        UnityEditor.Handles.Label(labelPosition, labelText);
+#endif
+    }
+    #endregion
 }

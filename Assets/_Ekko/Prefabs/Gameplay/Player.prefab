@@ -620,7 +620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7e97867d264461795bc3d19b74418e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavePrefab: {fileID: 8262087878520942701, guid: 7d55035cbbd7c43b386c2089db1bdbdc, type: 3}
+  wavePrefab: {fileID: 6141865585593757326, guid: 7d55035cbbd7c43b386c2089db1bdbdc, type: 3}
   minRange: 0.5
   maxRange: 30
   rangePowerCurve: 1
@@ -649,7 +649,6 @@ MonoBehaviour:
   cushionFallDamping: 0.3
   slamWaveMultiplier: 1.5
   cushionWaveMultiplier: 0.1
-  landingNotifyRadius: 3
 --- !u!114 &165381274287226765
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
-{
+{ 
+    PlayerInput playerInput;
     public Vector2 MoveInput { get; private set; }
     public bool JumpPressedThisFrame { get; private set; }
     public bool JumpReleased { get; private set; }
@@ -35,6 +36,12 @@ public class InputHandler : MonoBehaviour
         DownHeld = context.ReadValueAsButton(); // reste "true" tant que la touche est maintenue
     }
 
+    //todo replace that to better architecture to keep more clean and soft
+    private void Start()
+    {
+        playerInput = GetComponent<PlayerInput>();
+    }
+    
     private void LateUpdate()
     {
         // Reset à chaque frame

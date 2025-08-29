@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a64cf0d8fdb4789a397eeb9a75d24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavePrefab: {fileID: 8262087878520942701, guid: 7d55035cbbd7c43b386c2089db1bdbdc, type: 3}
+  wavePrefab: {fileID: 6141865585593757326, guid: 7d55035cbbd7c43b386c2089db1bdbdc, type: 3}
   baseImpactForce: 2
   baseTargetRadius: 0.0001
   growthPerBeat: 2

@@ -12,6 +12,7 @@ public class ObjectPoolManager : MonoBehaviour
     private static GameObject gameObjectsEmpty;
     private static GameObject splashEffectsEmpty;
     private static GameObject soundFXEmpty;
+    private static GameObject waveFXEmpty;
 
     private static Dictionary<GameObject, ObjectPool<GameObject>> objectPools;
     private static Dictionary<GameObject, GameObject> cloneToPrefabMap;
@@ -21,7 +22,8 @@ public class ObjectPoolManager : MonoBehaviour
         ParticleSystem,
         GameObjects,
         SplashEffects,
-        SoundFX
+        SoundFX,
+        Wave,
     }
 
     public static PoolType poolTypes;
@@ -49,6 +51,9 @@ public class ObjectPoolManager : MonoBehaviour
         
         soundFXEmpty = new GameObject("Sound FX");
         soundFXEmpty.transform.SetParent(emptyHolder.transform);
+        
+        waveFXEmpty = new GameObject("Wave FX");
+        waveFXEmpty.transform.SetParent(emptyHolder.transform);
 
         if (addToDontDestroyOnLoad)
         {
@@ -112,7 +117,10 @@ public class ObjectPoolManager : MonoBehaviour
             
             case PoolType.SoundFX:
                 return soundFXEmpty;
-            
+
+            case PoolType.Wave:
+                return waveFXEmpty;
+
             default:
                 return null;
         }
@@ -143,6 +151,7 @@ public class ObjectPoolManager : MonoBehaviour
             T component =  obj.GetComponent<T>();
             if (!component)
             {
+                // ReSharper disable once Unity.PerformanceCriticalCodeInvocation
                 Debug.LogError($"Object {objectToSpawn.name} does not have a component of type {typeof(T)}");
                 return null;
             }
@@ -163,6 +172,7 @@ public class ObjectPoolManager : MonoBehaviour
         return SpawnObject<GameObject>(objectToSpawn, spawnPos, spawnRotation, poolType);
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public static void ReturnObjectToPool(GameObject obj, PoolType poolType = PoolType.GameObjects)
     {
         if (cloneToPrefabMap.TryGetValue(obj, out GameObject prefab))

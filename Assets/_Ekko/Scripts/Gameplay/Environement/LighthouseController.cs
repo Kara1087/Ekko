@@ -24,7 +24,6 @@ public class LighthouseController : MonoBehaviour
     [SerializeField] private bool activateOnlyOnce = false;
     
     private bool hasBeenActivated = false;
-    private bool playerInside = false;
 
     private float originalIntensity;
     private Coroutine globalLightRoutine;
@@ -53,7 +52,6 @@ public class LighthouseController : MonoBehaviour
 
         // Allume la lumière locale
         lightActivator?.Activate();
-        playerInside = true;
         hasBeenActivated = true;
 
         // Lancement séquencé de l’allumage
@@ -66,8 +64,6 @@ public class LighthouseController : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         Debug.Log("[Lighthouse] 🌘 Player est sorti");
-
-        playerInside = false;
 
         // Lancement séquencé de l’extinction
         StartCoroutine(SequenceExit());

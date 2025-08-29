@@ -4,7 +4,7 @@ using UnityEngine;
 public class WaveEmitter : MonoBehaviour, ILandingListener
 {
     [Header("Wave Settings")]
-    [SerializeField] private GameObject wavePrefab;         // Prefab d’onde à instancier lors d’un atterrissage
+    [SerializeField] private Wave wavePrefab;         // Prefab d’onde à instancier lors d’un atterrissage
     [SerializeField] private float minRange = 1f;           // Rayon minimum de l’onde (pour les petits impacts)
     [SerializeField] private float maxRange = 16f;          // Rayon maximum de l’onde (pour les gros impacts)
     [SerializeField] private float rangePowerCurve = 1.5f;  // Contrôle la courbe d’expansion (1 = linéaire, >1 = exponentiel)
@@ -16,7 +16,6 @@ public class WaveEmitter : MonoBehaviour, ILandingListener
 
     [Header("Debug")]
     [SerializeField] private Color debugColor = Color.cyan;
-    private float debugGizmoRadius = 1f;                        // Valeur par défaut
 
     private JumpSystem jumpSystem;
 
@@ -69,14 +68,9 @@ public class WaveEmitter : MonoBehaviour, ILandingListener
         // 6. 🌀 Instancie l’onde à la position du joueur
         if (wavePrefab != null)
         {
-            GameObject waveGO = Instantiate(wavePrefab, transform.position, Quaternion.identity);
+            Wave wave =  ObjectPoolManager.SpawnObject(wavePrefab, transform.position, Quaternion.identity, ObjectPoolManager.PoolType.Wave);
+            wave.Initialize(impactForce, targetRadius);
 
-            // 7. Initialise les paramètres de l’onde (rayon + impact → utile pour effets visuels dynamiques)
-            Wave wave = waveGO.GetComponent<Wave>();
-            if (wave != null)
-            {
-                wave.Initialize(impactForce, targetRadius, minForce, maxForce);
-            }
         }
 
         // 8. TODO : ici tu pourras déclencher des réactions
