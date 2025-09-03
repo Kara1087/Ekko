@@ -8,28 +8,43 @@ namespace _Ekko.Scripts.FX
     {
         [SerializeField]
         private GameObject distortionPrefab;
+        [SerializeField]
+        private float distortionMaxDuration = 1f;
+        [SerializeField]
+        private float endSizeValue = 1f;
 
         private Material mat;
         private Renderer rend;
         private Camera cam;
 
-        public void PlayDistortion()
+        private void Start()
         {
-            if (!mat)
-            {
-                if (Camera.main)
-                {
-                   GameObject distorsion = Instantiate(distortionPrefab, Camera.main.transform);
-                   rend = distorsion.GetComponent<Renderer>();
-                   mat = rend.material;
-                }
-            }
+            TransitionManager.OnSceneLoadCompleted += Init;
+        }
 
-            if (!mat)
+        private void OnDestroy()
+        {
+            
+            TransitionManager.OnSceneLoadCompleted -= Init;
+        }
+
+        private void Init()
+        {
+            cam = Camera.main;
+            if (cam)
             {
-                Debug.LogError("No material found");
-                return;
+                GameObject distortion = Instantiate(distortionPrefab, cam.transform);
+                rend = distortion.GetComponent<Renderer>();
+                mat = rend.material;
             }
+        }
+
+        public void PlayDistortion(float impactForce, float minForce, float maxForce)
+        {
+            
+            if(!mat)
+                return;
+
             //DoTween start in initValue to 0.5 set float
             float initValue = mat.GetFloat("_Size");
 
@@ -37,12 +52,11 @@ namespace _Ekko.Scripts.FX
             DOTween.Kill(mat);
 
             // Animate from initValue to 0.5 and back
-            mat.DOFloat(0.5f, "_Size", 0.75f) // duration 0.5s
+            mat.DOFloat(endSizeValue, "_Size", distortionMaxDuration) // duration 0.5s
                 .SetId(mat) // so we can kill it later if needed
                 .OnComplete(() =>
                 {
-                    // Tween back to initial value
-                    mat.DOFloat(initValue, "_Size", 0.75f)
+                    mat.DOFloat(initValue, "_Size", 0.5f)
                         .SetId(mat);
                 });
         }

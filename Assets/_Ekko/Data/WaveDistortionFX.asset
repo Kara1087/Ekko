@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2729c5320876436581d351ffa9a5e5d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 618dea1eeb154b79bac5bb38299300db, type: 3}
   m_Name: WaveDistortionFX
   m_EditorClassIdentifier: 
   category: 3
-  prefab: {fileID: 4446014070092205124, guid: fb4a9d6ab0b36e94089675a24af067f1, type: 3}
   audioClip: {fileID: 0}
   audioVolume: 1
   autoReturnTime: 2
+  wavePrefab: {fileID: 6141865585593757326, guid: 7d55035cbbd7c43b386c2089db1bdbdc, type: 3}

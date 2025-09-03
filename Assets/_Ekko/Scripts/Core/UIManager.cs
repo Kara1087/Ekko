@@ -148,6 +148,7 @@ public class UIManager : MonoBehaviour
             finished = true; // force la poursuite
         }
         yield return new WaitUntil(() => finished);
+        
         //onComplete?.Invoke();
     }
 

@@ -6,7 +6,6 @@ public enum FXCategory { Sound, VFX, Splash, Wave, Haptic }
 public class FXType : ScriptableObject
 {
     public FXCategory category;
-    public GameObject prefab;
     public AudioClip audioClip;
     public float audioVolume = 1f;
     public float autoReturnTime = 2f; // For pooling cleanup

@@ -4,7 +4,6 @@ using UnityEngine;
 public class WaveEmitter : MonoBehaviour, ILandingListener
 {
     [Header("Wave Settings")]
-    [SerializeField] private Wave wavePrefab;         // Prefab d’onde à instancier lors d’un atterrissage
     [SerializeField] private float minRange = 1f;           // Rayon minimum de l’onde (pour les petits impacts)
     [SerializeField] private float maxRange = 16f;          // Rayon maximum de l’onde (pour les gros impacts)
     [SerializeField] private float rangePowerCurve = 1.5f;  // Contrôle la courbe d’expansion (1 = linéaire, >1 = exponentiel)
@@ -58,38 +57,9 @@ public class WaveEmitter : MonoBehaviour, ILandingListener
         // 4. 📐 Calcule le rayon final de l’onde
         float targetRadius = Mathf.Lerp(minRange, maxRange, t) * rangeMultiplier;
 
-        // 5. 🧪 Log debug (commenté ici, tu peux le décommenter si tu veux observer les valeurs dans la console)
-        /*
-        debugGizmoRadius = targetRadius; // Pour visualiser l’onde dans OnDrawGizmos
-        LandingType type = landingClassifier.GetCurrentLandingType();
-        Debug.Log($"🌀 [WaveEmitter] Atterrissage {type} | Emission d'onde - Force: {impactForce:F2} → Rayon: {targetRadius:F2}");
-        */
-        
-
         // 6. 🌀 Instancie l’onde à la position du joueur
-        if (wavePrefab != null)
-        {
-            Wave wave =  ObjectPoolManager.SpawnObject(wavePrefab, transform.position, Quaternion.identity, ObjectPoolManager.PoolType.Wave);
-            wave.Initialize(impactForce, targetRadius, minForce, maxForce);
-            FXManager.Instance.PlayEvent(FXEventType.Wave, transform.position, Quaternion.identity);
+        FXManager.Instance.PlayWaveFX(transform.position, impactForce,minForce, maxForce, targetRadius, Quaternion.identity);
 
-        }
-
-        // 8. TODO : ici tu pourras déclencher des réactions
-        // - Révéler les éléments (Revealables)
-        // - Alerter les ennemis
-        // - Activer des pièges ou effets sonores
     }
-
-    /// <summary>
-    /// 🔍 Affiche dans la scène (éditeur uniquement) un cercle représentant la dernière onde
-    /// </summary>
-    /*
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = debugColor;
-        Gizmos.DrawWireSphere(transform.position, debugGizmoRadius);
-    }
-    */
 
 }

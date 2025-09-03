@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,8 @@ using UnityEngine.SceneManagement;
 public class TransitionManager : MonoBehaviour
 {
     public static TransitionManager Instance { get; private set; }
+
+    public static Action OnSceneLoadCompleted;
 
     private UIManager ui;
     private GameManager game;
@@ -146,8 +149,9 @@ public class TransitionManager : MonoBehaviour
         {
             yield return null;
         }
-
         yield return new WaitForSecondsRealtime(0.1f);
         yield return ui.StartFadeInRoutine();
+        Debug.Log("LoadSceneDone");
+        OnSceneLoadCompleted?.Invoke();
     }
 }

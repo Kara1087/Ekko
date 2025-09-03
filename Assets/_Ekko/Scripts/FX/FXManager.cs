@@ -39,7 +39,6 @@ public class FXManager : MonoBehaviour
             case FXCategory.VFX:
             case FXCategory.Splash:
             case FXCategory.Wave:
-                PlayWaveVFX(fx, pos, rot);
                 break;
             case FXCategory.Sound:
                 PlaySound(fx, pos);
@@ -50,22 +49,6 @@ public class FXManager : MonoBehaviour
         }
     }
 
-    private void PlayWaveVFX(FXType fx, Vector3 pos, Quaternion rot)
-    {
-        waveDistortionController.PlayDistortion();
-    }
-
-    private void PlayVFX(FXType fx, Vector3 pos, Quaternion rot, Transform parent = null)
-    {
-        GameObject obj = ObjectPoolManager.SpawnObject(
-            fx.prefab, pos, rot, ObjectPoolManager.PoolType.ParticleSystem
-        );
-
-        if (parent) obj.transform.SetParent(parent);
-
-        if (fx.autoReturnTime > 0)
-            StartCoroutine(ReturnAfterTime(obj, fx.autoReturnTime));
-    }
 
     private void PlaySound(FXType fx, Vector3 pos)
     {
@@ -92,5 +75,26 @@ public class FXManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         ObjectPoolManager.ReturnObjectToPool(obj);
+    }
+
+    public void PlayWaveFX(Vector3 pos, float impactForce, float minForce, float maxForce, float targetRadius, Quaternion rot)
+    {
+        List<FXType> effects = fxLibrary.GetEffects(FXEventType.Wave);
+        if (effects == null) return;
+
+        foreach (var fx in effects)
+        {
+            if (fx is FXWave fxWave)
+            {
+                Wave wave =  ObjectPoolManager.SpawnObject(fxWave.wavePrefab, pos, Quaternion.identity, ObjectPoolManager.PoolType.Wave);
+                wave.Initialize(impactForce, targetRadius, minForce, maxForce);
+            }
+            else
+            {
+                PlayEffect(fx, pos, rot);
+            }
+        }
+        
+        waveDistortionController.PlayDistortion(impactForce, minForce, maxForce);
     }
 }

@@ -15,7 +15,4 @@ MonoBehaviour:
   entries:
   - eventType: 0
     effects:
-    - {fileID: 11400000, guid: a2161d3c74b76e146833f867c4125eae, type: 2}
-  - eventType: 1
-    effects:
-    - {fileID: 11400000, guid: 95f30e12532f2e74bb00369d19e44ba5, type: 2}
+    - {fileID: 11400000, guid: f7ddcd9b7c14be847be55fa5f19efb09, type: 2}
