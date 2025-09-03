@@ -64,12 +64,14 @@ public class WaveEmitter : MonoBehaviour, ILandingListener
         LandingType type = landingClassifier.GetCurrentLandingType();
         Debug.Log($"🌀 [WaveEmitter] Atterrissage {type} | Emission d'onde - Force: {impactForce:F2} → Rayon: {targetRadius:F2}");
         */
+        
 
         // 6. 🌀 Instancie l’onde à la position du joueur
         if (wavePrefab != null)
         {
             Wave wave =  ObjectPoolManager.SpawnObject(wavePrefab, transform.position, Quaternion.identity, ObjectPoolManager.PoolType.Wave);
-            wave.Initialize(impactForce, targetRadius);
+            wave.Initialize(impactForce, targetRadius, minForce, maxForce);
+            FXManager.Instance.PlayEvent(FXEventType.Wave, transform.position, Quaternion.identity);
 
         }
 

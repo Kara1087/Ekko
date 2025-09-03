@@ -52,18 +52,16 @@ MonoBehaviour:
   alertableLayers:
     serializedVersion: 2
     m_Bits: 1024
+  waveMaxExpansionDuration: 2.5
+  colliderMaxRangeDuration: 0.171
   colliderExpansionCurve: 1
-  waveExpansionDuration: 2.5
-  lightIntensityFactor: 12.63
-  intensityMinRatio: 0.2
-  particleMatchSizeFactor: 4
-  particleStartEmissionQuantity: 3
-  particleStartPlaybackSpeed: 10
-  particleEndPlaybackSpeed: 2
+  lightIntensityFactor: 10
+  intensityMinRatio: 0.129
+  lightMaxIntensityDuration: 0.119
   lightIntensityCurve: 20
-  lightMaxIntensityDuration: 0.074
+  changeRadiusFactor: 0.168
   lightRadiusCurve: 1
-  disappearanceLightSpeed: 0.5
+  disappearanceLightDuration: 1.3
   disappearanceCurve:
     serializedVersion: 2
     m_Curve:
@@ -88,9 +86,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  playbackChangeDuration: 0.75
-  emissionDuration: 1.5
-  playbackDurationCurve: 17
+  particleMatchSizeFactor: 8
+  particleStartPlaybackSpeed: 6
+  particleEndPlaybackSpeed: 2
+  playbackChangeDuration: 1.41
+  playbackDurationCurve: 1
+  particleStartEmissionQuantity: 2
+  emissionDuration: 1.2
   emissionDurationCurve: 23
 --- !u!58 &8570334900172912849
 CircleCollider2D:

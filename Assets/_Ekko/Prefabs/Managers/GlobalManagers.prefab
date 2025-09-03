@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 2851150755839729714}
   - component: {fileID: 6082230899010381783}
   - component: {fileID: 63226947131633555}
+  - component: {fileID: 80493452158158433}
+  - component: {fileID: 4317543785693382643}
   m_Layer: 0
   m_Name: GlobalManagers
   m_TagString: Untagged
@@ -188,6 +190,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addToDontDestroyOnLoad: 0
+--- !u!114 &80493452158158433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160339403025143727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275a5ca7cbb64cdb9d9aa62fd231610d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fxLibrary: {fileID: 11400000, guid: bf68cf6ea16b7604db91e049f9a537a2, type: 2}
+  audioSourcePrefab: {fileID: 0}
+  waveDistortionController: {fileID: 4317543785693382643}
+--- !u!114 &4317543785693382643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160339403025143727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3908b131c76c43e7bb864e62c5882f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distortionPrefab: {fileID: 4446014070092205124, guid: fb4a9d6ab0b36e94089675a24af067f1, type: 3}
 --- !u!1001 &8459657704613120076
 PrefabInstance:
   m_ObjectHideFlags: 0
