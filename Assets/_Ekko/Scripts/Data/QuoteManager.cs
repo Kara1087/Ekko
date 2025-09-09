@@ -44,30 +44,38 @@ public class QuoteManager : MonoBehaviour
         StartCoroutine(ShowQuoteRoutine(quote, onComplete));
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     /// <summary>
     /// Affiche une citation aléatoire selon son type (sans tenir compte du tag).
     /// Exemple : une citation de type Tip ou Intro.
     /// </summary>
     public void ShowRandomQuote(QuoteType type, System.Action onComplete = null)
     {
-        if (quoteLibrary == null)
+        if (!quoteLibrary)
         {
+            
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             Debug.LogWarning("❌ QuoteLibrary non assignée !");
+#endif
             onComplete?.Invoke();
             return;
         }
 
         QuoteData selectedQuote = quoteLibrary.GetRandomQuote(type);
 
-        if (selectedQuote != null)
+        if (selectedQuote)
             StartCoroutine(ShowQuoteRoutine(selectedQuote, onComplete));
         else
         {
+            
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             Debug.LogWarning($"⚠️ Aucune citation trouvée pour le type {type}");
+#endif
             onComplete?.Invoke();
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     /// <summary>
     /// Affiche une citation aléatoire selon son type ET son tag.
     /// Exemple : Tip + Jump.
@@ -75,25 +83,26 @@ public class QuoteManager : MonoBehaviour
     /// </summary>
     public void ShowRandomQuote(QuoteType type, QuoteTag tag, System.Action onComplete = null)
     {
-        // Logs de debug utiles pour vérifier l'état de l'UI
-        Debug.Log($"[QuoteManager] 🔍 quotePanel.activeSelf = {quotePanel.activeSelf}");
-        Debug.Log($"[QuoteManager] 🔍 quotePanel.activeInHierarchy = {quotePanel.activeInHierarchy}");
-        Debug.Log($"[QuoteManager] 🎤 Demande de citation : {type} / Tag : {tag}");
-
-        if (quoteLibrary == null)
+        if (!quoteLibrary)
         {
+            
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             Debug.LogWarning("❌ QuoteLibrary non assignée !");
+#endif
             onComplete?.Invoke();
             return;
         }
 
         QuoteData selectedQuote = quoteLibrary.GetRandomQuote(type, tag);
 
-        if (selectedQuote != null)
+        if (selectedQuote)
             StartCoroutine(ShowQuoteRoutine(selectedQuote, onComplete));
         else
         {
+            
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             Debug.LogWarning($"⚠️ Aucune citation trouvée pour {type} avec tag {tag}");
+#endif
             onComplete?.Invoke();
         }
     }
@@ -104,16 +113,15 @@ public class QuoteManager : MonoBehaviour
     /// </summary>
     private IEnumerator ShowQuoteRoutine(QuoteData quoteData, System.Action onComplete)
     {
-        if (quotePanel != null && quoteText != null)
+        if (quotePanel && quoteText)
         {   
             // Affichage du texte
             quoteText.text = quoteData.quoteText;
             quotePanel.SetActive(true);
 
-            Debug.Log($"[QuoteManager] 📝 Quote affichée : '{quoteData.quoteText}' | Tag: {quoteData.tag} | Type: {quoteData.type} | Durée: {quoteData.displayDuration} sec");
-
+          
             // Active ou désactive le fond noir selon le type
-            if (imageBackground != null)
+            if (imageBackground)
             {
                 bool showBackground = quoteData.forceBackground
                                     || quoteData.type == QuoteType.Intro

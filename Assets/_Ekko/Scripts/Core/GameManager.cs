@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 /// <summary>
 /// GameManager gère l'état global du jeu : pause, game over, transitions, etc.
@@ -17,8 +16,8 @@ public class GameManager : MonoBehaviour
     private QuoteData cushionOverrideDeathQuote = null;
     private QuoteManager quoteManager;
     private BlackoutEffect blackoutEffect;
+    private const string MAIN_MENU_SCENE = "_MainMenu"; // Cache string constant
 
-    private bool startGame;
 
     private void Awake()
     {
@@ -38,25 +37,18 @@ public class GameManager : MonoBehaviour
     {
         // 👉👉👉  Commenter pour phase test
         // Lancer le menu principal si on démarre depuis _Bootstrap
-        startGame = true;
+        StartMainMenuTransition();
+    }
+    
+    private void StartMainMenuTransition()
+    {
+        StartCoroutine(TransitionManager.Instance.LoadSceneWithFade(MAIN_MENU_SCENE));
     }
 
-    private void Update()
-    {
-        if (startGame)
-        {
-            startGame = false;
-            StartCoroutine(TransitionManager.Instance.LoadSceneWithFade("_MainMenu"));
-            return;
-        }
-        if (!IsGameOver && Input.GetKeyDown(KeyCode.Escape))
-        {
-            TogglePause();
-        }
-    }
 
     public void TogglePause()
     {
+        if (IsGameOver) return;    
         IsPaused = !IsPaused;
         Time.timeScale = IsPaused ? 0f : 1f;
         UIManager.Instance?.ShowPause(IsPaused);
@@ -185,7 +177,7 @@ public class GameManager : MonoBehaviour
         //UIManager.Instance?.ShowQuotePanel(true);
         //UIManager.Instance?.HideGameOver();
 
-        TransitionManager.Instance?.PlayIntroSequence();
+        TransitionManager.Instance.PlayIntroSequence();
     }
 
     public void RestartGame()

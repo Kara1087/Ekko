@@ -102,8 +102,8 @@ public class PlayerController : MonoBehaviour
     private Transform CheckGrounded()
     {
         Collider2D collision = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayers);
-        IsGrounded = collision != null;
-        return collision != null ? collision.transform : null;
+        IsGrounded = collision;
+        return collision ? collision.transform : null;
     }
 
     

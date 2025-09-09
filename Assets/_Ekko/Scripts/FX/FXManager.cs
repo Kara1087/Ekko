@@ -96,5 +96,7 @@ public class FXManager : MonoBehaviour
         }
         
         waveDistortionController.PlayDistortion(impactForce, minForce, maxForce);
+        
+        
     }
 }

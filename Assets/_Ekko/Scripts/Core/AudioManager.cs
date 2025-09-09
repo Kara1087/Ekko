@@ -79,18 +79,24 @@ public class AudioManager : MonoBehaviour
     }
 
     // 🎵 Joue une musique principale en boucle
+    // ReSharper disable Unity.PerformanceAnalysis
     public void PlayMusicTheme(string soundName)
     {
 
         if (!soundMap.ContainsKey(soundName))
         {
+            
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             Debug.LogWarning($"[AudioManager] ⚠️ Sound '{soundName}' non trouvé dans soundMap.");
+#endif
             return;
         }
 
         if (currentMusicName == soundName && musicThemeSource.isPlaying)
         {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             Debug.Log($"[AudioManager] ⏩ Musique déjà en cours : {soundName}");
+#endif
             return;
         }
 

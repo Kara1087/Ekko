@@ -28,6 +28,9 @@ public class JumpSystem : MonoBehaviour
     [SerializeField] private float slamWaveMultiplier = 1.5f;        // Onde plus forte (slam)
     [SerializeField] private float cushionWaveMultiplier = 0.1f;     // Onde plus faible (amorti)
 
+    [HideInInspector] public float landForce { get; private set;}//TODO CHANGE ?
+    [HideInInspector] public LandingType landingType { get; private set;}
+    
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
     private float lastCushionInputTime;
@@ -153,23 +156,31 @@ public class JumpSystem : MonoBehaviour
         bool isCushioned = cushionTimingOk && !hasUsedCushion;      // Vérifie qu’on n’a pas utilisé cushion AVANT l’atterrissage
 
         // Classification du type d’atterrissage
-        LandingType landingType = LandingType.Normal;
-        float finalForce = impactForce;
+        landingType = LandingType.Normal; //TODO CHANGE ?
+        landForce = impactForce;
 
         if (isForcingSlam)
         {
             landingType = LandingType.Slam;
-            finalForce *= slamWaveMultiplier;
+            landForce *= slamWaveMultiplier;
+            
+            if (landObject.CompareTag("ReactiveLandObject"))
+            {
+                ReactivePlatform reactivePlatform = landObject.GetComponent<ReactivePlatform>();
+                reactivePlatform.OnLandingDetected(landForce, landingType, landObject, transform);;
+            }
         }
         else if (isCushioned)
         {
             landingType = LandingType.Cushioned;
-            finalForce *= cushionWaveMultiplier;
+            landForce *= cushionWaveMultiplier;
         }
 
+      
         // Enregistre l'atterrissage et notifie les objets intéressés
         landingClassifier.RegisterLanding(impactVelocity, landingType);
-        NotifyLandingListeners(finalForce, landingType, landObject);
+
+        NotifyLandingListeners(landForce, landingType, landObject);
 
         // Reset des états liés au saut
         isForcingSlam = false;

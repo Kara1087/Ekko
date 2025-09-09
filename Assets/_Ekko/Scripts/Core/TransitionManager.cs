@@ -111,10 +111,10 @@ public class TransitionManager : MonoBehaviour
         yield return ui.StartBlackoutRoutine();
 
         // 2. Joue la musique de fond
-        AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
+        AudioManager.Instance.PlayMusicTheme("BackgroundTheme");
 
         // 3. Citation d’intro (si disponible)
-        if (quote != null)
+        if (quote)
         {
             bool done = false;
             quote.ShowRandomQuote(QuoteType.Intro, () => done = true);
@@ -135,6 +135,7 @@ public class TransitionManager : MonoBehaviour
         isRunning = false;
     }
     
+    // ReSharper disable Unity.PerformanceAnalysis
     /// <summary>
     /// Charge une scène après un fondu vers noir.
     /// </summary>
@@ -142,16 +143,18 @@ public class TransitionManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        yield return ui.StartBlackoutRoutine();
-
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-        while (!asyncLoad.isDone)
+        yield return ui.StartBlackoutRoutine();
+        
+
+        while (asyncLoad is { isDone: false })
         {
             yield return null;
         }
+        
         yield return new WaitForSecondsRealtime(0.1f);
         yield return ui.StartFadeInRoutine();
-        Debug.Log("LoadSceneDone");
+        
         OnSceneLoadCompleted?.Invoke();
     }
 }

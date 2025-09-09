@@ -36,6 +36,7 @@ public class BlackoutEffect : MonoBehaviour
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     /// <summary>
     /// Laisse apparaître progressivement la scène en réduisant l’opacité du panneau noir.
     /// </summary>
@@ -45,16 +46,17 @@ public class BlackoutEffect : MonoBehaviour
 
         if (!IsValidTarget()) // sécurité
         {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             Debug.LogWarning("[BlackoutEffect] ⚠️ blackoutImage est null, impossible de lancer le fade-in.");
+#endif
             onComplete?.Invoke();
             return;
         }
 
         // ✅ Active le panel parent (UI_BlackoutPanel) si désactivé
         Transform panelParent = blackoutImage.transform.parent;
-        if (panelParent != null && !panelParent.gameObject.activeSelf)
+        if (panelParent && !panelParent.gameObject.activeSelf)
         {
-            Debug.Log("[BlackoutEffect] 🔧 Activation du UI_BlackoutPanel désactivé.");
             panelParent.gameObject.SetActive(true);
         }
 
@@ -75,12 +77,15 @@ public class BlackoutEffect : MonoBehaviour
             });
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void StartBlackout(System.Action onComplete = null)
     {
 
         if (!IsValidTarget())
         {
-            Debug.LogWarning("[BlackoutEffect] ⚠️ blackoutImage est null ou détruit → blackout annulé.");
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Debug.LogWarning("[BlackoutEffect] ⚠️ Blackout target invalid → operation cancelled.");
+#endif
             onComplete?.Invoke();
             return;
         }
@@ -97,7 +102,6 @@ public class BlackoutEffect : MonoBehaviour
                 if (!IsValidTarget()) return;
                     
                 blackoutImage.gameObject.SetActive(false); // important sinon écran reste noir
-                Debug.Log("🌀 Blackout terminé");
                 onComplete?.Invoke();
             });
     }

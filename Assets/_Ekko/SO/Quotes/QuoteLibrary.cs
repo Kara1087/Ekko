@@ -27,6 +27,7 @@ public class QuoteLibrary : ScriptableObject
         return filtered[Random.Range(0, filtered.Count)];
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     /// <summary>
     /// Renvoie une citation aléatoire pour un type ET un tag donnés.
     /// Si aucune citation ne correspond, retourne null (comportement strict).
@@ -40,13 +41,12 @@ public class QuoteLibrary : ScriptableObject
         if (filtered.Count > 0)
         {
             var quote = filtered[Random.Range(0, filtered.Count)];
-
-            Debug.Log($"✅ Quote trouvée pour Type: {type}, Tag: {tag} → \"{quote.quoteText}\"");
-
             return quote;
         }
 
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         Debug.LogWarning($"⚠️ Aucune quote trouvée pour Type: {type} avec Tag: {tag}");
+#endif
         return null;
 
         // 💡 Optionnel : tu pourrais ici faire un fallback vers une quote de tag `None`

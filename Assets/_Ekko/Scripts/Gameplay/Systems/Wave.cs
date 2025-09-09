@@ -188,7 +188,6 @@ public class Wave : MonoBehaviour
 
         if (waveCollider)
         {
-            Debug.Log((waveMaxExpansionDuration * percentageDuration) * waveMaxExpansionDuration);
             var expansionTween = DOTween.To(
                 () => waveCollider.radius,
                 radius => waveCollider.radius = radius,

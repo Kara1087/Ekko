@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,6 +27,8 @@ public class Revealable : MonoBehaviour, IRevealable
     // Pour éviter plusieurs coroutines qui s'écrasent mutuellement
     private Coroutine currentRoutine;
 
+    private bool isPlayerInPlatform = false;
+
     private void Awake()
     {   
         // On récupère tous les SpriteRenderer enfants
@@ -45,6 +48,12 @@ public class Revealable : MonoBehaviour, IRevealable
     /// </summary>
     public void Reveal(float waveIntensity)
     {
+        
+        if (isPlayerInPlatform)
+        {
+            return;
+        }
+        
         float duration = visibleDuration;
 
         if (useWaveIntensity)
@@ -62,10 +71,24 @@ public class Revealable : MonoBehaviour, IRevealable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        StopAllCoroutines();
         // Si le joueur touche cet objet, on le révèle
         if (collision.collider.CompareTag("Player"))
         {
-            Reveal(1f); // Révélation maximale
+                Debug.Log("ALPHA TO one with contact player");
+            isPlayerInPlatform = true;
+            SetAlphaAll(1f);        // S’assure que l’objet est totalement visible
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        Debug.Log("OnCollisionExit");
+        StopAllCoroutines();
+        if (other.collider.CompareTag("Player"))
+        {
+            isPlayerInPlatform = false;
+            StartCoroutine(FadeOutRoutine());
         }
     }
 
@@ -74,6 +97,7 @@ public class Revealable : MonoBehaviour, IRevealable
     /// </summary>
     private IEnumerator FadeRoutine(float visibleDuration)
     {
+        Debug.Log("FadeRoutine");
         float t = 0f;
 
         // ➕ Fade in : apparition progressive
@@ -88,8 +112,13 @@ public class Revealable : MonoBehaviour, IRevealable
         SetAlphaAll(1f);        // S’assure que l’objet est totalement visible
         yield return new WaitForSeconds(visibleDuration);   // ⏳ reste visible
 
-        // ➖ Fade out : disparition progressive
-        t = 0f;
+        yield return  StartCoroutine(FadeOutRoutine());
+        currentRoutine = null;
+    }
+
+    IEnumerator FadeOutRoutine()
+    {
+        float t = 0f;
         while (t < fadeOutDuration)
         {
             t += Time.deltaTime;
@@ -99,9 +128,7 @@ public class Revealable : MonoBehaviour, IRevealable
         }
 
         SetAlphaAll(0f);        // S’assure que tout est bien invisible à la fin
-        currentRoutine = null;
     }
-    
     /// <summary>
     /// Modifie l’opacité (alpha) de tous les SpriteRenderer associés
     /// </summary>

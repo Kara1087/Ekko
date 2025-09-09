@@ -131,25 +131,27 @@ public class UIManager : MonoBehaviour
     {
         bool finished = false;
 
-        blackoutEffect?.StartBlackout(() => finished = true);
+        blackoutEffect.StartBlackout(() => finished = true);
 
         yield return new WaitUntil(() => finished);
-        //onComplete?.Invoke();
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public IEnumerator StartFadeInRoutine()
     {
         bool finished = false;
-        if (blackoutEffect != null)
-        blackoutEffect.StartFadeIn(() => finished = true);
+        if (blackoutEffect)
+        {
+            blackoutEffect.StartFadeIn(() => finished = true);
+        }
         else
         {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             Debug.LogWarning("[UIManager] ⚠️ Pas de blackoutEffect → fade ignoré");
+#endif
             finished = true; // force la poursuite
         }
         yield return new WaitUntil(() => finished);
-        
-        //onComplete?.Invoke();
     }
 
     // Nettoie les listeners au moment de la destruction

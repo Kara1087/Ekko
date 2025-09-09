@@ -19,7 +19,7 @@ public class UIMainMenu : MonoBehaviour
     private void Awake()
     {
         // Activation par défaut du menu principal
-        if (mainMenuPanel != null)
+        if (mainMenuPanel)
             mainMenuPanel.SetActive(true);
     }
 
@@ -47,7 +47,7 @@ public class UIMainMenu : MonoBehaviour
 
         public void Hide()
     {
-        if (mainMenuPanel != null)
+        if (mainMenuPanel)
             mainMenuPanel.SetActive(false);
     }
 }
