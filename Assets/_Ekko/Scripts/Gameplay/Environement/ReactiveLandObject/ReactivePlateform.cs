@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
@@ -8,7 +9,7 @@ using Unity.VisualScripting;
 /// </summary>
 
 [RequireComponent(typeof(Collider2D))]
-public class ReactivePlatform : MonoBehaviour
+public class ReactivePlatform : MonoBehaviour, IReactiveLandObject
 {
     [Header("Reactive Platform")]
     [Tooltip("Active ou désactive le comportement réactif")]
@@ -29,9 +30,20 @@ public class ReactivePlatform : MonoBehaviour
     {
         startPosition = transform.position;
     }
+
+    private void Start()
+    {
+        Initialize();
+    }
+
+    public void Initialize()
+    {
+       ReactiveLandObjectManager.Instance.RegisterReactivePlatform(transform, this);
+    }
     
     private void OnDestroy()
     {
+        ReactiveLandObjectManager.Instance.UnregisterReactivePlatform(transform);
         StopAllCoroutines();
     }
 
@@ -140,3 +152,4 @@ public class ReactivePlatform : MonoBehaviour
         transform.position = startPosition;
     }
 }
+

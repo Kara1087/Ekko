@@ -163,7 +163,7 @@ public class JumpSystem : MonoBehaviour
             
             if (landObject.CompareTag("ReactiveLandObject"))
             {
-                ReactivePlatform reactivePlatform = landObject.GetComponent<ReactivePlatform>();
+                IReactiveLandObject reactivePlatform =  ReactiveLandObjectManager.Instance.GetReactivePlatform(landObject);
                 reactivePlatform.OnLandingDetected(landForce, landingType, landObject, transform);;
             }
         }
