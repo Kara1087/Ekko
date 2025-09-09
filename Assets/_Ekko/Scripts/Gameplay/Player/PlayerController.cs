@@ -1,8 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(InputHandler))]
 [RequireComponent(typeof(JumpSystem))]
 
 public class PlayerController : MonoBehaviour
@@ -32,7 +30,6 @@ public class PlayerController : MonoBehaviour
     private float previousVerticalVelocity;
 
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private InputHandler input;
     private JumpSystem jumpSystem;
 
     private bool wasGroundedLastFrame;
@@ -41,15 +38,13 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        input = GetComponent<InputHandler>();
         jumpSystem = GetComponent<JumpSystem>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     
     private void Update()
     {
-        // Mouvement horizontal
-        moveInput = new Vector2(input.MoveInput.x, 0f);
+        // Mouvement horizontal=
         if (moveInput.x > 0 && !isFacingRight)
             Flip();
         else if (moveInput.x < 0 && isFacingRight)
@@ -65,6 +60,11 @@ public class PlayerController : MonoBehaviour
             jumpSystem.OnLand(previousVerticalVelocity,landObject); // 👈 Vélocité pré-impact
         }
         wasGroundedLastFrame = IsGrounded;
+    }
+
+    public void SetMoveDirection(Vector2 direction)
+    {
+        moveInput = direction;
     }
 
     private void FixedUpdate()

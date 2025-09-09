@@ -18,6 +18,7 @@ public class TransitionManager : MonoBehaviour
     private GameManager game;
     private QuoteManager quote;
     private bool isRunning = false;
+    
 
     private void Awake()
     {
@@ -100,12 +101,12 @@ public class TransitionManager : MonoBehaviour
     /// Lance la séquence d’intro : blackout → citation → chargement de la scène → fade-in.
     /// </summary>
 
-    public void PlayIntroSequence()
+    public void PlayIntroSequence(UIMainMenu uiMainMenu)
     {
-        StartCoroutine(IntroSequence());
+        StartCoroutine(IntroSequence(uiMainMenu));
     }
 
-    private IEnumerator IntroSequence()
+    private IEnumerator IntroSequence(UIMainMenu uiMainMenu)
     {
         // 1. Fondu vers noir
         yield return ui.StartBlackoutRoutine();
@@ -122,12 +123,13 @@ public class TransitionManager : MonoBehaviour
         }
         else
         {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             Debug.LogWarning("[TransitionManager] ⚠️ QuoteManager manquant pour l’intro");
+#endif
         }
 
         // 4. Avant le chargement de la scène, cacher le menu principal s’il est présent
-        var mainMenu = FindAnyObjectByType<UIMainMenu>();
-        if (mainMenu != null) mainMenu.Hide();
+        if (uiMainMenu) uiMainMenu.Hide();
 
         // 5. Chargement de la scène
         yield return LoadSceneWithFade("Level_1");

@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // 👉👉👉  Commenter pour phase test
         // Lancer le menu principal si on démarre depuis _Bootstrap
         StartMainMenuTransition();
     }
@@ -166,7 +165,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void StartGame()
+    public void StartGame(UIMainMenu uiMainMenu)
     {
         Debug.Log("[GameManager] ▶️ StartGame()");
 
@@ -177,7 +176,7 @@ public class GameManager : MonoBehaviour
         //UIManager.Instance?.ShowQuotePanel(true);
         //UIManager.Instance?.HideGameOver();
 
-        TransitionManager.Instance.PlayIntroSequence();
+        TransitionManager.Instance.PlayIntroSequence(uiMainMenu);
     }
 
     public void RestartGame()

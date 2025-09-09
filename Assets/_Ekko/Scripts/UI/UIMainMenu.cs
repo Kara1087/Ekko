@@ -27,7 +27,7 @@ public class UIMainMenu : MonoBehaviour
     {
         // Abonnement aux boutons
         if (playButton != null)
-            playButton.onClick.AddListener(GameManager.Instance.StartGame);
+            playButton.onClick.AddListener(StartGame);
 
         if (quitButton != null)
             quitButton.onClick.AddListener(GameManager.Instance.QuitGame);
@@ -36,10 +36,15 @@ public class UIMainMenu : MonoBehaviour
         AudioManager.Instance?.PlayStartTheme();
     }
 
+    void StartGame()
+    {
+        GameManager.Instance.StartGame(this);
+    }
+
     private void OnDestroy()
     {
         if (playButton != null)
-            playButton.onClick.RemoveListener(GameManager.Instance.StartGame);
+            playButton.onClick.RemoveListener(StartGame);
 
         if (quitButton != null)
             quitButton.onClick.RemoveListener(GameManager.Instance.QuitGame);

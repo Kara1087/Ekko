@@ -8,7 +8,6 @@ using System.Collections.Generic;
 /// 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerController))]
-[RequireComponent(typeof(InputHandler))]
 [RequireComponent(typeof(LandingClassifier))]
 [RequireComponent(typeof(WaveEmitter))]
 public class JumpSystem : MonoBehaviour
@@ -43,15 +42,16 @@ public class JumpSystem : MonoBehaviour
 
     private Rigidbody2D rb;
     private PlayerController controller;
-    private InputHandler input;
     private LandingClassifier landingClassifier;
 
+    private bool JumpPressedThisFrame;
+    private bool isOnSlam;
+    private bool ControlFallPressedThisFrame;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
-        input = GetComponent<InputHandler>();
         landingClassifier = GetComponent<LandingClassifier>();
     }
 
@@ -60,17 +60,14 @@ public class JumpSystem : MonoBehaviour
         // Gère les timers de saut (coyote/jump buffer) et les inputs contextuels
         HandleTimers();
 
-        if (isJumping && input.JumpReleased)
-            CutJumpShort();
-
         // Enregistre l'input cushion uniquement si pas déjà utilisé
-        if (input.ControlFallPressedThisFrame && !hasUsedCushion)
+        if (ControlFallPressedThisFrame && !hasUsedCushion)
         {
             lastCushionInputTime = Time.time;
         }
 
         // Active le slam si la touche bas est maintenue en l’air
-        if (input.DownHeld && !controller.IsGrounded)
+        if (isOnSlam && !controller.IsGrounded)
             isForcingSlam = true;
     }
 
@@ -104,7 +101,7 @@ public class JumpSystem : MonoBehaviour
     {
         // Buffer input
         jumpBufferCounter -= Time.deltaTime;
-        if (input.JumpPressedThisFrame)
+        if (JumpPressedThisFrame)
             jumpBufferCounter = jumpBufferTime;
 
         // Coyote time
@@ -209,4 +206,42 @@ public class JumpSystem : MonoBehaviour
             listener.OnLandingDetected(impactForce, type, landObject);
         }
     }
+
+    public void JumpCanceled()
+    {
+        if (isJumping)
+        {
+            CutJumpShort();
+        }
+    }
+
+    private void LateUpdate()
+    {
+        // Reset à chaque frame
+        JumpPressedThisFrame = false;
+        ControlFallPressedThisFrame = false;
+    }
+
+
+
+    public void JumpPerformed()
+    {
+        JumpPressedThisFrame = true;
+    }
+
+    public void Slam()
+    {
+        if (!controller.IsGrounded)
+            isOnSlam = true;
+    }
+
+    public void StopSlam()
+    {
+        isOnSlam = false;
+    }
+    public void OnCushion()
+    {
+        ControlFallPressedThisFrame = true;
+    }
+
 }
