@@ -2,7 +2,7 @@ using _Ekko.Scripts.Gameplay.Systems;
 using UnityEngine;
 
 
-public class WaveEmitter : MonoBehaviour, ILandingListener
+public class WaveEmitter : MonoBehaviour
 {
     [Header("Wave Settings")]
     [SerializeField] private float minRange = 1f;           // Rayon minimum de l’onde (pour les petits impacts)
@@ -12,22 +12,16 @@ public class WaveEmitter : MonoBehaviour, ILandingListener
 
     [SerializeField] private float minForce = 1f;           // Force minimale attendue à l’atterrissage
     [SerializeField] private float maxForce = 20f;          // Force maximale attendue à l’atterrissage
-
-
-    [Header("Debug")]
-    [SerializeField] private Color debugColor = Color.cyan;
-
-    private JumpSystem jumpSystem;
+    
 
     private void OnEnable()
     {
-        if (jumpSystem == null)
-            jumpSystem = FindFirstObjectByType<JumpSystem>();
-
-        if (jumpSystem != null)
-            jumpSystem.RegisterLandingListener(this);
-        
         EventManager.Subscribe(GameEventType.PlayerLand, OnPlayerLand);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Unsubscribe(GameEventType.PlayerLand, OnPlayerLand);
     }
 
     private void OnPlayerLand(object obj)
@@ -36,25 +30,11 @@ public class WaveEmitter : MonoBehaviour, ILandingListener
         EmitWave(data.force);
     }
 
-    private void OnDisable()
-    {
-        if (jumpSystem != null)
-            jumpSystem.UnregisterLandingListener(this);
-        
-        EventManager.Unsubscribe(GameEventType.PlayerLand, OnPlayerLand);
-    }
-
-    public void OnLandingDetected(float impactForce, LandingType type, Transform landObject)
-    {
-        //sDebug.Log($"[WaveEmitter] 🔊 Reçu impact {impactForce} depuis JumpSystem");
-        EmitWave(impactForce);
-    }
-
     /// <summary>
     /// Appelé lors de l’atterrissage par JumpSystem.
     /// Génère une onde avec un rayon proportionnel à la force de l’impact.
     /// </summary>
-    public void EmitWave(float impactForce)
+    private void EmitWave(float impactForce)
     {
         // 1. 🔒 Clamp la force pour qu’elle reste dans l’intervalle [minForce, maxForce]
         float clampedForce = Mathf.Clamp(impactForce, minForce, maxForce);

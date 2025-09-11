@@ -38,8 +38,6 @@ public class JumpSystem : MonoBehaviour
     private bool isForcingSlam;
     private bool hasUsedCushion; // Utilisé pour bloquer l'amorti après un seul usage
 
-    private readonly List<ILandingListener> landingListeners = new List<ILandingListener>();
-
     private Rigidbody2D rb;
     private PlayerController controller;
 
@@ -172,39 +170,13 @@ public class JumpSystem : MonoBehaviour
         }
         
         //TODO only send msg after check landing threshold
+        EventManager.TriggerEvent(GameEventType.PlayerLand, new LandData(landForce, landObject, landingType));
 
-        EventManager.TriggerEvent(GameEventType.PlayerLand, new LandData(landForce, landObject));
-
-        //NotifyLandingListeners(landForce, landingType, landObject);
-        
         // Reset des états liés au saut
         isForcingSlam = false;
         lastCushionInputTime = -10f;
     }
-
-    public void RegisterLandingListener(ILandingListener listener)
-    {
-        if (!landingListeners.Contains(listener))
-            landingListeners.Add(listener);
-    }
-
-    public void UnregisterLandingListener(ILandingListener listener)
-    {
-        if (landingListeners.Contains(listener))
-            landingListeners.Remove(listener);
-    }
-
-    /// <summary>
-    /// Notifie tous les objets proches qui écoutent les atterrissages.
-    /// </summary>
-    private void NotifyLandingListeners(float impactForce, LandingType type, Transform landObject)
-    {
-        foreach (var listener in landingListeners)
-        {
-            listener.OnLandingDetected(impactForce, type, landObject);
-        }
-    }
-
+    
     public void JumpCanceled()
     {
         if (isJumping)

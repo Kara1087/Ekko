@@ -1,16 +1,16 @@
+using _Ekko.Scripts.Gameplay.Systems;
 using UnityEngine;
 using UnityEngine.Events;
 using Unity.Cinemachine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-public class LandingReactionManager : MonoBehaviour, ILandingListener
+public class LandingReactionManager : MonoBehaviour
 {
     [Header("Cushion Settings")]
     [SerializeField] private float cushionMusicFadeTime = 0.5f;
     [SerializeField] private float cushionTargetVolume = 0.1f;
-    [Header("Slam Settings")]
-    [SerializeField] private float slamThreshold = 25f;
+    
     //[SerializeField] private CinemachineImpulseSource impulseSource;
 
     //[SerializeField] private Volume globalVolume;
@@ -21,29 +21,30 @@ public class LandingReactionManager : MonoBehaviour, ILandingListener
     private float originalMusicVolume = 1f;
     private bool isFading = false;
 
-    private JumpSystem jumpSystem;
-
     private void OnEnable()
     {
-        if (jumpSystem == null)
-            jumpSystem = FindFirstObjectByType<JumpSystem>();
-
-        if (jumpSystem != null)
-            jumpSystem.RegisterLandingListener(this);
+        EventManager.Subscribe(GameEventType.PlayerLand, OnPlayerLand);
     }
 
     private void OnDisable()
     {
-        if (jumpSystem != null)
-            jumpSystem.UnregisterLandingListener(this);
+        EventManager.Unsubscribe(GameEventType.PlayerLand, OnPlayerLand);
     }
 
-
-    public void OnLandingDetected(float force, LandingType type, Transform landObject)
+    private void OnPlayerLand(object obj)
     {
+        LandData data = (LandData)obj;
+        
+        //TODO think and check with Karine the landing type is really necessary ?
+        OnLandingDetected(data.force, data.landingType);
+    }
+
+    private void OnLandingDetected(float force, LandingType type)
+    {
+        //TODO think about it where is better to apply all this effects
         //Debug.Log($"[LandingAudioCue] 📥 Reçu : type={type}, force={force}");
 
-        if (LandingUtils.IsHeavyImpact(force, type, slamThreshold))
+        if (LandingUtils.IsHeavyImpact(force, type))
         {
             onHeavyLanding?.Invoke();
             AudioManager.Instance.Play("SlamJump");
