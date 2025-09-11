@@ -8,7 +8,6 @@ using System.Collections.Generic;
 /// 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerController))]
-[RequireComponent(typeof(LandingClassifier))]
 [RequireComponent(typeof(WaveEmitter))]
 public class JumpSystem : MonoBehaviour
 {
@@ -42,7 +41,6 @@ public class JumpSystem : MonoBehaviour
 
     private Rigidbody2D rb;
     private PlayerController controller;
-    private LandingClassifier landingClassifier;
 
     private bool JumpPressedThisFrame;
     private bool isOnSlam;
@@ -52,7 +50,6 @@ public class JumpSystem : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
-        landingClassifier = GetComponent<LandingClassifier>();
     }
 
     private void Update()
@@ -173,10 +170,7 @@ public class JumpSystem : MonoBehaviour
             landForce *= cushionWaveMultiplier;
         }
 
-      
-        // Enregistre l'atterrissage et notifie les objets intéressés
-        landingClassifier.RegisterLanding(impactVelocity, landingType);
-
+        EventManager.TriggerEvent(GameEventType.EnemyKilled, landObject);
         NotifyLandingListeners(landForce, landingType, landObject);
 
         // Reset des états liés au saut

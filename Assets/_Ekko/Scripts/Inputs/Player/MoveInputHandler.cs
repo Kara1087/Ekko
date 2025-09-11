@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace _Ekko.Scripts.Inputs
 {
-    public class PlayerInputHandler : InputHandler
+    public class MoveInputHandler : InputHandler
     {
        [SerializeField] private PlayerController playerController;
        private Vector2 moveInput;
