@@ -7,7 +7,8 @@ public enum GameEventType
     GameOver,
     EnemyKilled,
     PlayerDamaged,
-    ItemCollected
+    ItemCollected,
+    PlayerLand
 }
 
 public static class EventManager

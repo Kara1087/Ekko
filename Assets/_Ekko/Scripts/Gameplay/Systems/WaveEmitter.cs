@@ -1,3 +1,4 @@
+using _Ekko.Scripts.Gameplay.Systems;
 using UnityEngine;
 
 
@@ -25,12 +26,22 @@ public class WaveEmitter : MonoBehaviour, ILandingListener
 
         if (jumpSystem != null)
             jumpSystem.RegisterLandingListener(this);
+        
+        EventManager.Subscribe(GameEventType.PlayerLand, OnPlayerLand);
+    }
+
+    private void OnPlayerLand(object obj)
+    {
+        LandData data = (LandData)obj;
+        EmitWave(data.force);
     }
 
     private void OnDisable()
     {
         if (jumpSystem != null)
             jumpSystem.UnregisterLandingListener(this);
+        
+        EventManager.Unsubscribe(GameEventType.PlayerLand, OnPlayerLand);
     }
 
     public void OnLandingDetected(float impactForce, LandingType type, Transform landObject)

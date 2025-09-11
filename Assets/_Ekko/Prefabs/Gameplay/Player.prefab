@@ -270,7 +270,6 @@ GameObject:
   - component: {fileID: 8178291466766873922}
   - component: {fileID: 2439814238794856113}
   - component: {fileID: 8690604747897951693}
-  - component: {fileID: 165381274287226765}
   - component: {fileID: 354689775183971246}
   - component: {fileID: 441468540923850232}
   - component: {fileID: 2423670080596529113}
@@ -473,20 +472,6 @@ MonoBehaviour:
   cushionFallDamping: 0.3
   slamWaveMultiplier: 1.5
   cushionWaveMultiplier: 0.1
---- !u!114 &165381274287226765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4446427717985520308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca5e82a5235e49e8b62b720660734f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentLandingType: 0
-  lastImpactVelocity: 0
 --- !u!114 &354689775183971246
 MonoBehaviour:
   m_ObjectHideFlags: 0

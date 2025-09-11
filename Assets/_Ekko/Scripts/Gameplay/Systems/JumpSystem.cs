@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using _Ekko.Scripts.Gameplay.Systems;
 
 /// <summary>
 /// Gère le système de saut du joueur, incluant le coyote time, le jump buffer,
@@ -169,10 +170,13 @@ public class JumpSystem : MonoBehaviour
             landingType = LandingType.Cushioned;
             landForce *= cushionWaveMultiplier;
         }
+        
+        //TODO only send msg after check landing threshold
 
-        EventManager.TriggerEvent(GameEventType.EnemyKilled, landObject);
-        NotifyLandingListeners(landForce, landingType, landObject);
+        EventManager.TriggerEvent(GameEventType.PlayerLand, new LandData(landForce, landObject));
 
+        //NotifyLandingListeners(landForce, landingType, landObject);
+        
         // Reset des états liés au saut
         isForcingSlam = false;
         lastCushionInputTime = -10f;

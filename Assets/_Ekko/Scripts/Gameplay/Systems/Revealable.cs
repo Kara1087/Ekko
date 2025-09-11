@@ -97,7 +97,6 @@ public class Revealable : MonoBehaviour, IRevealable
     /// </summary>
     private IEnumerator FadeRoutine(float visibleDuration)
     {
-        Debug.Log("FadeRoutine");
         float t = 0f;
 
         // ➕ Fade in : apparition progressive

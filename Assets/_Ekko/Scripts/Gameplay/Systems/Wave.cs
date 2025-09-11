@@ -117,6 +117,7 @@ public class Wave : MonoBehaviour
         float duration = CalculateWaveDuration(normalizedForce, minForce, maxForce);
         if (duration <= 0f)
         {
+            Debug.Log("returning to pool!");
             ResetWaveForPool();
             ObjectPoolManager.ReturnObjectToPool(gameObject, ObjectPoolManager.PoolType.Wave);
             return;
@@ -140,8 +141,16 @@ public class Wave : MonoBehaviour
 
     private void ResetWaveState()
     {
+        // Safely kill the sequence before resetting
+        if (waveSequence != null && waveSequence.IsActive())
+        {
+            waveSequence.Kill();
+        }
+        waveSequence = null;
+        
         processedRevealables.Clear();
         processedAlertables.Clear();
+
     }
     
 
