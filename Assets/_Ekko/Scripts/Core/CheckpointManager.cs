@@ -34,7 +34,6 @@ public class CheckpointManager : MonoBehaviour
         }
 
         // Fallback : position par défaut si aucun checkpoint
-        Debug.LogWarning("[CheckpointManager] ⚠️ Aucun checkpoint trouvé. Respawn à l’origine.");
         return Vector2.zero;
     }
 

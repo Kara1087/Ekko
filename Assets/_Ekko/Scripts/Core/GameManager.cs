@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public bool IsPaused { get; private set; } = false;
+    private bool IsPaused { get; set; } = false;
     public bool IsGameOver { get; private set; } = false;
 
     private QuoteData cushionOverrideDeathQuote = null;
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         if (IsGameOver) return;    
         IsPaused = !IsPaused;
         Time.timeScale = IsPaused ? 0f : 1f;
-        UIManager.Instance?.ShowPause(IsPaused);
+        UIManager.Instance.ShowPause(IsPaused);
     }
 
     public void ResumeGame()
@@ -60,11 +60,12 @@ public class GameManager : MonoBehaviour
         UIManager.Instance?.ShowPause(false);
 
         if (IsPaused)
-            AudioManager.Instance?.PlayPauseTheme();
+            AudioManager.Instance.PlayPauseTheme();
         else
-            AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
+            AudioManager.Instance.PlayMusicTheme("BackgroundTheme");
     }
 
+    //TODO Why Quota is managed by GameManager
     public void MarkNextDeathAsCushionOnboarding(QuoteData quote)
     {
         cushionOverrideDeathQuote = quote;
@@ -72,7 +73,7 @@ public class GameManager : MonoBehaviour
 
     public bool HasOverrideDeathQuote()
     {
-        return cushionOverrideDeathQuote != null;
+        return cushionOverrideDeathQuote;
     }
 
     public QuoteData GetOverrideDeathQuote()
@@ -89,22 +90,18 @@ public class GameManager : MonoBehaviour
     {
         if (IsGameOver) return;
 
-        Debug.Log("[GameManager] 💀 Player is dead.");
         IsGameOver = true;
-        Time.timeScale = 0f;        // Stop le temps et les inputs
+        Time.timeScale = 0f;        // Stop le temps et les inputs ? TODO check
 
-        AudioManager.Instance?.FadeOutMusicTheme(2f);
-        TransitionManager.Instance?.PlayDeathSequence();
+        AudioManager.Instance.FadeOutMusicTheme(2f);
+        TransitionManager.Instance.PlayDeathSequence();
     }
 
     public void RespawnPlayer()
     {
-        Debug.Log("[GameManager] 🌌 RespawnPlayer()");
-
         // Récupère la positions du dernier checkpoint
         if (!CheckpointManager.Instance || !CheckpointManager.Instance.HasCheckpoint())
         {
-            Debug.LogWarning("[GameManager] Aucun checkpoint trouvé, rechargement de la scène...");
             RestartGame();
             return;
         }
@@ -116,17 +113,18 @@ public class GameManager : MonoBehaviour
         IsPaused = false;
         IsGameOver = false;
 
-        // Reset du joueur
+        // Reset du joueur TODO Optimize that
         GameObject player = GameObject.FindGameObjectWithTag("Player"); // Trouve le joueur dynamiquement (au cas où il a été détruit ou désactivé)
-        // Sécurité : on détache le joueur de toute plateforme potentielle
-        if (player.transform.parent != null)
-        {
-            Debug.LogWarning("[GameManager] 🔧 Reset parent du joueur lors du respawn");
-            player.transform.SetParent(null);
-        }
 
-        if (player != null)
+        //TODO Event to respawn Player and reset everithyng is not the job of GameManager to do that !
+        if (player)
         {
+            // Sécurité : on détache le joueur de toute plateforme potentielle
+            if (player.transform.parent)
+            {
+                player.transform.SetParent(null);
+            }
+            
             // Replace le joueur au checkpoint
             player.transform.position = checkpointPos;
 
@@ -181,8 +179,6 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        Debug.Log("[GameManager] 🔁 Restart current level");
-
         Time.timeScale = 1f;
         IsPaused = false;
         IsGameOver = false;

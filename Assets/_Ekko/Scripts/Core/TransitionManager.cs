@@ -46,7 +46,7 @@ public class TransitionManager : MonoBehaviour
     {
         if (isRunning)
         {
-            Debug.LogWarning("[TransitionManager] ⚠ DeathSequence déjà en cours !");
+            //Debug.LogWarning("[TransitionManager] ⚠ DeathSequence déjà en cours !");
             return;
         }
 
@@ -61,7 +61,7 @@ public class TransitionManager : MonoBehaviour
         yield return ui.StartBlackoutRoutine();
 
         // 2. Citation (si disponible)
-        if (quote != null)
+        if (quote)
         {
             bool done = false;
             if (game.HasOverrideDeathQuote())
@@ -81,7 +81,9 @@ public class TransitionManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[TransitionManager] ❌ QuoteManager manquant, saut de citation");
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Debug.LogError("[TransitionManager] ❌ QuoteManager manquant, saut de citation");
+#endif
         }
 
         // 3. Respawn

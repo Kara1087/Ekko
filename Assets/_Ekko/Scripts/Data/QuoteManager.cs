@@ -30,14 +30,17 @@ public class QuoteManager : MonoBehaviour
             quotePanel.SetActive(false);
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     /// <summary>
     /// Affiche une citation spécifique.
     /// </summary>
     public void ShowSpecificQuote(QuoteData quote, System.Action onComplete = null)
     {
-        if (quote == null)
+        if (!quote)
         {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
             Debug.LogWarning("[QuoteManager] Citation spécifique manquante !");
+#endif
             return;
         }
 
