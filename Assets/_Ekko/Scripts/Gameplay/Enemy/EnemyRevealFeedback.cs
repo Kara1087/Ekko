@@ -24,11 +24,11 @@ public class EnemyRevealFeedback : MonoBehaviour, IAlertable
         }
     }
 
+    //TODO 
     public void Alert(Vector2 sourcePosition)
     {
-        Debug.Log("[EnemyRevealFeedback] ⚡ Alert received.");
 
-        if (revealLight == null)
+        if (!revealLight)
         {
             Debug.LogWarning("[EnemyRevealFeedback] ⚠️ No revealLight assigned.");
             return;

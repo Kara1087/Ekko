@@ -7,9 +7,7 @@ namespace _Ekko.Scripts.Inputs
     {
         public static InputManager Instance { get; private set; }
   
-        [SerializeField] private PlayerInput playerInput;
-        
-        public PlayerInput CurrentPlayerInput => playerInput;
+        public InputSystem_Actions InputActions { get; private set; }
 
         private void Awake()
         {
@@ -19,18 +17,26 @@ namespace _Ekko.Scripts.Inputs
                 Destroy(gameObject);
                 return;
             }
-      
             Instance = this;
+            InputActions = new InputSystem_Actions();
+            SwitchToGameplayControls();
         }
     
         public void SwitchToGameplayControls()
         {
-            playerInput.SwitchCurrentActionMap("Gameplay");
+            InputActions.UI.Disable();
+            InputActions.Player.Enable();
         }
     
         public void SwitchToUIControls()
         {
-            playerInput.SwitchCurrentActionMap("UI");
+            InputActions.Player.Disable();
+            InputActions.UI.Enable();
+        }
+        
+        private void OnDestroy()
+        {
+            InputActions?.Dispose();
         }
     }
 }

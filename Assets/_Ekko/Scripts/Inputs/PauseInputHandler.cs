@@ -1,31 +1,36 @@
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace _Ekko.Scripts.Inputs
 {
    public class PauseInputHandler : InputHandler
     {
-        private InputAction pauseAction;
     
         protected override void RegisterInputActions()
         {
-            var playerInput = GetPlayerInput();
-            if (playerInput == null)
+            Debug.Log("Registry");
+            var inputActionMap = GetActionMap();
+            if (inputActionMap == null)
                 return;
             
-            pauseAction = playerInput.actions["Pause"]; 
-            pauseAction.performed += OnPausePerformed;
+            Debug.Log("Registry Done");
+            inputActionMap.Player.Pause.started += OnPauseStarted;
+            inputActionMap.UI.Pause.started += OnPauseStarted;
         }
     
         protected override void UnregisterInputActions()
         {
-            if (pauseAction != null)
-            {
-                pauseAction.performed -= OnPausePerformed;
-            }
+            var inputActionMap = GetActionMap();
+            if (inputActionMap == null)
+                return;
+        
+            inputActionMap.Player.Pause.started -= OnPauseStarted;
+            inputActionMap.UI.Pause.started -= OnPauseStarted;
         }
     
-        private void OnPausePerformed(InputAction.CallbackContext context)
+        private void OnPauseStarted(InputAction.CallbackContext context)
         {
+            Debug.Log("PAUSE!");
             if (!GameManager.Instance.IsGameOver)
             {
                 GameManager.Instance.TogglePause();

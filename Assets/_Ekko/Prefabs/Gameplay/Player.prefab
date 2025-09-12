@@ -273,7 +273,6 @@ GameObject:
   - component: {fileID: 354689775183971246}
   - component: {fileID: 441468540923850232}
   - component: {fileID: 2423670080596529113}
-  - component: {fileID: 9218443062767646362}
   - component: {fileID: 3881026533371128705}
   - component: {fileID: 3223245780015205020}
   - component: {fileID: 2522946096575790895}
@@ -444,13 +443,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7e97867d264461795bc3d19b74418e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wavePrefab: {fileID: 6141865585593757326, guid: 7d55035cbbd7c43b386c2089db1bdbdc, type: 3}
   minRange: 0.5
   maxRange: 30
   rangePowerCurve: 1
   rangeMultiplier: 1.5
   minForce: 5
   maxForce: 20
-  debugColor: {r: 0, g: 1, b: 1, a: 1}
+  cushionMusicFadeTime: 0.5
+  cushionTargetVolume: 0.1
 --- !u!114 &8690604747897951693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,24 +577,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   splashPrefab: {fileID: 2848330765371235717, guid: 65942cac359f2cb4291f39e736d36704, type: 3}
---- !u!114 &9218443062767646362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4446427717985520308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7587830e3a16a4ce4b30a589d809a292, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cushionMusicFadeTime: 0.5
-  cushionTargetVolume: 0.1
-  slamThreshold: 25
-  onHeavyLanding:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3881026533371128705
 MonoBehaviour:
   m_ObjectHideFlags: 0

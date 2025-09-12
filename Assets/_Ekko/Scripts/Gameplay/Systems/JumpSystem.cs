@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 using _Ekko.Scripts.Gameplay.Systems;
 
 /// <summary>

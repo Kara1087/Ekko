@@ -80,7 +80,9 @@ public class FXManager : MonoBehaviour
     public void PlayWaveFX(Vector3 pos, float impactForce, float minForce, float maxForce, float targetRadius, Quaternion rot)
     {
         List<FXType> effects = fxLibrary.GetEffects(FXEventType.Wave);
-        if (effects == null) return;
+       
+        if (effects == null)
+            return;
 
         foreach (var fx in effects)
         {

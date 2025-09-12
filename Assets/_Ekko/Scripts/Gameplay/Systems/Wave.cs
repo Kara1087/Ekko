@@ -66,8 +66,8 @@ public class Wave : MonoBehaviour
     private ParticleSystem.EmissionModule particleEmission;
     
     // Collections for affected objects (to avoid duplicate processing)
-    private HashSet<IRevealable> processedRevealables = new HashSet<IRevealable>();
-    private HashSet<IAlertable> processedAlertables = new HashSet<IAlertable>();
+    private HashSet<GameObject> processedRevealables = new HashSet<GameObject>();
+    private HashSet<GameObject> processedAlertables = new HashSet<GameObject>();
     
     // Animation Sequence
     private Sequence waveSequence;
@@ -319,27 +319,27 @@ public class Wave : MonoBehaviour
 
     #region Object Interaction
 
+    //TODO Review this
     private void HandleRevealable(Collider2D other)
     {
-        if (!IsInLayerMask(other.gameObject.layer, revealableLayers)) return;
-        
-        var revealable = other.GetComponent<IRevealable>();
-        if (revealable != null && !processedRevealables.Contains(revealable))
+        if (!IsInLayerMask(other.gameObject.layer, revealableLayers) || !processedRevealables.Contains(other.gameObject)) return;
+
+        if (other.TryGetComponent<IRevealable>(out var revealable) )
         {
             revealable.Reveal(waveIntensity);
-            processedRevealables.Add(revealable);
+            processedRevealables.Add(other.gameObject);;
         }
     }
 
     private void HandleAlertable(Collider2D other)
     {
-        if (!IsInLayerMask(other.gameObject.layer, alertableLayers)) return;
+        if (!IsInLayerMask(other.gameObject.layer, alertableLayers) || processedAlertables.Contains(other.gameObject)) return;
         
-        var alertable = other.GetComponent<IAlertable>();
-        if (alertable != null && !processedAlertables.Contains(alertable))
+     
+        if (other.TryGetComponent<IAlertable>(out var alertable))
         {
             alertable.Alert(transform.position);
-            processedAlertables.Add(alertable);
+            processedAlertables.Add(other.gameObject);
         }
     }
 

@@ -9,7 +9,7 @@ public class ObjectPoolManager : MonoBehaviour
     private GameObject emptyHolder;
 
     private static GameObject particleSystemEmpty;
-    private static GameObject gameObjectsEmpty;
+    private static GameObject gameObjectsEmpty; 
     private static GameObject splashEffectsEmpty;
     private static GameObject soundFXEmpty;
     private static GameObject waveFXEmpty;

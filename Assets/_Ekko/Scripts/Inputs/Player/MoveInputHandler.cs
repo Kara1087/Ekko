@@ -10,22 +10,22 @@ namespace _Ekko.Scripts.Inputs
        
        protected override void RegisterInputActions()
        { 
-           var playerInput = GetPlayerInput();
-           if (playerInput == null)
+           var inputActionMap = GetActionMap();
+           if (inputActionMap == null)
                return;
            
-           playerInput.actions["Move"].performed += OnMovePerformed;
-           playerInput.actions["Move"].canceled += OnMoveCanceled;
+           inputActionMap.Player.Move.performed += OnMovePerformed;
+           inputActionMap.Player.Move.canceled += OnMoveCanceled;
        }
 
        protected override void UnregisterInputActions()
        {
-           PlayerInput playerInput = GetPlayerInput();
-           if (playerInput == null)
+           var inputActionMap = GetActionMap();
+           if (inputActionMap == null)
                return;
            
-           playerInput.actions["Move"].performed -= OnMovePerformed;
-           playerInput.actions["Move"].canceled -= OnMoveCanceled;
+           inputActionMap.Player.Move.performed -= OnMovePerformed;
+           inputActionMap.Player.Move.canceled -= OnMoveCanceled;
        }
        
        // Utilisez des noms différents pour éviter les conflits potentiels

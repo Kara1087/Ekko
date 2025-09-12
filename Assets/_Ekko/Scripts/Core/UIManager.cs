@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using _Ekko.Scripts.Inputs;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -99,11 +100,17 @@ public class UIManager : MonoBehaviour
     {
         if (pausePanel != null)
             pausePanel.SetActive(show);
-            
+
         if (show)
-            AudioManager.Instance?.PlayPauseTheme();
+        {
+            AudioManager.Instance.PlayPauseTheme();
+            InputManager.Instance.SwitchToUIControls();
+        }
         else
-            AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");
+        {
+            InputManager.Instance.SwitchToGameplayControls();
+            AudioManager.Instance.PlayMusicTheme("BackgroundTheme");
+        }
     }
 
     // Active l'écran de Game Over

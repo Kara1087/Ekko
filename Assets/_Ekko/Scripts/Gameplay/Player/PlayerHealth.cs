@@ -53,7 +53,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private void TestRestoreLight()
     {
         RestoreLight(maxLight);
-        Debug.Log("[PlayerHealth] TestRestoreLight: +30");
     }
 
     /// <summary>

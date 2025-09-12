@@ -10,34 +10,34 @@ namespace _Ekko.Scripts.Inputs
         
         protected override void RegisterInputActions()
         {
-            PlayerInput playerInput = GetPlayerInput();
-            if (playerInput == null)
+            var inputActionMap = GetActionMap();
+            if (inputActionMap == null)
                 return;
             
-            playerInput.actions["Jump"].started += OnJumpPerformed;
-            playerInput.actions["Jump"].canceled += OnJumpCanceled;
+            inputActionMap.Player.Jump.started += OnJumpPerformed;
+            inputActionMap.Player.Jump.canceled += OnJumpCanceled;
             
             
-            playerInput.actions["Slam"].started += OnSlamStarted;
-            playerInput.actions["Slam"].canceled += OnSlamCanceled;
+            inputActionMap.Player.Slam.started += OnSlamStarted;
+            inputActionMap.Player.Slam.canceled += OnSlamCanceled;
 
-            playerInput.actions["Cushion"].performed += OnCushionPerformed;
+            inputActionMap.Player.Cushion.performed += OnCushionPerformed;
         }
 
         protected override void UnregisterInputActions()
         {
-            PlayerInput playerInput = GetPlayerInput();
-            if (playerInput == null)
+            var inputActionMap = GetActionMap();
+            if (inputActionMap == null)
                 return;
-               
-            playerInput.actions["Jump"].started -= OnJumpPerformed;
-            playerInput.actions["Jump"].canceled -= OnJumpCanceled;
+            
+            inputActionMap.Player.Jump.started -= OnJumpPerformed;
+            inputActionMap.Player.Jump.canceled -= OnJumpCanceled;
             
             
-            playerInput.actions["Slam"].started -= OnSlamStarted;
-            playerInput.actions["Slam"].canceled -= OnSlamCanceled;
-
-            playerInput.actions["Cushion"].performed -= OnCushionPerformed;
+            inputActionMap.Player.Slam.started -= OnSlamStarted;
+            inputActionMap.Player.Slam.canceled -= OnSlamCanceled;
+            
+            inputActionMap.Player.Cushion.performed -= OnCushionPerformed;
         }
         
         private void OnJumpCanceled(InputAction.CallbackContext context)
