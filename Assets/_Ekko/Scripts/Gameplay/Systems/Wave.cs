@@ -197,6 +197,7 @@ public class Wave : MonoBehaviour
 
         if (waveCollider)
         {
+            waveCollider.radius = 0.05f;
             var expansionTween = DOTween.To(
                 () => waveCollider.radius,
                 radius => waveCollider.radius = radius,
@@ -322,7 +323,7 @@ public class Wave : MonoBehaviour
     //TODO Review this
     private void HandleRevealable(Collider2D other)
     {
-        if (!IsInLayerMask(other.gameObject.layer, revealableLayers) || !processedRevealables.Contains(other.gameObject)) return;
+        if (!IsInLayerMask(other.gameObject.layer, revealableLayers) || processedRevealables.Contains(other.gameObject)) return;
 
         if (other.TryGetComponent<IRevealable>(out var revealable) )
         {

@@ -5546,7 +5546,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 448216937}
-  - component: {fileID: 448216936}
   - component: {fileID: 448216938}
   - component: {fileID: 448216939}
   - component: {fileID: 448216940}
@@ -5557,18 +5556,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &448216936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448216935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a4fbdf1427794c69a72b2e6503bc225, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &448216937
 Transform:
   m_ObjectHideFlags: 0
@@ -6075,10 +6062,10 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 34
   orthographic: 1
-  orthographic size: 16
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6103,7 +6090,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 194.4, y: -92.2, z: -50}
+  m_LocalPosition: {x: 0, y: -15.7, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10859,6 +10846,10 @@ PrefabInstance:
     - target: {fileID: 1215238626678861890, guid: 66756917b063a4dbcb853b19fd1fc3f6, type: 3}
       propertyPath: m_Name
       value: SpikesDark_03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215238626678861890, guid: 66756917b063a4dbcb853b19fd1fc3f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
