@@ -7,5 +7,5 @@
 
 public interface IRevealable
 {
-    void Reveal(float waveIntensity);       // Force normalisée entre 0 et 1
+    void Reveal();       // Force normalisée entre 0 et 1
 }

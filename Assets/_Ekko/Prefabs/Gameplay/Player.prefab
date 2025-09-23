@@ -444,12 +444,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavePrefab: {fileID: 6141865585593757326, guid: 7d55035cbbd7c43b386c2089db1bdbdc, type: 3}
-  minRange: 0.5
+  minRange: 7.5
   maxRange: 30
   rangePowerCurve: 1
   rangeMultiplier: 1.5
-  minForce: 5
-  maxForce: 20
   cushionMusicFadeTime: 0.5
   cushionTargetVolume: 0.1
 --- !u!114 &8690604747897951693
@@ -473,6 +471,8 @@ MonoBehaviour:
   cushionFallDamping: 0.3
   slamWaveMultiplier: 1.5
   cushionWaveMultiplier: 0.1
+  minForce: 7.5
+  maxForce: 30
 --- !u!114 &354689775183971246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,15 +488,8 @@ MonoBehaviour:
   maxLight: 100
   currentLight: 100
   lowLightThreshold: 30
-  onLightChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  onLowLight:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
+  minLandDamage: 3
+  maxLandDamage: 10
   playerVFX: {fileID: 2423670080596529113}
   playerLight: {fileID: 441468540923850232}
 --- !u!114 &441468540923850232

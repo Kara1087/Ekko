@@ -17,11 +17,6 @@ public class Revealable : MonoBehaviour, IRevealable
     [SerializeField] private float visibleDuration = 2f;        // Temps visible
     [SerializeField] private float fadeOutDuration = 1.5f;      // Temps pour disparaître (fade out)
 
-    [Header("Modulation par force")]
-    [SerializeField] private bool useWaveIntensity = true;         // ⬅️ active ou non l’effet dynamique
-    [SerializeField] private float minMultiplier = 0.5f;           // facteur appliqué pour force 0
-    [SerializeField] private float maxMultiplier = 2f;             // facteur appliqué pour force 1
-
     // Liste de tous les SpriteRenderer enfants (utile si l’objet est composé de plusieurs sprites)
     private List<SpriteRenderer> spriteRenderers = new();
     // Pour éviter plusieurs coroutines qui s'écrasent mutuellement
@@ -46,20 +41,12 @@ public class Revealable : MonoBehaviour, IRevealable
     /// Appelée lorsqu’une onde touche cet objet.
     /// L’objet devient visible pendant un certain temps.
     /// </summary>
-    public void Reveal(float waveIntensity)
+    public void Reveal()
     {
         
         if (isPlayerInPlatform)
         {
             return;
-        }
-        
-        float duration = visibleDuration;
-
-        if (useWaveIntensity)
-        {
-            float multiplier = Mathf.Lerp(minMultiplier, maxMultiplier, waveIntensity);
-            duration *= multiplier;
         }
 
         // Si une animation est déjà en cours, on l’interrompt pour en relancer une propre

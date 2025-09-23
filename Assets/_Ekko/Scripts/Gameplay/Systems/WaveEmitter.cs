@@ -13,9 +13,6 @@ public class WaveEmitter : MonoBehaviour
     [SerializeField] private float rangePowerCurve = 1.5f;  // Contrôle la courbe d’expansion (1 = linéaire, >1 = exponentiel)
     [SerializeField] private float rangeMultiplier = 1f;    // Permet de scaler dynamiquement toutes les ondes (ex: bonus temporaire)
 
-    [SerializeField] private float minForce = 1f;           // Force minimale attendue à l’atterrissage//TODO in Jump System with Threshold
-    [SerializeField] private float maxForce = 20f;          // Force maximale attendue à l’atterrissage
-    
     
     [Space(5),Header("Cushion Settings")]
     [SerializeField] private float cushionMusicFadeTime = 0.5f;
@@ -38,27 +35,24 @@ public class WaveEmitter : MonoBehaviour
     private void OnPlayerLand(object obj)
     {
         LandData data = (LandData)obj;
-        EmitWave(data.force, data.landingType);
+        EmitWave(data.force,data.minForce,data.maxForce, data.landingType);
     }
 
     /// <summary>
     /// Appelé lors de l’atterrissage par JumpSystem.
     /// Génère une onde avec un rayon proportionnel à la force de l’impact.
     /// </summary>
-    private void EmitWave(float impactForce, LandingType landingType)
+    private void EmitWave(float impactForce,float minForce,float maxForce, LandingType landingType)
     {
-        // 1. 🔒 Clamp la force pour qu’elle reste dans l’intervalle [minForce, maxForce]
-        float clampedForce = Mathf.Clamp(impactForce, minForce, maxForce);
 
         // 2. 📈 Interpolation : convertit la force en facteur [0-1]
-        float t = Mathf.InverseLerp(minForce, maxForce, clampedForce);
+        float t = Mathf.InverseLerp(minForce, maxForce, impactForce);
 
         // 3. 📊 Applique une courbe exponentielle pour rendre les petites forces plus douces et les grandes plus puissantes
         t = Mathf.Pow(t, rangePowerCurve);
 
         // 4. 📐 Calcule le rayon final de l’onde
         float targetRadius = Mathf.Lerp(minRange, maxRange, t) * rangeMultiplier;
-
         
         // 6. 🌀 Instancie l’onde à la position du joueur
         // Spawn wave directly

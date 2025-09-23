@@ -9,7 +9,6 @@ using UnityEngine.Rendering.Universal;
 public class Wave : MonoBehaviour
 {
     #region Constants
-    private const float LIGHT_ACTIVATION_THRESHOLD = 10f;
     private const float STARTING_RADIUS_RATIO = 0.3f;
     private const float DESTRUCTION_DELAY = 0.2f;
     private const float SCAN_INTERVAL = 0.2f; // Scan every 200ms instead of every frame
@@ -21,6 +20,7 @@ public class Wave : MonoBehaviour
     
     [Header("Wave Settings"),]
     [SerializeField] private float waveMaxExpansionDuration = 2.5f;
+    [SerializeField] private float waveMinExpansionDuration = 0.75f;
     [SerializeField, Range(0.01f, 1f),Tooltip("Percentage of wave Duration to get max collider max Range")]
     private float colliderMaxRangeDuration = 2.5f;
     [SerializeField] private Ease colliderExpansionCurve;
@@ -43,7 +43,8 @@ public class Wave : MonoBehaviour
     
     [Header("\nParticle Settings")]
     [SerializeField] private float particleMatchSizeFactor = 4f;
-    [SerializeField, Space(10)] private float particleStartPlaybackSpeed = 10f;
+    [SerializeField, Space(10)] private float particleMaxStartPlaybackSpeed = 10f;
+    [SerializeField] private float particleMinStartPlaybackSpeed = 2f;
     [SerializeField] private float particleEndPlaybackSpeed = 3f;
     [SerializeField] private float playbackChangeDuration;
     [SerializeField] private Ease playbackDurationCurve;
@@ -55,7 +56,6 @@ public class Wave : MonoBehaviour
     
     // Wave properties
     private float targetRadius;
-    private float waveIntensity = 1f;
     
     // Component references (cached)
     private CircleCollider2D waveCollider;
@@ -109,35 +109,19 @@ public class Wave : MonoBehaviour
     {
         ResetWaveState();
         
-        
         targetRadius = assignedTargetRadius;
         
-        float normalizedForce = Mathf.Clamp(impactForce, minForce, maxForce);
-        waveIntensity = normalizedForce;
+        float t = Mathf.InverseLerp(minForce, maxForce, impactForce);
         
-        float duration = CalculateWaveDuration(normalizedForce, minForce, maxForce);
-        if (duration <= 0f)
-        {
-            Debug.Log("returning to pool!");
-            ResetWaveForPool();
-            ObjectPoolManager.ReturnObjectToPool(gameObject, ObjectPoolManager.PoolType.Wave);
-            return;
-        }
         
         ConfigureCollider(assignedTargetRadius);
-        ConfigureParticles();
-        ConfigureLight(impactForce);
+        ConfigureParticles(t);
+        ConfigureLight();
         
         
+        float duration =  Mathf.Lerp(waveMinExpansionDuration, waveMaxExpansionDuration, t);
         // Start wave animation
-        StartWaveAnimation(duration);
-    }
-
-    private float CalculateWaveDuration(float normalizedForce, float minForce, float maxForce)
-    {
-        float t = (normalizedForce - minForce) / (maxForce - minForce);
-        float clampedValue  = Mathf.Clamp01(t); // keep result between 0 and 1
-        return clampedValue * waveMaxExpansionDuration;
+        StartWaveAnimation(duration, t);
     }
 
     private void ResetWaveState()
@@ -167,22 +151,21 @@ public class Wave : MonoBehaviour
         }
     }
 
-    private void ConfigureParticles()
+    private void ConfigureParticles(float t)
     {
         if (!waveParticle) return;
         
         particleEmission.rateOverTimeMultiplier = particleStartEmissionQuantity;
-        particleMain.simulationSpeed = particleStartPlaybackSpeed;
+        particleMain.simulationSpeed = Mathf.Lerp(particleMinStartPlaybackSpeed, particleMaxStartPlaybackSpeed, t);
     }
 
-    private void ConfigureLight(float impactForce)
+    private void ConfigureLight()
     {
         if (!waveLight) return;
         
-        bool shouldEnableLight = impactForce >= LIGHT_ACTIVATION_THRESHOLD;
-        waveLight.enabled = shouldEnableLight;
+        waveLight.enabled = true;
 
-        if (shouldEnableLight && waveCollider)
+        if (waveCollider)
         {
             waveLight.shapeLightFalloffSize = waveCollider.radius;
             float minIntensity = lightIntensityFactor * intensityMinRatio;
@@ -192,32 +175,24 @@ public class Wave : MonoBehaviour
     #endregion
 
     #region Wave Animation (Coroutines + Tweening)
-    private void StartWaveAnimation(float percentageDuration)
+    private void StartWaveAnimation(float animDuration, float t)
     {
         waveSequence = DOTween.Sequence();
 
         if (waveCollider)
         {
-            waveCollider.radius = 0.05f;
-            var expansionTween = DOTween.To(
-                () => waveCollider.radius,
-                radius => waveCollider.radius = radius,
-                targetRadius * 0.5f,
-                (waveMaxExpansionDuration * percentageDuration) * colliderMaxRangeDuration
-            ).SetEase(colliderExpansionCurve);
-            
-            waveSequence.Join(expansionTween);
+            AnimateCollider(animDuration);
+        }
+        
+        if (waveParticle)
+        {
+            AnimateParticles(animDuration);
         }
         
         // light animation if enabled
         if (waveLight && waveLight.enabled)
         {
-            AnimateLightExpansion(percentageDuration);
-        }
-
-        if (waveParticle)
-        {
-            AnimateParticles(percentageDuration);
+            AnimateLightExpansion(animDuration);
         }
         
         
@@ -227,7 +202,7 @@ public class Wave : MonoBehaviour
                 () => waveLight.intensity,
                 intensity => waveLight.intensity = intensity,
                 0f, 
-                disappearanceLightDuration * percentageDuration
+                disappearanceLightDuration * animDuration
             ).SetEase(disappearanceCurve)
         );
         
@@ -237,7 +212,20 @@ public class Wave : MonoBehaviour
         StartCoroutine(ObjectScanningCoroutine());
     }
 
-    private void AnimateLightExpansion(float percentageDuration)
+    private void AnimateCollider(float animDuration)
+    {
+        waveCollider.radius = 0.05f;
+        var expansionTween = DOTween.To(
+            () => waveCollider.radius,
+            radius => waveCollider.radius = radius,
+            targetRadius * 0.5f,
+            (waveMaxExpansionDuration * animDuration) * colliderMaxRangeDuration
+        ).SetEase(colliderExpansionCurve);
+            
+        waveSequence.Join(expansionTween);
+    }
+
+    private void AnimateLightExpansion(float animDuration)
     {
         float maxIntensity = lightIntensityFactor;
         
@@ -246,7 +234,7 @@ public class Wave : MonoBehaviour
             () => waveLight.intensity,
             intensity => waveLight.intensity = intensity,
             maxIntensity,
-            (waveMaxExpansionDuration * lightMaxIntensityDuration) * percentageDuration
+            (waveMaxExpansionDuration * lightMaxIntensityDuration) * animDuration
         ).SetEase(lightIntensityCurve);
         
         // Animate light radius to match wave expansion
@@ -254,7 +242,7 @@ public class Wave : MonoBehaviour
             () => waveLight.shapeLightFalloffSize,
             radius => waveLight.shapeLightFalloffSize = radius,
             targetRadius * 0.5f,
-            (waveMaxExpansionDuration* changeRadiusFactor) * percentageDuration
+            (waveMaxExpansionDuration* changeRadiusFactor) * animDuration
         ).SetEase(lightRadiusCurve);
         
         waveSequence.Join(intensityTween);
@@ -263,21 +251,25 @@ public class Wave : MonoBehaviour
     }
     
     
-    private void AnimateParticles(float percentageDuration)
+    private void AnimateParticles(float animDuration)
     {
         // Keep this manual - needs real-time tracking
-        DOTween.To(() => particleMain.simulationSpeed, 
+        var simulationSpeed = DOTween.To(() => particleMain.simulationSpeed, 
                 x => particleMain.simulationSpeed = x, 
-                particleEndPlaybackSpeed, 
-                playbackChangeDuration * percentageDuration)
+                particleEndPlaybackSpeed,
+                playbackChangeDuration * animDuration)
             .SetEase(playbackDurationCurve);
         
-        DOTween.To(() => particleEmission.rateOverTimeMultiplier, 
+        var emissionDurationTween = DOTween.To(() => particleEmission.rateOverTimeMultiplier, 
                 x => particleEmission.rateOverTimeMultiplier = x, 
                 0f, 
-                emissionDuration * percentageDuration)
+                emissionDuration * animDuration)
             .SetEase(emissionDurationCurve)
             .From(particleStartEmissionQuantity);
+        
+        
+        waveSequence.Join(simulationSpeed);
+        waveSequence.Join(emissionDurationTween);
     }
     
     private IEnumerator ObjectScanningCoroutine()
@@ -328,7 +320,7 @@ public class Wave : MonoBehaviour
 
         if (other.TryGetComponent<IRevealable>(out var revealable) )
         {
-            revealable.Reveal(waveIntensity);
+            revealable.Reveal();
             processedRevealables.Add(other.gameObject);;
         }
     }

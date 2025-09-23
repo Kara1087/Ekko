@@ -72,8 +72,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private void OnPlayerLand(object obj)
     {
         LandData data = (LandData)obj;
-        Debug.Log("Player Health FOrce: " + data.force);
-        TakeDamage(50f);
+        float t = Mathf.InverseLerp(data.minForce, data.maxForce, data.force);
+        TakeDamage(Mathf.Lerp(minLandDamage, maxLandDamage, t));
     }
     
     /// <summary>

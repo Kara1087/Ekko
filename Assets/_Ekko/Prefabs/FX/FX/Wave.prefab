@@ -53,13 +53,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   waveMaxExpansionDuration: 2.5
+  waveMinExpansionDuration: 1
   colliderMaxRangeDuration: 0.171
   colliderExpansionCurve: 1
   lightIntensityFactor: 10
   intensityMinRatio: 0.129
-  lightMaxIntensityDuration: 0.119
+  lightMaxIntensityDuration: 0.483
   lightIntensityCurve: 20
-  changeRadiusFactor: 0.168
+  changeRadiusFactor: 0.153
   lightRadiusCurve: 1
   disappearanceLightDuration: 1.3
   disappearanceCurve:
@@ -87,11 +88,12 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   particleMatchSizeFactor: 8
-  particleStartPlaybackSpeed: 6
+  particleMaxStartPlaybackSpeed: 10
+  particleMinStartPlaybackSpeed: 2
   particleEndPlaybackSpeed: 2
   playbackChangeDuration: 1.41
   playbackDurationCurve: 1
-  particleStartEmissionQuantity: 2
+  particleStartEmissionQuantity: 1
   emissionDuration: 1.2
   emissionDurationCurve: 23
 --- !u!58 &8570334900172912849
