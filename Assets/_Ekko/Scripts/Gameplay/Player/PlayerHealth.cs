@@ -16,6 +16,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [Header("Seuil critique")]
     [SerializeField] private float lowLightThreshold = 20f;
 
+    [Header("Land health change settings")] 
+    [SerializeField, Range(0f, 15f)]
+    private float minLandDamage = 3f;
+    [SerializeField, Range(2f, 100f)]
+    private float maxLandDamage = 10f;
+    
     public static Action OnLightChanged;           // Appelé à chaque changement de lumière (dégâts ou soin)
     public static Action<Vector3> OnPlayerDeath;
     

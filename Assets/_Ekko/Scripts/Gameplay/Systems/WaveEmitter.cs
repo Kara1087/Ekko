@@ -13,7 +13,7 @@ public class WaveEmitter : MonoBehaviour
     [SerializeField] private float rangePowerCurve = 1.5f;  // Contrôle la courbe d’expansion (1 = linéaire, >1 = exponentiel)
     [SerializeField] private float rangeMultiplier = 1f;    // Permet de scaler dynamiquement toutes les ondes (ex: bonus temporaire)
 
-    [SerializeField] private float minForce = 1f;           // Force minimale attendue à l’atterrissage
+    [SerializeField] private float minForce = 1f;           // Force minimale attendue à l’atterrissage//TODO in Jump System with Threshold
     [SerializeField] private float maxForce = 20f;          // Force maximale attendue à l’atterrissage
     
     

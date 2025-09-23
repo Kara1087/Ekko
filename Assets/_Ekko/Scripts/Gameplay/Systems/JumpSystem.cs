@@ -26,6 +26,8 @@ public class JumpSystem : MonoBehaviour
     [SerializeField] private float slamWaveMultiplier = 1.5f;        // Onde plus forte (slam)
     [SerializeField] private float cushionWaveMultiplier = 0.1f;     // Onde plus faible (amorti)
 
+    [SerializeField] private float minLandForceToActiveWaveEmitter = 25f;
+    
     [HideInInspector] public float landForce { get; private set;}//TODO CHANGE ?
     [HideInInspector] public LandingType landingType { get; private set;}
     
@@ -168,8 +170,10 @@ public class JumpSystem : MonoBehaviour
             landForce *= cushionWaveMultiplier;
         }
         
-        //TODO only send msg after check landing threshold
-        EventManager.TriggerEvent(GameEventType.PlayerLand, new LandData(landForce, landObject, landingType));
+        if (landForce > minLandForceToActiveWaveEmitter)
+        {
+            EventManager.TriggerEvent(GameEventType.PlayerLand, new LandData(landForce, landObject, landingType));
+        }
 
         // Reset des états liés au saut
         isForcingSlam = false;
