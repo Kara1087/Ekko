@@ -121,8 +121,7 @@ public class QuoteManager : MonoBehaviour
             // Affichage du texte
             quoteText.text = quoteData.quoteText;
             quotePanel.SetActive(true);
-
-          
+            
             // Active ou désactive le fond noir selon le type
             if (imageBackground)
             {

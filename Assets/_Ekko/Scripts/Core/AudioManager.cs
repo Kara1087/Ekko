@@ -181,7 +181,7 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator FadeOutMusicRoutine(float duration)
     {
-        if (musicThemeSource == null || !musicThemeSource.isPlaying)
+        if (!musicThemeSource || !musicThemeSource.isPlaying)
             yield break;
 
         float startVolume = musicThemeSource.volume;

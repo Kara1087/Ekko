@@ -8,7 +8,8 @@ public enum GameEventType
     EnemyKilled,
     PlayerDamaged,
     ItemCollected,
-    PlayerLand
+    PlayerLand,
+    PlayerRespawn,
 }
 
 public static class EventManager

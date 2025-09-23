@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -41,7 +42,32 @@ public class PlayerController : MonoBehaviour
         jumpSystem = GetComponent<JumpSystem>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
+
+    private void OnEnable()
+    {
+        EventManager.Subscribe(GameEventType.PlayerRespawn, Respawn);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Unsubscribe(GameEventType.PlayerRespawn, Respawn);
+    }
     
+    private void Respawn(object obj)
+    {
+        // Sécurité : on détache le joueur de toute plateforme potentielle
+        if (transform.parent)
+        {
+            transform.SetParent(null);
+        }
+            
+        Vector2 checkpointPos = CheckpointManager.Instance.GetLastCheckpointPosition();
+        // Replace le joueur au checkpoint
+        transform.position = checkpointPos;
+        
+        rb.linearVelocity = Vector2.zero;
+    }
+
     private void Update()
     {
         // Mouvement horizontal=

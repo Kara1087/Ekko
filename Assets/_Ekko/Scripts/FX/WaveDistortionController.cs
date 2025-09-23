@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -24,7 +23,7 @@ namespace _Ekko.Scripts.FX
 
         private void OnDestroy()
         {
-            
+            DOTween.Kill(mat);
             TransitionManager.OnSceneLoadCompleted -= Init;
         }
 

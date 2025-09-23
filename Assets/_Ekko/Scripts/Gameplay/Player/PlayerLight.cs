@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using System.Collections;
@@ -46,12 +47,6 @@ public class PlayerLight : MonoBehaviour
 
     private void Start()
     {   
-        // Abonnement à l’event de changement de lumière
-        if (playerHealth != null)
-        {
-            playerHealth.onLightChanged.AddListener(UpdateLight);
-        }
-
         // Initialise la lumière une première fois
         UpdateLight();
 
@@ -60,6 +55,16 @@ public class PlayerLight : MonoBehaviour
         {
             pulseRoutine = StartCoroutine(PulseLight());
         }
+    }
+
+    private void OnEnable()
+    {
+        PlayerHealth.OnLightChanged += UpdateLight;
+    }
+
+    private void OnDisable()
+    {
+        PlayerHealth.OnLightChanged -= UpdateLight;
     }
 
     /// <summary>

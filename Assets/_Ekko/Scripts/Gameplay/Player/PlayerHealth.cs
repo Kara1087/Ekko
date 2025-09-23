@@ -1,6 +1,6 @@
 using System;
+using _Ekko.Scripts.Gameplay.Systems;
 using UnityEngine;
-using UnityEngine.Events;
 
 /// <summary>
 /// Gère la "vie" du joueur sous forme de lumière.
@@ -16,12 +16,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [Header("Seuil critique")]
     [SerializeField] private float lowLightThreshold = 20f;
 
-    [Header("Events")]//TODO Cleanup this
-    public UnityEvent onLightChanged;           // Appelé à chaque changement de lumière (dégâts ou soin)
-    public UnityEvent onLowLight;               // Appelé quand la lumière passe sous le seuil critique
-    public UnityEvent onDeath;
-
-    public static Action<Transform> OnPlayerDeath;
+    public static Action OnLightChanged;           // Appelé à chaque changement de lumière (dégâts ou soin)
+    public static Action<Vector3> OnPlayerDeath;
     
     [Header("References")]
     [SerializeField] private PlayerVFX playerVFX;
@@ -45,25 +41,43 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private void Start()
     {
         // Initialisation de la caméra shake
-        cameraShake = GetComponent<CameraShake>();
+        cameraShake = GetComponent<CameraShake>();//TODO put that on a camera manager or something like that
+        
     }
     
-    // --- MÉTHODES DE TEST RAPIDES ---
-    [ContextMenu("Test: Restore Light (30)")]
-    private void TestRestoreLight()
+
+    private void OnEnable()
     {
-        RestoreLight(maxLight);
+        EventManager.Subscribe(GameEventType.PlayerLand, OnPlayerLand);
+        EventManager.Subscribe(GameEventType.PlayerRespawn, Respawn);
     }
 
+    private void OnDisable()
+    {
+        EventManager.Unsubscribe(GameEventType.PlayerLand, OnPlayerLand);
+        EventManager.Unsubscribe(GameEventType.PlayerRespawn, Respawn);
+    }
+
+    private void Respawn(object obj)
+    {
+        SetLight(MaxLight); // Réinitialise la vie/lumière
+    }
+
+    private void OnPlayerLand(object obj)
+    {
+        LandData data = (LandData)obj;
+        Debug.Log("Player Health FOrce: " + data.force);
+        TakeDamage(50f);
+    }
+    
     /// <summary>
     /// Réinitialise la lumière au maximum (utile après un respawn ou une transition).
     /// </summary>
     public void ResetHealth()
     {
-        //Debug.Log("[PlayerHealth] 🔁 Reset de la lumière");
         currentLight = maxLight;
         //hasTriggeredFirstSpectreQuote = false; // 🔁 reset aussi la citation contextuelle si besoin
-        onLightChanged?.Invoke();
+        OnLightChanged?.Invoke();
     }
 
     /// <summary>
@@ -73,7 +87,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         currentLight += amount;
         currentLight = Mathf.Clamp(currentLight, 0f, maxLight);
-        onLightChanged?.Invoke();
+        OnLightChanged?.Invoke();
     }
 
     /// <summary>
@@ -83,7 +97,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         currentLight = Mathf.Clamp(value, 0f, maxLight);
         Debug.Log($"[PlayerHealth] 🔧 Lumière définie manuellement : {currentLight}");
-        onLightChanged?.Invoke();
+        OnLightChanged?.Invoke();
     }
 
     /// <summary>
@@ -105,7 +119,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         Debug.Log($"[PlayerHealth] 💥 Dégâts reçus : -{damageAmount} | Lumière restante : {currentLight} | IsDead = {IsDead}");
 
         // Déclenche une citation si la source est un ennemi spécifique
-        if (!hasTriggeredFirstSpectreQuote && source != null && source.CompareTag("Enemy"))
+        if (!hasTriggeredFirstSpectreQuote && source && source.CompareTag("Enemy"))
         {
             hasTriggeredFirstSpectreQuote = true;
 
@@ -114,17 +128,15 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             Debug.Log("[PlayerHealth] ⚠️ Premier dégât reçu d'un Spectre !");
         }
 
-        onLightChanged?.Invoke();                                   // Notifie tout système écoutant ce changement (UI, shader, etc.)
+        OnLightChanged?.Invoke();                                   // Notifie tout système écoutant ce changement (UI, shader, etc.)
 
         // Feedback visuel
         playerLight?.FlashAbsorptionEffect();                       // Effet visuel de flash/lumière aspirée
         playerVFX?.TriggerDamageFeedback();                         // Particules aspirées/burst visuel
 
-        if (IsLow) onLowLight?.Invoke();
         if (IsDead)
         {
-            OnPlayerDeath?.Invoke(source);
-            onDeath?.Invoke();
+            OnPlayerDeath?.Invoke(transform.position);
             HandleDeath();
             return;
         }
@@ -136,14 +148,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     /// </summary>
     private void HandleDeath()
     {
-
-        if (GameManager.Instance != null)
+        if (GameManager.Instance)
         {
             GameManager.Instance.HandlePlayerDeath();
-        }
-        else
-        {
-            Debug.LogWarning("[PlayerHealth] GameManager.Instance est null !");
         }
     }
 

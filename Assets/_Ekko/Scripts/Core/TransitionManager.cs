@@ -46,17 +46,18 @@ public class TransitionManager : MonoBehaviour
     {
         if (isRunning)
         {
-            //Debug.LogWarning("[TransitionManager] ⚠ DeathSequence déjà en cours !");
             return;
         }
 
         StartCoroutine(DeathSequence());
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private IEnumerator DeathSequence()
     {
         isRunning = true;
 
+        yield return new WaitForSecondsRealtime(0.85f);
         // 1. Fondu vers noir
         yield return ui.StartBlackoutRoutine();
 
@@ -87,10 +88,7 @@ public class TransitionManager : MonoBehaviour
         }
 
         // 3. Respawn
-        game.RespawnPlayer();
-
-        // 4. Fade in
-        yield return ui.StartFadeInRoutine();
+        game.TryRespawnPlayer();
 
         // 5. Rejoue la musique de fond
         AudioManager.Instance?.PlayMusicTheme("BackgroundTheme");

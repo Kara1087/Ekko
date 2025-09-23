@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(TransitionManager.Instance.LoadSceneWithFade(MAIN_MENU_SCENE));
     }
 
-
     public void TogglePause()
     {
         if (IsGameOver) return;    
@@ -97,7 +96,8 @@ public class GameManager : MonoBehaviour
         TransitionManager.Instance.PlayDeathSequence();
     }
 
-    public void RespawnPlayer()
+    
+    public void TryRespawnPlayer()
     {
         // Récupère la positions du dernier checkpoint
         if (!CheckpointManager.Instance || !CheckpointManager.Instance.HasCheckpoint())
@@ -105,61 +105,18 @@ public class GameManager : MonoBehaviour
             RestartGame();
             return;
         }
-
-        Vector2 checkpointPos = CheckpointManager.Instance.GetLastCheckpointPosition();
-
         // Réactive le jeu
         Time.timeScale = 1f;
         IsPaused = false;
         IsGameOver = false;
-
-        // Reset du joueur TODO Optimize that
-        GameObject player = GameObject.FindGameObjectWithTag("Player"); // Trouve le joueur dynamiquement (au cas où il a été détruit ou désactivé)
-
-        //TODO Event to respawn Player and reset everithyng is not the job of GameManager to do that !
-        if (player)
-        {
-            // Sécurité : on détache le joueur de toute plateforme potentielle
-            if (player.transform.parent)
-            {
-                player.transform.SetParent(null);
-            }
-            
-            // Replace le joueur au checkpoint
-            player.transform.position = checkpointPos;
-
-            // Réinitialise EnemeyAI
-            ResetAllEnemies();
-
-            // Réinitialise la vie/lumière
-            PlayerHealth ph = player.GetComponent<PlayerHealth>();
-            if (ph != null)
-            {
-                ph.SetLight(ph.MaxLight); // Réinitialise la vie/lumière
-            }
-
-            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.linearVelocity = Vector2.zero;
-            }
-
-
-        }
-
+        
+        EventManager.TriggerEvent(GameEventType.PlayerRespawn);
+        
         // UI : Nettoie le GameOver
         //UIManager.Instance?.HideGameOver();
         UIManager.Instance.ShowQuotePanel(false);
 
         Debug.Log("[GameManager] ✅ Respawn effectué depuis le dernier checkpoint.");
-    }
-
-    public void ResetAllEnemies()
-    {
-        foreach (var enemy in FindObjectsByType<EnemyAI>(FindObjectsSortMode.None))
-        {
-            enemy.ResetToCheckpoint();
-        }
     }
 
 
@@ -183,7 +140,7 @@ public class GameManager : MonoBehaviour
         IsPaused = false;
         IsGameOver = false;
 
-        UIManager.Instance?.ShowQuotePanel(true);
+        //UIManager.Instance?.ShowQuotePanel(true); TODO demander a Karine pourquoi ?
         UIManager.Instance?.HideGameOver();
 
         string currentScene = SceneManager.GetActiveScene().name;

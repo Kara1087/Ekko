@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using System.Collections;
@@ -71,6 +72,16 @@ public class EnemyAI : MonoBehaviour, IAlertable
         }
     }
 
+    private void OnEnable()
+    {
+        EventManager.Subscribe(GameEventType.PlayerRespawn, ResetToCheckpoint);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Unsubscribe(GameEventType.PlayerRespawn, ResetToCheckpoint);
+    }
+
     private void Update()
     {
         switch (currentState)
@@ -97,7 +108,7 @@ public class EnemyAI : MonoBehaviour, IAlertable
     }
 
     
-    public void ResetToCheckpoint()         // Remet l’ennemi à son checkpoint
+    private void ResetToCheckpoint(object o)         // Remet l’ennemi à son checkpoint
     {
         transform.position = checkpointPosition;
         ChangeState(EnemyState.Dormant);

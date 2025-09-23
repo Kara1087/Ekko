@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -352,6 +353,11 @@ public class Wave : MonoBehaviour
         {
             HandleRevealable(hit);
         }
+    }
+
+    private void OnDestroy()
+    {
+        DOTween.KillAll();
     }
 
     private void ScanForAlertables()

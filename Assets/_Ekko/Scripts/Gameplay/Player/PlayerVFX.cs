@@ -55,9 +55,9 @@ public class PlayerVFX : MonoBehaviour
         
     }
 
-    private void OnPlayerDeath(Transform obj)
+    private void OnPlayerDeath(Vector3 pos)
     {
-       ObjectPoolManager.SpawnObject(splashPrefab, obj.position, Quaternion.identity);
+        ObjectPoolManager.SpawnObject(splashPrefab, pos, Quaternion.identity);
     }
     
     void LateUpdate()
