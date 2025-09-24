@@ -29,7 +29,8 @@ public class ReactiveLandObjectManager : MonoBehaviour
 	
 	public IReactiveLandObject GetReactivePlatform(Transform platform)
 	{
-		return cachedReactivePlatforms[platform];
+		cachedReactivePlatforms.TryGetValue(platform,  out IReactiveLandObject reactivePlatform);
+		return reactivePlatform;
 	}
 
 }

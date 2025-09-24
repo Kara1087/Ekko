@@ -159,16 +159,18 @@ public class JumpSystem : MonoBehaviour
             landingType = LandingType.Slam;
             landForce *= slamWaveMultiplier;
             
-            if (landObject.CompareTag("ReactiveLandObject"))
-            {
-                IReactiveLandObject reactivePlatform =  ReactiveLandObjectManager.Instance.GetReactivePlatform(landObject);
-                reactivePlatform.OnLandingDetected(landForce, landingType, landObject, transform);;
-            }
+            
         }
         else if (isCushioned)
         {
             landingType = LandingType.Cushioned;
             landForce *= cushionWaveMultiplier;
+        }
+        
+        if (landObject.CompareTag("ReactiveLandObject"))
+        {
+            IReactiveLandObject reactivePlatform =  ReactiveLandObjectManager.Instance.GetReactivePlatform(landObject);
+            reactivePlatform?.OnLandingDetected(landForce, landingType, landObject, transform);
         }
         
         if (landForce > minForce)

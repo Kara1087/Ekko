@@ -33,7 +33,8 @@ public class ReactivePlatform : MonoBehaviour, IReactiveLandObject
 
     private void Start()
     {
-        Initialize();
+        if(isReactive)
+            Initialize();
     }
 
     public void Initialize()
@@ -43,8 +44,12 @@ public class ReactivePlatform : MonoBehaviour, IReactiveLandObject
     
     private void OnDestroy()
     {
-        ReactiveLandObjectManager.Instance.UnregisterReactivePlatform(transform);
-        StopAllCoroutines();
+        if (isReactive)
+        {
+            ReactiveLandObjectManager.Instance.UnregisterReactivePlatform(transform);
+            StopAllCoroutines();
+        }
+
     }
 
     private void OnDisable()
@@ -66,18 +71,13 @@ public class ReactivePlatform : MonoBehaviour, IReactiveLandObject
         if (!other.CompareTag("Player")) 
             return;
         
-        if (other.gameObject.IsDestroyed())
-            return;
 
         if(descendWithPlayer != null)
             StopCoroutine(descendWithPlayer);
             
         playerOnPlatform = null;
 
-        if (isActiveAndEnabled                              // Le script est actif et le GameObject aussi
-            && other.transform.parent == transform          // Le joueur est bien parenté à la plateforme
-            && other.gameObject.activeInHierarchy           // Le joueur est actif dans la hiérarchie
-            && transform.gameObject.activeInHierarchy)      // La plateforme est active aussi
+        if (isActiveAndEnabled && transform.gameObject.activeInHierarchy)      // La plateforme est active aussi
         {
             ascendCoroutine =  StartCoroutine(Ascend());
         }
@@ -94,6 +94,7 @@ public class ReactivePlatform : MonoBehaviour, IReactiveLandObject
 
     public void OnLandingDetected(float impactForce, LandingType type, Transform landObject, Transform playerTransform)
     {
+        Debug.Log("Landing detected");
         if (!isReactive) return;
         
         if(descendWithPlayer != null)
