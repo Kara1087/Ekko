@@ -21,20 +21,14 @@ public class Wave : MonoBehaviour
     [Header("Wave Settings"),]
     [SerializeField] private float waveMaxExpansionDuration = 2.5f;
     [SerializeField] private float waveMinExpansionDuration = 0.75f;
-    [SerializeField, Range(0.01f, 1f),Tooltip("Percentage of wave Duration to get max collider max Range")]
-    private float colliderMaxRangeDuration = 2.5f;
     [SerializeField] private Ease colliderExpansionCurve;
     
     [Space(10),Header("Light Settings")]
     [SerializeField] private float lightIntensityFactor = 0.2f;   // Intensité maximale de la lumière
     [SerializeField,Range(0f,1f)] private float intensityMinRatio = 0.2f;      // Ratio pour calculer l’intensité minimale en fade
-    [SerializeField, Range(0.01f, 1f),Tooltip("Percentage of wave Duration to get max intensity")]
-    private float lightMaxIntensityDuration;
     [SerializeField] private Ease lightIntensityCurve;
     [Space(10)]
     
-    [SerializeField, Range(0.01f, 1f), Tooltip("Percentage of wave Duration to get max radius")] 
-    private float changeRadiusFactor = 0.2f;
     [SerializeField] private Ease lightRadiusCurve;
     [Space(10)]
     [SerializeField] private float disappearanceLightDuration;
@@ -181,7 +175,7 @@ public class Wave : MonoBehaviour
 
         if (waveCollider)
         {
-            AnimateCollider(animDuration);
+            AnimateCollider(animDuration, t);
         }
         
         if (waveParticle)
@@ -192,7 +186,7 @@ public class Wave : MonoBehaviour
         // light animation if enabled
         if (waveLight && waveLight.enabled)
         {
-            AnimateLightExpansion(animDuration);
+            AnimateLightExpansion(animDuration, t);
         }
         
         
@@ -212,20 +206,20 @@ public class Wave : MonoBehaviour
         StartCoroutine(ObjectScanningCoroutine());
     }
 
-    private void AnimateCollider(float animDuration)
+    private void AnimateCollider(float animDuration, float t)
     {
         waveCollider.radius = 0.05f;
         var expansionTween = DOTween.To(
             () => waveCollider.radius,
             radius => waveCollider.radius = radius,
             targetRadius * 0.5f,
-            (waveMaxExpansionDuration * animDuration) * colliderMaxRangeDuration
+            animDuration * (1-t)
         ).SetEase(colliderExpansionCurve);
             
         waveSequence.Join(expansionTween);
     }
-
-    private void AnimateLightExpansion(float animDuration)
+    
+    private void AnimateLightExpansion(float animDuration, float t)
     {
         float maxIntensity = lightIntensityFactor;
         
@@ -234,7 +228,7 @@ public class Wave : MonoBehaviour
             () => waveLight.intensity,
             intensity => waveLight.intensity = intensity,
             maxIntensity,
-            (waveMaxExpansionDuration * lightMaxIntensityDuration) * animDuration
+            animDuration
         ).SetEase(lightIntensityCurve);
         
         // Animate light radius to match wave expansion
@@ -242,7 +236,7 @@ public class Wave : MonoBehaviour
             () => waveLight.shapeLightFalloffSize,
             radius => waveLight.shapeLightFalloffSize = radius,
             targetRadius * 0.5f,
-            (waveMaxExpansionDuration* changeRadiusFactor) * animDuration
+            animDuration * (1-t)
         ).SetEase(lightRadiusCurve);
         
         waveSequence.Join(intensityTween);
@@ -313,7 +307,6 @@ public class Wave : MonoBehaviour
 
     #region Object Interaction
 
-    //TODO Review this
     private void HandleRevealable(Collider2D other)
     {
         if (!IsInLayerMask(other.gameObject.layer, revealableLayers) || processedRevealables.Contains(other.gameObject)) return;
@@ -329,7 +322,6 @@ public class Wave : MonoBehaviour
     {
         if (!IsInLayerMask(other.gameObject.layer, alertableLayers) || processedAlertables.Contains(other.gameObject)) return;
         
-     
         if (other.TryGetComponent<IAlertable>(out var alertable))
         {
             alertable.Alert(transform.position);
