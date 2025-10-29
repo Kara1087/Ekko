@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 1c07235635fac8744830dc53db4584b5
-TextScriptImporter:
+guid: af97823dbd5ef504a9cfc0360d44089c
+DefaultImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
@@ -10,5 +10,5 @@ AssetOrigin:
   productId: 313355
   packageName: Scene Switcher Pro
   packageVersion: 1.0.2
-  assetPath: Assets/SceneSwitcherPro/Readme.txt
+  assetPath: Assets/SceneSwitcherPro/SceneS/Scene 3.unity
   uploadId: 809042
