@@ -10,8 +10,11 @@ namespace _Ekko.Scripts.Gameplay.CharacterController
         
         public Vector3 CalculateMoveDirection(Vector3 inputDirection, Transform cameraTransform)
         {
-            //TODO maybe add modality to change axis of movement
-            return new Vector3(inputDirection.x, 0f, 0f);
+            Vector3 axis = SideScrollManager.Instance.CurrentDirection == SideScrollDirection.X 
+                ? Vector3.right 
+                : Vector3.forward;
+            
+            return axis * inputDirection.x;
         }
 
         public Quaternion CalculateRotation(Vector3 moveDirection, Transform playerTransform)

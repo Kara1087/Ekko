@@ -94,7 +94,6 @@ public class ReactivePlatform : MonoBehaviour, IReactiveLandObject
 
     public void OnLandingDetected(float impactForce, LandingType type, Transform landObject, Transform playerTransform)
     {
-        Debug.Log("Landing detected");
         if (!isReactive) return;
         
         if(descendWithPlayer != null)

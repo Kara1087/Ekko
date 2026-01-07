@@ -164,7 +164,7 @@ namespace _Ekko.Scripts.Gameplay.CharacterController
             }
         }
 
-        public void OnLand(float impactVelocity)
+        public void OnLand(float impactVelocity, Transform landObject)
         {
             if (impactVelocity > 0) return;
 
@@ -179,10 +179,18 @@ namespace _Ekko.Scripts.Gameplay.CharacterController
             {
                 landingType = LandingType.Slam;
             }
+            
+            float clampedForce = Mathf.Clamp(impactForce, minForce, maxForce);
+            
+            if (landObject.CompareTag("ReactiveLandObject"))
+            {
+                IReactiveLandObject reactivePlatform =  ReactiveLandObjectManager.Instance.GetReactivePlatform(landObject);
+                reactivePlatform?.OnLandingDetected(clampedForce, landingType, landObject, transform);
+            }
+            
             if (impactForce > minForce)
             {
-                float clampedForce = Mathf.Clamp(impactForce, minForce, maxForce);
-                EventManager.TriggerEvent(GameEventType.PlayerLand, new LandData(clampedForce,minForce,maxForce, null, landingType));
+                EventManager.TriggerEvent(GameEventType.PlayerLand, new LandData(clampedForce,minForce,maxForce, landObject, landingType));
             }
 
             isSlaming = false;

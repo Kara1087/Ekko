@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace _Ekko.Scripts.Inputs
@@ -28,7 +27,6 @@ namespace _Ekko.Scripts.Inputs
     
         private void OnPauseStarted(InputAction.CallbackContext context)
         {
-            Debug.Log("PAUSE!");
             if (!GameManager.Instance.IsGameOver)
             {
                 GameManager.Instance.TogglePause();

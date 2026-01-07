@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Ekko.Scripts.Gameplay.CharacterController
 {
@@ -33,9 +32,9 @@ namespace _Ekko.Scripts.Gameplay.CharacterController
 
         [Header("Ground Check"),SerializeField]
         private float groundCheckRadius = 0.3f;
-
         [SerializeField] private Vector3 groundCheckOffset = new(0, -0.9f, 0);
         [SerializeField] private LayerMask groundMask;
+        private Transform lastGroundObject;
 
         // Components
         private Rigidbody rb;
@@ -53,6 +52,7 @@ namespace _Ekko.Scripts.Gameplay.CharacterController
 
         private bool wasGroundedLastFrame;
         private float previousVerticalVelocity;
+        readonly Collider[] results = new Collider[1];
 
         private void Awake()
         {
@@ -111,18 +111,16 @@ namespace _Ekko.Scripts.Gameplay.CharacterController
         private void CheckGround()
         {
             wasGroundedLastFrame = IsGrounded;
-            IsGrounded = Physics.CheckSphere(
-                transform.position + groundCheckOffset,
-                groundCheckRadius,
-                groundMask
-            );
+            var size = Physics.OverlapSphereNonAlloc(transform.position + groundCheckOffset, groundCheckRadius, results, groundMask);
+            IsGrounded = size > 0;
+            lastGroundObject = size > 0 ? results[0].transform : null;
         }
 
         private void HandleLanding()
         {
             if (!wasGroundedLastFrame && IsGrounded)
             {
-                jumpSystem.OnLand(previousVerticalVelocity);
+                jumpSystem.OnLand(previousVerticalVelocity, lastGroundObject);
             }
         }
 

@@ -299,8 +299,29 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3212748811071917643, guid: 6c9b0db1ebc5dec41adb80c52a2d44ec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 592022547846974703}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 761941234742943704, guid: 6c9b0db1ebc5dec41adb80c52a2d44ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8885438685265794594}
   m_SourcePrefab: {fileID: 100100000, guid: 6c9b0db1ebc5dec41adb80c52a2d44ec, type: 3}
+--- !u!1 &356903672825967050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 761941234742943704, guid: 6c9b0db1ebc5dec41adb80c52a2d44ec, type: 3}
+  m_PrefabInstance: {fileID: 1036123114934742546}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8885438685265794594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356903672825967050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203833bf379d4dcd9b7ffa76390b3685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Ekko.Scripts.Utils.LookCamera
+  localAxisTowardCamera: 0
 --- !u!4 &2518909114072014937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3212748811071917643, guid: 6c9b0db1ebc5dec41adb80c52a2d44ec, type: 3}
