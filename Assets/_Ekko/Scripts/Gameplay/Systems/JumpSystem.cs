@@ -158,8 +158,6 @@ public class JumpSystem : MonoBehaviour
         {
             landingType = LandingType.Slam;
             landForce *= slamWaveMultiplier;
-            
-            
         }
         else if (isCushioned)
         {

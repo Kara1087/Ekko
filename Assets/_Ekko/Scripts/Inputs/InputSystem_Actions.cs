@@ -666,6 +666,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""79eac024-f9e9-48e1-8862-5847b4eeaa15"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cushion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""dc199f89-2242-40d0-88dd-544b3450c708"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",

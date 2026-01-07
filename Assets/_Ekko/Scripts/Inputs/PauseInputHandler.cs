@@ -8,12 +8,10 @@ namespace _Ekko.Scripts.Inputs
     
         protected override void RegisterInputActions()
         {
-            Debug.Log("Registry");
             var inputActionMap = GetActionMap();
             if (inputActionMap == null)
                 return;
             
-            Debug.Log("Registry Done");
             inputActionMap.Player.Pause.started += OnPauseStarted;
             inputActionMap.UI.Pause.started += OnPauseStarted;
         }
